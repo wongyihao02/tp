@@ -37,6 +37,6 @@ Example of usage:
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
+{Give a 'cheat sheet' of taskCommands here}
 
 * Add todo `todo n/TODO_NAME d/DEADLINE`

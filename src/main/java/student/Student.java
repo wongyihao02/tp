@@ -6,7 +6,8 @@ public class Student {
     private String gender;
     private String contact;
     private String matricNumber;
-    private String TutorialClass;
+    private String tutorialClass;
+    private String remark;
 
     public Student(String name, int age, String gender, String contact, String matricNumber, String tutorialClass) {
         this.name = name;
@@ -14,7 +15,7 @@ public class Student {
         this.gender = gender;
         this.contact = contact;
         this.matricNumber = matricNumber;
-        this.TutorialClass = tutorialClass;
+        this.tutorialClass = tutorialClass;
     }
 
     public String getName() {
@@ -57,10 +58,18 @@ public class Student {
         this.matricNumber = matricNumber;
     }
     public String getTutorialClass() {
-        return TutorialClass;
+        return tutorialClass;
     }
     public void setTutorialClass(String tutorialClass) {
-        TutorialClass = tutorialClass;
+        this.tutorialClass = tutorialClass;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public String toFileFormat() {
