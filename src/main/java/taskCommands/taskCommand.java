@@ -5,7 +5,7 @@ import task.TaskList;
  * Represents a generic command that can be executed.
  * Any command class must implement this interface and provide the execution logic.
  */
-public interface taskCommand implements Command{
+public interface taskCommand{
     /**
      * Executes the command with the provided parameters.
      *
