@@ -89,6 +89,18 @@ public class TaskList {
         System.out.println("Now you have " + tasks.toArray().length + " tasks in the list.");
     }
     /**
+     * Adds a Consultation task to the TaskList.
+     *
+     * @param consultation The Consultation task to be added.
+     */
+    public void addTask(Consultation consultation) {
+        tasks.add(consultation);
+        System.out.println("Task added:");
+        consultation.printTask();
+        consultation.printDue();
+        System.out.println("Now you have " + tasks.toArray().length + " tasks in the list.");
+    }
+    /**
      * Returns the total number of tasks in the TaskList.
      *
      * @return The number of tasks in the TaskList.

@@ -26,6 +26,9 @@ public class TASyncException extends Exception {
     public static TASyncException invalidTodoCommand() {
         return new TASyncException("Invalid Todo command, please name of Task to be done.");
     }
+    public static TASyncException invalidConsultationCommand() {
+        return new TASyncException("Invalid Consultation command, specify duration of consultation with \"/from\" and \"/to\".");
+    }
     public static TASyncException invalidDeleteCommand() {
         return new TASyncException("Invalid delete command, please specify which task to delete with an integer.");
     }

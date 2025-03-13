@@ -2,7 +2,7 @@ package task;
 
 /**
  * Abstract class representing a task.
- * This class defines the common properties and methods for all types of tasks (e.g., Todo, Deadline, Event).
+ * This class defines the common properties and methods for all types of tasks (e.g., Todo, Deadline, Event, Consultation).
  */
 public abstract class Task {
     private TaskType taskType;
@@ -63,7 +63,7 @@ public abstract class Task {
     }
 
     /**
-     * Prints the task's type (e.g., Todo, Deadline, Event).
+     * Prints the task's type (e.g., Todo, Deadline, Event, Consultation).
      */
     public void printTaskType() {
         switch (this.getTaskType()) {
@@ -75,6 +75,9 @@ public abstract class Task {
             break;
         case TODO:
             System.out.print("[T]");
+            break;
+        case CONSULTATION:
+            System.out.print("[C]");
             break;
         }
     }

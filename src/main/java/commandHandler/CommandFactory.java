@@ -35,6 +35,10 @@ public class CommandFactory {
             return new TodoCommand();
         case "EVENT":
             return new EventCommand();
+        case "DEADLINE":
+            return new DeadlineCommand();
+        case "CONSULTATION":
+            return new ConsultationCommand();
         case "LIST":
             return new ListCommand();
         case "BYE":
@@ -47,7 +51,7 @@ public class CommandFactory {
             return new RenameCommand();
 
         default:
-            System.out.println("Sorry, Xb does not know what \"" + commandString + "\" means");
+            System.out.println("Sorry, TASync does not know what \"" + commandString + "\" means");
             CommandListPrinter.printCommands();
 
         }
