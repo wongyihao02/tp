@@ -1,4 +1,4 @@
-package util;
+package Util;
 
 import commandHandler.CommandHandler;
 import commandHandler.CommandParser;

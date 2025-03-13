@@ -2,7 +2,7 @@ package taskCommands;
 
 import exception.TASyncException;
 import task.TaskList;
-import util.IntegerChecker;
+import Util.IntegerChecker;
 /**
  * Represents the "MARK" command that marks a task as completed.
  * The command expects a task number to mark the corresponding task as done.
