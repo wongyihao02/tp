@@ -1,4 +1,4 @@
-package util;
+package Util;
 /**
  * Utility class for checking whether a given string is a valid integer.
  * This class contains a method to verify if a string can be converted into an integer.

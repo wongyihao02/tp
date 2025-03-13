@@ -2,7 +2,7 @@ package taskCommands;
 
 import exception.TASyncException;
 import task.TaskList;
-import util.IntegerChecker;
+import Util.IntegerChecker;
 /**
  * Represents the "DELETE" command that deletes a task from the task list.
  * The command expects a task number to delete the corresponding task.

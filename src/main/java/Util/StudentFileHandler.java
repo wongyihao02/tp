@@ -1,4 +1,4 @@
-package util;
+package Util;
 
 import student.Student;
 import student.StudentList;

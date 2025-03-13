@@ -1,9 +1,7 @@
 package commandHandler;
 
-import studentCommands.NewStudentCommand;
 import taskCommands.*;
-import util.CommandListPrinter;
-import studentCommands.NewStudentCommand;
+import Util.CommandListPrinter;
 
 /**
  * The CommandFactory class is responsible for creating the appropriate Command object based on the
