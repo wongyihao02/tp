@@ -1,12 +1,13 @@
 package Util;
 
-import student.Student;
-import student.StudentList;
+import students.Student;
+import students.StudentList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -39,13 +40,12 @@ public class StudentFileHandler {
                 if (parts.length < 5) continue; // Ignore malformed lines
 
                 String name = parts[0];
-                int age = Integer.parseInt(parts[1]);
-                String gender = parts[2];
+                LocalDate dob = DateTimeFormatterUtil.parseDate(parts[1]);                String gender = parts[2];
                 String contact = parts[3];
                 String matricNumber = parts[4];
                 String tutorialClass = parts[5];
 
-                students.add(new Student(name, age, gender, contact, matricNumber, tutorialClass));
+                students.add(new Student(name, dob, gender, contact, matricNumber, tutorialClass));
             }
             return new StudentList(students);
         } catch (FileNotFoundException e) {

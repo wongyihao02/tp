@@ -2,7 +2,7 @@ package FileHandlers;
 
 import Attendance.AttendanceFile;
 import Attendance.AttendanceList;
-import Students.Student;
+import students.Student;
 
 import java.io.FileWriter;
 import java.io.IOException;

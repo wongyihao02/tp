@@ -1,6 +1,6 @@
 package Tutorial;
 
-import Students.StudentList;
+import students.StudentList;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
