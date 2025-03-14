@@ -1,5 +1,5 @@
 package task;
-import Util.DateTimeFormatTool;
+import Util.DateTimeFormatterUtil;
 /**
  * Represents a task with a consultation.
  * This class extends the Task class and includes additional functionality for managing consultations with start and end times.
@@ -33,16 +33,19 @@ public class Consultation extends Task {
     @Override
     public void printDue() {
         // If both consultationStart and consultationEnd are invalid, print raw values
-        if (!DateTimeFormatTool.isValidDateTimeFormat(consultationStart) && !DateTimeFormatTool.isValidDateTimeFormat(consultationEnd)) {
+        boolean isConsultationEndValidDate = DateTimeFormatterUtil.isValidDateTime(consultationEnd);
+        boolean isConsultationStartValidDate = DateTimeFormatterUtil.isValidDateTime(consultationStart);
+
+        if (!isConsultationStartValidDate && !isConsultationEndValidDate) {
             System.out.println(" (from: " + consultationStart + " to: " + consultationEnd + ")");
         }
         // If eventStart is valid but consultationEnd is invalid, format consultationStart, leave consultationEnd raw
-        else if (DateTimeFormatTool.isValidDateTimeFormat(consultationStart) && !DateTimeFormatTool.isValidDateTimeFormat(consultationEnd)) {
-            System.out.println(" (from: " + DateTimeFormatTool.parseDateTime(consultationStart) + " to: " + consultationEnd + ")");
+        else if (isConsultationStartValidDate && !isConsultationEndValidDate) {
+            System.out.println(" (from: " + DateTimeFormatterUtil.parseDateTime(consultationStart) + " to: " + consultationEnd + ")");
         }
         // If both consultationStart and consultationEnd are valid, format both
         else {
-            System.out.println(" (from: " + DateTimeFormatTool.parseDateTime(consultationStart) + " to: " + DateTimeFormatTool.parseDateTime(consultationEnd) + ")");
+            System.out.println(" (from: " + DateTimeFormatterUtil.parseDateTime(consultationStart) + " to: " + DateTimeFormatterUtil.parseDateTime(consultationEnd) + ")");
         }
     }
     /**

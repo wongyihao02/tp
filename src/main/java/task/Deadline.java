@@ -1,6 +1,6 @@
 package task;
 
-import Util.DateTimeFormatTool;
+import Util.DateTimeFormatterUtil;
 /**
  * Represents a task with a deadline.
  * This class extends the Task class and includes additional functionality for managing deadlines.
@@ -32,8 +32,9 @@ public class Deadline extends Task {
      */
     @Override
     public void printDue() {
-        if(DateTimeFormatTool.isValidDateTimeFormat(deadline)) {
-            System.out.println(" (by: " + DateTimeFormatTool.parseDateTime(deadline) + ")");
+        boolean isDeadlineValidDate = DateTimeFormatterUtil.isValidDate(deadline);
+        if(isDeadlineValidDate) {
+            System.out.println(" (by: " + DateTimeFormatterUtil.parseDate(deadline) + ")");
 
         }else {
             System.out.println(" (by: " + deadline + ")");
