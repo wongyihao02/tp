@@ -1,6 +1,6 @@
 package studentCommands;
 
-import student.StudentList;
+import students.StudentList;
 import task.TaskList;
 
 public interface StudentCommand {

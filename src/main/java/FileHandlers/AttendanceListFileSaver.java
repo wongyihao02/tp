@@ -1,7 +1,7 @@
 package FileHandlers;
 
 import Attendance.AttendanceList;
-import Students.Student;
+import students.Student;
 import Tutorial.TutorialClass;
 
 import java.io.FileWriter;

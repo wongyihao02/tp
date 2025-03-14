@@ -1,6 +1,6 @@
 package FileHandlers;
 
-import Students.StudentList;
+import students.StudentList;
 import Tutorial.TutorialClass;
 
 import java.time.DayOfWeek;

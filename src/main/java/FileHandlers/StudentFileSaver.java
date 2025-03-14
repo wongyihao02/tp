@@ -1,6 +1,6 @@
 package FileHandlers;
 
-import Students.Student;
+import students.Student;
 import Util.DateTimeFormatterUtil;
 
 import java.io.FileWriter;
