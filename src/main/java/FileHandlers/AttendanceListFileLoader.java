@@ -23,23 +23,42 @@ public class AttendanceListFileLoader implements FileLoader<AttendanceList> {
             String[] metaParts = metadata.split(",", -1);
             String tutorialName = metaParts[0];
             int weekNumber = Integer.parseInt(metaParts[1]);
+            boolean startComments = false;
 
             reader.readLine(); // "StudentName,MatricNumber,AttendanceStatus"
 
             ArrayList<Student> students = new ArrayList<>();
             Map<Student, String> attendanceMap = new HashMap<>();
+            Map<Student, ArrayList<String>> commentMap = new HashMap<>();
 
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",", -1);
-                String name = parts[0];
-                String matricNumber = parts[1];
-                String status = parts[2];
 
-                // Create a minimal student object
-                Student student = new Student(name, null, "", "", matricNumber, tutorialName);
-                students.add(student);
-                attendanceMap.put(student, status);
+                if (line.equals("//comments\n")) {
+                    startComments = true;
+                } else if (startComments) {
+                    String[] parts = line.split("//", -1);
+                    String name = parts[0];
+                    String matric = parts[1];
+                    Student student = new Student(name, null, "", "", matric, tutorialName);
+                    ArrayList<String> comments = new ArrayList<>();
+                    for (int i = 2; i < parts.length; i++) {
+                        comments.add(parts[i]);
+                    }
+
+                    commentMap.put(student, comments);
+
+                } else {
+                    String[] parts = line.split(",", -1);
+                    String name = parts[0];
+                    String matricNumber = parts[1];
+                    String status = parts[2];
+
+                    // Create a minimal student object
+                    Student student = new Student(name, null, "", "", matricNumber, tutorialName);
+                    students.add(student);
+                    attendanceMap.put(student, status);
+                }
             }
 
             // Assemble the tutorial and attendance list
@@ -54,6 +73,10 @@ public class AttendanceListFileLoader implements FileLoader<AttendanceList> {
             // Replace default map with loaded one
             for (Map.Entry<Student, String> entry : attendanceMap.entrySet()) {
                 attendanceList.getAttendanceMap().put(entry.getKey(), entry.getValue());
+            }
+
+            for (Map.Entry<Student, ArrayList<String>> entry : commentMap.entrySet()) {
+                attendanceList.addComments(entry.getKey(), entry.getValue());
             }
 
             return attendanceList;

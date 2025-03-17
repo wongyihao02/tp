@@ -49,6 +49,16 @@ public class AttendanceList {
         }
     }
 
+    public void addComments(Student student, ArrayList<String> comments) {
+        try {
+            if (commentList.containsKey(student)) {
+                commentList.get(student).addAll(comments);
+            }
+        } catch (NullPointerException e) {
+            System.out.println("error adding comment : " + e.getMessage());
+        }
+    }
+
     public ArrayList<String> getComments(Student student) {
         try {
             if (commentList.containsKey(student)) {
@@ -64,6 +74,7 @@ public class AttendanceList {
         return attendanceMap.get(student).equals("Present");
     }
 
+    public Map<Student, ArrayList<String>> getCommentList() { return commentList; }
     public Map<Student, String> getAttendanceMap() {
         return attendanceMap;
     }
