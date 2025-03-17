@@ -5,7 +5,7 @@ import Attendance.AttendanceList;
 import Tutorial.TutorialClass;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import Students.Student;
+import students.Student;
 
 
 import java.time.LocalDate;
