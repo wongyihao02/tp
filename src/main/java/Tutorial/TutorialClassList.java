@@ -1,5 +1,6 @@
 package Tutorial;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TutorialClassList {
@@ -28,5 +29,16 @@ public class TutorialClassList {
             }
         }
         return null;
+    }
+
+    public ArrayList<TutorialClass> getFutureTutorialClasses(LocalDate date) {
+        ArrayList<TutorialClass> futureTutorialClasses = new ArrayList<>();
+        for (TutorialClass t : tutorialClasses) {
+            if (!t.getDate().isBefore(date)) {
+                futureTutorialClasses.add(t);
+            }
+        }
+
+        return futureTutorialClasses;
     }
 }

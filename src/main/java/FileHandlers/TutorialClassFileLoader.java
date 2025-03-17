@@ -4,6 +4,7 @@ import Students.StudentList;
 import Tutorial.TutorialClass;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -17,11 +18,12 @@ public class TutorialClassFileLoader implements FileLoader<TutorialClass> {
 
     public TutorialClass loadFromBlock(List<String> blockLines) {
         String header = blockLines.get(0).substring(1).trim(); // Remove '#' and trim
-        String[] meta = header.split(",", 4);
+        String[] meta = header.split(",", 5);
         String name = meta[0].trim();
         DayOfWeek dayOfWeek = DayOfWeek.valueOf(meta[1].trim().toUpperCase());
         LocalTime start = LocalTime.parse(meta[2].trim());
         LocalTime end = LocalTime.parse(meta[3].trim());
+        LocalDate date = LocalDate.parse(meta[4].trim());
 
         List<String> studentLines = blockLines.subList(1, blockLines.size());
         StudentList studentList = studentListFileLoader.loadFromLines(studentLines, name);
@@ -32,6 +34,7 @@ public class TutorialClassFileLoader implements FileLoader<TutorialClass> {
         tutorial.setStartTime(start);
         tutorial.setEndTime(end);
         tutorial.setStudentList(studentList);
+        tutorial.setDate(date);
 
         return tutorial;
     }
