@@ -1,5 +1,9 @@
 package taskCommands;
 
+import java.time.format.DateTimeParseException;
+import java.util.Scanner;
+
+import Util.DateTimeFormatterUtil;
 import exception.TASyncException;
 import task.Event;
 import task.TaskList;
@@ -23,7 +27,12 @@ public class EventCommand implements taskCommand {
                 String taskName = eventParts[0].trim();
                 String from = eventParts[1].trim();
                 String to = eventParts[2].trim();
-                Event event = new Event(taskName, false, from, to);
+
+                // Validate and get the correct deadline input
+                String validFrom = getValidEventInput(from);
+                String validTo = getValidEventInput(to);
+
+                Event event = new Event(taskName, false, validFrom, validTo);
                 taskList.addTask(event);
             } else {
                 throw TASyncException.invalidEventCommand();
@@ -31,6 +40,31 @@ public class EventCommand implements taskCommand {
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * Handles the event input validation.
+     * Prompts the user to re-enter the event until it is valid.
+     *
+     * @param eventInput The user input event.
+     * @return The valid event.
+     */
+    private String getValidEventInput(String eventInput) {
+        Scanner scanner = new Scanner(System.in);
+        String validEventTime = null;
+
+        while (validEventTime == null) {
+            try {
+                DateTimeFormatterUtil.parseDateTime(eventInput);
+                validEventTime = eventInput;
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid event time format. Expected format: dd/MM/yyyy HH:mm");
+                System.out.print("Please re-enter the event time: ");
+                eventInput = scanner.nextLine().trim();
+            }
+        }
+
+        return validEventTime;
     }
 
 

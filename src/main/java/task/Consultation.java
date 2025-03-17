@@ -5,8 +5,8 @@ import Util.DateTimeFormatterUtil;
  * This class extends the Task class and includes additional functionality for managing consultations with start and end times.
  */
 public class Consultation extends Task {
-    private String consultationStart;
-    private String consultationEnd;
+    private final String consultationStart;
+    private final String consultationEnd;
     /**
      * Constructs a Consultation task.
      *
@@ -33,14 +33,14 @@ public class Consultation extends Task {
     @Override
     public void printDue() {
         // If both consultationStart and consultationEnd are invalid, print raw values
-        boolean isConsultationEndValidDate = DateTimeFormatterUtil.isValidDateTime(consultationEnd);
-        boolean isConsultationStartValidDate = DateTimeFormatterUtil.isValidDateTime(consultationStart);
+        boolean isConsultationEndValidDateTime = DateTimeFormatterUtil.isValidDateTime(consultationEnd);
+        boolean isConsultationStartValidDateTime = DateTimeFormatterUtil.isValidDateTime(consultationStart);
 
-        if (!isConsultationStartValidDate && !isConsultationEndValidDate) {
+        if (!isConsultationStartValidDateTime && !isConsultationEndValidDateTime) {
             System.out.println(" (from: " + consultationStart + " to: " + consultationEnd + ")");
         }
         // If eventStart is valid but consultationEnd is invalid, format consultationStart, leave consultationEnd raw
-        else if (isConsultationStartValidDate && !isConsultationEndValidDate) {
+        else if (isConsultationStartValidDateTime && !isConsultationEndValidDateTime) {
             System.out.println(" (from: " + DateTimeFormatterUtil.parseDateTime(consultationStart) + " to: " + consultationEnd + ")");
         }
         // If both consultationStart and consultationEnd are valid, format both

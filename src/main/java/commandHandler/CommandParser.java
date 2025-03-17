@@ -5,7 +5,7 @@ package commandHandler;
  * It splits the input command into two parts: the command name and the associated data.
  * <p>
  * Example:
- * For the input "TODO Read book", it will split it into ["TODO", "Read book"].
+ * For the input "/add -pt Read book", it will split it into ["/add", "-pt", "Read book"].
  */
 public class CommandParser {
     private String[] parts;
@@ -20,9 +20,13 @@ public class CommandParser {
      * @param command The command string to be parsed.
      */
     public CommandParser(String command) {
-        parts = command.split("\\s+", 2);
+        parts = command.split("\\s+", 3);
+
+        // If the user only entered "/add" or "/add -c" without task details, handle gracefully
         if (parts.length == 1) {
-            parts = new String[]{parts[0], ""};
+            parts = new String[]{parts[0], "", ""}; // Ensure all parts exist
+        } else if (parts.length == 2) {
+            parts = new String[]{parts[0], parts[1], ""}; // Ensure task details exist
         }
     }
 
