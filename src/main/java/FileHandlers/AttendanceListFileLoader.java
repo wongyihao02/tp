@@ -8,6 +8,7 @@ import Tutorial.TutorialClass;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,7 +41,7 @@ public class AttendanceListFileLoader implements FileLoader<AttendanceList> {
                     String[] parts = line.split("//", -1);
                     String name = parts[0];
                     String matric = parts[1];
-                    Student student = new Student(name, null, "", "", matric, tutorialName);
+                    Student student = new Student(name, LocalDate.now(), "", "", matric, tutorialName);
                     ArrayList<String> comments = new ArrayList<>();
                     for (int i = 2; i < parts.length; i++) {
                         comments.add(parts[i]);
@@ -55,7 +56,7 @@ public class AttendanceListFileLoader implements FileLoader<AttendanceList> {
                     String status = parts[2];
 
                     // Create a minimal student object
-                    Student student = new Student(name, null, "", "", matricNumber, tutorialName);
+                    Student student = new Student(name, LocalDate.now(), "", "", matricNumber, tutorialName);
                     students.add(student);
                     attendanceMap.put(student, status);
                 }
