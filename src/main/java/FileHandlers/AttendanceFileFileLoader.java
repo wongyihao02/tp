@@ -9,6 +9,7 @@ import Tutorial.TutorialClass;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,7 +70,7 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
                     String name = parts[0];
                     String matric = parts[1];
                     ArrayList<String> comments = new ArrayList<>();
-                    Student student = new Student(name, null, "", "", matric, currentTutorial);
+                    Student student = new Student(name, LocalDate.now(), "", "", matric, currentTutorial);
 
                     for (int i = 2 ; i < parts.length ; i++) {
                         comments.add(parts[i]);
@@ -82,7 +83,7 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
                     String matric = parts[1];
                     String status = parts[2];
 
-                    Student s = new Student(name, null, "", "", matric, currentTutorial);
+                    Student s = new Student(name, LocalDate.now(), "", "", matric, currentTutorial);
                     studentList.add(s);
                     attendanceMap.put(s, status);
                 }

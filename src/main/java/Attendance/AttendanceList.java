@@ -53,6 +53,8 @@ public class AttendanceList {
         try {
             if (commentList.containsKey(student)) {
                 commentList.get(student).addAll(comments);
+            } else {
+                commentList.put(student, comments);
             }
         } catch (NullPointerException e) {
             System.out.println("error adding comment : " + e.getMessage());
