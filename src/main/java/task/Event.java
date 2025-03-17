@@ -1,5 +1,5 @@
 package task;
-import Util.DateTimeFormatTool;
+import Util.DateTimeFormatterUtil;
 /**
  * Represents a task with an event.
  * This class extends the Task class and includes additional functionality for managing events with start and end times.
@@ -33,16 +33,18 @@ public class Event extends Task {
     @Override
     public void printDue() {
         // If both eventStart and eventEnd are invalid, print raw values
-        if (!DateTimeFormatTool.isValidDateTimeFormat(eventStart) && !DateTimeFormatTool.isValidDateTimeFormat(eventEnd)) {
+        boolean isEventStartValidDate=DateTimeFormatterUtil.isValidDate(eventStart);
+        boolean isEventEndValidDate=DateTimeFormatterUtil.isValidDate(eventEnd);
+        if (!isEventStartValidDate && !isEventEndValidDate) {
             System.out.println(" (from: " + eventStart + " to: " + eventEnd + ")");
         }
         // If eventStart is valid but eventEnd is invalid, format eventStart, leave eventEnd raw
-        else if (DateTimeFormatTool.isValidDateTimeFormat(eventStart) && !DateTimeFormatTool.isValidDateTimeFormat(eventEnd)) {
-            System.out.println(" (from: " + DateTimeFormatTool.parseDateTime(eventStart) + " to: " + eventEnd + ")");
+        else if (isEventStartValidDate && !isEventEndValidDate) {
+            System.out.println(" (from: " + DateTimeFormatterUtil.parseDateTime(eventStart) + " to: " + eventEnd + ")");
         }
         // If both eventStart and eventEnd are valid, format both
         else {
-            System.out.println(" (from: " + DateTimeFormatTool.parseDateTime(eventStart) + " to: " + DateTimeFormatTool.parseDateTime(eventEnd) + ")");
+            System.out.println(" (from: " + DateTimeFormatterUtil.parseDateTime(eventStart) + " to: " + DateTimeFormatterUtil.parseDateTime(eventEnd) + ")");
         }
     }
     /**

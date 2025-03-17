@@ -1,7 +1,7 @@
 package FileHandlers;
 
-import Students.Student;
-import Students.StudentList;
+import students.Student;
+import students.StudentList;
 
 import java.io.File;
 

@@ -1,6 +1,6 @@
 package FileHandlers;
 
-import Students.Student;
+import students.Student;
 import Tutorial.TutorialClass;
 import Util.DateTimeFormatterUtil;
 

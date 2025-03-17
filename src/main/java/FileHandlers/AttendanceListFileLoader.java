@@ -1,8 +1,8 @@
 package FileHandlers;
 
 import Attendance.AttendanceList;
-import Students.Student;
-import Students.StudentList;
+import students.Student;
+import students.StudentList;
 import Tutorial.TutorialClass;
 
 import java.io.BufferedReader;

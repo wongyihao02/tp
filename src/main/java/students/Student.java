@@ -1,4 +1,4 @@
-package Students;
+package students;
 
 import Util.DateTimeFormatterUtil;
 

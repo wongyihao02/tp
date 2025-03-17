@@ -26,6 +26,15 @@ public class DateTimeFormatterUtil {
         return date.format(DATE_FORMAT);
     }
 
+    public static boolean isValidDate(String dateStr) {
+        try {
+            LocalDateTime.parse(dateStr, DATE_FORMAT);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
     // --- Time Methods ---
 
     public static LocalTime parseTime(String timeStr) {
@@ -41,6 +50,15 @@ public class DateTimeFormatterUtil {
         return time.format(TIME_FORMAT);
     }
 
+    public static boolean isValidTime(String timeStr) {
+        try {
+            LocalDateTime.parse(timeStr, TIME_FORMAT);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
     // --- DateTime Methods ---
 
     public static LocalDateTime parseDateTime(String dateTimeStr) {
@@ -52,7 +70,17 @@ public class DateTimeFormatterUtil {
         }
     }
 
+
     public static String formatDateTime(LocalDateTime dateTime) {
         return dateTime.format(DATE_TIME_FORMAT);
+    }
+
+    public static boolean isValidDateTime(String dateTimeStr) {
+        try {
+            LocalDateTime.parse(dateTimeStr, DATE_TIME_FORMAT);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 }

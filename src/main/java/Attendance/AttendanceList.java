@@ -1,6 +1,6 @@
 package Attendance;
 
-import Students.Student;
+import students.Student;
 import Tutorial.TutorialClass;
 
 import java.util.ArrayList;

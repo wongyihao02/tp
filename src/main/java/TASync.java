@@ -1,7 +1,7 @@
 import Attendance.AttendanceFile;
 import Attendance.AttendanceList;
 import FileHandlers.*;
-import Students.Student;
+import students.Student;
 import Tutorial.TutorialClass;
 import Tutorial.TutorialClassList;
 
