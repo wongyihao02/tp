@@ -75,7 +75,8 @@ public class AttendanceListFileLoader implements FileLoader<AttendanceList> {
                 attendanceList.getAttendanceMap().put(entry.getKey(), entry.getValue());
             }
 
-            for (Map.Entry<Student, ArrayList<String>> entry : commentMap.entrySet()) {
+
+            for (Map.Entry<Student, ArrayList<String>> entry : commentMap.entrySet()) {                                 //need to add equals method for Student class
                 attendanceList.addComments(entry.getKey(), entry.getValue());
             }
 
