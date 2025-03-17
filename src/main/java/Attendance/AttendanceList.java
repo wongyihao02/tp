@@ -1,6 +1,7 @@
 package Attendance;
 
 import Students.Student;
+import Students.StudentList;
 import Tutorial.TutorialClass;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class AttendanceList {
         this.weekNumber = weekNumber;
     }
 
-
+    public AttendanceList(StudentList studentList, int weekNumber) {}
 
     public void markPresent(Student student) {
         if (attendanceMap.containsKey(student)) {
