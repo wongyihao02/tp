@@ -21,9 +21,9 @@ public class DataManager {
         return tutorialLoader.loadFromFile(TUTORIAL_FILE_PATH);
     }
 
-    public AttendanceFile loadAttendanceFiles() {
+    public AttendanceFile loadAttendanceFiles(TutorialClassList classList) {
         ensureFileAndDirectoryExist(ATTENDANCE_FILE_PATH, DIRECTORY_PATH);
-        FileLoader<AttendanceFile> attendanceFileLoader = new AttendanceFileFileLoader();
+        FileLoader<AttendanceFile> attendanceFileLoader = new AttendanceFileFileLoader(classList);
         return attendanceFileLoader.loadFromFile(ATTENDANCE_FILE_PATH);
     }
 

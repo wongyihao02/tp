@@ -47,13 +47,13 @@ public class AttendanceListFileSaver implements FileSaver<AttendanceList> {
         for (Map.Entry<Student, ArrayList<String>> entry : attendanceList.getCommentList().entrySet()) {
             Student s = entry.getKey();
             ArrayList<String> comments = entry.getValue();
-            ArrayList<String> finalOutput = new ArrayList<>();
-
-            writer.write(s.getName() + "," + s.getMatricNumber() + "," + comments + "\n");
+            String commentLine = String.join(";", comments);
+            writer.write(s.getName() + "," + s.getMatricNumber() + "," + commentLine + "\n");
         }
 
-        writer.write("\n");
         writer.write("//commentEnd\n");
+        writer.write("\n");
+
 
     }
 }

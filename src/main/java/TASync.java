@@ -1,4 +1,5 @@
 import Attendance.AttendanceFile;
+import Attendance.AttendanceList;
 import Tutorial.TutorialClassList;
 import Util.DataManager;
 
@@ -17,7 +18,7 @@ public class TASync {
             System.out.println("Tutorial classes loaded from: " + new File(dataManager.getTutorialFilePath()).getPath() + "\n");
         }
 
-        AttendanceFile attendanceFile = dataManager.loadAttendanceFiles();
+        AttendanceFile attendanceFile = dataManager.loadAttendanceFiles(tutorialList);
         if (attendanceFile == null) {
             System.out.println("No attendance file loaded.");
             attendanceFile= new AttendanceFile(null);
@@ -25,8 +26,9 @@ public class TASync {
             System.out.println("Tutorial classes loaded from: " + new File(dataManager.getAttendanceFilePath()).getPath() + "\n");
         }
 
-
-
+        for (AttendanceList attendanceList : attendanceFile.getAttendanceList()) {
+            System.out.println(attendanceList);
+        } // just to check if attendanceFile imported correctly
 
         dataManager.saveTutorials(tutorialList);
         dataManager.saveAttendanceFile(attendanceFile);

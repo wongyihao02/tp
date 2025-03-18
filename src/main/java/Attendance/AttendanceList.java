@@ -2,7 +2,6 @@ package Attendance;
 
 import students.Student;
 import Tutorial.TutorialClass;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +10,8 @@ public class AttendanceList {
     private Map<Student, String> attendanceMap;
     private int weekNumber;
     private Map<Student, ArrayList<String>> commentList;
-    TutorialClass tutorialClass;
+    private TutorialClass tutorialClass;
+
 
     public AttendanceList(TutorialClass tutorialClass, int weekNumber) {
         this.tutorialClass = tutorialClass;
@@ -88,7 +88,7 @@ public class AttendanceList {
 
     @Override
     public String toString() {
-        return "weekNumber: " + weekNumber + tutorialClass.toString()+"\n" +attendanceMap.toString();
+        return "weekNumber: " + weekNumber + tutorialClass.toString()+"\n" +attendanceMap.toString()+"\n" +commentList.toString();
 
     }
 }
