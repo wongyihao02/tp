@@ -4,6 +4,8 @@ import Util.DateTimeFormatterUtil;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
+
 public class Student {
     private String name;
     private LocalDate dateOfBirth;
@@ -76,6 +78,20 @@ public class Student {
     public String toFileFormat() {
         return getName() +","+ getAge() +"," + getGender() +"," + getContact() +","+ getMatricNumber() +"/n";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(matricNumber, student.matricNumber); // Compare based on matricNumber
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(matricNumber);
+    }
+
     @Override
     public String toString() {
         return "Student [name=" + name + ", dateOfBirth="+ DateTimeFormatterUtil.formatDate(dateOfBirth) +   ", gender=" + gender + ", contact=" + contact;

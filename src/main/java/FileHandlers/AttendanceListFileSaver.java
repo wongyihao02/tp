@@ -6,6 +6,7 @@ import Tutorial.TutorialClass;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class AttendanceListFileSaver implements FileSaver<AttendanceList> {
@@ -28,6 +29,25 @@ public class AttendanceListFileSaver implements FileSaver<AttendanceList> {
                 String status = entry.getValue();
                 writer.write(s.getName() + "," + s.getMatricNumber() + "," + status + "\n");
             }
+
+            writer.write("//comments\n");
+
+            for (Map.Entry<Student, ArrayList<String>> entry : attendanceList.getCommentList().entrySet()) {
+                Student s = entry.getKey();
+                ArrayList<String> comments = entry.getValue();
+                ArrayList<String> finalOutput = new ArrayList<>();
+                finalOutput.add(s.getName());
+                finalOutput.add(s.getMatricNumber());
+                for (String comment : comments) {
+                    finalOutput.add(comment);
+                }
+
+                String finalOutString = String.join("//", finalOutput) + "\n";
+                writer.write(finalOutString);
+            }
+
+            writer.write("\n");
+
         } catch (IOException e) {
             System.out.println("Error saving attendance list: " + e.getMessage());
         }
