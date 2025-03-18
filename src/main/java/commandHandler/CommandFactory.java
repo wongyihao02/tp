@@ -1,5 +1,8 @@
 package commandHandler;
 
+import studentcommands.ChangeRemarkCommand;
+import studentcommands.DeleteStudentCommand;
+import studentcommands.FindStudentCommand;
 import task.TaskType;
 import taskCommands.*;
 import Util.CommandListPrinter;
@@ -70,6 +73,18 @@ public class CommandFactory {
                 System.out.println("Sorry, TASync does not know what \"" + commandString + "\" means.");
                 CommandListPrinter.printCommands();
                 return null;
+            }
+        }
+        else if (listType.equalsIgnoreCase("-s")) {
+            switch (command) {
+            case "NEWSTUDENT":
+                return new NewStudentCommand();
+            case "DELETE":
+                return new DeleteStudentCommand();
+            case "FIND":
+                return new FindStudentCommand();
+            case "CHANGEREMARK":
+                return new ChangeRemarkCommand();
             }
         }
 

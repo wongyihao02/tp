@@ -27,9 +27,11 @@ public class StudentList {
         this.students.add(student);
     }
 
+    // Remove by student object
     public void removeStudent(Student student) {
         this.students.remove(student);
     }
+
 
     //  Get by matric number (unique)
     public Student getStudentByMatricNumber(String matricNumber) {

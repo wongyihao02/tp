@@ -55,8 +55,22 @@ public enum CommandList {
         public void printCommand() {
             System.out.println("NEWSTUDENT: Adds a new student to the student list using the provided information. Usage: NEWSTUDENT <name> <dob> <gender> <contact> <matric_number> <tutorial_class>");
         }
+    }, CHANGEREMARK {
+        @Override
+        public void printCommand() {
+            System.out.println("CHANGEREMARK: Updates the remark of a student. Usage: CHANGEREMARK <matric_number> <new_remark>");
+        }
+    }, DELETESTUDENT {
+        @Override
+        public void printCommand() {
+            System.out.println("DELETESTUDENT: Deletes a student from the student list. Usage: DELETESTUDENT <matric_number>");
+        }
+    }, FINDSTUDENT {
+        @Override
+        public void printCommand() {
+            System.out.println("FINDSTUDENT: Finds a student based on the keyword (name or matric number). Usage: FINDSTUDENT <keyword>");
+        }
     };
-
 
     public abstract void printCommand();
 }
