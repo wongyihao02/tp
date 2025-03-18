@@ -1,5 +1,6 @@
 package commandHandler;
 
+import task.TaskType;
 import taskCommands.*;
 import Util.CommandListPrinter;
 
@@ -24,19 +25,35 @@ public class CommandFactory {
      * Returns null if the command is invalid.
      */
     public static taskCommand createCommand(String commandString) {
+        String[] parts = commandString.split("\\s+", 3); // Split into command, type, and rest of input
+        if (parts.length < 2) {
+            System.out.println("Invalid command format. Please use: /add -[type] [task details]");
+            return null;
+        }
+
+        String command = parts[0].toUpperCase();
+        String taskTypeShortcut = parts[1];
+
+        if ("/ADD".equals(command)) {
+            TaskType taskType = TaskType.fromShortcut(taskTypeShortcut);
+            if (taskType == null) {
+                System.out.println("Invalid task type. Use -c (Consultation), -pt (Todo), -pe (Event), -pd (Deadline)");
+                return null;
+            }
+
+            return switch (taskType) {
+                case TODO -> new TodoCommand();
+                case EVENT -> new EventCommand();
+                case DEADLINE -> new DeadlineCommand();
+                case CONSULTATION -> new ConsultationCommand();
+            };
+        }
+
         switch (commandString.toUpperCase()) {
         case "MARK":
             return new MarkCommand();
         case "UNMARK":
             return new UnmarkCommand();
-        case "TODO":
-            return new TodoCommand();
-        case "EVENT":
-            return new EventCommand();
-        case "DEADLINE":
-            return new DeadlineCommand();
-        case "CONSULTATION":
-            return new ConsultationCommand();
         case "LIST":
             return new ListCommand();
         case "BYE":
@@ -51,7 +68,6 @@ public class CommandFactory {
         default:
             System.out.println("Sorry, TASync does not know what \"" + commandString + "\" means");
             CommandListPrinter.printCommands();
-
         }
         return null;
     }

@@ -32,9 +32,9 @@ public class Deadline extends Task {
      */
     @Override
     public void printDue() {
-        boolean isDeadlineValidDate = DateTimeFormatterUtil.isValidDate(deadline);
-        if(isDeadlineValidDate) {
-            System.out.println(" (by: " + DateTimeFormatterUtil.parseDate(deadline) + ")");
+        boolean isDeadlineValidDateTime = DateTimeFormatterUtil.isValidDateTime(deadline);
+        if(isDeadlineValidDateTime) {
+            System.out.println(" (by: " + DateTimeFormatterUtil.parseDateTime(deadline) + ")");
 
         }else {
             System.out.println(" (by: " + deadline + ")");

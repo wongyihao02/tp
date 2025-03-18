@@ -7,7 +7,7 @@ import java.util.Iterator;
  * This class provides methods for managing tasks (e.g., adding, marking, deleting, and searching tasks).
  */
 public class TaskList {
-    private ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
     /**
      * Constructs an empty TaskList.
      */

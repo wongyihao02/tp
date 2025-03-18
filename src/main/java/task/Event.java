@@ -5,8 +5,8 @@ import Util.DateTimeFormatterUtil;
  * This class extends the Task class and includes additional functionality for managing events with start and end times.
  */
 public class Event extends Task {
-    private String eventStart;
-    private String eventEnd;
+    private final String eventStart;
+    private final String eventEnd;
     /**
      * Constructs an Event task.
      *
@@ -33,8 +33,8 @@ public class Event extends Task {
     @Override
     public void printDue() {
         // If both eventStart and eventEnd are invalid, print raw values
-        boolean isEventStartValidDate=DateTimeFormatterUtil.isValidDate(eventStart);
-        boolean isEventEndValidDate=DateTimeFormatterUtil.isValidDate(eventEnd);
+        boolean isEventStartValidDate=DateTimeFormatterUtil.isValidDateTime(eventStart);
+        boolean isEventEndValidDate=DateTimeFormatterUtil.isValidDateTime(eventEnd);
         if (!isEventStartValidDate && !isEventEndValidDate) {
             System.out.println(" (from: " + eventStart + " to: " + eventEnd + ")");
         }

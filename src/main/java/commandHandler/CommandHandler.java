@@ -13,8 +13,8 @@ import task.TaskList;
  * and call the execute method with the necessary parts.
  */
 public class CommandHandler {
-    private TaskList taskList;
-    private taskCommand taskCommand;
+    private final TaskList taskList;
+    private final taskCommand taskCommand;
     private String parts;
 
     /**
@@ -28,8 +28,19 @@ public class CommandHandler {
      */
     public CommandHandler(TaskList taskList, String[] commands) {
         this.taskList = taskList;
-        taskCommand = CommandFactory.createCommand(commands[0]);
-        parts = commands[1];
+        // Ensure the input is valid before proceeding
+        if (commands.length < 2) {
+            System.out.println("Invalid command format. Please use: /add -[type] [task details]");
+            taskCommand = null;
+            return;
+        }
+
+        // Reconstruct the original command string to pass it to CommandFactory
+        String fullCommand = String.join(" ", commands);
+        taskCommand = CommandFactory.createCommand(fullCommand);
+
+        // Extract task details if available
+        this.parts = (commands.length > 2) ? commands[2] : "";
 
     }
 

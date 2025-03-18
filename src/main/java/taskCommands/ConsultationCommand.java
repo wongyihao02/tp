@@ -1,5 +1,9 @@
 package taskCommands;
 
+import java.time.format.DateTimeParseException;
+import java.util.Scanner;
+
+import Util.DateTimeFormatterUtil;
 import exception.TASyncException;
 import task.Consultation;
 import task.TaskList;
@@ -24,7 +28,12 @@ public class ConsultationCommand implements taskCommand {
                 String studentName = consultParts[0].trim();
                 String from = consultParts[1].trim();
                 String to = consultParts[2].trim();
-                Consultation consultation = new Consultation(studentName, false, from, to);
+
+                // Validate and get the correct deadline input
+                String validFrom = getValidConsultationInput(from);
+                String validTo = getValidConsultationInput(to);
+
+                Consultation consultation = new Consultation(studentName, false, validFrom, validTo);
                 taskList.addTask(consultation);
             } else {
                 throw TASyncException.invalidConsultationCommand();
@@ -32,5 +41,30 @@ public class ConsultationCommand implements taskCommand {
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * Handles the consultation input validation.
+     * Prompts the user to re-enter the consultation until it is valid.
+     *
+     * @param consultationInput The user input event.
+     * @return The valid consultation.
+     */
+    private String getValidConsultationInput(String consultationInput) {
+        Scanner scanner = new Scanner(System.in);
+        String validConsultationTime = null;
+
+        while (validConsultationTime == null) {
+            try {
+                DateTimeFormatterUtil.parseDateTime(consultationInput);
+                validConsultationTime = consultationInput;
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid consultation time format. Expected format: dd/MM/yyyy HH:mm");
+                System.out.print("Please re-enter the consultation time: ");
+                consultationInput = scanner.nextLine().trim();
+            }
+        }
+
+        return validConsultationTime;
     }
 }
