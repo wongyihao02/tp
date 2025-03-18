@@ -74,8 +74,7 @@ public class CommandFactory {
                 CommandListPrinter.printCommands();
                 return null;
             }
-        }
-        else if (listType.equalsIgnoreCase("-s")) {
+        } else if (listType.equalsIgnoreCase("-s")) {
             switch (command) {
             case "NEWSTUDENT":
                 return new NewStudentCommand();
