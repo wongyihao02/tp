@@ -3,12 +3,10 @@ package Util;
 import Attendance.AttendanceFile;
 import Attendance.AttendanceList;
 import FileHandlers.*;
-import students.Student;
 import Tutorial.TutorialClass;
 import Tutorial.TutorialClassList;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DataManager {
     private static final String DIRECTORY_PATH = "./data";
@@ -19,6 +17,11 @@ public class DataManager {
         FileCreator.createFileIfNotExists(TUTORIAL_FILE_PATH, DIRECTORY_PATH);
         FileLoader<TutorialClassList> tutorialLoader = new TutorialClassListFileLoader();
         return tutorialLoader.loadFromFile(TUTORIAL_FILE_PATH);
+    }
+    public AttendanceFile loadAttendanceFiles() {
+        FileCreator.createFileIfNotExists(ATTENDANCE_FILE_PATH, DIRECTORY_PATH);
+        FileLoader<AttendanceFile> AttendanceFileLoader = new AttendanceFileFileLoader();
+        return AttendanceFileLoader.loadFromFile(ATTENDANCE_FILE_PATH);
     }
 
     public AttendanceFile createDemoAttendanceFile(TutorialClassList tutorialList, int numberOfWeeks) {
