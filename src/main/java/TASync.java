@@ -17,7 +17,7 @@ public class TASync {
             System.out.println("Tutorial classes loaded from: " + new File(dataManager.getTutorialFilePath()).getPath() + "\n");
         }
 
-        AttendanceFile attendanceFile = dataManager.loadAttendanceFiles();
+        AttendanceFile attendanceFile = dataManager.loadAttendanceFiles(tutorialList);
         if (attendanceFile == null) {
             System.out.println("No attendance file loaded.");
             attendanceFile= new AttendanceFile(null);

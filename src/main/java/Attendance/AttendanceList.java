@@ -2,6 +2,7 @@ package Attendance;
 
 import students.Student;
 import Tutorial.TutorialClass;
+import students.StudentList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +12,8 @@ public class AttendanceList {
     private Map<Student, String> attendanceMap;
     private int weekNumber;
     private Map<Student, ArrayList<String>> commentList;
-    TutorialClass tutorialClass;
+    private TutorialClass tutorialClass;
+
 
     public AttendanceList(TutorialClass tutorialClass, int weekNumber) {
         this.tutorialClass = tutorialClass;

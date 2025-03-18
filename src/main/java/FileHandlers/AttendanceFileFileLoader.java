@@ -2,6 +2,7 @@ package FileHandlers;
 
 import Attendance.AttendanceFile;
 import Attendance.AttendanceList;
+import Tutorial.TutorialClassList;
 import students.Student;
 import students.StudentList;
 import Tutorial.TutorialClass;
@@ -16,6 +17,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
+    private TutorialClassList classList;
+
+    public AttendanceFileFileLoader(TutorialClassList classList) {
+        this.classList = classList;
+    }
+
     @Override
     public AttendanceFile loadFromFile(String filePath) {
         ArrayList<AttendanceList> attendanceLists = new ArrayList<>();
@@ -28,22 +35,29 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
             HashMap<Student, String> attendanceMap = new HashMap<>();
             Map<Student, ArrayList<String>> commentMap = new HashMap<>();
             boolean startComments = false;
+            boolean startAttendances = false;
 
 
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
 
                 if (line.isEmpty()) {
-                    if (currentTutorial != null) {
-                        TutorialClass tutorial = new TutorialClass();
-                        tutorial.setTutorialName(currentTutorial);
-                        tutorial.setStudentList(new StudentList(studentList));
-                        tutorial.setStartTime(LocalTime.of(0, 0));
-                        tutorial.setEndTime(LocalTime.of(0, 0));
+                    continue;
+                } else if (line.startsWith("#")) {
+                    String[] header = line.substring(1).trim().split(",", 2);
+                    currentTutorial = header[0].trim();
+                    currentWeek = Integer.parseInt(header[1].trim());
+                    startAttendances = true;
+                } else if (line.startsWith("//comments")) {
+                    startComments = true;
+                    startAttendances = false;
+                } else if (line.startsWith("//commentEnd")) {
 
+                    if (currentTutorial != null) {
+                        TutorialClass tutorial = classList.getByName(currentTutorial);
                         AttendanceList list = new AttendanceList(tutorial, currentWeek);
-                        list.getAttendanceMap().clear(); // replace default
-                        list.getCommentList().clear(); //replace default or previous
+                        list.getAttendanceMap().clear();
+                        list.getCommentList().clear();
                         list.getAttendanceMap().putAll(attendanceMap);
                         for (Map.Entry<Student, ArrayList<String>> entry : commentMap.entrySet()) {                                 //need to add equals method for Student class
                             list.addComments(entry.getKey(), entry.getValue());
@@ -57,29 +71,9 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
                         attendanceMap = new HashMap<>();
                         commentMap = new HashMap<>();
                         startComments = false;
+                        startAttendances = false;
                     }
-                } else if (line.startsWith("#")) {
-                    String[] header = line.substring(1).trim().split(",", 2);
-                    currentTutorial = header[0].trim();
-                    currentWeek = Integer.parseInt(header[1].trim());
-
-                } else if (line.startsWith("//comments")) {
-                    startComments = true;
-                }else if (line.startsWith("//commentEnd")) {
-                    startComments = false;
-                } else if (startComments) {
-                    String[] parts = line.split("//", -1);
-                    String name = parts[0];
-                    String matric = parts[1];
-                    ArrayList<String> comments = new ArrayList<>();
-                    Student student = new Student(name, LocalDate.now(), "", "", matric, currentTutorial);
-
-                    for (int i = 2 ; i < parts.length ; i++) {
-                        comments.add(parts[i]);
-                    }
-
-                    commentMap.put(student, comments);
-                } else {
+                } else if (startAttendances) {
                     String[] parts = line.split(",", -1);
                     String name = parts[0];
                     String matric = parts[1];
@@ -88,24 +82,33 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
                     Student s = new Student(name, LocalDate.now(), "", "", matric, currentTutorial);
                     studentList.add(s);
                     attendanceMap.put(s, status);
+                } else if (startComments) {
+                    String[] parts = line.split(",", -1);
+                    String name = parts[0];
+                    String matric = parts[1];
+                    ArrayList<String> comments = new ArrayList<>();
+                    Student student = new Student(name, LocalDate.now(), "", "", matric, currentTutorial);
+
+                    for (int i = 2; i < parts.length; i++) {
+                        comments.add(parts[i]);
+                    }
+                    commentMap.put(student, comments);
                 }
             }
 
             // Final block if file doesn't end with blank line
             if (currentTutorial != null) {
-                TutorialClass tutorial = new TutorialClass();
-                tutorial.setTutorialName(currentTutorial);
-                tutorial.setStudentList(new StudentList(studentList));
-                tutorial.setStartTime(LocalTime.of(0, 0));
-                tutorial.setEndTime(LocalTime.of(0, 0));
-
+                TutorialClass tutorial = classList.getByName(currentTutorial);
                 AttendanceList list = new AttendanceList(tutorial, currentWeek);
                 list.getAttendanceMap().clear();
                 list.getCommentList().clear();
                 list.getAttendanceMap().putAll(attendanceMap);
-                list.getCommentList().putAll(commentMap);
+                for (Map.Entry<Student, ArrayList<String>> entry : commentMap.entrySet()) {                                 //need to add equals method for Student class
+                    list.addComments(entry.getKey(), entry.getValue());
+                }
 
                 attendanceLists.add(list);
+
             }
 
         } catch (IOException e) {

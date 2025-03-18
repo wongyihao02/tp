@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import students.Student;
 
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +16,7 @@ public class AttendanceFileFileLoaderTest {
 
     private static final String DIRECTORY_PATH = "./data";
     private static final String ATTENDANCE_FILE_PATH = DIRECTORY_PATH + "/AttendanceFile.csv";
-    AttendanceList attendanceLista;
+    AttendanceList attendanceLists;
     ArrayList<String> ella;
     ArrayList<String> david;
 
@@ -50,13 +49,13 @@ public class AttendanceFileFileLoaderTest {
         ArrayList<String> davidComments = comments.get(David);
         ella = ellaComments;
         david = davidComments;
-        attendanceLista = list;
+        attendanceLists = list;
     }
 
     @Test
     void testLoadNamesFromFile() {
-        assertEquals(1, attendanceLista.getWeekNumber());
-        assertEquals(false, attendanceLista.getCommentList().isEmpty());
+        assertEquals(1, attendanceLists.getWeekNumber());
+        assertEquals(false, attendanceLists.getCommentList().isEmpty());
     }
 //    Ella sim//A005//comment1//comment2//comment3
 //    David Ng//A004//comment1.2
