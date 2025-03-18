@@ -2,8 +2,6 @@ package Attendance;
 
 import students.Student;
 import Tutorial.TutorialClass;
-import students.StudentList;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -90,7 +88,7 @@ public class AttendanceList {
 
     @Override
     public String toString() {
-        return "weekNumber: " + weekNumber + tutorialClass.toString()+"\n" +attendanceMap.toString();
+        return "weekNumber: " + weekNumber + tutorialClass.toString()+"\n" +attendanceMap.toString()+"\n" +commentList.toString();
 
     }
 }
