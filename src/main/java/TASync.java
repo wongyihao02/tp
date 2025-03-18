@@ -2,6 +2,10 @@ import Attendance.AttendanceFile;
 import Attendance.AttendanceList;
 import Tutorial.TutorialClassList;
 import Util.DataManager;
+import Util.UI;
+import commandHandler.CommandHandler;
+import commandHandler.CommandParser;
+import task.TaskList;
 
 import java.io.File;
 
@@ -30,6 +34,22 @@ public class TASync {
             System.out.println(attendanceList);
         } // just to check if attendanceFile imported correctly
 
+        TaskList taskList = new TaskList();
+        UI ui = new UI();
+        ui.printWelcome();
+
+        boolean isRunning = true;
+        while (isRunning){
+            String input = ui.getUserCommand();
+            CommandParser commandParser = new CommandParser(input);
+            String[] parts = commandParser.getParts();
+            CommandHandler commandHandler = new CommandHandler(taskList, parts);
+
+            isRunning = commandHandler.runCommand();
+        }
+
+        ui.printGoodbye();
+        ui.close();
         dataManager.saveTutorials(tutorialList);
         dataManager.saveAttendanceFile(attendanceFile);
 
