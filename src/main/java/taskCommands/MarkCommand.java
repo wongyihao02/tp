@@ -3,11 +3,13 @@ package taskCommands;
 import exception.TASyncException;
 import task.TaskList;
 import Util.IntegerChecker;
+
 /**
  * Represents the "MARK" command that marks a task as completed.
  * The command expects a task number to mark the corresponding task as done.
  */
-public class MarkCommand implements taskCommand {
+public class MarkCommand implements Command<TaskList> {
+
     /**
      * Executes the "MARK" command by marking the specified task as done.
      * It verifies that the provided task number is valid before marking the task.
@@ -27,5 +29,4 @@ public class MarkCommand implements taskCommand {
             System.out.println(e.getMessage());
         }
     }
-
 }

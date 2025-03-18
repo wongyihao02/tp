@@ -24,7 +24,7 @@ public class CommandFactory {
      * @return A Command object corresponding to the provided command string.
      * Returns null if the command is invalid.
      */
-    public static taskCommand createCommand(String commandString) {
+    public static Command createCommand(String commandString) {
         String[] parts = commandString.split("\\s+", 3); // Split into command, type, and rest of input
         if (parts.length < 2) {
             System.out.println("Invalid command format. Please use: /add -[type] [task details]");

@@ -7,7 +7,7 @@ import task.TaskList;
  * Represents the "FIND" command that searches for tasks containing a specified keyword.
  * The command displays the tasks that match the keyword.
  */
-public class FindCommand implements taskCommand {
+public class FindCommand implements Command<TaskList> {
     private TaskList tasksWithKeyWord;
     /**
      * Executes the "FIND" command by searching for tasks that match the given keyword.

@@ -1,7 +1,7 @@
 package commandHandler;
 
 import taskCommands.ByeCommand;
-import taskCommands.taskCommand;
+import taskCommands.Command;
 import task.TaskList;
 
 /**
@@ -14,7 +14,7 @@ import task.TaskList;
  */
 public class CommandHandler {
     private final TaskList taskList;
-    private final taskCommand taskCommand;
+    private final Command taskCommand;
     private String parts;
 
     /**
