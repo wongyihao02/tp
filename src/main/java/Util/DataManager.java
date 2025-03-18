@@ -6,6 +6,8 @@ import FileHandlers.*;
 import Tutorial.TutorialClass;
 import Tutorial.TutorialClassList;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DataManager {
@@ -14,14 +16,15 @@ public class DataManager {
     private static final String ATTENDANCE_FILE_PATH = DIRECTORY_PATH + "/AttendanceFile.csv";
 
     public TutorialClassList loadTutorials() {
-        FileCreator.createFileIfNotExists(TUTORIAL_FILE_PATH, DIRECTORY_PATH);
+        ensureFileAndDirectoryExist(TUTORIAL_FILE_PATH, DIRECTORY_PATH);
         FileLoader<TutorialClassList> tutorialLoader = new TutorialClassListFileLoader();
         return tutorialLoader.loadFromFile(TUTORIAL_FILE_PATH);
     }
+
     public AttendanceFile loadAttendanceFiles() {
-        FileCreator.createFileIfNotExists(ATTENDANCE_FILE_PATH, DIRECTORY_PATH);
-        FileLoader<AttendanceFile> AttendanceFileLoader = new AttendanceFileFileLoader();
-        return AttendanceFileLoader.loadFromFile(ATTENDANCE_FILE_PATH);
+        ensureFileAndDirectoryExist(ATTENDANCE_FILE_PATH, DIRECTORY_PATH);
+        FileLoader<AttendanceFile> attendanceFileLoader = new AttendanceFileFileLoader();
+        return attendanceFileLoader.loadFromFile(ATTENDANCE_FILE_PATH);
     }
 
     public AttendanceFile createDemoAttendanceFile(TutorialClassList tutorialList, int numberOfWeeks) {
@@ -57,5 +60,34 @@ public class DataManager {
 
     public String getAttendanceFilePath() {
         return ATTENDANCE_FILE_PATH;
+    }
+
+    /**
+     * Ensures the directory and file exist. If not, creates them.
+     *
+     * @param filePath The full path of the file to create.
+     * @param directoryPath The directory to create if it doesn't exist.
+     */
+    private void ensureFileAndDirectoryExist(String filePath, String directoryPath) {
+        File dir = new File(directoryPath);
+        if (!dir.exists()) {
+            boolean dirCreated = dir.mkdirs();
+            if (dirCreated) {
+                System.out.println("📁 Created directory: " + directoryPath);
+            }
+        }
+
+        File file = new File(filePath);
+        if (!file.exists()) {
+            try {
+                boolean fileCreated = file.createNewFile();
+                if (fileCreated) {
+                    System.out.println("📄 Created file: " + filePath);
+                }
+            } catch (IOException e) {
+                System.out.println("❌ Error creating file: " + filePath);
+                e.printStackTrace();
+            }
+        }
     }
 }
