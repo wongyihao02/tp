@@ -1,303 +1,420 @@
 # T01,1
-Ella Sim,A005,Present
-Farhan Lee,A006,Present
-David Ng,A004,Present
 Alice Tan,A001,Absent
-Chloe Ong,A003,Present
 Harry Choo,A008,Present
-Ben Lim,A002,Present
+Farhan Lee,A006,Present
 Grace Tan,A007,Present
+David Ng,A004,Present
+Ella Sim,A005,Present
+Ben Lim,A002,Present
+Chloe Ong,A003,Present
+
 //comments
-Ella sim//A005//comment1//comment2//comment3
-David Ng//A004//comment1.2
+Alice Tan//A001
+Harry Choo//A008
+Farhan Lee//A006
+Grace Tan//A007
+David Ng//A004
+Ella Sim//A005
+Ben Lim//A002
+Chloe Ong//A003
+//commentEnd
 
 # T01,2
-Ella Sim,A005,Present
-Farhan Lee,A006,Present
-David Ng,A004,Present
 Alice Tan,A001,Absent
-Chloe Ong,A003,Present
 Harry Choo,A008,Present
-Ben Lim,A002,Present
+Farhan Lee,A006,Present
 Grace Tan,A007,Present
+David Ng,A004,Present
+Ella Sim,A005,Present
+Ben Lim,A002,Present
+Chloe Ong,A003,Present
+
+//comments
+Alice Tan//A001
+Harry Choo//A008
+Farhan Lee//A006
+Grace Tan//A007
+David Ng//A004
+Ella Sim//A005
+Ben Lim//A002
+Chloe Ong//A003
+//commentEnd
 
 # T01,3
-Ella Sim,A005,Present
-Farhan Lee,A006,Present
-David Ng,A004,Present
 Alice Tan,A001,Absent
-Chloe Ong,A003,Present
 Harry Choo,A008,Present
-Ben Lim,A002,Present
+Farhan Lee,A006,Present
 Grace Tan,A007,Present
+David Ng,A004,Present
+Ella Sim,A005,Present
+Ben Lim,A002,Present
+Chloe Ong,A003,Present
+
+//comments
+Alice Tan//A001
+Harry Choo//A008
+Farhan Lee//A006
+Grace Tan//A007
+David Ng//A004
+Ella Sim//A005
+Ben Lim//A002
+Chloe Ong//A003
+//commentEnd
 
 # T01,4
-Ella Sim,A005,Present
-Farhan Lee,A006,Present
-David Ng,A004,Present
 Alice Tan,A001,Absent
-Chloe Ong,A003,Present
 Harry Choo,A008,Present
-Ben Lim,A002,Present
+Farhan Lee,A006,Present
 Grace Tan,A007,Present
+David Ng,A004,Present
+Ella Sim,A005,Present
+Ben Lim,A002,Present
+Chloe Ong,A003,Present
 
-# T01,5
-Ella Sim,A005,Present
-Farhan Lee,A006,Present
-David Ng,A004,Present
-Alice Tan,A001,Absent
-Chloe Ong,A003,Present
-Harry Choo,A008,Present
-Ben Lim,A002,Present
-Grace Tan,A007,Present
-
-# T01,6
-Ella Sim,A005,Present
-Farhan Lee,A006,Present
-David Ng,A004,Present
-Alice Tan,A001,Absent
-Chloe Ong,A003,Present
-Harry Choo,A008,Present
-Ben Lim,A002,Present
-Grace Tan,A007,Present
+//comments
+Alice Tan//A001
+Harry Choo//A008
+Farhan Lee//A006
+Grace Tan//A007
+David Ng//A004
+Ella Sim//A005
+Ben Lim//A002
+Chloe Ong//A003
+//commentEnd
 
 # T02,1
-Isaac Tan,A009,Absent
-Nicole Tay,A014,Present
+Kenny Yeo,A011,Present
 Lena Khoo,A012,Present
 Jasmine Goh,A010,Present
-Phoebe Ong,A016,Present
-Kenny Yeo,A011,Present
+Isaac Tan,A009,Absent
 Owen Teo,A015,Present
+Phoebe Ong,A016,Present
 Marcus Chin,A013,Present
+Nicole Tay,A014,Present
+
+//comments
+Kenny Yeo//A011
+Lena Khoo//A012
+Jasmine Goh//A010
+Isaac Tan//A009
+Owen Teo//A015
+Phoebe Ong//A016
+Marcus Chin//A013
+Nicole Tay//A014
+//commentEnd
 
 # T02,2
-Isaac Tan,A009,Absent
-Nicole Tay,A014,Present
+Kenny Yeo,A011,Present
 Lena Khoo,A012,Present
 Jasmine Goh,A010,Present
-Phoebe Ong,A016,Present
-Kenny Yeo,A011,Present
+Isaac Tan,A009,Absent
 Owen Teo,A015,Present
+Phoebe Ong,A016,Present
 Marcus Chin,A013,Present
+Nicole Tay,A014,Present
+
+//comments
+Kenny Yeo//A011
+Lena Khoo//A012
+Jasmine Goh//A010
+Isaac Tan//A009
+Owen Teo//A015
+Phoebe Ong//A016
+Marcus Chin//A013
+Nicole Tay//A014
+//commentEnd
 
 # T02,3
-Isaac Tan,A009,Absent
-Nicole Tay,A014,Present
+Kenny Yeo,A011,Present
 Lena Khoo,A012,Present
 Jasmine Goh,A010,Present
-Phoebe Ong,A016,Present
-Kenny Yeo,A011,Present
+Isaac Tan,A009,Absent
 Owen Teo,A015,Present
+Phoebe Ong,A016,Present
 Marcus Chin,A013,Present
+Nicole Tay,A014,Present
+
+//comments
+Kenny Yeo//A011
+Lena Khoo//A012
+Jasmine Goh//A010
+Isaac Tan//A009
+Owen Teo//A015
+Phoebe Ong//A016
+Marcus Chin//A013
+Nicole Tay//A014
+//commentEnd
 
 # T02,4
-Isaac Tan,A009,Absent
-Nicole Tay,A014,Present
+Kenny Yeo,A011,Present
 Lena Khoo,A012,Present
 Jasmine Goh,A010,Present
-Phoebe Ong,A016,Present
-Kenny Yeo,A011,Present
+Isaac Tan,A009,Absent
 Owen Teo,A015,Present
+Phoebe Ong,A016,Present
 Marcus Chin,A013,Present
+Nicole Tay,A014,Present
 
-# T02,5
-Isaac Tan,A009,Absent
-Nicole Tay,A014,Present
-Lena Khoo,A012,Present
-Jasmine Goh,A010,Present
-Phoebe Ong,A016,Present
-Kenny Yeo,A011,Present
-Owen Teo,A015,Present
-Marcus Chin,A013,Present
-
-# T02,6
-Isaac Tan,A009,Absent
-Nicole Tay,A014,Present
-Lena Khoo,A012,Present
-Jasmine Goh,A010,Present
-Phoebe Ong,A016,Present
-Kenny Yeo,A011,Present
-Owen Teo,A015,Present
-Marcus Chin,A013,Present
+//comments
+Kenny Yeo//A011
+Lena Khoo//A012
+Jasmine Goh//A010
+Isaac Tan//A009
+Owen Teo//A015
+Phoebe Ong//A016
+Marcus Chin//A013
+Nicole Tay//A014
+//commentEnd
 
 # T03,1
 Valerie Goh,A022,Present
+William Sim,A023,Present
+Tina Choo,A020,Present
 Umar Ng,A021,Present
 Samuel Yeo,A019,Present
-Rachel Lim,A018,Present
-Tina Choo,A020,Present
-William Sim,A023,Present
-Xinyi Tay,A024,Present
 Quincy Tan,A017,Absent
+Rachel Lim,A018,Present
+Xinyi Tay,A024,Present
+
+//comments
+Valerie Goh//A022
+William Sim//A023
+Tina Choo//A020
+Umar Ng//A021
+Samuel Yeo//A019
+Quincy Tan//A017
+Rachel Lim//A018
+Xinyi Tay//A024
+//commentEnd
 
 # T03,2
 Valerie Goh,A022,Present
+William Sim,A023,Present
+Tina Choo,A020,Present
 Umar Ng,A021,Present
 Samuel Yeo,A019,Present
-Rachel Lim,A018,Present
-Tina Choo,A020,Present
-William Sim,A023,Present
-Xinyi Tay,A024,Present
 Quincy Tan,A017,Absent
+Rachel Lim,A018,Present
+Xinyi Tay,A024,Present
+
+//comments
+Valerie Goh//A022
+William Sim//A023
+Tina Choo//A020
+Umar Ng//A021
+Samuel Yeo//A019
+Quincy Tan//A017
+Rachel Lim//A018
+Xinyi Tay//A024
+//commentEnd
 
 # T03,3
 Valerie Goh,A022,Present
+William Sim,A023,Present
+Tina Choo,A020,Present
 Umar Ng,A021,Present
 Samuel Yeo,A019,Present
-Rachel Lim,A018,Present
-Tina Choo,A020,Present
-William Sim,A023,Present
-Xinyi Tay,A024,Present
 Quincy Tan,A017,Absent
+Rachel Lim,A018,Present
+Xinyi Tay,A024,Present
+
+//comments
+Valerie Goh//A022
+William Sim//A023
+Tina Choo//A020
+Umar Ng//A021
+Samuel Yeo//A019
+Quincy Tan//A017
+Rachel Lim//A018
+Xinyi Tay//A024
+//commentEnd
 
 # T03,4
 Valerie Goh,A022,Present
+William Sim,A023,Present
+Tina Choo,A020,Present
 Umar Ng,A021,Present
 Samuel Yeo,A019,Present
-Rachel Lim,A018,Present
-Tina Choo,A020,Present
-William Sim,A023,Present
-Xinyi Tay,A024,Present
 Quincy Tan,A017,Absent
+Rachel Lim,A018,Present
+Xinyi Tay,A024,Present
 
-# T03,5
-Valerie Goh,A022,Present
-Umar Ng,A021,Present
-Samuel Yeo,A019,Present
-Rachel Lim,A018,Present
-Tina Choo,A020,Present
-William Sim,A023,Present
-Xinyi Tay,A024,Present
-Quincy Tan,A017,Absent
-
-# T03,6
-Valerie Goh,A022,Present
-Umar Ng,A021,Present
-Samuel Yeo,A019,Present
-Rachel Lim,A018,Present
-Tina Choo,A020,Present
-William Sim,A023,Present
-Xinyi Tay,A024,Present
-Quincy Tan,A017,Absent
+//comments
+Valerie Goh//A022
+William Sim//A023
+Tina Choo//A020
+Umar Ng//A021
+Samuel Yeo//A019
+Quincy Tan//A017
+Rachel Lim//A018
+Xinyi Tay//A024
+//commentEnd
 
 # T04,1
+Elaine Sim,A031,Present
+Felix Tan,A032,Present
+Darren Goh,A030,Present
+Brandon Chua,A028,Present
 Cassandra Ong,A029,Present
 Zachary Teo,A026,Present
-Elaine Sim,A031,Present
 Amanda Lim,A027,Present
-Darren Goh,A030,Present
 Yvonne Lee,A025,Absent
-Brandon Chua,A028,Present
-Felix Tan,A032,Present
+
+//comments
+Elaine Sim//A031
+Felix Tan//A032
+Darren Goh//A030
+Brandon Chua//A028
+Cassandra Ong//A029
+Zachary Teo//A026
+Amanda Lim//A027
+Yvonne Lee//A025
+//commentEnd
 
 # T04,2
+Elaine Sim,A031,Present
+Felix Tan,A032,Present
+Darren Goh,A030,Present
+Brandon Chua,A028,Present
 Cassandra Ong,A029,Present
 Zachary Teo,A026,Present
-Elaine Sim,A031,Present
 Amanda Lim,A027,Present
-Darren Goh,A030,Present
 Yvonne Lee,A025,Absent
-Brandon Chua,A028,Present
-Felix Tan,A032,Present
+
+//comments
+Elaine Sim//A031
+Felix Tan//A032
+Darren Goh//A030
+Brandon Chua//A028
+Cassandra Ong//A029
+Zachary Teo//A026
+Amanda Lim//A027
+Yvonne Lee//A025
+//commentEnd
 
 # T04,3
+Elaine Sim,A031,Present
+Felix Tan,A032,Present
+Darren Goh,A030,Present
+Brandon Chua,A028,Present
 Cassandra Ong,A029,Present
 Zachary Teo,A026,Present
-Elaine Sim,A031,Present
 Amanda Lim,A027,Present
-Darren Goh,A030,Present
 Yvonne Lee,A025,Absent
-Brandon Chua,A028,Present
-Felix Tan,A032,Present
+
+//comments
+Elaine Sim//A031
+Felix Tan//A032
+Darren Goh//A030
+Brandon Chua//A028
+Cassandra Ong//A029
+Zachary Teo//A026
+Amanda Lim//A027
+Yvonne Lee//A025
+//commentEnd
 
 # T04,4
+Elaine Sim,A031,Present
+Felix Tan,A032,Present
+Darren Goh,A030,Present
+Brandon Chua,A028,Present
 Cassandra Ong,A029,Present
 Zachary Teo,A026,Present
-Elaine Sim,A031,Present
 Amanda Lim,A027,Present
-Darren Goh,A030,Present
 Yvonne Lee,A025,Absent
-Brandon Chua,A028,Present
-Felix Tan,A032,Present
 
-# T04,5
-Cassandra Ong,A029,Present
-Zachary Teo,A026,Present
-Elaine Sim,A031,Present
-Amanda Lim,A027,Present
-Darren Goh,A030,Present
-Yvonne Lee,A025,Absent
-Brandon Chua,A028,Present
-Felix Tan,A032,Present
-
-# T04,6
-Cassandra Ong,A029,Present
-Zachary Teo,A026,Present
-Elaine Sim,A031,Present
-Amanda Lim,A027,Present
-Darren Goh,A030,Present
-Yvonne Lee,A025,Absent
-Brandon Chua,A028,Present
-Felix Tan,A032,Present
+//comments
+Elaine Sim//A031
+Felix Tan//A032
+Darren Goh//A030
+Brandon Chua//A028
+Cassandra Ong//A029
+Zachary Teo//A026
+Amanda Lim//A027
+Yvonne Lee//A025
+//commentEnd
 
 # T05,1
 Gina Yeo,A033,Absent
+Henry Lim,A034,Present
 Nathan Choo,A040,Present
-Isabelle Goh,A035,Present
+Melissa Ong,A039,Present
 Karen Ng,A037,Present
 Leonard Lee,A038,Present
+Isabelle Goh,A035,Present
 Jason Tan,A036,Present
-Henry Lim,A034,Present
-Melissa Ong,A039,Present
+//commentEnd
+
+//comments
+Gina Yeo//A033
+Henry Lim//A034
+Nathan Choo//A040
+Melissa Ong//A039
+Karen Ng//A037
+Leonard Lee//A038
+Isabelle Goh//A035
+Jason Tan//A036
+//commentEnd
 
 # T05,2
 Gina Yeo,A033,Absent
+Henry Lim,A034,Present
 Nathan Choo,A040,Present
-Isabelle Goh,A035,Present
+Melissa Ong,A039,Present
 Karen Ng,A037,Present
 Leonard Lee,A038,Present
+Isabelle Goh,A035,Present
 Jason Tan,A036,Present
-Henry Lim,A034,Present
-Melissa Ong,A039,Present
+
+//comments
+Gina Yeo//A033
+Henry Lim//A034
+Nathan Choo//A040
+Melissa Ong//A039
+Karen Ng//A037
+Leonard Lee//A038
+Isabelle Goh//A035
+Jason Tan//A036
+//commentEnd
 
 # T05,3
 Gina Yeo,A033,Absent
+Henry Lim,A034,Present
 Nathan Choo,A040,Present
-Isabelle Goh,A035,Present
+Melissa Ong,A039,Present
 Karen Ng,A037,Present
 Leonard Lee,A038,Present
+Isabelle Goh,A035,Present
 Jason Tan,A036,Present
-Henry Lim,A034,Present
-Melissa Ong,A039,Present
+
+//comments
+Gina Yeo//A033
+Henry Lim//A034
+Nathan Choo//A040
+Melissa Ong//A039
+Karen Ng//A037
+Leonard Lee//A038
+Isabelle Goh//A035
+Jason Tan//A036
+//commentEnd
 
 # T05,4
 Gina Yeo,A033,Absent
+Henry Lim,A034,Present
 Nathan Choo,A040,Present
-Isabelle Goh,A035,Present
+Melissa Ong,A039,Present
 Karen Ng,A037,Present
 Leonard Lee,A038,Present
-Jason Tan,A036,Present
-Henry Lim,A034,Present
-Melissa Ong,A039,Present
-
-# T05,5
-Gina Yeo,A033,Absent
-Nathan Choo,A040,Present
 Isabelle Goh,A035,Present
-Karen Ng,A037,Present
-Leonard Lee,A038,Present
 Jason Tan,A036,Present
-Henry Lim,A034,Present
-Melissa Ong,A039,Present
 
-# T05,6
-Gina Yeo,A033,Absent
-Nathan Choo,A040,Present
-Isabelle Goh,A035,Present
-Karen Ng,A037,Present
-Leonard Lee,A038,Present
-Jason Tan,A036,Present
-Henry Lim,A034,Present
-Melissa Ong,A039,Present
-
+//comments
+Gina Yeo//A033
+Henry Lim//A034
+Nathan Choo//A040
+Melissa Ong//A039
+Karen Ng//A037
+Leonard Lee//A038
+Isabelle Goh//A035
+Jason Tan//A036
+//commentEnd

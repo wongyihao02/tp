@@ -18,66 +18,77 @@ public class AttendanceListFileLoader implements FileLoader<AttendanceList> {
     @Override
     public AttendanceList loadFromFile(String filePath) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            // Skip header line
-            reader.readLine(); // "TutorialName,WeekNumber"
-            String metadata = reader.readLine(); // e.g., "T01,1"
-            String[] metaParts = metadata.split(",", -1);
-            String tutorialName = metaParts[0];
-            int weekNumber = Integer.parseInt(metaParts[1]);
-            boolean startComments = false;
+            // Read header line: # T01,1
+            String metadata = reader.readLine();
+            if (metadata == null || !metadata.startsWith("#")) {
+                throw new IOException("Invalid file format: missing metadata line.");
+            }
 
-            reader.readLine(); // "StudentName,MatricNumber,AttendanceStatus"
+            String[] metaParts = metadata.substring(1).trim().split(",", -1);
+            String tutorialName = metaParts[0].trim();
+            int weekNumber = Integer.parseInt(metaParts[1].trim());
 
             ArrayList<Student> students = new ArrayList<>();
             Map<Student, String> attendanceMap = new HashMap<>();
             Map<Student, ArrayList<String>> commentMap = new HashMap<>();
 
+            boolean readingComments = false;
+
             String line;
             while ((line = reader.readLine()) != null) {
+                line = line.trim();
 
-                if (line.equals("//comments\n")) {
-                    startComments = true;
-                } else if (startComments) {
-                    String[] parts = line.split("//", -1);
-                    String name = parts[0];
-                    String matric = parts[1];
+                if (line.isEmpty()) continue;
+
+                if (line.equalsIgnoreCase("//comments")) {
+                    readingComments = true;
+                    continue;
+                }
+
+                if (line.equalsIgnoreCase("//commentEnd")) {
+                    readingComments = false;
+                    break; // assuming nothing else after comment section
+                }
+
+                if (readingComments) {
+                    String[] parts = line.split(",", -1);
+                    String name = parts[0].trim();
+                    String matric = parts[1].trim();
                     Student student = new Student(name, LocalDate.now(), "", "", matric, tutorialName);
                     ArrayList<String> comments = new ArrayList<>();
+
                     for (int i = 2; i < parts.length; i++) {
-                        comments.add(parts[i]);
+                        comments.add(parts[i].trim());
                     }
 
                     commentMap.put(student, comments);
-
                 } else {
                     String[] parts = line.split(",", -1);
-                    String name = parts[0];
-                    String matricNumber = parts[1];
-                    String status = parts[2];
+                    String name = parts[0].trim();
+                    String matric = parts[1].trim();
+                    String status = parts[2].trim();
 
-                    // Create a minimal student object
-                    Student student = new Student(name, LocalDate.now(), "", "", matricNumber, tutorialName);
+                    Student student = new Student(name, LocalDate.now(), "", "", matric, tutorialName);
                     students.add(student);
                     attendanceMap.put(student, status);
                 }
             }
 
-            // Assemble the tutorial and attendance list
+            // Assemble TutorialClass
             TutorialClass tutorial = new TutorialClass();
             tutorial.setTutorialName(tutorialName);
             tutorial.setStudentList(new StudentList(students));
-            tutorial.setStartTime(LocalTime.of(0, 0)); // default if not stored
+            tutorial.setStartTime(LocalTime.of(0, 0));
             tutorial.setEndTime(LocalTime.of(0, 0));
 
+            // Create AttendanceList
             AttendanceList attendanceList = new AttendanceList(tutorial, weekNumber);
 
-            // Replace default map with loaded one
             for (Map.Entry<Student, String> entry : attendanceMap.entrySet()) {
                 attendanceList.getAttendanceMap().put(entry.getKey(), entry.getValue());
             }
 
-
-            for (Map.Entry<Student, ArrayList<String>> entry : commentMap.entrySet()) {                                 //need to add equals method for Student class
+            for (Map.Entry<Student, ArrayList<String>> entry : commentMap.entrySet()) {
                 attendanceList.addComments(entry.getKey(), entry.getValue());
             }
 

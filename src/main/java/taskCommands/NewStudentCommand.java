@@ -1,4 +1,4 @@
-package studentCommands;
+package taskCommands;
 
 import Util.DateTimeFormatterUtil;
 import exception.TASyncException;
@@ -7,7 +7,7 @@ import students.StudentList;
 
 import java.time.LocalDate;
 
-public class NewStudentCommand implements StudentCommand {
+public class NewStudentCommand implements Command<StudentList> {
     @Override
     public void execute(String parts, StudentList studentList) {
         try {

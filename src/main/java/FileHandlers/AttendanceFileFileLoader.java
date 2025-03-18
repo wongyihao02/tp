@@ -34,7 +34,6 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
                 line = line.trim();
 
                 if (line.isEmpty()) {
-                    // Finalize current block
                     if (currentTutorial != null) {
                         TutorialClass tutorial = new TutorialClass();
                         tutorial.setTutorialName(currentTutorial);
@@ -63,8 +62,11 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
                     String[] header = line.substring(1).trim().split(",", 2);
                     currentTutorial = header[0].trim();
                     currentWeek = Integer.parseInt(header[1].trim());
+
                 } else if (line.startsWith("//comments")) {
                     startComments = true;
+                }else if (line.startsWith("//commentEnd")) {
+                    startComments = false;
                 } else if (startComments) {
                     String[] parts = line.split("//", -1);
                     String name = parts[0];
