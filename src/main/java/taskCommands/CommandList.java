@@ -43,12 +43,12 @@ public enum CommandList {
     }, FIND {
         @Override
         public void printCommand() {
-            System.out.println("FIND: Finds a task based on the keyword given. Usage: DELETE <keyword>");
+            System.out.println("FIND: Finds a task based on the keyword given. Usage: FIND <keyword>");
         }
     }, RENAME {
         @Override
         public void printCommand() {
-            System.out.println("RENAME: Renames a task based on the task number give . Usage: DELETE <task_number>");
+            System.out.println("RENAME: Renames a task based on the task number give . Usage: RENAME <task_number>");
         }
     }, NEWSTUDENT {
         @Override

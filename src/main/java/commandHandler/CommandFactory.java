@@ -31,10 +31,12 @@ public class CommandFactory {
             return null;
         }
 
-        String command = parts[0].toUpperCase();
+        // Remove the leading '/' and convert the command to uppercase
+        String command = parts[0].substring(1).toUpperCase();
         String taskTypeShortcut = parts[1];
+        String listType = parts[1];
 
-        if ("/ADD".equals(command)) {
+        if ("ADD".equals(command)) {
             TaskType taskType = TaskType.fromShortcut(taskTypeShortcut);
             if (taskType == null) {
                 System.out.println("Invalid task type. Use -c (Consultation), -pt (Todo), -pe (Event), -pd (Deadline)");
@@ -49,26 +51,32 @@ public class CommandFactory {
             };
         }
 
-        switch (commandString.toUpperCase()) {
-        case "MARK":
-            return new MarkCommand();
-        case "UNMARK":
-            return new UnmarkCommand();
-        case "LIST":
-            return new ListCommand();
-        case "BYE":
-            return new ByeCommand();
-        case "DELETE":
-            return new DeleteCommand();
-        case "FIND":
-            return new FindCommand();
-        case"RENAME":
-            return new RenameCommand();
-
-        default:
-            System.out.println("Sorry, TASync does not know what \"" + commandString + "\" means");
-            CommandListPrinter.printCommands();
+        // Handle TaskList commands
+        if (listType.equalsIgnoreCase("-p")) {
+            switch (command) {
+            case "DELETE":
+                return new DeleteTaskCommand();
+            case "MARK":
+                return new MarkTaskCommand();
+            case "UNMARK":
+                return new UnmarkTaskCommand();
+            case "LIST":
+                return new ListTaskCommand();
+            case "FIND":
+                return new FindTaskCommand();
+            case "RENAME":
+                return new RenameTaskCommand();
+            default:
+                System.out.println("Sorry, TASync does not know what \"" + commandString + "\" means.");
+                CommandListPrinter.printCommands();
+                return null;
+            }
         }
+
+        if (command.equals("BYE")) {
+            return new ByeCommand();
+        }
+
         return null;
     }
 }
