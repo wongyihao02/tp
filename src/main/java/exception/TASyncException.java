@@ -41,4 +41,16 @@ public class TASyncException extends Exception {
     public static TASyncException invalidNewStudentCommand() {
         return new TASyncException("Invalid NewStudent command, please key command in the format: NewStudent <name> <age> <gender> <contact> <matricNumber> <tutorialClass>.");
     }
+
+    public static TASyncException invalidChangeRemarkCommand() {
+        return new TASyncException("Invalid change remark command, please specify which task to change remark.");
+    }
+
+    public static TASyncException invalidDeleteStudentCommand() {
+        return new TASyncException("Invalid delete student command, please specify which student to delete from the list.");
+    }
+
+    public static TASyncException invalidFindStudentCommand() {
+        return new TASyncException("Invalid find student command, please specify which student to find.");
+    }
 }
