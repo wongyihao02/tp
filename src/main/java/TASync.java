@@ -56,7 +56,7 @@ public class TASync {
             tutAtten.add(tutorialList);
             tutAtten.add(attendanceFile);
             String listType = parts[1];
-            String command = parts[0].substring(1).toUpperCase();
+            String command = parts[0].toUpperCase();
             CommandHandler commandHandler;
             if ("ADD".equals(command) || "HELP".equals(command) || listType.equalsIgnoreCase("-p")) {
                 commandHandler = new CommandHandler(taskList, parts);
