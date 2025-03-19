@@ -1,6 +1,5 @@
 package taskCommands;
 
-import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 import Util.DateTimeFormatterUtil;
@@ -22,49 +21,48 @@ public class ConsultationCommand implements Command<TaskList> {
      */
     @Override
     public void execute(String parts, TaskList taskList) {
-        try {
-            if (parts.contains("/from") && parts.contains("/to")) {
-                String[] consultParts = parts.split("/from|/to");
-                String studentName = consultParts[0].trim();
-                String from = consultParts[1].trim();
-                String to = consultParts[2].trim();
-
-                // Validate and get the correct deadline input
-                String validFrom = getValidConsultationInput(from);
-                String validTo = getValidConsultationInput(to);
-
-                Consultation consultation = new Consultation(studentName, false, validFrom, validTo);
-                taskList.addTask(consultation);
-            } else {
-                throw TASyncException.invalidConsultationCommand();
-            }
-        } catch (TASyncException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    /**
-     * Handles the consultation input validation.
-     * Prompts the user to re-enter the consultation until it is valid.
-     *
-     * @param consultationInput The user input event.
-     * @return The valid consultation.
-     */
-    private String getValidConsultationInput(String consultationInput) {
         Scanner scanner = new Scanner(System.in);
-        String validConsultationTime = null;
+        boolean commandValid = false;
 
-        while (validConsultationTime == null) {
+        while (!commandValid) {
             try {
-                DateTimeFormatterUtil.parseDateTime(consultationInput);
-                validConsultationTime = consultationInput;
-            } catch (DateTimeParseException e) {
-                System.out.println("Invalid consultation time format. Expected format: dd/MM/yyyy HH:mm");
-                System.out.print("Please re-enter the consultation time: ");
-                consultationInput = scanner.nextLine().trim();
+                // Ensure the input contains both /from and /to
+                if (!parts.contains("/from") || !parts.contains("/to")) {
+                    throw new TASyncException("Invalid Consultation command. Specify duration with \"/from\" and \"/to\".");
+                }
+
+                // Split the input into expected parts
+                String[] consultationParts = parts.split(" /from ", 2);
+                if (consultationParts.length < 2) {
+                    throw new TASyncException("Missing start time. Please re-enter the full command.");
+                }
+
+                String studentName = consultationParts[0].trim();
+
+                String[] timeParts = consultationParts[1].split(" /to ", 2);
+                if (timeParts.length < 2) {
+                    throw new TASyncException("Missing end time. Please re-enter the full command.");
+                }
+
+                String from = timeParts[0].trim();
+                String to = timeParts[1].trim();
+
+                // Validate datetime format
+                if (!DateTimeFormatterUtil.isValidDateTime(from) || !DateTimeFormatterUtil.isValidDateTime(to)) {
+                    throw new TASyncException("Invalid datetime format. Expected format: dd/MM/yyyy HH:mm");
+                }
+
+                // Create and add the consultation task
+                Consultation consultation = new Consultation(studentName, false, from, to);
+                taskList.addTask(consultation);
+                commandValid = true; // Exit loop since everything is valid
+
+            } catch (TASyncException e) {
+                System.out.println(e.getMessage());
+                System.out.print("Please re-enter the full command without /add -c\n");
+                parts = scanner.nextLine().trim();
             }
         }
-
-        return validConsultationTime;
     }
+
 }

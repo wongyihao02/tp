@@ -1,6 +1,5 @@
 package taskCommands;
 
-import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 import Util.DateTimeFormatterUtil;
@@ -21,51 +20,48 @@ public class EventCommand implements Command<TaskList> {
      */
     @Override
     public void execute(String parts, TaskList taskList) {
-        try {
-            if (parts.contains("/from") && parts.contains("/to")) {
-                String[] eventParts = parts.split("/from|/to");
-                String taskName = eventParts[0].trim();
-                String from = eventParts[1].trim();
-                String to = eventParts[2].trim();
-
-                // Validate and get the correct deadline input
-                String validFrom = getValidEventInput(from);
-                String validTo = getValidEventInput(to);
-
-                Event event = new Event(taskName, false, validFrom, validTo);
-                taskList.addTask(event);
-            } else {
-                throw TASyncException.invalidEventCommand();
-            }
-        } catch (TASyncException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    /**
-     * Handles the event input validation.
-     * Prompts the user to re-enter the event until it is valid.
-     *
-     * @param eventInput The user input event.
-     * @return The valid event.
-     */
-    private String getValidEventInput(String eventInput) {
         Scanner scanner = new Scanner(System.in);
-        String validEventTime = null;
+        boolean commandValid = false;
 
-        while (validEventTime == null) {
+        while (!commandValid) {
             try {
-                DateTimeFormatterUtil.parseDateTime(eventInput);
-                validEventTime = eventInput;
-            } catch (DateTimeParseException e) {
-                System.out.println("Invalid event time format. Expected format: dd/MM/yyyy HH:mm");
-                System.out.print("Please re-enter the event time: ");
-                eventInput = scanner.nextLine().trim();
+                // Ensure the input contains both /from and /to
+                if (!parts.contains("/from") || !parts.contains("/to")) {
+                    throw new TASyncException("Invalid Event command. Specify duration with \"/from\" and \"/to\".");
+                }
+
+                // Split the input into expected parts
+                String[] eventParts = parts.split(" /from ", 2);
+                if (eventParts.length < 2) {
+                    throw new TASyncException("Missing start time. Please re-enter the full command.");
+                }
+
+                String taskName = eventParts[0].trim();
+
+                String[] timeParts = eventParts[1].split(" /to ", 2);
+                if (timeParts.length < 2) {
+                    throw new TASyncException("Missing end time. Please re-enter the full command.");
+                }
+
+                String from = timeParts[0].trim();
+                String to = timeParts[1].trim();
+
+                // Validate datetime format
+                if (!DateTimeFormatterUtil.isValidDateTime(from) || !DateTimeFormatterUtil.isValidDateTime(to)) {
+                    throw new TASyncException("Invalid datetime format. Expected format: dd/MM/yyyy HH:mm");
+                }
+
+                // Create and add the event task
+                Event event = new Event(taskName, false, from, to);
+                taskList.addTask(event);
+                commandValid = true; // Exit loop since everything is valid
+
+            } catch (TASyncException e) {
+                System.out.println(e.getMessage());
+                System.out.print("Please re-enter the full command without /add -pe\n");
+                parts = scanner.nextLine().trim();
             }
         }
-
-        return validEventTime;
     }
-
 
 }

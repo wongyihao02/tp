@@ -31,9 +31,11 @@ public class TASync {
             System.out.println("Tutorial classes loaded from: " + new File(dataManager.getAttendanceFilePath()).getPath() + "\n");
         }
 
+        /*
         for (AttendanceList attendanceList : attendanceFile.getAttendanceList()) {
             System.out.println(attendanceList);
         } // just to check if attendanceFile imported correctly
+        */
 
         TaskList taskList = new TaskList();
         StudentList studentlist = new StudentList();
