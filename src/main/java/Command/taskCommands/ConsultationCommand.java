@@ -59,7 +59,7 @@ public class ConsultationCommand implements Command<TaskList> {
 
             } catch (TASyncException e) {
                 System.out.println(e.getMessage());
-                System.out.print("Please re-enter the full command without /add -c\n");
+                System.out.print("Please re-enter the full command without add -c\n");
                 parts = scanner.nextLine().trim();
             }
         }
