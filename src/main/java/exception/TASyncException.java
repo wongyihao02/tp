@@ -53,4 +53,8 @@ public class TASyncException extends Exception {
     public static TASyncException invalidFindStudentCommand() {
         return new TASyncException("Invalid find student command, please specify which student to find.");
     }
+
+    public static TASyncException invalidCheckRemarkCommand() {
+        return new TASyncException("Invalid check remark command, please specify which student to check.");
+    }
 }
