@@ -3,8 +3,8 @@ import Attendance.AttendanceList;
 import Tutorial.TutorialClassList;
 import Util.DataManager;
 import Util.UI;
-import commandHandler.CommandHandler;
-import commandHandler.CommandParser;
+import Command.commandHandler.CommandHandler;
+import Command.commandHandler.CommandParser;
 import students.StudentList;
 import task.TaskList;
 
@@ -47,14 +47,11 @@ public class TASync {
             String input = ui.getUserCommand();
             CommandParser commandParser = new CommandParser(input);
             String[] parts = commandParser.getParts();
-            if (parts.length < 2){
-                System.out.println("Invalid command format. Please use: /add -[type] [task details]");
-                break;
-            }
+
             String listType = parts[1];
             String command = parts[0].substring(1).toUpperCase();
             CommandHandler commandHandler;
-            if ("ADD".equals(command) || listType.equalsIgnoreCase("-p")) {
+            if ("ADD".equals(command) || "HELP".equals(command) || listType.equalsIgnoreCase("-p")) {
                 commandHandler = new CommandHandler(taskList, parts);
             } else if (listType.equalsIgnoreCase("-s")) {
                 commandHandler = new CommandHandler(studentlist, parts);

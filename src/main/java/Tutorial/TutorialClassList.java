@@ -3,7 +3,7 @@ package Tutorial;
 import java.util.ArrayList;
 
 public class TutorialClassList {
-    private ArrayList<TutorialClass> tutorialClasses;
+    private final ArrayList<TutorialClass> tutorialClasses;
 
     public TutorialClassList() {
         this.tutorialClasses = new ArrayList<>();
@@ -28,5 +28,9 @@ public class TutorialClassList {
             }
         }
         return null;
+    }
+
+    public void removeTutorialClass(TutorialClass tutorialClass) {
+        tutorialClasses.remove(tutorialClass);
     }
 }

@@ -1,22 +1,23 @@
-package taskCommands;
+package Command.taskCommands;
 
 import java.util.Scanner;
 
 import Util.DateTimeFormatterUtil;
 import exception.TASyncException;
-import task.Event;
+import task.Consultation;
 import task.TaskList;
+
 /**
- * Represents the "EVENT" command that creates a task with event timings.
- * The command expects the description of the event and "/from" and "/to" tags for start and end times.
+ * Represents the "CONSULTATION" command that creates a consultation task with specific timings.
+ * The command expects the student's name along with "/from" and "/to" tags for start and end times.
  */
-public class EventCommand implements Command<TaskList> {
+public class ConsultationCommand implements Command<TaskList> {
     /**
-     * Executes the "EVENT" command by parsing the task description, start time, and end time,
-     * and adding the event task to the task list.
+     * Executes the "CONSULTATION" command by parsing the student name, start time, and end time,
+     * and adding the consultation task to the task list.
      *
-     * @param parts The command parts containing the task description and event timings.
-     * @param taskList The task list where the new event task will be added.
+     * @param parts The command parts containing the student name and consultation timings.
+     * @param taskList The task list where the new consultation task will be added.
      */
     @Override
     public void execute(String parts, TaskList taskList) {
@@ -27,18 +28,18 @@ public class EventCommand implements Command<TaskList> {
             try {
                 // Ensure the input contains both /from and /to
                 if (!parts.contains("/from") || !parts.contains("/to")) {
-                    throw new TASyncException("Invalid Event command. Specify duration with \"/from\" and \"/to\".");
+                    throw new TASyncException("Invalid Consultation command. Specify duration with \"/from\" and \"/to\".");
                 }
 
                 // Split the input into expected parts
-                String[] eventParts = parts.split(" /from ", 2);
-                if (eventParts.length < 2) {
+                String[] consultationParts = parts.split(" /from ", 2);
+                if (consultationParts.length < 2) {
                     throw new TASyncException("Missing start time. Please re-enter the full command.");
                 }
 
-                String taskName = eventParts[0].trim();
+                String studentName = consultationParts[0].trim();
 
-                String[] timeParts = eventParts[1].split(" /to ", 2);
+                String[] timeParts = consultationParts[1].split(" /to ", 2);
                 if (timeParts.length < 2) {
                     throw new TASyncException("Missing end time. Please re-enter the full command.");
                 }
@@ -51,14 +52,14 @@ public class EventCommand implements Command<TaskList> {
                     throw new TASyncException("Invalid datetime format. Expected format: dd/MM/yyyy HH:mm");
                 }
 
-                // Create and add the event task
-                Event event = new Event(taskName, false, from, to);
-                taskList.addTask(event);
+                // Create and add the consultation task
+                Consultation consultation = new Consultation(studentName, false, from, to);
+                taskList.addTask(consultation);
                 commandValid = true; // Exit loop since everything is valid
 
             } catch (TASyncException e) {
                 System.out.println(e.getMessage());
-                System.out.print("Please re-enter the full command without /add -pe\n");
+                System.out.print("Please re-enter the full command without /add -c\n");
                 parts = scanner.nextLine().trim();
             }
         }

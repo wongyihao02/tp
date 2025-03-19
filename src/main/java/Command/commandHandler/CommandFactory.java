@@ -1,10 +1,13 @@
-package commandHandler;
+package Command.commandHandler;
 
-import studentcommands.*;
+import Command.studentcommands.*;
+import Command.taskCommands.*;
+import Command.tutorialCommands.DeleteTutorialCommand;
+import Command.tutorialCommands.ListTutorialStudentsCommand;
+import Command.tutorialCommands.ListUpcomingTutorialsCommand;
+import Command.tutorialCommands.NewTutorialCommand;
 import task.TaskType;
-import taskCommands.*;
 import Util.CommandListPrinter;
-import tutorialCommands.*;
 
 /**
  * The CommandFactory class is responsible for creating the appropriate Command object based on the
@@ -34,9 +37,14 @@ public class CommandFactory {
         }
 
         // Remove the leading '/' and convert the command to uppercase
-        String command = parts[0].substring(1).toUpperCase();
+        String command = parts[0].toUpperCase();
         String taskTypeShortcut = parts[1];
         String listType = parts[1];
+
+        if ("HELP".equals(command)) {
+           CommandListPrinter.printCommands();
+           return null;
+        }
 
         if ("ADD".equals(command)) {
             TaskType taskType = TaskType.fromShortcut(taskTypeShortcut);
@@ -45,11 +53,11 @@ public class CommandFactory {
                 return null;
             }
 
-            switch (taskType) {
-                case TODO : return new TodoCommand();
-                case EVENT : return new EventCommand();
-                case DEADLINE : return new DeadlineCommand();
-                case CONSULTATION : return new ConsultationCommand();
+            return switch (taskType) {
+                case TODO -> new TodoCommand();
+                case EVENT -> new EventCommand();
+                case DEADLINE -> new DeadlineCommand();
+                case CONSULTATION -> new ConsultationCommand();
             };
         }
 
@@ -69,7 +77,7 @@ public class CommandFactory {
             case "RENAME":
                 return new RenameTaskCommand();
             default:
-                System.out.println("Sorry, TASync does not know what \"" + commandString + "\" means.");
+                System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
                 CommandListPrinter.printCommands();
                 return null;
             }
@@ -87,28 +95,28 @@ public class CommandFactory {
                 return new ChangeRemarkCommand();
             case "CHECKREMARK":
                 return new CheckRemarkCommand();
+            default:
+                System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
+                CommandListPrinter.printCommands();
+                return null;
             }
         } else if (listType.equalsIgnoreCase("-t")) {
             switch (command) {
-//                case "ADD":
-//                    return;
-
-                case "LIST":
-                    return new ListUpcomingTutorialsCommand();
-                case "LISTSTUDENTS":
-                    return new ListTutorialStudentsCommand();
+            case "NEWTUTORIAL":
+                return new NewTutorialCommand();
+            case "DELETE":
+                return new DeleteTutorialCommand();
+            case "LIST":
+                return new ListUpcomingTutorialsCommand();
+            case "LISTSTUDENTS":
+                return new ListTutorialStudentsCommand();
+            default:
+                System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
+                CommandListPrinter.printCommands();
+                return null;
 
             }
-        } //else if (listType.equalsIgnoreCase("-at")) {
-//            switch (command) {
-//                case "MARK":
-//                    return;
-//                case "UNMARK":
-//                    return;
-//                case "COMMENT":
-//                    return;
-//            }
-//        }
+        }
 
         if (command.equals("BYE")) {
             return new ByeCommand();
