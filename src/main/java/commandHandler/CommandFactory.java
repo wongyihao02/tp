@@ -106,8 +106,8 @@ public class CommandFactory {
                     return new markStudentAttendanceCommand();
                 case "UNMARK":
                     return new unMarkStudentAttendanceCommand();
-//                case "COMMENT":
-//                    return;
+                case "COMMENT":
+                    return new commentOnStudentCommand();
                 case "LIST":
                     return new showAttendanceListCommand();
             }
