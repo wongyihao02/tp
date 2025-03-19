@@ -4,12 +4,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import exception.TASyncException;
+
 public class DeadlineTest {
 
     private Deadline deadlineTask;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws TASyncException {
         deadlineTask = new Deadline("Have lunch", true, "Monday");
     }
 
@@ -29,7 +31,7 @@ public class DeadlineTest {
     }
 
     @Test
-    void testEmptyDeadline() {
+    void testEmptyDeadline() throws TASyncException {
         Deadline emptyDeadlineTask = new Deadline("Read book", false, "");
         assertEquals("", emptyDeadlineTask.getDeadline());
     }
