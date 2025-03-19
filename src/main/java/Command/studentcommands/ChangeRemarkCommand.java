@@ -1,39 +1,48 @@
 package Command.studentcommands;
 
+import Command.taskCommands.Command;
 import exception.TASyncException;
 import students.Student;
 import students.StudentList;
-import Command.taskCommands.Command;
+import Tutorial.TutorialClass;
+import Tutorial.TutorialClassList;
 
-/**
- * Represents the "CHANGE_REMARK" command that updates the remark of a student.
- */
-public class ChangeRemarkCommand implements Command<StudentList> {
+public class ChangeRemarkCommand implements Command<TutorialClassList> {
 
     /**
-     * Executes the "CHANGE_REMARK" command by updating the remark of a student.
+     * Executes the "CHANGE_REMARK" command by updating the remark of a student in a specific tutorial class.
+     * The input string should contain the tutorial class code, matric number, and the new remark (format: <TutorialClassCode>,<MatricNumber>,<NewRemark>).
+     * If the input is invalid, the tutorial class is not found, or the student is not found, an appropriate error message is displayed.
      *
-     * @param parts The input containing the matric number and the new remark (format: "matricNumber newRemark").
-     * @param studentList The student list where the student's remark will be updated.
+     * @param parts            The input string containing the tutorial class code, matric number, and new remark.
+     * @param tutorialClassList The tutorial class list to search within.
      */
     @Override
-    public void execute(String parts, StudentList studentList) {
+    public void execute(String parts, TutorialClassList tutorialClassList) {
         // Assertions for preconditions
         assert parts != null : "Input 'parts' cannot be null";
         assert !parts.trim().isEmpty() : "Input 'parts' cannot be empty";
-        assert studentList != null : "StudentList cannot be null";
+        assert tutorialClassList != null : "TutorialClassList cannot be null";
 
         try {
-
-            // Split the input into matric number and new remark
-            String[] partsArray = parts.split(" ", 2); // Split into 2 parts: matricNumber and remark
-            if (partsArray.length < 2) {
+            // Split the input into tutorial class code, matric number, and new remark
+            String[] partsArray = parts.split(",", 3); // Split into 3 parts: tutorialClassCode, matricNumber, newRemark
+            if (partsArray.length < 3) {
                 throw TASyncException.invalidChangeRemarkCommand();
             }
 
-            String matricNumber = partsArray[0].trim();
-            String newRemark = partsArray[1].trim();
+            String tutorialClassCode = partsArray[0].trim();
+            String matricNumber = partsArray[1].trim();
+            String newRemark = partsArray[2].trim();
 
+            // Retrieve the tutorial class by its code
+            TutorialClass tutorialClass = tutorialClassList.getByName(tutorialClassCode);
+            if (tutorialClass == null) {
+                throw new TASyncException("No tutorial class found with code: " + tutorialClassCode);
+            }
+
+            // Retrieve the student list from the tutorial class
+            StudentList studentList = tutorialClass.getStudentList();
 
             // Find the student by matric number
             Student student = studentList.getStudentByMatricNumber(matricNumber);
@@ -44,7 +53,7 @@ public class ChangeRemarkCommand implements Command<StudentList> {
 
             // Update the student's remark
             student.setRemark(newRemark);
-            System.out.println("Remark updated for student with matric number " + matricNumber + ".");
+            System.out.println("Remark updated for student with matric number " + matricNumber + " in tutorial class " + tutorialClassCode + ".");
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
         }

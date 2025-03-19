@@ -47,7 +47,7 @@ public class TASyncException extends Exception {
     }
 
     public static TASyncException invalidDeleteStudentCommand() {
-        return new TASyncException("Invalid delete student command, please specify which student to delete from the list.");
+        return new TASyncException("Invalid delete student command, please specify the tutorial number and the matriculation number of the student to delete from the list.");
     }
 
     public static TASyncException invalidFindStudentCommand() {

@@ -82,14 +82,20 @@ public class CommandFactory {
                 CommandListPrinter.printCommands();
                 return null;
             }
-        } else if (listType.equalsIgnoreCase("-s")) {
+        } else if (listType.equalsIgnoreCase("-t")) {
             switch (command) {
+            case "NEWTUTORIAL":
+                return new NewTutorialCommand();
+            case "DELETE":
+                return new DeleteTutorialCommand();
+            case "LIST":
+                return new ListUpcomingTutorialsCommand();
             case "NEWSTUDENT":
                 return new NewStudentCommand();
-            case "LIST":
-                return new ListStudentCommand();
-            case "DELETE":
+            case "DELETESTUDENT":
                 return new DeleteStudentCommand();
+            case "LISTSTUDENTS":
+                return new ListTutorialStudentsCommand();
             case "FIND":
                 return new FindStudentCommand();
             case "CHANGEREMARK":
@@ -101,23 +107,7 @@ public class CommandFactory {
                 CommandListPrinter.printCommands();
                 return null;
             }
-        } else if (listType.equalsIgnoreCase("-t")) {
-            switch (command) {
-            case "NEWTUTORIAL":
-                return new NewTutorialCommand();
-            case "DELETE":
-                return new DeleteTutorialCommand();
-            case "LIST":
-                return new ListUpcomingTutorialsCommand();
-            case "LISTSTUDENTS":
-                return new ListTutorialStudentsCommand();
-            default:
-                System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
-                CommandListPrinter.printCommands();
-                return null;
-
-            }
-        } else if (listType.equalsIgnoreCase("-a")) {
+        }  else if (listType.equalsIgnoreCase("-a")) {
             switch (command) {
                 case "MARK":
                     return new markStudentAttendanceCommand();
