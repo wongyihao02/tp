@@ -53,7 +53,7 @@ public enum CommandList {
     }, NEWSTUDENT {
         @Override
         public void printCommand() {
-            System.out.println("NEWSTUDENT: Adds a new student to the student list using the provided information. Usage: NEWSTUDENT <name> <dob> <gender> <contact> <matric_number> <tutorial_class>");
+            System.out.println("NEWSTUDENT: Adds a new student to the student list using the provided information. Usage: /NEWSTUDENT -s <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>");
         }
     }, CHANGEREMARK {
         @Override

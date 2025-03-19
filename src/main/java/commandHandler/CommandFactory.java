@@ -3,6 +3,7 @@ package commandHandler;
 import studentcommands.ChangeRemarkCommand;
 import studentcommands.DeleteStudentCommand;
 import studentcommands.FindStudentCommand;
+import studentcommands.NewStudentCommand;
 import task.TaskType;
 import taskCommands.*;
 import Util.CommandListPrinter;
