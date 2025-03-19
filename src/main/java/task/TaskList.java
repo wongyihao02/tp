@@ -2,17 +2,23 @@ package task;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import FileHandlers.TaskListFileSaver;
+import FileHandlers.TaskListFileLoader;
+
 /**
  * Represents a list of tasks.
  * This class provides methods for managing tasks (e.g., adding, marking, deleting, and searching tasks).
  */
 public class TaskList {
     private final ArrayList<Task> tasks;
+    private static final String FILE_PATH = "./data/tasklist.txt";
+    private static final String DIRECTORY_PATH = "./data";
     /**
      * Constructs an empty TaskList.
      */
     public TaskList() {
         tasks = new ArrayList<>();
+        loadTasks();
     }
     /**
      * Constructs a TaskList with a specified list of tasks.
@@ -22,6 +28,27 @@ public class TaskList {
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
+
+    /**
+     * Loads tasks from the file into the TaskList.
+     */
+    public void loadTasks() {
+        TaskListFileLoader loader = new TaskListFileLoader();
+        ArrayList<Task> loadedTasks = loader.loadFromFile(FILE_PATH);
+        if (loadedTasks != null) {
+            tasks.clear();
+            tasks.addAll(loadedTasks);
+        }
+    }
+
+    /**
+     * Saves the current tasks to the file.
+     */
+    public void saveTasks() {
+        TaskListFileSaver saver = new TaskListFileSaver();
+        saver.saveToFile(tasks, DIRECTORY_PATH);
+    }
+
     /**
      * Returns the list of tasks.
      *
@@ -61,7 +88,7 @@ public class TaskList {
         todo.printTask();
         todo.printDue();
         System.out.println("Now you have " + tasks.toArray().length + " tasks in the list.");
-
+        saveTasks();
     }
 
     /**
@@ -75,6 +102,7 @@ public class TaskList {
         deadline.printTask();
         deadline.printDue();
         System.out.println("Now you have " + tasks.toArray().length + " tasks in the list.");
+        saveTasks();
     }
     /**
      * Adds an Event task to the TaskList.
@@ -87,6 +115,7 @@ public class TaskList {
         event.printTask();
         event.printDue();
         System.out.println("Now you have " + tasks.toArray().length + " tasks in the list.");
+        saveTasks();
     }
     /**
      * Adds a Consultation task to the TaskList.
@@ -99,6 +128,7 @@ public class TaskList {
         consultation.printTask();
         consultation.printDue();
         System.out.println("Now you have " + tasks.toArray().length + " tasks in the list.");
+        saveTasks();
     }
     /**
      * Returns the total number of tasks in the TaskList.
@@ -121,6 +151,7 @@ public class TaskList {
             } else {
                 tasks.get(taskId - 1).setIsDone(true); //valid and not done, mark as done
                 System.out.println(tasks.get(taskId - 1).getTaskName() + " is marked");
+                saveTasks();
             }
         } else {
             System.out.println("no such task"); //not valid print error
@@ -138,6 +169,7 @@ public class TaskList {
             } else {
                 tasks.get(taskId - 1).setIsDone(false); //if valid and marked, unmark it
                 System.out.println(tasks.get(taskId - 1).getTaskName() + " is unmarked");
+                saveTasks();
             }
         } else {
             System.out.println("no such task"); //not valid print error
@@ -154,6 +186,7 @@ public class TaskList {
             tasks.remove(taskId - 1);
             System.out.println("deleted task: ");
             task.printTask();
+            saveTasks();
             System.out.println();
         } else {
             System.out.println("no such task");
@@ -172,6 +205,7 @@ public class TaskList {
             } else {
                 System.out.println(tasks.get(taskId - 1).getTaskName() + " renamed to " + newTaskName);
                 tasks.get(taskId - 1).setTaskName(newTaskName);
+                saveTasks();
             }
         }else{
             System.out.println("no such task");
