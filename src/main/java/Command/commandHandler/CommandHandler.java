@@ -1,7 +1,7 @@
-package commandHandler;
+package Command.commandHandler;
 
-import taskCommands.ByeCommand;
-import taskCommands.Command;
+import Command.taskCommands.ByeCommand;
+import Command.taskCommands.Command;
 
 /**
  * The CommandHandler class is responsible for executing commands by interacting with the TaskList.

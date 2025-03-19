@@ -1,10 +1,13 @@
-package commandHandler;
+package Command.commandHandler;
 
-import studentcommands.*;
+import Command.studentcommands.*;
+import Command.taskCommands.*;
+import Command.tutorialCommands.DeleteTutorialCommand;
+import Command.tutorialCommands.ListTutorialStudentsCommand;
+import Command.tutorialCommands.ListUpcomingTutorialsCommand;
+import Command.tutorialCommands.NewTutorialCommand;
 import task.TaskType;
-import taskCommands.*;
 import Util.CommandListPrinter;
-import tutorialCommands.*;
 
 /**
  * The CommandFactory class is responsible for creating the appropriate Command object based on the

@@ -1,4 +1,4 @@
-package taskCommands;
+package Command.taskCommands;
 
 /**
  * An enumeration that contains all valid commands for the application.

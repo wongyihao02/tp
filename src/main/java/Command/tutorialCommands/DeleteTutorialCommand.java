@@ -1,9 +1,9 @@
-package tutorialCommands;
+package Command.tutorialCommands;
 
 import Tutorial.TutorialClass;
 import Tutorial.TutorialClassList;
 import exception.TASyncException;
-import taskCommands.Command;
+import Command.taskCommands.Command;
 
 
 public class DeleteTutorialCommand implements Command<TutorialClassList> {

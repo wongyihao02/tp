@@ -1,10 +1,9 @@
-package studentcommands;
+package Command.studentcommands;
 
 import exception.TASyncException;
 import students.Student;
 import students.StudentList;
-import taskCommands.Command;
-import java.util.logging.*;
+import Command.taskCommands.Command;
 
 /**
  * Represents the "CHANGE_REMARK" command that updates the remark of a student.

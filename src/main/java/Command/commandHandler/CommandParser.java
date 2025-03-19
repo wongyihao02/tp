@@ -1,4 +1,4 @@
-package commandHandler;
+package Command.commandHandler;
 
 /**
  * The CommandParser class is responsible for parsing a command string into parts.

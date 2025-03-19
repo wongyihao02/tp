@@ -1,6 +1,8 @@
 package taskCommands;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import Command.taskCommands.EventCommand;
 import org.junit.jupiter.api.Test;
 
 import task.Task;

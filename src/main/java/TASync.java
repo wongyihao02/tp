@@ -3,8 +3,8 @@ import Attendance.AttendanceList;
 import Tutorial.TutorialClassList;
 import Util.DataManager;
 import Util.UI;
-import commandHandler.CommandHandler;
-import commandHandler.CommandParser;
+import Command.commandHandler.CommandHandler;
+import Command.commandHandler.CommandParser;
 import students.StudentList;
 import task.TaskList;
 
