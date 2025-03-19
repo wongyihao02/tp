@@ -22,8 +22,7 @@ public class Todo extends Task {
      */
     @Override
     public String toFileFormat() {
-        return "T," + getIsDone() + "," + getTaskName() + ","+"\n";
+        return "T," + getIsDone() + "," + getTaskName() +"\n";
     }
-
 
 }
