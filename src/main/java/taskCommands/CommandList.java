@@ -43,44 +43,44 @@ public enum CommandList {
     }, FIND {
         @Override
         public void printCommand() {
-            System.out.println("FIND: Finds a task based on the keyword given. Usage: FIND <keyword>");
+            System.out.println("FIND: Finds a task based on the keyword given. Usage: /FIND <keyword>");
         }
     }, RENAME {
         @Override
         public void printCommand() {
-            System.out.println("RENAME: Renames a task based on the task number give . Usage: RENAME <task_number>");
+            System.out.println("RENAME: Renames a task based on the task number give . Usage: /RENAME <task_number>");
         }
     }, NEW_STUDENT {
         @Override
         public void printCommand() {
-            System.out.println("NEWSTUDENT: Adds a new student to the student list using the provided information. Usage: /NEWSTUDENT -s <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>");
+            System.out.println("NEWSTUDENT: Adds a new student to the student list using the provided information. Usage: /NEWSTUDENT -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>");
         }
     }, CHANGE_REMARK {
         @Override
         public void printCommand() {
-            System.out.println("CHANGEREMARK: Updates the remark of a student. Usage: CHANGEREMARK <matric_number> <new_remark>");
+            System.out.println("CHANGEREMARK: Updates the remark of a student. Usage: /CHANGEREMARK -t <tutorial_name>,<matric_number>,<new_remark>");
         }
     },  CHECK_REMARK {
         public void printCommand() {
-            System.out.println("CHECKREMARK: Checks remarks given to a student. Usage: CHECKREMARK <matric_number>");
+            System.out.println("CHECKREMARK: Checks remarks given to a student. Usage: /CHECKREMARK -t <tutorial_name>,<matric_number>");
         }
     }, DELETE_STUDENT {
         @Override
         public void printCommand() {
-            System.out.println("DELETESTUDENT: Deletes a student from the student list. Usage: DELETESTUDENT <matric_number>");
+            System.out.println("DELETESTUDENT: Deletes a student from the student list. Usage: /DELETESTUDENT -t <tutorial_name>,<matric_number>");
         }
     }, FIND_STUDENT {
         @Override
         public void printCommand() {
-            System.out.println("FINDSTUDENT: Finds a student based on the keyword (name or matric number). Usage: /FINDSTUDENT <keyword>");
+            System.out.println("FINDSTUDENT: Finds a student based on the keyword (name or matric number). Usage: /FIND -t <keyword>");
         }
     }, NEW_TUTORIAL {
         public void printCommand() {
-            System.out.println("NEWTUTORIAL: Creates a new tutorial. Usage: /NEWTUTORIAL <tutorial_name> <day_of_week> <start_time> <end_time>");
+            System.out.println("NEWTUTORIAL: Creates a new tutorial. Usage: /NEWTUTORIAL -t <tutorial_name> <day_of_week> <start_time> <end_time>");
         }
     }, DELETE_TUTORIAL {
         public void printCommand() {
-            System.out.println("DELETE_TUTORIAL: Deletes a specified tutorial. Usage: /DELETE <tutorial_name>");
+            System.out.println("DELETE_TUTORIAL: Deletes a specified tutorial. Usage: /DELETETUT -t <tutorial_name>");
         }
     };
 

@@ -94,6 +94,8 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student [name=" + name + ", dateOfBirth="+ DateTimeFormatterUtil.formatDate(dateOfBirth) +   ", gender=" + gender + ", contact=" + contact + "]";
+        return "Student [name=" + name + ", dateOfBirth=" + DateTimeFormatterUtil.formatDate(dateOfBirth)
+                + ", gender=" + gender + ", contact=" + contact + ", matricNumber=" + matricNumber + "]";
     }
+
 }

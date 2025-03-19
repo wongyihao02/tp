@@ -78,21 +78,6 @@ public class CommandFactory {
                 CommandListPrinter.printCommands();
                 return null;
             }
-        } else if (listType.equalsIgnoreCase("-s")) {
-            switch (command) {
-            case "NEWSTUDENT":
-                return new NewStudentCommand();
-            case "LIST":
-                return new ListStudentCommand();
-            case "DELETE":
-                return new DeleteStudentCommand();
-            case "FIND":
-                return new FindStudentCommand();
-            case "CHANGEREMARK":
-                return new ChangeRemarkCommand();
-            case "CHECKREMARK":
-                return new CheckRemarkCommand();
-            }
         } else if (listType.equalsIgnoreCase("-t")) {
             switch (command) {
             case "NEWTUTORIAL":
@@ -101,9 +86,18 @@ public class CommandFactory {
                 return new DeleteTutorialCommand();
             case "LIST":
                 return new ListUpcomingTutorialsCommand();
+            case "NEWSTUDENT":
+                return new NewStudentCommand();
+            case "DELETESTUDENT":
+                return new DeleteStudentCommand();
             case "LISTSTUDENTS":
                 return new ListTutorialStudentsCommand();
-
+            case "FIND":
+                return new FindStudentCommand();
+            case "CHANGEREMARK":
+                return new ChangeRemarkCommand();
+            case "CHECKREMARK":
+                return new CheckRemarkCommand();
             }
         }
 

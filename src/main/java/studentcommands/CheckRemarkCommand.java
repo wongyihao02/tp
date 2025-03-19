@@ -4,29 +4,47 @@ import exception.TASyncException;
 import students.Student;
 import students.StudentList;
 import taskCommands.Command;
+import Tutorial.TutorialClass;
+import Tutorial.TutorialClassList;
 
-
-public class CheckRemarkCommand implements Command<StudentList> {
+public class CheckRemarkCommand implements Command<TutorialClassList> {
 
     /**
-     * Executes the "CHECK_REMARK" command to display the remarks for a specific student.
+     * Executes the "CHECK_REMARK" command to display the remarks for a specific student in a tutorial class.
+     * The input string should contain the tutorial class code and the matric number of the student (format: <TutorialClassCode>,<MatricNumber>).
+     * If the input is invalid, the tutorial class is not found, or the student is not found, an appropriate error message is displayed.
      *
-     * @param parts      The input string containing the student's matric number.
-     * @param studentList The student list to search within.
+     * @param parts            The input string containing the tutorial class code and matric number.
+     * @param tutorialClassList The tutorial class list to search within.
      */
     @Override
-    public void execute(String parts, StudentList studentList) {
+    public void execute(String parts, TutorialClassList tutorialClassList) {
         try {
-
             // Check if the input is valid
             if (parts == null || parts.trim().isEmpty()) {
                 throw TASyncException.invalidCheckRemarkCommand();
             }
 
-            // Search for the student by matric number only
-            Student student = studentList.getStudentByMatricNumber(parts);
+            // Split the input into tutorial class code and matric number
+            String[] inputParts = parts.split(",");
+            if (inputParts.length != 2) {
+                throw TASyncException.invalidCheckRemarkCommand();
+            }
 
-            // If the student is found, display their remarks
+            String tutorialClassCode = inputParts[0].trim();
+            String matricNumber = inputParts[1].trim();
+
+            // Retrieve the tutorial class by its code
+            TutorialClass tutorialClass = tutorialClassList.getByName(tutorialClassCode);
+            if (tutorialClass == null) {
+                throw new TASyncException("No tutorial class found with code: " + tutorialClassCode);
+            }
+
+            // Retrieve the student list from the tutorial class
+            StudentList studentList = tutorialClass.getStudentList();
+
+            // Search for the student by matric number
+            Student student = studentList.getStudentByMatricNumber(matricNumber);
             if (student != null) {
                 String remark = student.getRemark();
                 if (remark == null || remark.trim().isEmpty()) {
@@ -35,7 +53,7 @@ public class CheckRemarkCommand implements Command<StudentList> {
                     System.out.println("Remarks for " + student.getName() + ": " + remark);
                 }
             } else {
-                System.out.println("No student found with matric number: " + parts);
+                System.out.println("No student found with matric number: " + matricNumber);
             }
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
