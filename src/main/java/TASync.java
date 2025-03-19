@@ -5,6 +5,7 @@ import Util.DataManager;
 import Util.UI;
 import commandHandler.CommandHandler;
 import commandHandler.CommandParser;
+import students.StudentList;
 import task.TaskList;
 
 import java.io.File;
@@ -35,6 +36,7 @@ public class TASync {
         } // just to check if attendanceFile imported correctly
 
         TaskList taskList = new TaskList();
+        StudentList studentlist = new StudentList();
         UI ui = new UI();
         ui.printWelcome();
 
@@ -43,7 +45,21 @@ public class TASync {
             String input = ui.getUserCommand();
             CommandParser commandParser = new CommandParser(input);
             String[] parts = commandParser.getParts();
-            CommandHandler commandHandler = new CommandHandler(taskList, parts);
+            if (parts.length < 2){
+                System.out.println("Invalid command format. Please use: /add -[type] [task details]");
+                break;
+            }
+            String listType = parts[1];
+            String command = parts[0].substring(1).toUpperCase();
+            CommandHandler commandHandler;
+            if ("ADD".equals(command) || listType.equalsIgnoreCase("-p")) {
+                commandHandler = new CommandHandler(taskList, parts);
+            } else if (listType.equalsIgnoreCase("-s")) {
+                commandHandler = new CommandHandler(studentlist, parts);
+            } else {
+                commandHandler = new CommandHandler(null, parts);
+                System.out.println("Invalid command");
+            }
 
             isRunning = commandHandler.runCommand();
         }

@@ -12,8 +12,8 @@ import task.TaskList;
  * Given a command like "TODO Read book", it will find the appropriate command (e.g., TodoCommand)
  * and call the execute method with the necessary parts.
  */
-public class CommandHandler {
-    private final TaskList taskList;
+public class CommandHandler<T> {
+    private final T list;
     private final Command taskCommand;
     private String parts;
 
@@ -23,11 +23,11 @@ public class CommandHandler {
      * The constructor takes in an array of command strings, where the first element is the command name
      * (which is used to create the Command object), and the second element is the associated data.
      *
-     * @param taskList The TaskList object that the command will operate on.
+     * @param list The TaskList/StudentList object that the command will operate on.
      * @param commands An array containing the command name and its associated data.
      */
-    public CommandHandler(TaskList taskList, String[] commands) {
-        this.taskList = taskList;
+    public CommandHandler(T list, String[] commands) {
+        this.list = list;
         // Ensure the input is valid before proceeding
         if (commands.length < 2) {
             System.out.println("Invalid command format. Please use: /add -[type] [task details]");
@@ -51,8 +51,8 @@ public class CommandHandler {
      * @return true if the command is not of type ByeCommand; false otherwise.
      */
     public boolean runCommand() {
-        if (taskCommand != null) {
-            taskCommand.execute(parts, taskList);
+        if (taskCommand != null && list != null) {
+            taskCommand.execute(parts, list);
         }
         return !(taskCommand instanceof ByeCommand);
     }
