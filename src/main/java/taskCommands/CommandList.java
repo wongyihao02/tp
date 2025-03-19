@@ -60,6 +60,10 @@ public enum CommandList {
         public void printCommand() {
             System.out.println("CHANGEREMARK: Updates the remark of a student. Usage: CHANGEREMARK <matric_number> <new_remark>");
         }
+    },  CHECKREMARK {
+        public void printCommand() {
+            System.out.println("CHECKREMARK: Checks remarks given to a student. Usage: CHECKREMARK <matric_number>");
+        }
     }, DELETESTUDENT {
         @Override
         public void printCommand() {
