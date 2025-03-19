@@ -85,27 +85,42 @@ public enum CommandList {
     },  LISTTUTORIALS {
         @Override
         public void printCommand() {
-            System.out.println("LISTTUTORIALS: Prints out all tutorial classes from today to the given date.classes are printed in blocks by week. Usage: LIST -t <date>");
+            System.out.println("LISTTUTORIALS: Prints out all tutorial classes from today to the given date.classes are printed in blocks by week. Usage: /LIST -t <date>");
         }
     },  LISTTUTORIALSTUDENTS {
         @Override
         public void printCommand() {
-            System.out.println("LISTTUTORIALSTUDENTS: Prints out all the students in a given tutorial. Usage: LISTSTUDENTS -t <Tut name>");
+            System.out.println("LISTTUTORIALSTUDENTS: Prints out all the students in a given tutorial. Usage: /LISTSTUDENTS -t <Tut name>");
         }
     },  MARKSTUDENT {
         @Override
         public void printCommand() {
-            System.out.println("MARKSTUDENT: Prints out all the students in a given tutorial. Usage: MARK -a <Tutname,weeknum,studentname,studentmatricnumber>");
+            System.out.println("MARKSTUDENT: sets the attendance status of the given student to present. Usage: /MARK -a <Tutname,weeknum,studentname,studentmatricnumber>");
         }
     },  UNMARKSTUDENT {
         @Override
         public void printCommand() {
-            System.out.println("UNMARKSTUDENT: Prints out all the students in a given tutorial. Usage: UNMARK -a <Tutname,weeknum,studentname,studentmatricnumber>");
+            System.out.println("UNMARKSTUDENT: sets the attendance status of the given student to absent. Usage: /UNMARK -a <Tutname,weeknum,studentname,studentmatricnumber>");
         }
     },  LISTATTENDANCESTUDENTS {
         @Override
         public void printCommand() {
-            System.out.println("LISTATTENDANCESTUDENTS: Prints out all the students names,their matric number and their attendance status in a given attendanceList. Usage: LIST -a <Tutname,weeknum>");
+            System.out.println("LISTATTENDANCESTUDENTS: Prints out all the students names,their matric number and their attendance status in a given attendanceList. Usage: /LIST -a <Tutname,weeknum>");
+        }
+    },  COMMENT {
+        @Override
+        public void printCommand() {
+            System.out.println("COMMENT: add a comment to the indicated student. Usage: /COMMENT -a <Tutname,weeknum,studentname,studentmatricnumber//comment1;comment2>");
+        }
+    },  VIEWCOMMENT {
+        @Override
+        public void printCommand() {
+            System.out.println("COMMENT: see comments on the student. Usage: /VIEWCOMMENT -a <Tutname,weeknum,studentname,studentmatricnumber>");
+        }
+    },  DELETECOMMENT {
+        @Override
+        public void printCommand() {
+            System.out.println("COMMENT: delete a comment to the indicated student. Usage: /DELETECOMMENT -a <Tutname,weeknum,studentname,studentmatricnumber//commentnum");
         }
     };
 

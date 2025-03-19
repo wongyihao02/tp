@@ -7,12 +7,10 @@ import students.Student;
 import taskCommands.Command;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 
-public class commentOnStudentCommand implements Command<AttendanceFile> {
-
-    //parts in format of tutname,week,studentname,matricnum//comments1;comments2              (comments seperated by ;)
+public class deleteStudentComment implements Command<AttendanceFile> {
+    //parts in format of tutname,week,studentname,matricnum//commentnum
     public void execute(String parts, AttendanceFile attendanceList) {
         try {
             //if empty input string
@@ -27,12 +25,6 @@ public class commentOnStudentCommand implements Command<AttendanceFile> {
             }
 
             String[] partsArray = partsArray2[0].split(",");
-            String[] commentsArray = partsArray2[1].split(";");
-            ArrayList<String> comments = new ArrayList<>();
-
-            for (String comment : commentsArray) {
-                comments.add(comment.trim());
-            }
 
             ArrayList<AttendanceList> list = attendanceList.getAttendanceList();
 
@@ -61,11 +53,24 @@ public class commentOnStudentCommand implements Command<AttendanceFile> {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
 
-            theOne.addComments(derStudent, comments);
+            Map<Student, ArrayList<String>> commentlist = theOne.getCommentList();
+
+            if (commentlist.containsKey(derStudent)) {
+                if (Integer.parseInt(partsArray[1]) - 1 >= 0 && Integer.parseInt(partsArray[1]) - 1 <= commentlist.get(derStudent).size()) {
+                    commentlist.get(derStudent).remove(Integer.parseInt(partsArray[1]) - 1);
+                    System.out.println("Comment deleted");
+                } else {
+                    System.out.println("Comment to be deleted was not present");
+                }
+            } else {
+
+                System.out.println("student has no comments");
+            }
 
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
         }
 
     }
+
 }

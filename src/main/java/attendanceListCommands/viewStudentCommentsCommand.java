@@ -7,12 +7,9 @@ import students.Student;
 import taskCommands.Command;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
 
-public class commentOnStudentCommand implements Command<AttendanceFile> {
-
-    //parts in format of tutname,week,studentname,matricnum//comments1;comments2              (comments seperated by ;)
+public class viewStudentCommentsCommand implements Command<AttendanceFile> {
+    //parts in format of tutname,week,studentname,matricnum
     public void execute(String parts, AttendanceFile attendanceList) {
         try {
             //if empty input string
@@ -20,18 +17,10 @@ public class commentOnStudentCommand implements Command<AttendanceFile> {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
 
-            String[] partsArray2 = parts.split("//");
+            String[] partsArray = parts.split(",");
             //if not all inputs given or too many
-            if (partsArray2.length != 2) {
+            if (partsArray.length != 4) {
                 throw TASyncException.invalidmarkAttendanceListCommand();
-            }
-
-            String[] partsArray = partsArray2[0].split(",");
-            String[] commentsArray = partsArray2[1].split(";");
-            ArrayList<String> comments = new ArrayList<>();
-
-            for (String comment : commentsArray) {
-                comments.add(comment.trim());
             }
 
             ArrayList<AttendanceList> list = attendanceList.getAttendanceList();
@@ -61,7 +50,17 @@ public class commentOnStudentCommand implements Command<AttendanceFile> {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
 
-            theOne.addComments(derStudent, comments);
+
+            if (theOne.getCommentList().containsKey(derStudent)) {
+                ArrayList<String> comments = theOne.getCommentList().get(derStudent);
+
+                System.out.println("List of comments: ");
+                for (int i = 0; i < comments.size(); i++) {
+                    System.out.println((i + 1) + ". " + comments.get(i));
+                }
+            } else {
+                System.out.println("Selected student has no comments given to them");
+            }
 
         } catch (TASyncException e) {
             System.out.println(e.getMessage());

@@ -109,6 +109,10 @@ public class CommandFactory {
                     return new unMarkStudentAttendanceCommand();
                 case "COMMENT":
                     return new commentOnStudentCommand();
+                case "VIEWCOMMENT":
+                    return new viewStudentCommentsCommand();
+                case "DELETECOMMENT":
+                    return new deleteStudentComment();
                 case "LIST":
                     return new showAttendanceListCommand();
             }
