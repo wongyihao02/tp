@@ -20,15 +20,15 @@ public class TASync {
         if (tutorialList == null || tutorialList.getTutorialClasses().isEmpty()) {
             System.out.println("No tutorials loaded or file is empty.");
             tutorialList = new TutorialClassList();
-        }else {
+        } else {
             System.out.println("Tutorial classes loaded from: " + new File(dataManager.getTutorialFilePath()).getPath() + "\n");
         }
 
         AttendanceFile attendanceFile = dataManager.loadAttendanceFiles(tutorialList);
         if (attendanceFile == null) {
             System.out.println("No attendance file loaded.");
-            attendanceFile= new AttendanceFile(null);
-        }else{
+            attendanceFile = new AttendanceFile(null);
+        } else {
             System.out.println("Tutorial classes loaded from: " + new File(dataManager.getAttendanceFilePath()).getPath() + "\n");
         }
 
@@ -44,11 +44,11 @@ public class TASync {
         ui.printWelcome();
 
         boolean isRunning = true;
-        while (isRunning){
+        while (isRunning) {
             String input = ui.getUserCommand();
             CommandParser commandParser = new CommandParser(input);
             String[] parts = commandParser.getParts();
-            if (parts.length < 2){
+            if (parts.length < 2) {
                 System.out.println("Invalid command format. Please use: add -[type] [task details]");
                 break;
             }
@@ -60,7 +60,10 @@ public class TASync {
             CommandHandler commandHandler;
             if ("ADD".equals(command) || "HELP".equals(command) || listType.equalsIgnoreCase("-p")) {
                 commandHandler = new CommandHandler(taskList, parts);
+            } else if ("BYE".equals(command)) {
+                commandHandler = new CommandHandler(taskList, parts);
             } else if (listType.equalsIgnoreCase("-s")) {
+
                 commandHandler = new CommandHandler(studentlist, parts);
             } else if (listType.equalsIgnoreCase("-t")) {
                 commandHandler = new CommandHandler(tutorialList, parts);
