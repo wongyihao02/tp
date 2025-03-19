@@ -85,6 +85,24 @@ public class CommandFactory {
             case "CHANGEREMARK":
                 return new ChangeRemarkCommand();
             }
+        } else if (listType.equalsIgnoreCase("-t")) {
+            switch (command) {
+                case "ADD":
+                    return;
+
+                case "LIST":
+                    return;
+
+            }
+        } else if (listType.equalsIgnoreCase("-at")) {
+            switch (command) {
+                case "MARK":
+                    return;
+                case "UNMARK":
+                    return;
+                case "COMMENT":
+                    return;
+            }
         }
 
         if (command.equals("BYE")) {
