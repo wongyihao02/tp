@@ -74,6 +74,31 @@ public enum CommandList {
         public void printCommand() {
             System.out.println("FINDSTUDENT: Finds a student based on the keyword (name or matric number). Usage: FINDSTUDENT <keyword>");
         }
+    },  LISTTUTORIALS {
+        @Override
+        public void printCommand() {
+            System.out.println("LISTTUTORIALS: Prints out all tutorial classes from today to the given date.classes are printed in blocks by week. Usage: LIST -t <date>");
+        }
+    },  LISTTUTORIALSTUDENTS {
+        @Override
+        public void printCommand() {
+            System.out.println("LISTTUTORIALSTUDENTS: Prints out all the students in a given tutorial. Usage: LISTSTUDENTS -t <Tut name>");
+        }
+    },  MARKSTUDENT {
+        @Override
+        public void printCommand() {
+            System.out.println("MARKSTUDENT: Prints out all the students in a given tutorial. Usage: MARK -a <Tutname,weeknum,studentname,studentmatricnumber>");
+        }
+    },  UNMARKSTUDENT {
+        @Override
+        public void printCommand() {
+            System.out.println("UNMARKSTUDENT: Prints out all the students in a given tutorial. Usage: UNMARK -a <Tutname,weeknum,studentname,studentmatricnumber>");
+        }
+    },  LISTATTENDANCESTUDENTS {
+        @Override
+        public void printCommand() {
+            System.out.println("LISTATTENDANCESTUDENTS: Prints out all the students names,their matric number and their attendance status in a given attendanceList. Usage: LIST -a <Tutname,weeknum>");
+        }
     };
 
     public abstract void printCommand();

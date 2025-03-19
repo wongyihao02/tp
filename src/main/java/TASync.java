@@ -58,6 +58,8 @@ public class TASync {
                 commandHandler = new CommandHandler(studentlist, parts);
             } else if (listType.equalsIgnoreCase("-t")) {
                 commandHandler = new CommandHandler(tutorialList, parts);
+            } else if (listType.equalsIgnoreCase("-a")) {
+                commandHandler = new CommandHandler(attendanceFile, parts);
             } else {
                 commandHandler = new CommandHandler(null, parts);
                 System.out.println("Invalid command");

@@ -1,5 +1,6 @@
 package commandHandler;
 
+import attendanceListCommands.*;
 import studentcommands.*;
 import task.TaskType;
 import taskCommands.*;
@@ -99,16 +100,18 @@ public class CommandFactory {
                     return new ListTutorialStudentsCommand();
 
             }
-        } //else if (listType.equalsIgnoreCase("-at")) {
-//            switch (command) {
-//                case "MARK":
-//                    return;
-//                case "UNMARK":
-//                    return;
+        } else if (listType.equalsIgnoreCase("-a")) {
+            switch (command) {
+                case "MARK":
+                    return new markStudentAttendanceCommand();
+                case "UNMARK":
+                    return new unMarkStudentAttendanceCommand();
 //                case "COMMENT":
 //                    return;
-//            }
-//        }
+                case "LIST":
+                    return new showAttendanceListCommand();
+            }
+        }
 
         if (command.equals("BYE")) {
             return new ByeCommand();

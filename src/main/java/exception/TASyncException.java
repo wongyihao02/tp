@@ -65,4 +65,12 @@ public class TASyncException extends Exception {
     public static TASyncException invalidListTutorialStudentsCommand() {
         return new TASyncException("Invalid List all students in tutorial command, please specify a valid tutorial id");
     }
+
+    public static TASyncException invalidListAttendanceListCommand() {
+        return new TASyncException("Invalid List all students in attendanceList command, please specify a valid attendancelist with a valid tutorial id and a valid week");
+    }
+
+    public static TASyncException invalidmarkAttendanceListCommand() {
+        return new TASyncException("Invalid mark attendance command, please specify a valid attendancelist with a valid tutorial id and a valid week and a valid student id and student name");
+    }
 }
