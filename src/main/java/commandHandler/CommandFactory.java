@@ -1,9 +1,6 @@
 package commandHandler;
 
-import studentcommands.ChangeRemarkCommand;
-import studentcommands.DeleteStudentCommand;
-import studentcommands.FindStudentCommand;
-import studentcommands.NewStudentCommand;
+import studentcommands.*;
 import task.TaskType;
 import taskCommands.*;
 import Util.CommandListPrinter;
@@ -79,6 +76,8 @@ public class CommandFactory {
             switch (command) {
             case "NEWSTUDENT":
                 return new NewStudentCommand();
+            case "LIST":
+                return new ListStudentCommand();
             case "DELETE":
                 return new DeleteStudentCommand();
             case "FIND":
