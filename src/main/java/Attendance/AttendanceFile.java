@@ -23,4 +23,8 @@ public class AttendanceFile {
         System.out.println("Attendance file does not contain this attendance list");
         return null;
     }
+
+    public void addAttendanceList(AttendanceList attendanceList) {
+        attendanceFile.add(attendanceList);
+    }
 }

@@ -1,5 +1,6 @@
 package Command.commandHandler;
 
+import Command.attendanceListCommands.*;
 import Command.studentcommands.*;
 import Command.taskCommands.*;
 import Command.tutorialCommands.DeleteTutorialCommand;
@@ -53,12 +54,12 @@ public class CommandFactory {
                 return null;
             }
 
-            return switch (taskType) {
-                case TODO -> new TodoCommand();
-                case EVENT -> new EventCommand();
-                case DEADLINE -> new DeadlineCommand();
-                case CONSULTATION -> new ConsultationCommand();
-            };
+            switch (taskType) {
+                case TODO : return new TodoCommand();
+                case EVENT : return new EventCommand();
+                case DEADLINE : return new DeadlineCommand();
+                case CONSULTATION : return new ConsultationCommand();
+            }
         }
 
         // Handle TaskList commands
@@ -115,6 +116,26 @@ public class CommandFactory {
                 CommandListPrinter.printCommands();
                 return null;
 
+            }
+        } else if (listType.equalsIgnoreCase("-a")) {
+            switch (command) {
+                case "MARK":
+                    return new markStudentAttendanceCommand();
+                case "UNMARK":
+                    return new unMarkStudentAttendanceCommand();
+                case "COMMENT":
+                    return new commentOnStudentCommand();
+                case "VIEWCOMMENT":
+                    return new viewStudentCommentsCommand();
+                case "DELETECOMMENT":
+                    return new deleteStudentComment();
+                case "LIST":
+                    return new showAttendanceListCommand();
+            }
+        } else if (listType.equalsIgnoreCase("-at")) {
+            switch (command) {
+                case "CREATE":
+                    return new createNewAttendanceList();
             }
         }
 

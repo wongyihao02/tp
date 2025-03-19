@@ -82,6 +82,51 @@ public enum CommandList {
         public void printCommand() {
             System.out.println("DELETE_TUTORIAL: Deletes a specified tutorial. Usage: /DELETE <tutorial_name>");
         }
+    },  LISTTUTORIALS {
+        @Override
+        public void printCommand() {
+            System.out.println("LISTTUTORIALS: Prints out all tutorial classes from today to the given date.classes are printed in blocks by week. Usage: /LIST -t <date>");
+        }
+    },  LISTTUTORIALSTUDENTS {
+        @Override
+        public void printCommand() {
+            System.out.println("LISTTUTORIALSTUDENTS: Prints out all the students in a given tutorial. Usage: /LISTSTUDENTS -t <Tut name>");
+        }
+    },  MARKSTUDENT {
+        @Override
+        public void printCommand() {
+            System.out.println("MARKSTUDENT: sets the attendance status of the given student to present. Usage: /MARK -a <Tutname,weeknum,studentname,studentmatricnumber>");
+        }
+    },  UNMARKSTUDENT {
+        @Override
+        public void printCommand() {
+            System.out.println("UNMARKSTUDENT: sets the attendance status of the given student to absent. Usage: /UNMARK -a <Tutname,weeknum,studentname,studentmatricnumber>");
+        }
+    },  LISTATTENDANCESTUDENTS {
+        @Override
+        public void printCommand() {
+            System.out.println("LISTATTENDANCESTUDENTS: Prints out all the students names,their matric number and their attendance status in a given attendanceList. Usage: /LIST -a <Tutname,weeknum>");
+        }
+    },  COMMENT {
+        @Override
+        public void printCommand() {
+            System.out.println("COMMENT: add a comment to the indicated student. Usage: /COMMENT -a <Tutname,weeknum,studentname,studentmatricnumber//comment1;comment2>");
+        }
+    },  VIEWCOMMENT {
+        @Override
+        public void printCommand() {
+            System.out.println("VIEWCOMMENT: see comments on the student. Usage: /VIEWCOMMENT -a <Tutname,weeknum,studentname,studentmatricnumber>");
+        }
+    },  DELETECOMMENT {
+        @Override
+        public void printCommand() {
+            System.out.println("DELETECOMMENT: delete a comment to the indicated student. Usage: /DELETECOMMENT -a <Tutname,weeknum,studentname,studentmatricnumber//commentnum");
+        }
+    },  CREATE {
+        @Override
+        public void printCommand() {
+            System.out.println("CREATE: creates an attendance list for the given week if the tut name is valid and one does not exist for the week already. Usage: /CREATE -ay <Tutname,weeknum");
+        }
     };
 
     public abstract void printCommand();

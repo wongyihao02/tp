@@ -85,4 +85,12 @@ public class TASyncException extends Exception {
     public static Exception invalidDeleteTutorialCommand() {
         return new TASyncException("Invalid delete tutorial command, pleas key command in the format /delete -t <tutorialCode>");
     }
+
+    public static TASyncException invalidListAttendanceListCommand() {
+        return new TASyncException("Invalid List all students in attendanceList command, please specify a valid attendancelist with a valid tutorial id and a valid week");
+    }
+
+    public static TASyncException invalidmarkAttendanceListCommand() {
+        return new TASyncException("Invalid mark attendance command, please specify a valid attendancelist with a valid tutorial id and a valid week and a valid student id and student name");
+    }
 }
