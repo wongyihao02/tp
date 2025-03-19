@@ -38,17 +38,17 @@ public enum CommandList {
     }, DELETE {
         @Override
         public void printCommand() {
-            System.out.println("DELETE: Deletes a task. Usage: DELETE <task_number>");
+            System.out.println("DELETE: Deletes a task. Usage: DELETE -p <task_number>");
         }
     }, FIND {
         @Override
         public void printCommand() {
-            System.out.println("FIND: Finds a task based on the keyword given. Usage: FIND <keyword>");
+            System.out.println("FIND: Finds a task based on the keyword given. Usage: FIND -p <keyword>");
         }
     }, RENAME {
         @Override
         public void printCommand() {
-            System.out.println("RENAME: Renames a task based on the task number give . Usage: RENAME <task_number>");
+            System.out.println("RENAME: Renames a task based on the task number give . Usage: RENAME -p <task_number> <new_name>");
         }
     }, NEW_STUDENT {
         @Override

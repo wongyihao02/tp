@@ -45,10 +45,7 @@ public class TASync {
             String input = ui.getUserCommand();
             CommandParser commandParser = new CommandParser(input);
             String[] parts = commandParser.getParts();
-            if (parts.length < 2){
-                System.out.println("Invalid command format. Please use: /add -[type] [task details]");
-                break;
-            }
+
             String listType = parts[1];
             String command = parts[0].substring(1).toUpperCase();
             CommandHandler commandHandler;
