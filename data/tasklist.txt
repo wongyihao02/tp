@@ -1,10 +1,12 @@
-T,true,Task A
+T,true,Task X
 
-T,false,Task B
+T,true,Task B
 
 D,false,Deadline C,02/03/2025 23:59
 
 E,false,Event D,02/03/2025 23:50,02/03/2025 23:59
 
-T,false,s
+T,false,Task A
+
+E,false,Event A,03/03/2025 23:00,03/03/2025 23:59
 

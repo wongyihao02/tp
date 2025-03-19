@@ -52,7 +52,7 @@ public class DeadlineCommand implements Command<TaskList> {
 
             } catch (TASyncException e) {
                 System.out.println(e.getMessage());
-                System.out.print("Please re-enter the full command without /add -pd\n");
+                System.out.print("Please re-enter the full command without add -pd\n");
                 parts = scanner.nextLine().trim();
             }
         }

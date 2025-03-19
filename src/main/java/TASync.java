@@ -49,7 +49,7 @@ public class TASync {
             CommandParser commandParser = new CommandParser(input);
             String[] parts = commandParser.getParts();
             if (parts.length < 2){
-                System.out.println("Invalid command format. Please use: /add -[type] [task details]");
+                System.out.println("Invalid command format. Please use: add -[type] [task details]");
                 break;
             }
             ArrayList<Object> tutAtten = new ArrayList<>();

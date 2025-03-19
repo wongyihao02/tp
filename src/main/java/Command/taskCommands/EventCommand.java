@@ -58,7 +58,7 @@ public class EventCommand implements Command<TaskList> {
 
             } catch (TASyncException e) {
                 System.out.println(e.getMessage());
-                System.out.print("Please re-enter the full command without /add -pe\n");
+                System.out.print("Please re-enter the full command without add -pe\n");
                 parts = scanner.nextLine().trim();
             }
         }
