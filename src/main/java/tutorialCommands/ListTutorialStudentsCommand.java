@@ -11,48 +11,49 @@ import java.util.ArrayList;
 public class ListTutorialStudentsCommand implements Command<TutorialClassList> {
 
     @Override
-    //list all students in the given tutorial name
-    public void execute(String parts, TutorialClassList list) {
+    // List all students in the given tutorial by tutorial name
+    public void execute(String tutorialName, TutorialClassList tutorialClassList) {
 
         try {
-            //if empty input string
-            if (parts == null || parts.trim().isEmpty()) {
+            // Validate the input string (tutorial name)
+            if (tutorialName == null || tutorialName.trim().isEmpty()) {
                 throw TASyncException.invalidListTutorialStudentsCommand();
             }
 
-            TutorialClass theOne = null;
-            ArrayList<TutorialClass> theList = list.getTutorialClasses();
+            TutorialClass targetTutorial = null;
+            ArrayList<TutorialClass> tutorials = tutorialClassList.getTutorialClasses();
 
-            for (TutorialClass tc : theList) {
-                if (tc.getTutorialName().equals(parts)) {
-                    theOne = tc;
+            // Find the tutorial by name
+            for (TutorialClass tutorial : tutorials) {
+                if (tutorial.getTutorialName().equals(tutorialName)) {
+                    targetTutorial = tutorial;
                 }
             }
 
-            //if input string does not correspond to any tutorial session
-            if (theOne == null) {
+            // If the tutorial name does not match any, throw an exception
+            if (targetTutorial == null) {
                 throw TASyncException.invalidListTutorialStudentsCommand();
             }
 
+            ArrayList<Student> enrolledStudents = targetTutorial.getStudentList().getStudents();
 
-            ArrayList<Student> listOfStudents = theOne.getStudentList().getStudents();
+            // Print the title
+            System.out.println("List of students in tutorial " + targetTutorial.getTutorialName() + ":");
 
-            //title
-            System.out.println("List of students in tutorial " + theOne.getTutorialName() + ":");
-
-            //if tutorial session no one
-            if (listOfStudents.isEmpty()) {
-                System.out.println(theOne.getTutorialName() + " has no students");
-            }else {
-                for (Student s : listOfStudents) {
-                    System.out.println(s.toString());
+            // If no students are enrolled in the tutorial
+            if (enrolledStudents.isEmpty()) {
+                System.out.println(targetTutorial.getTutorialName() + " has no students");
+            } else {
+                for (Student student : enrolledStudents) {
+                    System.out.println(student.toString());
                 }
             }
 
             System.out.println();
 
         } catch (TASyncException e) {
-            System.out.println(e.getMessage());
-        }
+            // Specific exception thrown by our TASyncException class
+            System.out.println("TASyncException: " + e.getMessage());
+        } 
     }
 }

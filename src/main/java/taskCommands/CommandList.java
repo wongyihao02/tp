@@ -64,7 +64,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println("CHECKREMARK: Checks remarks given to a student. Usage: CHECKREMARK <matric_number>");
         }
-    }, DELETESTUDENT {
+    }, DELETE_STUDENT {
         @Override
         public void printCommand() {
             System.out.println("DELETESTUDENT: Deletes a student from the student list. Usage: DELETESTUDENT <matric_number>");
@@ -72,7 +72,15 @@ public enum CommandList {
     }, FINDSTUDENT {
         @Override
         public void printCommand() {
-            System.out.println("FINDSTUDENT: Finds a student based on the keyword (name or matric number). Usage: FINDSTUDENT <keyword>");
+            System.out.println("FINDSTUDENT: Finds a student based on the keyword (name or matric number). Usage: /FINDSTUDENT <keyword>");
+        }
+    }, NEWTUTORIAL {
+        public void printCommand() {
+            System.out.println("NEWTUTORIAL: Creates a new tutorial. Usage: /NEWTUTORIAL <tutorial_name> <day_of_week> <start_time> <end_time>");
+        }
+    }, DELETE_TUTORIAL {
+        public void printCommand() {
+            System.out.println("DELETE_TUTORIAL: Deletes a specified tutorial. Usage: /DELETE <tutorial_name>");
         }
     },  LISTTUTORIALS {
         @Override

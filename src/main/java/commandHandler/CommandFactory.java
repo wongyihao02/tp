@@ -51,7 +51,7 @@ public class CommandFactory {
                 case EVENT : return new EventCommand();
                 case DEADLINE : return new DeadlineCommand();
                 case CONSULTATION : return new ConsultationCommand();
-            };
+            }
         }
 
         // Handle TaskList commands
@@ -91,13 +91,14 @@ public class CommandFactory {
             }
         } else if (listType.equalsIgnoreCase("-t")) {
             switch (command) {
-//                case "ADD":
-//                    return;
-
-                case "LIST":
-                    return new ListUpcomingTutorialsCommand();
-                case "LISTSTUDENTS":
-                    return new ListTutorialStudentsCommand();
+            case "NEWTUTORIAL":
+                return new NewTutorialCommand();
+            case "DELETE":
+                return new DeleteTutorialCommand();
+            case "LIST":
+                return new ListUpcomingTutorialsCommand();
+            case "LISTSTUDENTS":
+                return new ListTutorialStudentsCommand();
 
             }
         } else if (listType.equalsIgnoreCase("-a")) {

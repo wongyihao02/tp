@@ -4,7 +4,6 @@ import Tutorial.TutorialClass;
 import Tutorial.TutorialClassList;
 import Util.DateTimeFormatterUtil;
 import exception.TASyncException;
-import students.StudentList;
 import taskCommands.Command;
 
 import java.time.DayOfWeek;
@@ -15,44 +14,50 @@ import java.util.ArrayList;
 public class ListUpcomingTutorialsCommand implements Command<TutorialClassList> {
 
     @Override
-    public void execute(String parts, TutorialClassList tutorial) {
+    public void execute(String inputDate, TutorialClassList tutorialClassList) {
         try {
-            if (parts == null || parts.trim().isEmpty()) {
+            // Check if the input date string is empty or null
+            if (inputDate == null || inputDate.trim().isEmpty()) {
                 throw TASyncException.invalidListUpcomingTutorialsCommand();
             }
 
+            // Parse the input date into LocalDate format
+            LocalDate endDate = DateTimeFormatterUtil.parseDate(inputDate);
+            LocalDate currentDate = LocalDate.now();
+            DayOfWeek currentDayOfWeek = currentDate.getDayOfWeek();
 
-            LocalDate dateEnd = DateTimeFormatterUtil.parseDate(parts);
-            LocalDate today = LocalDate.now();
-            DayOfWeek todayDay = today.getDayOfWeek();
+            // Get the list of tutorials
+            ArrayList<TutorialClass> tutorialClasses = tutorialClassList.getTutorialClasses();
 
-            ArrayList<TutorialClass> tutorials = tutorial.getTutorialClasses();
+            // Calculate the number of days to add in order to reach the first tutorial session
+            int daysUntilFirstTutorial = ((tutorialClasses.get(0).getDayOfWeek().getValue() - currentDayOfWeek.getValue()) < 0)
+                    ? (tutorialClasses.get(0).getDayOfWeek().getValue() - currentDayOfWeek.getValue() + 7)
+                    : (tutorialClasses.get(0).getDayOfWeek().getValue() - currentDayOfWeek.getValue());
 
-            int increase = ((tutorials.get(0).getDayOfWeek().getValue() - todayDay.getValue()) < 0) ? (tutorials.get(0).getDayOfWeek().getValue() - todayDay.getValue() + 7) : (tutorials.get(0).getDayOfWeek().getValue() - todayDay.getValue());
+            LocalDate nextTutorialDate = currentDate.plusDays(daysUntilFirstTutorial);
+            DayOfWeek nextTutorialDayOfWeek = nextTutorialDate.getDayOfWeek();
 
-            LocalDate firstTutorial = today.plusDays(increase);
-            DayOfWeek firstTutorialDay = firstTutorial.getDayOfWeek();
-
-            while (firstTutorial.isBefore(dateEnd)) {
-                for (int i = 0; i < tutorials.size(); i++) {
-                    TutorialClass tutorialClass = tutorials.get(i);
-                    int daysDiff = tutorialClass.getDayOfWeek().getValue() - firstTutorialDay.getValue();
-                    if (daysDiff <= ChronoUnit.DAYS.between(firstTutorial, dateEnd)) {
-                        System.out.println(tutorialClass.getTutorialName() + " " + firstTutorial.plusDays(daysDiff) + " " + tutorialClass.getStartTime() + " " + tutorialClass.getEndTime());
+            // Loop through the upcoming tutorial sessions until the end date
+            while (nextTutorialDate.isBefore(endDate)) {
+                for (TutorialClass tutorialClass : tutorialClasses) {
+                    int daysDifference = tutorialClass.getDayOfWeek().getValue() - nextTutorialDayOfWeek.getValue();
+                    if (daysDifference <= ChronoUnit.DAYS.between(nextTutorialDate, endDate)) {
+                        System.out.println(
+                                tutorialClass.getTutorialName() + " " +
+                                        nextTutorialDate.plusDays(daysDifference) + " " +
+                                        tutorialClass.getStartTime() + " " +
+                                        tutorialClass.getEndTime()
+                        );
                     }
                 }
 
-                firstTutorial = firstTutorial.plusDays(7);
+                // Move to the next week's tutorial date
+                nextTutorialDate = nextTutorialDate.plusDays(7);
                 System.out.println();
             }
             System.out.println("End of list");
 
-
-
         } catch (TASyncException e) {
-            System.out.println(e.getMessage());
-
-        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

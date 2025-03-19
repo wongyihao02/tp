@@ -63,7 +63,27 @@ public class TASyncException extends Exception {
     }
 
     public static TASyncException invalidListTutorialStudentsCommand() {
-        return new TASyncException("Invalid List all students in tutorial command, please specify a valid tutorial id");
+        return new TASyncException("Invalid list all students in tutorial command, please key command in the format: /liststudents -t <tutorialCode>");
+    }
+
+    public static Exception invalidNewTutorialCommand() {
+        return new TASyncException("Invalid new tutorial command, please key command in the format: /newtutorial <tutorialCode>");
+    }
+
+    public static Exception invalidDayOfWeek() {
+        return new TASyncException("Invalid day of week command, please specify day of week");
+    }
+
+    public static Exception invalidTimeFormat() {
+        return new TASyncException("Invalid time format, please specify time in a valid format.");
+    }
+
+    public static Exception duplicateTutorial() {
+        return new TASyncException("Duplicate tutorial input, please try again");
+    }
+
+    public static Exception invalidDeleteTutorialCommand() {
+        return new TASyncException("Invalid delete tutorial command, pleas key command in the format /delete -t <tutorialCode>");
     }
 
     public static TASyncException invalidListAttendanceListCommand() {
