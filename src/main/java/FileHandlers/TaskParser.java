@@ -1,6 +1,12 @@
 package FileHandlers;
 
-import task.*;
+import exception.TASyncException;
+import task.Consultation;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.Todo;
+
 
 public class TaskParser {
     /**
@@ -9,13 +15,12 @@ public class TaskParser {
      * @param line A single line from the file.
      * @return The corresponding Task object (Todo, Deadline, Event, or Consultation).
      */
-    public static Task parseTaskFromFile(String line) {
+    public static Task parseTaskFromFile(String line) throws TASyncException {
         // Skip empty lines or lines containing only whitespace
         if (line.trim().isEmpty()) {
             return null;  // Return null or handle it in a way you prefer (e.g., skip it)
         }
 
-        System.out.println("Parsing line: " + line); // Debugging: Show the line being processed
         String[] parts = line.split(",", -1);
         if (parts.length < 3) {
             throw new IllegalArgumentException("Invalid task format: " + line);
