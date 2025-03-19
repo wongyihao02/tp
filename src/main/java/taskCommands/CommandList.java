@@ -50,17 +50,17 @@ public enum CommandList {
         public void printCommand() {
             System.out.println("RENAME: Renames a task based on the task number give . Usage: RENAME <task_number>");
         }
-    }, NEWSTUDENT {
+    }, NEW_STUDENT {
         @Override
         public void printCommand() {
             System.out.println("NEWSTUDENT: Adds a new student to the student list using the provided information. Usage: /NEWSTUDENT -s <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>");
         }
-    }, CHANGEREMARK {
+    }, CHANGE_REMARK {
         @Override
         public void printCommand() {
             System.out.println("CHANGEREMARK: Updates the remark of a student. Usage: CHANGEREMARK <matric_number> <new_remark>");
         }
-    },  CHECKREMARK {
+    },  CHECK_REMARK {
         public void printCommand() {
             System.out.println("CHECKREMARK: Checks remarks given to a student. Usage: CHECKREMARK <matric_number>");
         }
@@ -69,12 +69,12 @@ public enum CommandList {
         public void printCommand() {
             System.out.println("DELETESTUDENT: Deletes a student from the student list. Usage: DELETESTUDENT <matric_number>");
         }
-    }, FINDSTUDENT {
+    }, FIND_STUDENT {
         @Override
         public void printCommand() {
             System.out.println("FINDSTUDENT: Finds a student based on the keyword (name or matric number). Usage: /FINDSTUDENT <keyword>");
         }
-    }, NEWTUTORIAL {
+    }, NEW_TUTORIAL {
         public void printCommand() {
             System.out.println("NEWTUTORIAL: Creates a new tutorial. Usage: /NEWTUTORIAL <tutorial_name> <day_of_week> <start_time> <end_time>");
         }

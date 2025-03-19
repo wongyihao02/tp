@@ -52,7 +52,7 @@ public class TASync {
             String listType = parts[1];
             String command = parts[0].substring(1).toUpperCase();
             CommandHandler commandHandler;
-            if ("ADD".equals(command) || listType.equalsIgnoreCase("-p")) {
+            if ("ADD".equals(command) || "HELP".equals(command) || listType.equalsIgnoreCase("-p")) {
                 commandHandler = new CommandHandler(taskList, parts);
             } else if (listType.equalsIgnoreCase("-s")) {
                 commandHandler = new CommandHandler(studentlist, parts);

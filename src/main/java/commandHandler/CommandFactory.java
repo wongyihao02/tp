@@ -38,6 +38,11 @@ public class CommandFactory {
         String taskTypeShortcut = parts[1];
         String listType = parts[1];
 
+        if ("HELP".equals(command)) {
+           CommandListPrinter.printCommands();
+           return null;
+        }
+
         if ("ADD".equals(command)) {
             TaskType taskType = TaskType.fromShortcut(taskTypeShortcut);
             if (taskType == null) {
@@ -45,12 +50,12 @@ public class CommandFactory {
                 return null;
             }
 
-            switch (taskType) {
-                case TODO : return new TodoCommand();
-                case EVENT : return new EventCommand();
-                case DEADLINE : return new DeadlineCommand();
-                case CONSULTATION : return new ConsultationCommand();
-            }
+            return switch (taskType) {
+                case TODO -> new TodoCommand();
+                case EVENT -> new EventCommand();
+                case DEADLINE -> new DeadlineCommand();
+                case CONSULTATION -> new ConsultationCommand();
+            };
         }
 
         // Handle TaskList commands
@@ -100,16 +105,7 @@ public class CommandFactory {
                 return new ListTutorialStudentsCommand();
 
             }
-        } //else if (listType.equalsIgnoreCase("-at")) {
-//            switch (command) {
-//                case "MARK":
-//                    return;
-//                case "UNMARK":
-//                    return;
-//                case "COMMENT":
-//                    return;
-//            }
-//        }
+        }
 
         if (command.equals("BYE")) {
             return new ByeCommand();
