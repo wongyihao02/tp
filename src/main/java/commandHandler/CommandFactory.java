@@ -84,6 +84,8 @@ public class CommandFactory {
                 return new FindStudentCommand();
             case "CHANGEREMARK":
                 return new ChangeRemarkCommand();
+            case "CHECKREMARK":
+                return new CheckRemarkCommand();
             }
         } else if (listType.equalsIgnoreCase("-t")) {
             switch (command) {
