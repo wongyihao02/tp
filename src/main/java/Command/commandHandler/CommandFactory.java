@@ -37,7 +37,7 @@ public class CommandFactory {
         }
 
         // Remove the leading '/' and convert the command to uppercase
-        String command = parts[0].substring(1).toUpperCase();
+        String command = parts[0].toUpperCase();
         String taskTypeShortcut = parts[1];
         String listType = parts[1];
 
@@ -77,7 +77,7 @@ public class CommandFactory {
             case "RENAME":
                 return new RenameTaskCommand();
             default:
-                System.out.println("Sorry, TASync does not know what \"" + commandString + "\" means.");
+                System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
                 CommandListPrinter.printCommands();
                 return null;
             }
@@ -95,6 +95,10 @@ public class CommandFactory {
                 return new ChangeRemarkCommand();
             case "CHECKREMARK":
                 return new CheckRemarkCommand();
+            default:
+                System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
+                CommandListPrinter.printCommands();
+                return null;
             }
         } else if (listType.equalsIgnoreCase("-t")) {
             switch (command) {
@@ -106,6 +110,10 @@ public class CommandFactory {
                 return new ListUpcomingTutorialsCommand();
             case "LISTSTUDENTS":
                 return new ListTutorialStudentsCommand();
+            default:
+                System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
+                CommandListPrinter.printCommands();
+                return null;
 
             }
         }
