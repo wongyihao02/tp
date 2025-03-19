@@ -1,5 +1,6 @@
 package FileHandlers;
 
+import exception.TASyncException;
 import task.Task;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -33,6 +34,8 @@ public class TaskListFileLoader implements FileLoader<ArrayList<Task>> {
             }
         } catch (IOException e) {
             System.out.println("Error loading tasks: " + e.getMessage());
+        } catch (TASyncException e) {
+            throw new RuntimeException(e);
         }
         return tasks;  // Return the tasks list directly
     }

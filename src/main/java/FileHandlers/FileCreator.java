@@ -30,8 +30,6 @@ public class FileCreator {
                     if (fileCreated) {
                         System.out.println("Created file: " + filePath);
                     }
-                } else {
-                    System.out.println("File already exists: " + filePath);
                 }
             } catch (IOException e) {
                 System.out.println("Error creating file: " + e.getMessage());

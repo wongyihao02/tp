@@ -1,3 +1,5 @@
+T,true,Task A
+
 T,false,Task B
 
 D,false,Deadline C,02/03/2025 23:59
