@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class ListUpcomingTutorialsCommand implements Command<TutorialClassList> {
 
+    @Override
     public void execute(String parts, TutorialClassList tutorial) {
         try {
             if (parts == null || parts.trim().isEmpty()) {
@@ -41,12 +42,17 @@ public class ListUpcomingTutorialsCommand implements Command<TutorialClassList> 
                     }
                 }
 
+                firstTutorial = firstTutorial.plusDays(7);
                 System.out.println();
             }
+            System.out.println("End of list");
 
 
 
         } catch (TASyncException e) {
+            System.out.println(e.getMessage());
+
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

@@ -61,4 +61,8 @@ public class TASyncException extends Exception {
     public static TASyncException invalidListUpcomingTutorialsCommand() {
         return new TASyncException("Invalid List Upcoming Tutorials command, please specify an end date");
     }
+
+    public static TASyncException invalidListTutorialStudentsCommand() {
+        return new TASyncException("Invalid List all students in tutorial command, please specify a valid tutorial id");
+    }
 }

@@ -4,6 +4,7 @@ import studentcommands.*;
 import task.TaskType;
 import taskCommands.*;
 import Util.CommandListPrinter;
+import tutorialCommands.*;
 
 /**
  * The CommandFactory class is responsible for creating the appropriate Command object based on the
@@ -44,11 +45,11 @@ public class CommandFactory {
                 return null;
             }
 
-            return switch (taskType) {
-                case TODO -> new TodoCommand();
-                case EVENT -> new EventCommand();
-                case DEADLINE -> new DeadlineCommand();
-                case CONSULTATION -> new ConsultationCommand();
+            switch (taskType) {
+                case TODO : return new TodoCommand();
+                case EVENT : return new EventCommand();
+                case DEADLINE : return new DeadlineCommand();
+                case CONSULTATION : return new ConsultationCommand();
             };
         }
 
@@ -89,23 +90,25 @@ public class CommandFactory {
             }
         } else if (listType.equalsIgnoreCase("-t")) {
             switch (command) {
-                case "ADD":
-                    return;
+//                case "ADD":
+//                    return;
 
                 case "LIST":
-                    return;
+                    return new ListUpcomingTutorialsCommand();
+                case "LISTSTUDENTS":
+                    return new ListTutorialStudentsCommand();
 
             }
-        } else if (listType.equalsIgnoreCase("-at")) {
-            switch (command) {
-                case "MARK":
-                    return;
-                case "UNMARK":
-                    return;
-                case "COMMENT":
-                    return;
-            }
-        }
+        } //else if (listType.equalsIgnoreCase("-at")) {
+//            switch (command) {
+//                case "MARK":
+//                    return;
+//                case "UNMARK":
+//                    return;
+//                case "COMMENT":
+//                    return;
+//            }
+//        }
 
         if (command.equals("BYE")) {
             return new ByeCommand();
