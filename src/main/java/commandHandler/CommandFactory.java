@@ -119,7 +119,7 @@ public class CommandFactory {
         } else if (listType.equalsIgnoreCase("-at")) {
             switch (command) {
                 case "CREATE":
-                    return new
+                    return new createNewAttendanceList();
             }
         }
 

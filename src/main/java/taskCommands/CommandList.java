@@ -115,12 +115,17 @@ public enum CommandList {
     },  VIEWCOMMENT {
         @Override
         public void printCommand() {
-            System.out.println("COMMENT: see comments on the student. Usage: /VIEWCOMMENT -a <Tutname,weeknum,studentname,studentmatricnumber>");
+            System.out.println("VIEWCOMMENT: see comments on the student. Usage: /VIEWCOMMENT -a <Tutname,weeknum,studentname,studentmatricnumber>");
         }
     },  DELETECOMMENT {
         @Override
         public void printCommand() {
-            System.out.println("COMMENT: delete a comment to the indicated student. Usage: /DELETECOMMENT -a <Tutname,weeknum,studentname,studentmatricnumber//commentnum");
+            System.out.println("DELETECOMMENT: delete a comment to the indicated student. Usage: /DELETECOMMENT -a <Tutname,weeknum,studentname,studentmatricnumber//commentnum");
+        }
+    },  CREATE {
+        @Override
+        public void printCommand() {
+            System.out.println("CREATE: creates an attendance list for the given week if the tut name is valid and one does not exist for the week already. Usage: /CREATE -ay <Tutname,weeknum");
         }
     };
 
