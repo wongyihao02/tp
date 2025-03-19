@@ -1,10 +1,10 @@
-package tutorialCommands;
+package Command.tutorialCommands;
 
 import Tutorial.TutorialClass;
 import Tutorial.TutorialClassList;
 import Util.DateTimeFormatterUtil;
 import exception.TASyncException;
-import taskCommands.Command;
+import Command.taskCommands.Command;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

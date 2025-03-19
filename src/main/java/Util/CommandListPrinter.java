@@ -1,6 +1,6 @@
 package Util;
 
-import taskCommands.CommandList;
+import Command.taskCommands.CommandList;
 
 /**
  * Utility class for printing all available commands.

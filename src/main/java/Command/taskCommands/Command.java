@@ -1,4 +1,4 @@
-package taskCommands;
+package Command.taskCommands;
 
 /**
  * Represents a generic command that can be executed.

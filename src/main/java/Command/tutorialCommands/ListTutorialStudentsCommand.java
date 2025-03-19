@@ -1,10 +1,10 @@
-package tutorialCommands;
+package Command.tutorialCommands;
 
 import Tutorial.TutorialClass;
 import Tutorial.TutorialClassList;
 import exception.TASyncException;
 import students.Student;
-import taskCommands.Command;
+import Command.taskCommands.Command;
 
 import java.util.ArrayList;
 

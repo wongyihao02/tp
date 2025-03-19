@@ -1,8 +1,8 @@
-package studentcommands;
+package Command.studentcommands;
 
 import students.Student;
 import students.StudentList;
-import taskCommands.Command;
+import Command.taskCommands.Command;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
