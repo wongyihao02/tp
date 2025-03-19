@@ -116,6 +116,11 @@ public class CommandFactory {
                 case "LIST":
                     return new showAttendanceListCommand();
             }
+        } else if (listType.equalsIgnoreCase("-at")) {
+            switch (command) {
+                case "CREATE":
+                    return new
+            }
         }
 
         if (command.equals("BYE")) {

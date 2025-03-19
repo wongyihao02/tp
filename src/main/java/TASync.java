@@ -9,6 +9,7 @@ import students.StudentList;
 import task.TaskList;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class TASync {
     public static void main(String[] args) {
@@ -49,6 +50,9 @@ public class TASync {
                 System.out.println("Invalid command format. Please use: /add -[type] [task details]");
                 break;
             }
+            ArrayList<ArrayList<?>> tutAtten = new ArrayList<>();
+            tutAtten.add(tutorialList.getTutorialClasses());
+            tutAtten.add(attendanceFile.getAttendanceList());
             String listType = parts[1];
             String command = parts[0].substring(1).toUpperCase();
             CommandHandler commandHandler;
@@ -60,6 +64,8 @@ public class TASync {
                 commandHandler = new CommandHandler(tutorialList, parts);
             } else if (listType.equalsIgnoreCase("-a")) {
                 commandHandler = new CommandHandler(attendanceFile, parts);
+            } else if (listType.equalsIgnoreCase("-ay")) {
+                commandHandler = new CommandHandler(tutAtten, parts);
             } else {
                 commandHandler = new CommandHandler(null, parts);
                 System.out.println("Invalid command");
