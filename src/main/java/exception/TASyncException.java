@@ -57,4 +57,8 @@ public class TASyncException extends Exception {
     public static TASyncException invalidCheckRemarkCommand() {
         return new TASyncException("Invalid check remark command, please specify which student to check.");
     }
+
+    public static TASyncException invalidListUpcomingTutorialsCommand() {
+        return new TASyncException("Invalid List Upcoming Tutorials command, please specify an end date");
+    }
 }
