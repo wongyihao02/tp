@@ -1,10 +1,13 @@
 package task;
+import java.util.logging.Logger;
 
 /**
  * Abstract class representing a task.
  * This class defines the common properties and methods for all types of tasks (e.g., Todo, Deadline, Event, Consultation).
  */
 public abstract class Task {
+    private static final Logger logger = Logger.getLogger(Task.class.getName());
+
     private TaskType taskType;
     private String taskName;
     private boolean isDone;
@@ -16,30 +19,39 @@ public abstract class Task {
      * @param done     The status of the task (completed or not).
      */
     public Task(String taskName, boolean done) {
+        if (taskName == null || taskName.trim().isEmpty()) {
+            logger.severe("Attempted to create a Task with an invalid name!");
+            throw new IllegalArgumentException("Task name cannot be null or empty");
+        }
         this.taskName = taskName;
         this.isDone = done;
     }
 
     public Task(String taskName) {
+        assert taskName != null && !taskName.trim().isEmpty() : "Task name cannot be null or empty";
         this.taskName = taskName;
         this.isDone = false;
     }
 
 
     public TaskType getTaskType() {
+        assert taskType != null : "TaskType must be set before usage!";
         return taskType;
     }
 
     public void setTaskType(TaskType taskType) {
+        assert taskType != null : "TaskType cannot be set to null!";
         this.taskType = taskType;
     }
 
     public String getTaskName() {
+        assert taskName != null && !taskName.trim().isEmpty() : "Task name cannot be null or empty";
         return taskName;
     }
 
     public void setTaskName(String taskName) {
         this.taskName = taskName;
+        logger.info("Task name updated to: " + taskName);
     }
 
     public boolean getIsDone() {
@@ -66,6 +78,7 @@ public abstract class Task {
      * Prints the task's type (e.g., Todo, Deadline, Event, Consultation).
      */
     public void printTaskType() {
+        assert this.taskType != null : "TaskType is not initialized!";
         switch (this.getTaskType()) {
         case EVENT:
             System.out.print("[E]");
