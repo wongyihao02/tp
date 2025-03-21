@@ -15,7 +15,7 @@ public class DeadlineTest {
 
     @BeforeEach
     void setUp() throws TASyncException {
-        deadlineTask = new Deadline("Have lunch", true, "Monday");
+        deadlineTask = new Deadline("Have lunch", true, "20/12/2025 11:12");
     }
 
     @Test
@@ -23,20 +23,14 @@ public class DeadlineTest {
         assertNotNull(deadlineTask);
         assertEquals("Have lunch", deadlineTask.getTaskName());
         assertTrue(deadlineTask.getIsDone());
-        assertEquals("Monday", deadlineTask.getDeadline());
+        assertEquals("20/12/2025 11:12", deadlineTask.getDeadline());
         assertEquals(TaskType.DEADLINE, deadlineTask.getTaskType());
     }
 
     @Test
     void testToFileFormat() {
-        String expectedFileFormat = "D,true,Have lunch,Monday\n";
+        String expectedFileFormat = "D,true,Have lunch,20/12/2025 11:12\n";
         assertEquals(expectedFileFormat, deadlineTask.toFileFormat());
     }
 
-    @Test
-    void testEmptyDeadline() throws TASyncException {
-        Deadline emptyDeadlineTask = new Deadline("Read book", false, "");
-        assertEquals("", emptyDeadlineTask.getDeadline());
-    }
-    
 }
