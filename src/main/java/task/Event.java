@@ -1,5 +1,5 @@
 package task;
-import Util.DateTimeFormatterUtil;
+import util.DateTimeFormatterUtil;
 import exception.TASyncException;
 
 /**
@@ -34,11 +34,16 @@ public class Event extends Task {
         boolean isStartValid = DateTimeFormatterUtil.isValidDateTime(eventStart);
         boolean isEndValid = DateTimeFormatterUtil.isValidDateTime(eventEnd);
 
-        String formattedStart = isStartValid ? String.valueOf(DateTimeFormatterUtil.parseDateTime(eventStart)) : "INVALID DATE";
-        String formattedEnd = isEndValid ? String.valueOf(DateTimeFormatterUtil.parseDateTime(eventEnd)) : "INVALID DATE";
+        String formattedStart = isStartValid
+                ? String.valueOf(DateTimeFormatterUtil.parseDateTime(eventStart))
+                : "INVALID DATE";
+        String formattedEnd = isEndValid
+                ? String.valueOf(DateTimeFormatterUtil.parseDateTime(eventEnd))
+                : "INVALID DATE";
 
         System.out.println(" (from: " + formattedStart + " to: " + formattedEnd + ")");
     }
+
     /**
      * Returns a string representation of the event task for file storage.
      *

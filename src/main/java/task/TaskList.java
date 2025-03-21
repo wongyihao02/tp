@@ -2,17 +2,18 @@ package task;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import FileHandlers.TaskListFileSaver;
-import FileHandlers.TaskListFileLoader;
+import filehandlers.TaskListFileSaver;
+import filehandlers.TaskListFileLoader;
 
 /**
  * Represents a list of tasks.
  * This class provides methods for managing tasks (e.g., adding, marking, deleting, and searching tasks).
  */
 public class TaskList {
-    private final ArrayList<Task> tasks;
-    private static final String FILE_PATH = "./data/tasklist.txt";
     private static final String DIRECTORY_PATH = "./data";
+    private static final String FILE_PATH = "./data/tasklist.txt";
+    private final ArrayList<Task> tasks;
+
     /**
      * Constructs an empty TaskList.
      */

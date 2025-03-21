@@ -1,10 +1,9 @@
-import Attendance.AttendanceFile;
-import Attendance.AttendanceList;
-import Tutorial.TutorialClassList;
-import Util.DataManager;
-import Util.UI;
-import Command.commandHandler.CommandHandler;
-import Command.commandHandler.CommandParser;
+import attendance.AttendanceFile;
+import tutorial.TutorialClassList;
+import util.DataManager;
+import util.UI;
+import command.commandhandler.CommandHandler;
+import command.commandhandler.CommandParser;
 import students.StudentList;
 import task.TaskList;
 
@@ -20,16 +19,18 @@ public class TASync {
         if (tutorialList == null || tutorialList.getTutorialClasses().isEmpty()) {
             System.out.println("No tutorials loaded or file is empty.");
             tutorialList = new TutorialClassList();
-        } else {
-            System.out.println("Tutorial classes loaded from: " + new File(dataManager.getTutorialFilePath()).getPath() + "\n");
+        }else {
+            System.out.println("Tutorial classes loaded from: "
+                    + new File(dataManager.getTutorialFilePath()).getPath() + "\n");
         }
 
         AttendanceFile attendanceFile = dataManager.loadAttendanceFiles(tutorialList);
         if (attendanceFile == null) {
             System.out.println("No attendance file loaded.");
-            attendanceFile = new AttendanceFile(null);
-        } else {
-            System.out.println("Tutorial classes loaded from: " + new File(dataManager.getAttendanceFilePath()).getPath() + "\n");
+            attendanceFile= new AttendanceFile(null);
+        }else{
+            System.out.println("Tutorial classes loaded from: "
+                    + new File(dataManager.getAttendanceFilePath()).getPath() + "\n");
         }
 
         /*
@@ -69,7 +70,6 @@ public class TASync {
             } else if ("BYE".equals(command)) {
                 commandHandler = new CommandHandler(taskList, parts);
             } else if (listType.equalsIgnoreCase("-s")) {
-
                 commandHandler = new CommandHandler(studentlist, parts);
             } else if (listType.equalsIgnoreCase("-t")) {
                 commandHandler = new CommandHandler(tutorialList, parts);
