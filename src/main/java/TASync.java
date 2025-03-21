@@ -45,11 +45,11 @@ public class TASync {
         ui.printWelcome();
 
         boolean isRunning = true;
-        while (isRunning){
+        while (isRunning) {
             String input = ui.getUserCommand();
             CommandParser commandParser = new CommandParser(input);
             String[] parts = commandParser.getParts();
-            if (parts.length < 2){
+            if (parts.length < 2) {
                 System.out.println("Invalid command format. Please use: add -[type] [task details]");
                 break;
             }
@@ -60,6 +60,8 @@ public class TASync {
             String command = parts[0].toUpperCase();
             CommandHandler commandHandler;
             if ("ADD".equals(command) || "HELP".equals(command) || listType.equalsIgnoreCase("-p")) {
+                commandHandler = new CommandHandler(taskList, parts);
+            } else if ("BYE".equals(command)) {
                 commandHandler = new CommandHandler(taskList, parts);
             } else if (listType.equalsIgnoreCase("-s")) {
                 commandHandler = new CommandHandler(studentlist, parts);
