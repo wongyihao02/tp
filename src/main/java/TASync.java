@@ -42,11 +42,17 @@ public class TASync {
         TaskList taskList = new TaskList();
         StudentList studentlist = new StudentList();
         UI ui = new UI();
-        ui.printWelcome();
 
+        assert tutorialList != null : "Error: tutorialList should not be null";
+        assert attendanceFile != null : "Error: attendanceFile should not be null";
+        assert ui != null : "Error: UI should not be null";
+
+        ui.printWelcome();
         boolean isRunning = true;
         while (isRunning) {
             String input = ui.getUserCommand();
+            assert input != null : "Error: User input should not be null";
+
             CommandParser commandParser = new CommandParser(input);
             String[] parts = commandParser.getParts();
             if (parts.length < 2) {
