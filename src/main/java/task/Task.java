@@ -2,7 +2,7 @@ package task;
 
 /**
  * Abstract class representing a task.
- * This class defines the common properties and methods for all types of tasks (e.g., Todo, Deadline, Event, Consultation).
+ * This class defines the common properties and methods for all types of tasks
  */
 public abstract class Task {
     private TaskType taskType;
@@ -78,6 +78,8 @@ public abstract class Task {
             break;
         case CONSULTATION:
             System.out.print("[C]");
+            break;
+        default:
             break;
         }
     }

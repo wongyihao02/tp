@@ -31,7 +31,7 @@ Prerequisites: JDK 17 (use the exact version), update Intellij to the most recen
 ## Build automation using Gradle
 
 * This project uses Gradle for build automation and dependency management. It includes a basic build script as well (i.e. the `build.gradle` file).
-* If you are new to Gradle, refer to the [Gradle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/gradle.html).
+* If you are new to Gradle, refer to the [Gradle tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/gradle.html).
 
 ## Testing
 
@@ -42,12 +42,12 @@ Prerequisites: JDK 17 (use the exact version), update Intellij to the most recen
 ### JUnit tests
 
 * A skeleton JUnit test (`src/test/java/seedu/duke/DukeTest.java`) is provided with this project template. 
-* If you are new to JUnit, refer to the [JUnit Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/junit.html).
+* If you are new to JUnit, refer to the [JUnit tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/junit.html).
 
 ## Checkstyle
 
 * A sample CheckStyle rule configuration is provided in this project.
-* If you are new to Checkstyle, refer to the [Checkstyle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/checkstyle.html).
+* If you are new to Checkstyle, refer to the [Checkstyle tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/checkstyle.html).
 
 ## CI using GitHub Actions
 

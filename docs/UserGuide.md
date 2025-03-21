@@ -35,8 +35,8 @@ Example of usage:
 
 **A**: {your answer here}
 
-## Command Summary
+## command Summary
 
-{Give a 'cheat sheet' of taskCommands here}
+{Give a 'cheat sheet' of taskcommands here}
 
 * Add todo `todo n/TODO_NAME d/DEADLINE`

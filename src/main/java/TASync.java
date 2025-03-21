@@ -1,10 +1,9 @@
-import Attendance.AttendanceFile;
-import Attendance.AttendanceList;
-import Tutorial.TutorialClassList;
-import Util.DataManager;
-import Util.UI;
-import Command.commandHandler.CommandHandler;
-import Command.commandHandler.CommandParser;
+import attendance.AttendanceFile;
+import tutorial.TutorialClassList;
+import util.DataManager;
+import util.UI;
+import command.commandhandler.CommandHandler;
+import command.commandhandler.CommandParser;
 import students.StudentList;
 import task.TaskList;
 
@@ -21,7 +20,8 @@ public class TASync {
             System.out.println("No tutorials loaded or file is empty.");
             tutorialList = new TutorialClassList();
         }else {
-            System.out.println("Tutorial classes loaded from: " + new File(dataManager.getTutorialFilePath()).getPath() + "\n");
+            System.out.println("Tutorial classes loaded from: "
+                    + new File(dataManager.getTutorialFilePath()).getPath() + "\n");
         }
 
         AttendanceFile attendanceFile = dataManager.loadAttendanceFiles(tutorialList);
@@ -29,7 +29,8 @@ public class TASync {
             System.out.println("No attendance file loaded.");
             attendanceFile= new AttendanceFile(null);
         }else{
-            System.out.println("Tutorial classes loaded from: " + new File(dataManager.getAttendanceFilePath()).getPath() + "\n");
+            System.out.println("Tutorial classes loaded from: "
+                    + new File(dataManager.getAttendanceFilePath()).getPath() + "\n");
         }
 
         /*
