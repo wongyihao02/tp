@@ -17,17 +17,23 @@ public class TASyncException extends Exception {
     }
 
     public static TASyncException invalidDeadlineCommand() {
-        return new TASyncException("Invalid deadline command, please specify when deadline is in the future. with \"/by\".");
+        return new TASyncException(
+                "Invalid deadline command, please specify when the deadline is in the future with \"/by\"."
+        );
     }
 
     public static TASyncException invalidEventCommand() {
-        return new TASyncException("Invalid event command, please specify duration of event with \"/from\" and \"/to\".");
+        return new TASyncException(
+                "Invalid event command, please specify duration of event with \"/from\" and \"/to\"."
+        );
     }
     public static TASyncException invalidTodoCommand() {
         return new TASyncException("Invalid Todo command, please name of Task to be done.");
     }
     public static TASyncException invalidConsultationCommand() {
-        return new TASyncException("Invalid Consultation command, specify duration of consultation with \"/from\" and \"/to\".");
+        return new TASyncException(
+                "Invalid Consultation command, specify duration of consultation with \"/from\" and \"/to\"."
+        );
     }
     public static TASyncException invalidDeleteCommand() {
         return new TASyncException("Invalid delete command, please specify which task to delete with an integer.");
@@ -36,10 +42,15 @@ public class TASyncException extends Exception {
         return new TASyncException("Invalid Find command, please specify Keyword to Find tasks.");
     }
     public static TASyncException invalidRenameCommand() {
-        return new TASyncException("Invalid event command, please key command in the format: rename <task number> <new Name>.");
+        return new TASyncException(
+                "Invalid event command, please key command in the format: rename <task number> <new Name>."
+        );
     }
     public static TASyncException invalidNewStudentCommand() {
-        return new TASyncException("Invalid NewStudent command, please key command in the format: NewStudent <name> <age> <gender> <contact> <matricNumber> <tutorialClass>.");
+        return new TASyncException(
+                "Invalid NewStudent command, please key command in the format: " +
+                        "NewStudent <name> <age> <gender> <contact> <matricNumber> <tutorialClass>."
+        );
     }
 
     public static TASyncException invalidChangeRemarkCommand() {
@@ -47,7 +58,10 @@ public class TASyncException extends Exception {
     }
 
     public static TASyncException invalidDeleteStudentCommand() {
-        return new TASyncException("Invalid delete student command, please specify the tutorial number and the matriculation number of the student to delete from the list.");
+        return new TASyncException(
+                "Invalid delete student command, please specify the tutorial number and " +
+                        "the matriculation number of the student to delete from the list."
+        );
     }
 
     public static TASyncException invalidFindStudentCommand() {
@@ -63,34 +77,45 @@ public class TASyncException extends Exception {
     }
 
     public static TASyncException invalidListTutorialStudentsCommand() {
-        return new TASyncException("Invalid list all students in tutorial command, please key command in the format: /liststudents -t <tutorialCode>");
+        return new TASyncException(
+                "Invalid list all students in tutorial command, please key command in the format: " +
+                        "/liststudents -t <tutorialCode>"
+        );
     }
 
     public static Exception invalidNewTutorialCommand() {
-        return new TASyncException("Invalid new tutorial command, please key command in the format: /newtutorial <tutorialCode>");
+        return new TASyncException(
+                "Invalid new tutorial command, please key command in the format:" +
+                        " /newtutorial <tutorialCode>"
+        );
     }
 
     public static Exception invalidDayOfWeek() {
         return new TASyncException("Invalid day of week command, please specify day of week");
     }
 
-    public static Exception invalidTimeFormat() {
-        return new TASyncException("Invalid time format, please specify time in a valid format.");
-    }
 
     public static Exception duplicateTutorial() {
         return new TASyncException("Duplicate tutorial input, please try again");
     }
 
     public static Exception invalidDeleteTutorialCommand() {
-        return new TASyncException("Invalid delete tutorial command, pleas key command in the format /delete -t <tutorialCode>");
+        return new TASyncException(
+                "Invalid delete tutorial command, pleas key command in the format /delete -t <tutorialCode>"
+        );
     }
 
     public static TASyncException invalidListAttendanceListCommand() {
-        return new TASyncException("Invalid List all students in attendanceList command, please specify a valid attendancelist with a valid tutorial id and a valid week");
+        return new TASyncException(
+                "Invalid List all students in attendanceList command, " +
+                        "please specify a valid attendancelist with a valid tutorial id and a valid week"
+        );
     }
 
     public static TASyncException invalidmarkAttendanceListCommand() {
-        return new TASyncException("Invalid mark attendance command, please specify a valid attendancelist with a valid tutorial id and a valid week and a valid student id and student name");
+        return new TASyncException(
+                "Invalid mark attendance command, " +
+                        "please specify a valid attendancelist with a tutorial id, week and valid student id and name"
+        );
     }
 }

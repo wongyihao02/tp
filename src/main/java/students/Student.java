@@ -1,6 +1,6 @@
 package students;
 
-import Util.DateTimeFormatterUtil;
+import util.DateTimeFormatterUtil;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -14,13 +14,17 @@ public class Student {
     private String matricNumber;
     private String remark;
 
-    public Student(String name, LocalDate dateOfBirth, String gender, String contact, String matricNumber, String tutorialClass) {
+    public Student(
+            String name, LocalDate dateOfBirth, String gender,
+            String contact, String matricNumber, String tutorialClass
+    ) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.contact = contact;
         this.matricNumber = matricNumber;
     }
+
 
     public String getName() {
         return name;
@@ -81,8 +85,12 @@ public class Student {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Student student = (Student) o;
         return Objects.equals(matricNumber, student.matricNumber); // Compare based on matricNumber
     }
