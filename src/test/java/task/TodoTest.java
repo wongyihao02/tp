@@ -26,7 +26,7 @@ public class TodoTest {
 
     @Test
     void testToFileFormat() {
-        String expectedFileFormat = "T,false,Finish homework,\n";
+        String expectedFileFormat = "T,false,Finish homework\n";
         assertEquals(expectedFileFormat, todoTask.toFileFormat());
     }
 }
