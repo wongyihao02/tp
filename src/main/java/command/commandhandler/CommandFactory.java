@@ -64,12 +64,15 @@ public class CommandFactory {
         String taskTypeShortcut = parts[1];
         String listType = parts[1];
 
-        if ("HELP".equals(command)) {
+        switch (command) {
+        case "BYE" -> {
+            return new ByeCommand();
+        }
+        case "HELP" -> {
             CommandListPrinter.printCommands();
             return null;
         }
-
-        if ("ADD".equals(command)) {
+        case "ADD" -> {
             TaskType taskType = TaskType.fromShortcut(taskTypeShortcut);
             if (taskType == null) {
                 System.out.println("Invalid task type. Use -c (Consultation), -pt (Todo), -pe (Event), -pd (Deadline)");
@@ -89,6 +92,7 @@ public class CommandFactory {
                 System.out.println("Unknown task type: " + taskType);
                 return null;
             }
+        }
         }
 
 
@@ -163,11 +167,11 @@ public class CommandFactory {
             System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
             CommandListPrinter.printCommands();
             return null;
+        }else{
+            System.out.println("Sorry, TASync does not know what \"" + parts[0]+" "+ parts[1] + "\" means.");
         }
 
-        if (command.equals("BYE")) {
-            return new ByeCommand();
-        }
+
 
         return null;
     }

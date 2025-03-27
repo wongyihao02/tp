@@ -7,9 +7,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class DateTimeFormatterUtil {
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("hh:mm");
-    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd/mm/yyyy hh:mm");
+    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     // --- Date Methods ---
 
@@ -17,7 +17,7 @@ public class DateTimeFormatterUtil {
         try {
             return LocalDate.parse(dateStr, DATE_FORMAT);
         } catch (DateTimeParseException e) {
-            System.out.println("Invalid date format. Expected format: dd/mm/yyyy");
+            System.out.println("Invalid date format. Expected format: dd/MM/yyyy");
             return null;
         }
     }
@@ -41,7 +41,7 @@ public class DateTimeFormatterUtil {
         try {
             return LocalTime.parse(timeStr, TIME_FORMAT);
         } catch (DateTimeParseException e) {
-            System.out.println("Invalid time format. Expected format: hh:mm");
+            System.out.println("Invalid time format. Expected format: HH:mm");
             return null;
         }
     }
@@ -65,7 +65,7 @@ public class DateTimeFormatterUtil {
         try {
             return LocalDateTime.parse(dateTimeStr, DATE_TIME_FORMAT);
         } catch (DateTimeParseException e) {
-            System.out.println("Invalid datetime format. Expected format: dd/mm/yyyy hh:mm");
+            System.out.println("Invalid datetime format. Expected format: dd/MM/yyyy hh:MM");
             return null;
         }
     }
