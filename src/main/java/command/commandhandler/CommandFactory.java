@@ -55,7 +55,7 @@ public class CommandFactory {
     public static Command createCommand(String commandString) {
         String[] parts = commandString.split("\\s+", 3); // Split into command, type, and rest of input
         if (parts.length < 2) {
-            System.out.println("Invalid command format. Please use: /add -[type] [task details]");
+            System.out.println("Invalid command format. Please use: add -[type] [task details]");
             return null;
         }
 
