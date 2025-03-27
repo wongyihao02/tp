@@ -14,7 +14,7 @@ public class UI {
      */
     public void printWelcome() {
         System.out.println("👋 Welcome to TASync!");
-        System.out.println("Type a command to get started, or type /HELP to see available commands.");
+        System.out.println("Type a command to get started, or type HELP to see available commands.");
         System.out.println("----------------------------------------------------");
     }
 
