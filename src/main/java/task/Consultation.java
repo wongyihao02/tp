@@ -3,6 +3,9 @@ package task;
 import util.DateTimeFormatterUtil;
 import exception.TASyncException;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 /**
  * Represents a task with a consultation.
  * This class extends the Task class and includes additional functionality
@@ -49,6 +52,28 @@ public class Consultation extends Task {
                 : "INVALID DATE";
 
         System.out.println(" (from: " + formattedStart + " to: " + formattedEnd + ")");
+    }
+
+    public String getConsultationStart() {
+        return consultationStart;
+    }
+
+    public String getConsultationEnd() {
+        return consultationEnd;
+    }
+
+    /**
+     * Checks if the consultation starts today.
+     *
+     * @param today The current date to check against.
+     * @return True if the consultation starts today, false otherwise.
+     */
+    public boolean isStartingToday(LocalDate today) {
+        if (!DateTimeFormatterUtil.isValidDateTime(consultationStart)) {
+            return false;
+        }
+        LocalDateTime startDateTime = DateTimeFormatterUtil.parseDateTime(consultationStart);
+        return startDateTime.toLocalDate().equals(today);
     }
 
 

@@ -3,6 +3,9 @@ package task;
 import util.DateTimeFormatterUtil;
 import exception.TASyncException;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 /**
  * Represents a task with a deadline.
  * This class extends the Task class and includes additional functionality for managing deadlines.
@@ -29,6 +32,21 @@ public class Deadline extends Task {
 
     public String getDeadline() {
         return deadline;
+    }
+
+    /**
+     * Checks if the deadline is due today.
+     *
+     * @param today The current date to check against.
+     * @return True if the deadline is today, false otherwise.
+     */
+    public boolean isDueToday(LocalDate today) {
+        if (!DateTimeFormatterUtil.isValidDateTime(deadline)) {
+            return false;
+        }
+        LocalDateTime deadlineDateTime = DateTimeFormatterUtil.parseDateTime(deadline);
+        assert deadlineDateTime != null;
+        return deadlineDateTime.toLocalDate().equals(today);
     }
 
     /**
