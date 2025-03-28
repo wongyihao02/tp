@@ -51,6 +51,8 @@ The class implements the following main operation:
 
 This command is executed as part of the TASync system when a user provides a properly formatted input string. 
 
+#### 2. CheckRemarkCommand
+
 
 
 ### Task Commands
