@@ -3,6 +3,7 @@ package tutorial;
 import students.StudentList;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class TutorialClass {
@@ -50,6 +51,16 @@ public class TutorialClass {
 
     public void setDayOfWeek(DayOfWeek dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
+    }
+
+    /**
+     * Checks if this tutorial class is happening today.
+     *
+     * @param today The current date.
+     * @return true if the class is on the same day of the week as today, false otherwise.
+     */
+    public boolean isHappeningToday(LocalDate today) {
+        return today.getDayOfWeek() == this.dayOfWeek;
     }
 
     @Override

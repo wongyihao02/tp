@@ -2,6 +2,10 @@ package task;
 import util.DateTimeFormatterUtil;
 import exception.TASyncException;
 
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 /**
  * Represents a task with an event.
  * This class extends the Task class and includes additional functionality for managing events with start and end times.
@@ -27,6 +31,29 @@ public class Event extends Task {
         this.eventStart = eventStart;
         this.eventEnd = eventEnd;
         setTaskType(TaskType.EVENT);
+    }
+
+    public String getEventStart() {
+        return eventStart;
+    }
+
+    public String getEventEnd() {
+        return eventEnd;
+    }
+
+    /**
+     * Checks if the event starts today.
+     *
+     * @param today The current date to check against.
+     * @return True if the event starts today, false otherwise.
+     */
+    public boolean isStartingToday(LocalDate today) {
+        if (!DateTimeFormatterUtil.isValidDateTime(eventStart)) {
+            return false;
+        }
+        LocalDateTime startDateTime = DateTimeFormatterUtil.parseDateTime(eventStart);
+        assert startDateTime != null;
+        return startDateTime.toLocalDate().equals(today);
     }
 
     @Override

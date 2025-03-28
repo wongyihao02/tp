@@ -48,6 +48,7 @@ public class TASync {
         assert ui != null : "Error: UI should not be null";
 
         ui.printWelcome();
+        ui.displayDailySchedule(taskList, tutorialList);
         boolean isRunning = true;
         while (isRunning) {
             String input = ui.getUserCommand();

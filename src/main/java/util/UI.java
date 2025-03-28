@@ -2,6 +2,9 @@ package util;
 
 import java.util.Scanner;
 
+import task.TaskList;
+import tutorial.TutorialClassList;
+
 public class UI {
     private final Scanner scanner;
 
@@ -16,6 +19,17 @@ public class UI {
         System.out.println("👋 Welcome to TASync!");
         System.out.println("Type a command to get started, or type HELP to see available commands.");
         System.out.println("----------------------------------------------------");
+    }
+
+    /**
+     * Display the daily schedule using the DailySchedule class.
+     *
+     * @param taskList         List of tasks
+     * @param tutorialList     List of tutorial classes
+     */
+    public void displayDailySchedule(TaskList taskList, TutorialClassList tutorialList) {
+        DailySchedule dailySchedule = new DailySchedule(taskList, tutorialList);
+        dailySchedule.displayScheduleForToday();
     }
 
     /**
