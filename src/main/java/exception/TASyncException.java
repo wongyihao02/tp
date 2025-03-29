@@ -101,7 +101,7 @@ public class TASyncException extends Exception {
 
     public static Exception invalidDeleteTutorialCommand() {
         return new TASyncException(
-                "Invalid delete tutorial command, pleas key command in the format /delete -t <tutorialCode>"
+                "Invalid delete tutorial command, please key command in the format /delete -t <tutorialCode>"
         );
     }
 
@@ -116,6 +116,20 @@ public class TASyncException extends Exception {
         return new TASyncException(
                 "Invalid mark attendance command, " +
                         "please specify a valid attendancelist with a tutorial id, week and valid student id and name"
+        );
+    }
+
+    public static TASyncException invalidNewMarksCommand(){
+        return new TASyncException(
+                "Invalid NewMarks command, please key command in the format: " +
+                        "NewMarks -m <tutorial_id>,<matric_number>,<assignment_name>,<marks_achieved>,<maximum_marks>"
+        );
+    }
+
+    public static TASyncException invalidListMarksCommand(){
+        return new TASyncException(
+                "Invalid list marks command, please key command in the format: " +
+                        "list -m <tutorial_id>,<matric_number>"
         );
     }
 }

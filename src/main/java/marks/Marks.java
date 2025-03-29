@@ -11,6 +11,11 @@ public class Marks {
         this.maxMark = maxMark;
     }
 
+    @Override
+    public String toString(){
+        return "Assignment: " + assignmentName + ". Marks achieved: "+ marks + "/" + maxMark;
+    }
+
     public String getAssignmentName() {
         return assignmentName;
     }

@@ -1,5 +1,6 @@
 package students;
 
+import marks.MarksList;
 import util.DateTimeFormatterUtil;
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ public class Student {
     private String contact;
     private String matricNumber;
     private String remark;
+    private MarksList marksList;
 
     public Student(
             String name, LocalDate dateOfBirth, String gender,
@@ -23,6 +25,7 @@ public class Student {
         this.gender = gender;
         this.contact = contact;
         this.matricNumber = matricNumber;
+        this.marksList = new MarksList();
     }
 
 
@@ -77,6 +80,14 @@ public class Student {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public MarksList getMarksList() {
+        return marksList;
+    }
+
+    public void setMarksList(MarksList marksList) {
+        this.marksList = marksList;
     }
 
     public String toFileFormat() {

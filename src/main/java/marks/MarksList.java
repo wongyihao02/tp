@@ -28,4 +28,14 @@ public class MarksList {
     public void deleteMarks(Marks marks){
         marksList.remove(marks);
     }
+
+    public void printMarks(){
+        if (marksList.isEmpty()) {
+            System.out.println("No marks added yet.");
+            return;
+        }
+        for (Marks marks : marksList){
+            System.out.println(marks.toString());
+        }
+    }
 }

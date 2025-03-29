@@ -8,6 +8,8 @@ import command.attendancelistcommands.MarkStudentAttendanceCommand;
 import command.attendancelistcommands.ShowAttendanceListCommand;
 import command.attendancelistcommands.UnmarkStudentAttendanceCommand;
 import command.attendancelistcommands.ViewStudentCommentsCommand;
+import command.markscommands.AddMarksCommand;
+import command.markscommands.ListMarksCommand;
 import command.studentcommands.ChangeRemarkCommand;
 import command.studentcommands.CheckRemarkCommand;
 import command.studentcommands.DeleteStudentCommand;
@@ -163,6 +165,17 @@ public class CommandFactory {
             System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
             CommandListPrinter.printCommands();
             return null;
+        } else if (listType.equalsIgnoreCase("-m")){
+            switch (command){
+            case "NEWMARKS":
+                return new AddMarksCommand();
+            case "LIST":
+                return new ListMarksCommand();
+            default:
+                System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
+                CommandListPrinter.printCommands();
+                return null;
+            }
         }
 
         if (command.equals("BYE")) {

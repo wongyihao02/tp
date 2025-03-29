@@ -109,6 +109,24 @@ public enum CommandList {
             );
         }
     },
+    ADD_MARKS {
+        @Override
+        public void printCommand(){
+            System.out.println(
+                    "NEWMARKS: Adds new marks for a student. " +
+                            "Usage: NEWMARKS -m <tutorial_id>,<matric_number>,<assignment_name>,<marks_achieved>,<maximum_marks>"
+            );
+        }
+    },
+    LIST_MARKS {
+        @Override
+        public void printCommand(){
+            System.out.println(
+                    "LISTMARKS: Lists the marks achieved in all assignments for the given student. " +
+                            "Usage: LIST -m <tutorial_id>,<matric_number>"
+            );
+        }
+    },
     NEW_TUTORIAL {
         @Override
         public void printCommand() {
