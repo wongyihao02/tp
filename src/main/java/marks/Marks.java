@@ -16,6 +16,10 @@ public class Marks {
         return "Assignment: " + assignmentName + ". Marks achieved: "+ marks + "/" + maxMark;
     }
 
+    public String toFileFormat(){
+        return assignmentName + "," + marks + "," + maxMark;
+    }
+
     public String getAssignmentName() {
         return assignmentName;
     }

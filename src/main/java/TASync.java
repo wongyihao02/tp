@@ -33,6 +33,8 @@ public class TASync {
                     + new File(dataManager.getAttendanceFilePath()).getPath() + "\n");
         }
 
+        tutorialList = dataManager.loadMarks(tutorialList);
+
         /*
         for (AttendanceList attendanceList : attendanceFile.getAttendanceList()) {
             System.out.println(attendanceList);
@@ -90,6 +92,7 @@ public class TASync {
         ui.close();
         dataManager.saveTutorials(tutorialList);
         dataManager.saveAttendanceFile(attendanceFile);
+        dataManager.saveMarksList(tutorialList);
 
         System.out.println("All data saved successfully!");
     }

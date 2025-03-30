@@ -2,12 +2,7 @@ package util;
 
 import attendance.AttendanceFile;
 import attendance.AttendanceList;
-import filehandlers.AttendanceFileFileLoader;
-import filehandlers.AttendanceFileFileSaver;
-import filehandlers.FileLoader;
-import filehandlers.FileSaver;
-import filehandlers.TutorialClassListFileLoader;
-import filehandlers.TutorialClassListFileSaver;
+import filehandlers.*;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 
@@ -19,6 +14,7 @@ public class DataManager {
     private static final String DIRECTORY_PATH = "./data";
     private static final String TUTORIAL_FILE_PATH = DIRECTORY_PATH + "/AllTutorials.csv";
     private static final String ATTENDANCE_FILE_PATH = DIRECTORY_PATH + "/AttendanceFile.csv";
+    private static final String MARKS_FILE_PATH = DIRECTORY_PATH + "/marks.txt";
 
     public TutorialClassList loadTutorials() {
         ensureFileAndDirectoryExist(TUTORIAL_FILE_PATH, DIRECTORY_PATH);
@@ -30,6 +26,12 @@ public class DataManager {
         ensureFileAndDirectoryExist(ATTENDANCE_FILE_PATH, DIRECTORY_PATH);
         FileLoader<AttendanceFile> attendanceFileLoader = new AttendanceFileFileLoader(classList);
         return attendanceFileLoader.loadFromFile(ATTENDANCE_FILE_PATH);
+    }
+
+    public TutorialClassList loadMarks(TutorialClassList tutorialClassList){
+        ensureFileAndDirectoryExist(MARKS_FILE_PATH, DIRECTORY_PATH);
+        MarksListLoader marksLoader = new MarksListLoader();
+        return marksLoader.loadMarks(tutorialClassList);
     }
 
     public AttendanceFile createDemoAttendanceFile(TutorialClassList tutorialList, int numberOfWeeks) {
@@ -57,6 +59,11 @@ public class DataManager {
     public void saveAttendanceFile(AttendanceFile attendanceFile) {
         FileSaver<AttendanceFile> attendanceSaver = new AttendanceFileFileSaver();
         attendanceSaver.saveToFile(attendanceFile, DIRECTORY_PATH);
+    }
+
+    public void saveMarksList(TutorialClassList tutorialList){
+        FileSaver<TutorialClassList> marksSaver = new MarksListSaver();
+        marksSaver.saveToFile(tutorialList, DIRECTORY_PATH);
     }
 
     public String getTutorialFilePath() {
