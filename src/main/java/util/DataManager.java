@@ -1,5 +1,6 @@
 package util;
 
+import accounts.TAAccountList;
 import attendance.AttendanceFile;
 import attendance.AttendanceList;
 import filehandlers.AttendanceFileFileLoader;
@@ -32,6 +33,10 @@ public class DataManager {
         return attendanceFileLoader.loadFromFile(ATTENDANCE_FILE_PATH);
     }
 
+    public TAAccountList loadAccounts(AttendanceFile attendanceFile) {
+        return null;
+    }
+
     public AttendanceFile createDemoAttendanceFile(TutorialClassList tutorialList, int numberOfWeeks) {
         ArrayList<AttendanceList> attendanceLists = new ArrayList<>();
         int tutorialLimit = Math.max(2, tutorialList.getTutorialClasses().size());
@@ -57,6 +62,10 @@ public class DataManager {
     public void saveAttendanceFile(AttendanceFile attendanceFile) {
         FileSaver<AttendanceFile> attendanceSaver = new AttendanceFileFileSaver();
         attendanceSaver.saveToFile(attendanceFile, DIRECTORY_PATH);
+    }
+
+    public void saveAccounts(TAAccountList accountList) {
+        return;
     }
 
     public String getTutorialFilePath() {
