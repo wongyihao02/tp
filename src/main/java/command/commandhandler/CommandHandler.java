@@ -29,7 +29,7 @@ public class CommandHandler<T> {
         this.list = list;
         // Ensure the input is valid before proceeding
         if (commands.length < 2) {
-            System.out.println("Invalid command format. Please use: /add -[type] [task details]");
+            System.out.println("Invalid command format. Please use: add -[type] [task details]");
             taskCommand = null;
             return;
         }
