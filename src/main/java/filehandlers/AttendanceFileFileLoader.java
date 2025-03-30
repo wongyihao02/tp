@@ -122,6 +122,10 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
 
         } catch (IOException e) {
             System.err.println("Error loading AttendanceFile: " + e.getMessage());
+            return null;
+        }catch (Exception e) {
+            System.err.println("Error loading AttendanceFile: file format of is tampered with: " + e.getMessage() );
+            return null;
         }
 
         return new AttendanceFile(attendanceLists);
