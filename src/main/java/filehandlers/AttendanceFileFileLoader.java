@@ -1,17 +1,19 @@
 package filehandlers;
 
-import attendance.AttendanceFile;
-import attendance.AttendanceList;
-import students.Student;
-import tutorial.TutorialClass;
-import tutorial.TutorialClassList;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import attendance.AttendanceFile;
+import attendance.AttendanceList;
+import students.Student;
+import tutorial.TutorialClass;
+import tutorial.TutorialClassList;
+
+
 
 public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
     private TutorialClassList classList;
