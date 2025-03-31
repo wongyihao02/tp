@@ -1,5 +1,4 @@
-import login.LoginHandler;
-import login.TALogin;
+
 import attendance.AttendanceFile;
 import tutorial.TutorialClassList;
 import util.CommandLoopHandler;
@@ -14,12 +13,8 @@ public class TASync {
         DataManager dataManager = new DataManager();
         DataLoader dataLoader = new DataLoader(dataManager);
         UI ui = new UI();
-        boolean isRunning;
+        boolean isRunning=true;
 
-        ui.printLogin();
-        TALogin passwordHolder = dataManager.loadPassword();
-        LoginHandler loginHandler = new LoginHandler(ui, passwordHolder);
-        isRunning=loginHandler.handleLogin();
 
         if(isRunning) {
 
@@ -41,7 +36,7 @@ public class TASync {
             ui.displayDailySchedule(taskList, tutorialList);
 
             CommandLoopHandler loopHandler = new CommandLoopHandler(ui, taskList, studentlist,
-                    tutorialList, attendanceFile, passwordHolder);
+                    tutorialList, attendanceFile);
             loopHandler.runCommandLoop();
 
 
@@ -49,7 +44,7 @@ public class TASync {
             ui.close();
             dataManager.saveTutorials(tutorialList);
             dataManager.saveAttendanceFile(attendanceFile);
-            dataManager.savePassword(passwordHolder);
+
 
             System.out.println("All data saved successfully!");
         }

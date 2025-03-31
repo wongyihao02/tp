@@ -6,7 +6,6 @@ import command.commandhandler.CommandParser;
 import students.StudentList;
 import task.TaskList;
 import tutorial.TutorialClassList;
-import login.TALogin;
 
 import java.util.ArrayList;
 
@@ -16,17 +15,15 @@ public class CommandLoopHandler {
     private final StudentList studentList;
     private final TutorialClassList tutorialList;
     private final AttendanceFile attendanceFile;
-    private final TALogin passwordHolder;
 
     public CommandLoopHandler(UI ui, TaskList taskList, StudentList studentList,
-                              TutorialClassList tutorialList, AttendanceFile attendanceFile,
-                              TALogin passwordHolder) {
+                              TutorialClassList tutorialList, AttendanceFile attendanceFile) {
         this.ui = ui;
         this.taskList = taskList;
         this.studentList = studentList;
         this.tutorialList = tutorialList;
         this.attendanceFile = attendanceFile;
-        this.passwordHolder = passwordHolder;
+
     }
 
     public void runCommandLoop() {
@@ -65,8 +62,6 @@ public class CommandLoopHandler {
                 commandHandler = new CommandHandler(attendanceFile, parts);
             } else if (listType.equalsIgnoreCase("-at")) {
                 commandHandler = new CommandHandler(tutAtten, parts);
-            } else if (listType.equalsIgnoreCase("-ps")) {
-                commandHandler = new CommandHandler(passwordHolder, parts);
             } else {
                 commandHandler = new CommandHandler(null, parts);
                 System.out.println("Invalid command");
