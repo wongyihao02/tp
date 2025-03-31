@@ -1,3 +1,4 @@
+import login.LoginHandler;
 import login.TALogin;
 import attendance.AttendanceFile;
 import tutorial.TutorialClassList;
@@ -19,39 +20,8 @@ public class TASync {
 
         ui.printLogin();
         TALogin passwordHolder = dataManager.loadPassword();
-        if (passwordHolder.getPassWord().equals("12341234 This is a stand in password for your" +
-                " account 12341234 JDNfjndsl jlijfwjfnwjuhun JFBDJBwe7r43rbf jWUEFWUE4RI3B4NKBEifu oiuJWBEFKBLJB")) {
-            ui.printCreatePasswordMenu();
-            while (run) {
-                String input = ui.getUserCommand();
-                assert input != null : "Error: User input should not be null";
-                if (input.isEmpty()) {
-                    System.out.println("Error:Password requires at least one character");
-                    ui.printDottedLine();
-                } else {
-                    passwordHolder.setPassWord(input);
-                    run = false;
-                    System.out.println("Password created successfully");
-                    ui.printDottedLine();
-                }
-
-            }
-        } else {
-            while (run) {
-                String input = ui.getUserCommand();
-                assert input != null : "Error: User input should not be null";
-
-                if (passwordHolder.passwordCorrect(input)) {
-                    System.out.println("Login Successful");
-                    ui.printDottedLine();
-                    run = false;
-                } else {
-                    System.out.println("Login Failed:Incorrect password");
-                    ui.printDottedLine();
-                }
-
-            }
-        }
+        LoginHandler loginHandler = new LoginHandler(ui, passwordHolder);
+        loginHandler.handleLogin();
 
         // Load tutorials
         TutorialClassList tutorialList = dataManager.loadTutorials();
