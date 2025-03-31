@@ -79,10 +79,6 @@ public class Student {
         this.remark = remark;
     }
 
-    public String toFileFormat() {
-        return getName() +","+ getAge() +"," + getGender() +"," + getContact() +","+ getMatricNumber() +"/n";
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
