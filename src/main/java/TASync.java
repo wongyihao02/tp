@@ -1,4 +1,3 @@
-
 import attendance.AttendanceFile;
 import tutorial.TutorialClassList;
 import util.CommandLoopHandler;
@@ -15,9 +14,7 @@ public class TASync {
         UI ui = new UI();
         boolean isRunning=true;
 
-
         if(isRunning) {
-
             TutorialClassList tutorialList = dataLoader.loadTutorialClasses();
             AttendanceFile attendanceFile = dataLoader.loadAttendanceFile(tutorialList);
             TaskList taskList = new TaskList();
@@ -44,7 +41,7 @@ public class TASync {
             ui.close();
             dataManager.saveTutorials(tutorialList);
             dataManager.saveAttendanceFile(attendanceFile);
-
+            dataManager.saveMarksList(tutorialList);
 
             System.out.println("All data saved successfully!");
         }
