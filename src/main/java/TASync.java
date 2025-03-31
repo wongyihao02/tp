@@ -19,7 +19,8 @@ public class TASync {
 
         ui.printLogin();
         TALogin passwordHolder = dataManager.loadPassword();
-        if (passwordHolder.getPassWord().equals("12341234 This is a stand in password for your account 12341234 JDNfjndsl jlijfwjfnwjuhun JFBDJBwe7r43rbf jWUEFWUE4RI3B4NKBEifu oiuJWBEFKBLJB")) {
+        if (passwordHolder.getPassWord().equals("12341234 This is a stand in password for your" +
+                " account 12341234 JDNfjndsl jlijfwjfnwjuhun JFBDJBwe7r43rbf jWUEFWUE4RI3B4NKBEifu oiuJWBEFKBLJB")) {
             ui.printcreatePasswordMenu();
             while (run) {
                 String input = ui.getUserCommand();

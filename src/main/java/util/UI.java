@@ -59,7 +59,8 @@ public class UI {
 
     public void printcreatePasswordMenu() {
         System.out.println("Please type in your preferred password");
-        System.out.println("Note that only the first line of your input will be taken as the password.Anything afterwards will not be used");
+        System.out.println("Note that only the first line of your input will be taken as " +
+                "the password.Anything afterwards will not be used");
         System.out.println("----------------------------------------------------");
     }
 
