@@ -171,14 +171,14 @@ public class CommandFactory {
             return null;
         } else if (listType.equalsIgnoreCase("-ps")) {
             switch (command) {
-                case "SET":
-                    return new SetPassWordCommand();
-                case "SHOW":
-                    return new ShowPassWordCommand();
-                default:
-                    System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
-                    CommandListPrinter.printCommands();
-                    return null;
+            case "SET":
+                return new SetPassWordCommand();
+            case "SHOW":
+                return new ShowPassWordCommand();
+            default:
+                System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
+                CommandListPrinter.printCommands();
+                return null;
 
             }
         } else {
