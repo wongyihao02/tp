@@ -186,7 +186,6 @@ public class AttendanceListTests {
         assertTrue(attendancelist.isPresent(phoebeOng));
         attendancelist.markAbsent(phoebeOng);
         assertFalse(attendancelist.isPresent(phoebeOng));
-
     }
 
     @Test

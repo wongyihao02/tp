@@ -177,5 +177,8 @@ public class AttendanceFileFileLoaderTest {
 
         attendanceFileForTest = attendanceFile;
         tutorialClassListForTest = tutorialList;
+
+        Files.deleteIfExists(tempFile);
+        Files.deleteIfExists(tempFile2);
     }
 }
