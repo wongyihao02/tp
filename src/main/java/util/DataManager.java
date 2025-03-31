@@ -1,13 +1,9 @@
 package util;
 
+import filehandlers.*;
+import login.TALogin;
 import attendance.AttendanceFile;
 import attendance.AttendanceList;
-import filehandlers.AttendanceFileFileLoader;
-import filehandlers.AttendanceFileFileSaver;
-import filehandlers.FileLoader;
-import filehandlers.FileSaver;
-import filehandlers.TutorialClassListFileLoader;
-import filehandlers.TutorialClassListFileSaver;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 
@@ -19,6 +15,7 @@ public class DataManager {
     private static final String DIRECTORY_PATH = "./data";
     private static final String TUTORIAL_FILE_PATH = DIRECTORY_PATH + "/AllTutorials.csv";
     private static final String ATTENDANCE_FILE_PATH = DIRECTORY_PATH + "/AttendanceFile.csv";
+    private static final String PASSWORD_FILE_PATH = DIRECTORY_PATH + "/PasswordHolder.txt";
 
     public TutorialClassList loadTutorials() {
         ensureFileAndDirectoryExist(TUTORIAL_FILE_PATH, DIRECTORY_PATH);
@@ -31,6 +28,13 @@ public class DataManager {
         FileLoader<AttendanceFile> attendanceFileLoader = new AttendanceFileFileLoader(classList);
         return attendanceFileLoader.loadFromFile(ATTENDANCE_FILE_PATH);
     }
+
+    public TALogin loadPassword() {
+        ensureFileAndDirectoryExist(PASSWORD_FILE_PATH, DIRECTORY_PATH);
+        FileLoader<TALogin> passwordLoader = new TALoginFileLoader();
+        return passwordLoader.loadFromFile(PASSWORD_FILE_PATH);
+    }
+
 
     public AttendanceFile createDemoAttendanceFile(TutorialClassList tutorialList, int numberOfWeeks) {
         ArrayList<AttendanceList> attendanceLists = new ArrayList<>();
@@ -57,6 +61,11 @@ public class DataManager {
     public void saveAttendanceFile(AttendanceFile attendanceFile) {
         FileSaver<AttendanceFile> attendanceSaver = new AttendanceFileFileSaver();
         attendanceSaver.saveToFile(attendanceFile, DIRECTORY_PATH);
+    }
+
+    public void savePassword(TALogin passwordHolder) {
+        FileSaver<TALogin> passwordSaver = new TALoginFileSaver();
+        passwordSaver.saveToFile(passwordHolder, DIRECTORY_PATH);
     }
 
     public String getTutorialFilePath() {

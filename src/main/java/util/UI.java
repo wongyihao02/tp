@@ -51,6 +51,24 @@ public class UI {
         return scanner.nextLine().trim();
     }
 
+    public void printLogin() {
+        System.out.println("Login menu for TASync");
+        System.out.println("----------------------------------------------------");
+
+    }
+
+    public void printcreatePasswordMenu() {
+        System.out.println("Please type in your preferred password");
+        System.out.println("Note that only the first line of your input will be taken as the password.Anything afterwards will not be used");
+        System.out.println("----------------------------------------------------");
+    }
+
+    public void printDottedLine() {
+        System.out.println("----------------------------------------------------");
+    }
+
+
+
     /**
      * Prints a goodbye message.
      */

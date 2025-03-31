@@ -62,6 +62,8 @@ public class ListUpcomingTutorialsCommand implements Command<TutorialClassList> 
 
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

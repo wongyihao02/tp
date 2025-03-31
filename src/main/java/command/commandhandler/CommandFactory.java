@@ -29,6 +29,8 @@ import command.tutorialcommands.DeleteTutorialCommand;
 import command.tutorialcommands.ListTutorialStudentsCommand;
 import command.tutorialcommands.ListUpcomingTutorialsCommand;
 import command.tutorialcommands.NewTutorialCommand;
+import command.TALogincommands.SetPassWordCommand;
+import command.TALogincommands.ShowPassWordCommand;
 import task.TaskType;
 import util.CommandListPrinter;
 
@@ -167,6 +169,18 @@ public class CommandFactory {
             System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
             CommandListPrinter.printCommands();
             return null;
+        } else if (listType.equalsIgnoreCase("-ps")) {
+            switch (command) {
+                case "SET":
+                    return new SetPassWordCommand();
+                case "SHOW":
+                    return new ShowPassWordCommand();
+                default:
+                    System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
+                    CommandListPrinter.printCommands();
+                    return null;
+
+            }
         } else {
             System.out.println("Sorry, TASync does not know what \"" + parts[0] + " " + parts[1] + "\" means.");
         }
