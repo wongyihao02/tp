@@ -18,11 +18,38 @@ public class TASync {
         boolean run = true;
 
         ui.printLogin();
-        TALogin accountList = dataManager.loadAccounts();
-        while (run) {
-            String input = ui.getUserCommand();
-            assert input != null : "Error: User input should not be null";
+        TALogin passwordHolder = dataManager.loadPassword();
+        if (passwordHolder.getPassWord().equals("12341234 This is a stand in password for your account 12341234 JDNfjndsl jlijfwjfnwjuhun JFBDJBwe7r43rbf jWUEFWUE4RI3B4NKBEifu oiuJWBEFKBLJB")) {
+            ui.printcreatePasswordMenu();
+            while (run) {
+                String input = ui.getUserCommand();
+                assert input != null : "Error: User input should not be null";
+                if (input.isEmpty()) {
+                    System.out.println("Error:Password requires at least one character");
+                    ui.printDottedLine();
+                } else {
+                    passwordHolder.setPassWord(input);
+                    run = false;
+                    System.out.println("Password created successfully");
+                    ui.printDottedLine();
+                }
 
+            }
+        } else {
+            while (run) {
+                String input = ui.getUserCommand();
+                assert input != null : "Error: User input should not be null";
+
+                if (input.equals(passwordHolder.getPassWord())) {
+                    System.out.println("Login Successful");
+                    ui.printDottedLine();
+                    run = false;
+                } else {
+                    System.out.println("Login Failed:Incorrect password");
+                    ui.printDottedLine();
+                }
+
+            }
         }
 
         // Load tutorials
@@ -89,6 +116,8 @@ public class TASync {
                 commandHandler = new CommandHandler(attendanceFile, parts);
             } else if (listType.equalsIgnoreCase("-at")) {
                 commandHandler = new CommandHandler(tutAtten, parts);
+            } else if (listType.equalsIgnoreCase("-ps")) {
+                commandHandler = new CommandHandler(passwordHolder, parts);
             } else {
                 commandHandler = new CommandHandler(null, parts);
                 System.out.println("Invalid command");
@@ -101,6 +130,7 @@ public class TASync {
         ui.close();
         dataManager.saveTutorials(tutorialList);
         dataManager.saveAttendanceFile(attendanceFile);
+        dataManager.savePassword(passwordHolder);
 
         System.out.println("All data saved successfully!");
     }

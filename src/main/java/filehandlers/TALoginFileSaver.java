@@ -10,16 +10,11 @@ public class TALoginFileSaver implements FileSaver<TALogin> {
 
     @Override
     public void saveToFile(TALogin object, String directoryPath) {
-        String filePath = directoryPath + "/AccountList.txt";
+        String filePath = directoryPath + "/PasswordHolder.txt";
         try (FileWriter hsy = new FileWriter(filePath)) {
-            Map<String, String> accounts = object.getAccounts();
-
-            for (Map.Entry<String, String> entry : accounts.entrySet()) {
-                hsy.write(entry.getKey() + " //@@// " + entry.getValue() + System.lineSeparator());
-            }
-
+           hsy.write(object.getPassWord());
         } catch (IOException e) {
-            System.out.println("error while saving AccountList file");
+            System.out.println("error while saving password file");
         }
     }
 }

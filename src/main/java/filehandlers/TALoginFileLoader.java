@@ -9,21 +9,22 @@ import java.io.IOException;
 public class TALoginFileLoader implements FileLoader<TALogin> {
 
     public TALogin loadFromFile(String filePath) {
-        TALogin list = new TALogin();
+        String passWord = "";
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
+            String line = br.readLine();
 
-            while ((line = br.readLine()) != null) {
-                String[] splitted = line.split("//@@//");
-                String accountName = splitted[0].trim().replaceAll("\\s+", " ");
-                String password = splitted[1].trim().replaceAll("\\s+", " ");
-                list.addAccount(accountName, password);
+            if (line != null) {
+                passWord = line;
+            } else {
+                passWord = "12341234 This is a stand in password for your account 12341234 JDNfjndsl jlijfwjfnwjuhun JFBDJBwe7r43rbf jWUEFWUE4RI3B4NKBEifu oiuJWBEFKBLJB";
             }
+
+
         } catch (IOException e) {
-            System.err.println("Error loading AttendanceFile: " + e.getMessage());
+            System.err.println("Error loading password file: " + e.getMessage());
         }
 
-        return list;
+        return new TALogin(passWord);
     }
 }

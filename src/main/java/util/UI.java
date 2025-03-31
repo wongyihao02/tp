@@ -54,13 +54,20 @@ public class UI {
     public void printLogin() {
         System.out.println("Login menu for TASync");
         System.out.println("----------------------------------------------------");
-        System.out.println("Login method");
-        System.out.println("/login [username]//@@//[password]");
-        System.out.println("Note that the square brackets are for illustration purposes only,there is no need to actually add them");
-        System.out.println("----------------------------------------------------");
-        System.out.println("Create a new account method");
-        System.out.println("/create [username]//@@//[password]");
+
     }
+
+    public void printcreatePasswordMenu() {
+        System.out.println("Please type in your preferred password");
+        System.out.println("Note that only the first line of your input will be taken as the password.Anything afterwards will not be used");
+        System.out.println("----------------------------------------------------");
+    }
+
+    public void printDottedLine() {
+        System.out.println("----------------------------------------------------");
+    }
+
+
 
     /**
      * Prints a goodbye message.

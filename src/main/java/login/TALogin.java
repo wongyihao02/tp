@@ -5,37 +5,26 @@ import java.util.Map;
 
 public class TALogin {
 
-    private Map<String, String> accounts;
+    private String passWord;
 
-    public TALogin() {
-        accounts = new HashMap<String, String>();
+    public TALogin(String passWord) {
+        this.passWord = passWord;
     }
 
-    public TALogin(Map<String, String> accounts) {
-        this.accounts = accounts;
+    public String getPassWord() {
+        return this.passWord;
     }
 
-    public void addAccount(String account, String password) {
-        accounts.put(account, password);
+    public boolean passwordCorrect(String input) {
+        return input.equals(this.passWord);
     }
 
-    public Map<String, String> getAccounts() {
-        return accounts;
-    }
-
-    public boolean passwordCorrect(String account, String password) {
-        if (!accounts.containsKey(account)) {
-            System.out.println("Account does not exist");
-            return false;
-        }
-
-        String storedPassword = accounts.get(account);
-
-        return storedPassword.equals(password);
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
     @Override
     public String toString() {
-        return accounts.toString();
+        return "The password is " + this.passWord;
     }
 }
