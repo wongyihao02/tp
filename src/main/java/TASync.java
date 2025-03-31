@@ -21,7 +21,7 @@ public class TASync {
         TALogin passwordHolder = dataManager.loadPassword();
         if (passwordHolder.getPassWord().equals("12341234 This is a stand in password for your" +
                 " account 12341234 JDNfjndsl jlijfwjfnwjuhun JFBDJBwe7r43rbf jWUEFWUE4RI3B4NKBEifu oiuJWBEFKBLJB")) {
-            ui.printcreatePasswordMenu();
+            ui.printCreatePasswordMenu();
             while (run) {
                 String input = ui.getUserCommand();
                 assert input != null : "Error: User input should not be null";
@@ -41,7 +41,7 @@ public class TASync {
                 String input = ui.getUserCommand();
                 assert input != null : "Error: User input should not be null";
 
-                if (input.equals(passwordHolder.getPassWord())) {
+                if (passwordHolder.passwordCorrect(input)) {
                     System.out.println("Login Successful");
                     ui.printDottedLine();
                     run = false;

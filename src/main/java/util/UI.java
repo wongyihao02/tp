@@ -53,11 +53,12 @@ public class UI {
 
     public void printLogin() {
         System.out.println("Login menu for TASync");
+        System.out.println("Please enter your password");
         System.out.println("----------------------------------------------------");
 
     }
 
-    public void printcreatePasswordMenu() {
+    public void printCreatePasswordMenu() {
         System.out.println("Please type in your preferred password");
         System.out.println("Note that only the first line of your input will be taken as " +
                 "the password.Anything afterwards will not be used");
