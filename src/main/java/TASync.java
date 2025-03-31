@@ -1,4 +1,3 @@
-
 import attendance.AttendanceFile;
 import tutorial.TutorialClassList;
 import util.CommandLoopHandler;
@@ -12,10 +11,8 @@ public class TASync {
     public static void main(String[] args) {
         DataManager dataManager = new DataManager();
         DataLoader dataLoader = new DataLoader(dataManager);
-
         UI ui = new UI();
         boolean isRunning=true;
-
 
         if(isRunning) {
             TutorialClassList tutorialList = dataLoader.loadTutorialClasses();
@@ -27,6 +24,7 @@ public class TASync {
                 System.out.println(attendanceList);
             } // just to check if attendanceFile imported correctly
             */
+
 
             assert tutorialList != null : "Error: tutorialList should not be null";
             assert attendanceFile != null : "Error: attendanceFile should not be null";
@@ -43,17 +41,9 @@ public class TASync {
             ui.close();
             dataManager.saveTutorials(tutorialList);
             dataManager.saveAttendanceFile(attendanceFile);
-
+            dataManager.saveMarksList(tutorialList);
 
             System.out.println("All data saved successfully!");
         }
-
-        ui.printGoodbye();
-        ui.close();
-        dataManager.saveTutorials(tutorialList);
-        dataManager.saveAttendanceFile(attendanceFile);
-        dataManager.saveMarksList(tutorialList);
-
-        System.out.println("All data saved successfully!");
     }
 }

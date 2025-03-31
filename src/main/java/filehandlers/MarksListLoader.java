@@ -39,7 +39,7 @@ public class MarksListLoader implements FileLoader<TutorialClassList> {
                 int maxMark = Integer.parseInt(parts[4]);
 
                 TutorialClass tutorialClass = tutorialClassList.getByName(tutID);
-                if (tutorialClass == null){
+                if (tutorialClass == null || marks > maxMark){
                     System.out.println("Invalid marks in file");
                     continue;
                 }

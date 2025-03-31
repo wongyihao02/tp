@@ -21,6 +21,7 @@ public class DataLoader {
             System.out.println("Tutorial classes loaded from: "
                     + new File(dataManager.getTutorialFilePath()).getPath() + "\n");
         }
+        tutorialList = dataManager.loadMarks(tutorialList);
         return tutorialList;
     }
 
