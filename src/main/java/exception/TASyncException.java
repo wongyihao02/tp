@@ -132,4 +132,11 @@ public class TASyncException extends Exception {
                         "list -m <tutorial_id>,<matric_number>"
         );
     }
+
+    public static TASyncException invalidDeleteMarksCommand(){
+        return new TASyncException(
+                "Invalid delete marks command, please key command in the format: " +
+                        "DeleteMarks -m <tutorial_id>,<matric_number>,<assignment_name>"
+        );
+    }
 }

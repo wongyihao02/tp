@@ -2,6 +2,10 @@ package marks;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a list of marks for a student.
+ * Contains methods to add, delete, find and list marks.
+ */
 public class MarksList {
     private ArrayList<Marks> marksList;
 
@@ -29,6 +33,10 @@ public class MarksList {
         marksList.remove(marks);
     }
 
+    /**
+     * Prints all marks in the marks list along with the total average percentage.
+     * If no marks have been added, it prints a message indicating that.
+     */
     public void printMarks(){
         int totalMarks = 0;
         int totalMax = 0;
@@ -44,7 +52,23 @@ public class MarksList {
 
         if (totalMax != 0){
             float avgPercent = ((float)totalMarks/(float)totalMax)*100;
-            System.out.println("Average: " + avgPercent + "%");
+            System.out.println("Average: " + String.format("%.1f", avgPercent) + "%");
         }
+    }
+
+    /**
+     * Retrieves a Marks object based on the assignment name.
+     *
+     * @param assignmentName The name of the assignment to search for.
+     * @return The Marks object if found, otherwise null.
+     */
+    public Marks getByAssignmentName(String assignmentName){
+        for (Marks marks: marksList){
+            if (marks.getAssignmentName().equalsIgnoreCase(assignmentName)){
+                return marks;
+            }
+        }
+
+        return null;
     }
 }

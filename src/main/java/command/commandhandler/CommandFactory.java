@@ -9,6 +9,7 @@ import command.attendancelistcommands.ShowAttendanceListCommand;
 import command.attendancelistcommands.UnmarkStudentAttendanceCommand;
 import command.attendancelistcommands.ViewStudentCommentsCommand;
 import command.markscommands.AddMarksCommand;
+import command.markscommands.DeleteMarksCommand;
 import command.markscommands.ListMarksCommand;
 import command.studentcommands.ChangeRemarkCommand;
 import command.studentcommands.CheckRemarkCommand;
@@ -169,6 +170,8 @@ public class CommandFactory {
             switch (command){
             case "NEWMARKS":
                 return new AddMarksCommand();
+            case "DELETEMARKS":
+                return new DeleteMarksCommand();
             case "LIST":
                 return new ListMarksCommand();
             default:

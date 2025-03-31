@@ -118,6 +118,15 @@ public enum CommandList {
             );
         }
     },
+    DELETE_MARKS {
+        @Override
+        public void printCommand(){
+            System.out.println(
+                    "DELETMARKS: Deletes marks for a given student by assignment name. " +
+                            "Usage: DELETEMARKS -m <tutorial_id>,<matric_number>,<assignment_name>"
+            );
+        }
+    },
     LIST_MARKS {
         @Override
         public void printCommand(){

@@ -1,5 +1,8 @@
 package marks;
 
+/**
+ * Class representing the marks achieved by a student for a single assignment.
+ */
 public class Marks {
     private String assignmentName;
     private int marks;
