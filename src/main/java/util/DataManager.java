@@ -4,11 +4,8 @@ import filehandlers.AttendanceFileFileLoader;
 import filehandlers.AttendanceFileFileSaver;
 import filehandlers.FileLoader;
 import filehandlers.FileSaver;
-import filehandlers.TALoginFileLoader;
-import filehandlers.TALoginFileSaver;
 import filehandlers.TutorialClassListFileLoader;
 import filehandlers.TutorialClassListFileSaver;
-import login.TALogin;
 import attendance.AttendanceFile;
 import attendance.AttendanceList;
 import tutorial.TutorialClass;
@@ -22,7 +19,6 @@ public class DataManager {
     private static final String DIRECTORY_PATH = "./data";
     private static final String TUTORIAL_FILE_PATH = DIRECTORY_PATH + "/AllTutorials.csv";
     private static final String ATTENDANCE_FILE_PATH = DIRECTORY_PATH + "/AttendanceFile.csv";
-    private static final String PASSWORD_FILE_PATH = DIRECTORY_PATH + "/PasswordHolder.txt";
 
     public TutorialClassList loadTutorials() {
         ensureFileAndDirectoryExist(TUTORIAL_FILE_PATH, DIRECTORY_PATH);
@@ -36,11 +32,7 @@ public class DataManager {
         return attendanceFileLoader.loadFromFile(ATTENDANCE_FILE_PATH);
     }
 
-    public TALogin loadPassword() {
-        ensureFileAndDirectoryExist(PASSWORD_FILE_PATH, DIRECTORY_PATH);
-        FileLoader<TALogin> passwordLoader = new TALoginFileLoader();
-        return passwordLoader.loadFromFile(PASSWORD_FILE_PATH);
-    }
+
 
 
     public AttendanceFile createDemoAttendanceFile(TutorialClassList tutorialList, int numberOfWeeks) {
@@ -70,10 +62,6 @@ public class DataManager {
         attendanceSaver.saveToFile(attendanceFile, DIRECTORY_PATH);
     }
 
-    public void savePassword(TALogin passwordHolder) {
-        FileSaver<TALogin> passwordSaver = new TALoginFileSaver();
-        passwordSaver.saveToFile(passwordHolder, DIRECTORY_PATH);
-    }
 
     public String getTutorialFilePath() {
         return TUTORIAL_FILE_PATH;

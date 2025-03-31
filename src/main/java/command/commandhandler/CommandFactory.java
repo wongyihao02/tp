@@ -29,8 +29,6 @@ import command.tutorialcommands.DeleteTutorialCommand;
 import command.tutorialcommands.ListTutorialStudentsCommand;
 import command.tutorialcommands.ListUpcomingTutorialsCommand;
 import command.tutorialcommands.NewTutorialCommand;
-import command.TALogincommands.SetPassWordCommand;
-import command.TALogincommands.ShowPassWordCommand;
 import task.TaskType;
 import util.CommandListPrinter;
 
@@ -52,7 +50,7 @@ public class CommandFactory {
      *
      * @param commandString The command string to match and create the corresponding Command object.
      * @return A Command object corresponding to the provided command string.
-     *     Returns null if the command is invalid.
+     * Returns null if the command is invalid.
      */
     public static Command createCommand(String commandString) {
         String[] parts = commandString.split("\\s+", 3); // Split into command, type, and rest of input
@@ -169,18 +167,6 @@ public class CommandFactory {
             System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
             CommandListPrinter.printCommands();
             return null;
-        } else if (listType.equalsIgnoreCase("-ps")) {
-            switch (command) {
-            case "SET":
-                return new SetPassWordCommand();
-            case "SHOW":
-                return new ShowPassWordCommand();
-            default:
-                System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
-                CommandListPrinter.printCommands();
-                return null;
-
-            }
         } else {
             System.out.println("Sorry, TASync does not know what \"" + parts[0] + " " + parts[1] + "\" means.");
         }
