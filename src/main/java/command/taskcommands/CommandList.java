@@ -114,7 +114,7 @@ public enum CommandList {
         public void printCommand(){
             System.out.println(
                     "NEWMARKS: Adds new marks for a student. " +
-                            "Usage: NEWMARKS -m <tutorial_id>,<matric_number>,<assignment_name>,<marks_achieved>,<maximum_marks>"
+                            "Usage: NEWMARKS -m <tut_id>,<matric_num>,<assignment_name>,<marks_achieved>,<max_marks>"
             );
         }
     },
