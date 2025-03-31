@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
 
 public class DateTimeFormatterUtil {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("hh:mm");
+    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
     private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     // --- Date Methods ---
@@ -28,7 +28,7 @@ public class DateTimeFormatterUtil {
 
     public static boolean isValidDate(String dateStr) {
         try {
-            LocalDateTime.parse(dateStr, DATE_FORMAT);
+            LocalDate.parse(dateStr, DATE_FORMAT);
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -52,7 +52,7 @@ public class DateTimeFormatterUtil {
 
     public static boolean isValidTime(String timeStr) {
         try {
-            LocalDateTime.parse(timeStr, TIME_FORMAT);
+            LocalTime.parse(timeStr, TIME_FORMAT);
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -65,7 +65,7 @@ public class DateTimeFormatterUtil {
         try {
             return LocalDateTime.parse(dateTimeStr, DATE_TIME_FORMAT);
         } catch (DateTimeParseException e) {
-            System.out.println("Invalid datetime format. Expected format: dd/MM/yyyy hh:MM");
+            System.out.println("Invalid datetime format. Expected format: dd/MM/yyyy HH:mm");
             return null;
         }
     }
