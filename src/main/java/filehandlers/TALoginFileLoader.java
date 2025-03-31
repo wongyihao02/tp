@@ -17,8 +17,7 @@ public class TALoginFileLoader implements FileLoader<TALogin> {
             if (line != null) {
                 passWord = line;
             } else {
-                passWord = "12341234 This is a stand in password for your account 12341234" +
-                        " JDNfjndsl jlijfwjfnwjuhun JFBDJBwe7r43rbf jWUEFWUE4RI3B4NKBEifu oiuJWBEFKBLJB";
+                passWord = "password";
             }
 
 

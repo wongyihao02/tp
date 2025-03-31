@@ -62,6 +62,8 @@ public class UI {
         System.out.println("Please type in your preferred password");
         System.out.println("Note that only the first line of your input will be taken as " +
                 "the password.Anything afterwards will not be used");
+        System.out.println("Password needs to be at least 8 characters long, " +
+                "containing at least 1 Uppercase letter, one lower case letter and 1 number");
         System.out.println("----------------------------------------------------");
     }
 
