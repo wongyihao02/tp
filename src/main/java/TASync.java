@@ -55,7 +55,7 @@ public class TASync {
         // Load tutorials
         TutorialClassList tutorialList = dataManager.loadTutorials();
         if (tutorialList == null || tutorialList.getTutorialClasses().isEmpty()) {
-            System.out.println("No tutorials loaded or file is empty.");
+            System.out.println("Warning! No tutorials loaded or file is empty.");
             tutorialList = new TutorialClassList();
         }else {
             System.out.println("Tutorial classes loaded from: "
@@ -64,7 +64,7 @@ public class TASync {
 
         AttendanceFile attendanceFile = dataManager.loadAttendanceFiles(tutorialList);
         if (attendanceFile == null) {
-            System.out.println("No attendance file loaded.");
+            System.out.println("Warning! No attendance file loaded.");
             attendanceFile= new AttendanceFile(null);
         }else{
             System.out.println("Tutorial classes loaded from: "

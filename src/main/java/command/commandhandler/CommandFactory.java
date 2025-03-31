@@ -52,12 +52,12 @@ public class CommandFactory {
      *
      * @param commandString The command string to match and create the corresponding Command object.
      * @return A Command object corresponding to the provided command string.
-     *      Returns null if the command is invalid.
+     *     Returns null if the command is invalid.
      */
     public static Command createCommand(String commandString) {
         String[] parts = commandString.split("\\s+", 3); // Split into command, type, and rest of input
         if (parts.length < 2) {
-            System.out.println("Invalid command format. Please use: /add -[type] [task details]");
+            System.out.println("Invalid command format. Please use: add -[type] [task details]");
             return null;
         }
 
@@ -66,12 +66,14 @@ public class CommandFactory {
         String taskTypeShortcut = parts[1];
         String listType = parts[1];
 
-        if ("HELP".equals(command)) {
+        switch (command) {
+        case "BYE":
+            return new ByeCommand();
+
+        case "HELP":
             CommandListPrinter.printCommands();
             return null;
-        }
-
-        if ("ADD".equals(command)) {
+        case "ADD":
             TaskType taskType = TaskType.fromShortcut(taskTypeShortcut);
             if (taskType == null) {
                 System.out.println("Invalid task type. Use -c (Consultation), -pt (Todo), -pe (Event), -pd (Deadline)");
@@ -91,6 +93,8 @@ public class CommandFactory {
                 System.out.println("Unknown task type: " + taskType);
                 return null;
             }
+
+        default:
         }
 
 
@@ -139,7 +143,7 @@ public class CommandFactory {
                 CommandListPrinter.printCommands();
                 return null;
             }
-        }  else if (listType.equalsIgnoreCase("-a")) {
+        } else if (listType.equalsIgnoreCase("-a")) {
             switch (command) {
             case "MARK":
                 return new MarkStudentAttendanceCommand();
@@ -177,11 +181,10 @@ public class CommandFactory {
                     return null;
 
             }
+        } else {
+            System.out.println("Sorry, TASync does not know what \"" + parts[0] + " " + parts[1] + "\" means.");
         }
 
-        if (command.equals("BYE")) {
-            return new ByeCommand();
-        }
 
         return null;
     }

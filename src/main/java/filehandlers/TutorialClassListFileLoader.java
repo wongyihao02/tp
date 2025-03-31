@@ -43,6 +43,9 @@ public class TutorialClassListFileLoader implements FileLoader<TutorialClassList
 
         } catch (IOException e) {
             System.out.println("Error loading TutorialClassList: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error loading TutorialClassList, file format is tampered with " + e.getMessage());
+            return null;
         }
 
         return new TutorialClassList(tutorials);
