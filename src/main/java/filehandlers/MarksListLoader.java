@@ -28,7 +28,7 @@ public class MarksListLoader implements FileLoader<TutorialClassList> {
 
                 String[] parts = line.split(",");
                 if (parts.length < 5){
-                    System.out.println("Invalid marks found");
+                    System.out.println("Invalid marks in file");
                     continue;
                 }
 
@@ -39,7 +39,15 @@ public class MarksListLoader implements FileLoader<TutorialClassList> {
                 int maxMark = Integer.parseInt(parts[4]);
 
                 TutorialClass tutorialClass = tutorialClassList.getByName(tutID);
+                if (tutorialClass == null){
+                    System.out.println("Invalid marks in file");
+                    continue;
+                }
                 Student student = tutorialClass.getStudentList().getStudentByMatricNumber(matric);
+                if (student == null){
+                    System.out.println("Invalid marks in file");
+                    continue;
+                }
                 Marks newMarks = new Marks(assignmentName, marks, maxMark);
                 student.getMarksList().addMarks(newMarks);
             }
