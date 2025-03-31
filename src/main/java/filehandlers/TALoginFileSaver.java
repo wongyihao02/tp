@@ -1,16 +1,15 @@
 package filehandlers;
 
-import accounts.TAAccountList;
+import login.TALogin;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
-import java.util.logging.FileHandler;
 
-public class AccountListSaver implements FileSaver<TAAccountList> {
+public class TALoginFileSaver implements FileSaver<TALogin> {
 
     @Override
-    public void saveToFile(TAAccountList object, String directoryPath) {
+    public void saveToFile(TALogin object, String directoryPath) {
         String filePath = directoryPath + "/AccountList.txt";
         try (FileWriter hsy = new FileWriter(filePath)) {
             Map<String, String> accounts = object.getAccounts();

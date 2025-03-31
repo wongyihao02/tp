@@ -1,17 +1,17 @@
-package accounts;
+package login;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class TAAccountList {
+public class TALogin {
 
     private Map<String, String> accounts;
 
-    public TAAccountList() {
+    public TALogin() {
         accounts = new HashMap<String, String>();
     }
 
-    public TAAccountList(Map<String, String> accounts) {
+    public TALogin(Map<String, String> accounts) {
         this.accounts = accounts;
     }
 

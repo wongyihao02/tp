@@ -1,6 +1,6 @@
 package util;
 
-import accounts.TAAccountList;
+import login.TALogin;
 import attendance.AttendanceFile;
 import attendance.AttendanceList;
 import filehandlers.AttendanceFileFileLoader;
@@ -33,7 +33,7 @@ public class DataManager {
         return attendanceFileLoader.loadFromFile(ATTENDANCE_FILE_PATH);
     }
 
-    public TAAccountList loadAccounts(AttendanceFile attendanceFile) {
+    public TALogin loadAccounts(TALogin accountList) {
         return null;
     }
 
@@ -64,7 +64,7 @@ public class DataManager {
         attendanceSaver.saveToFile(attendanceFile, DIRECTORY_PATH);
     }
 
-    public void saveAccounts(TAAccountList accountList) {
+    public void saveAccounts(TALogin accountList) {
         return;
     }
 

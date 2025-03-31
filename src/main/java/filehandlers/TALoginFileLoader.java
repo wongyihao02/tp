@@ -1,15 +1,15 @@
 package filehandlers;
 
-import accounts.TAAccountList;
+import login.TALogin;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class AccountListLoader implements FileLoader<TAAccountList> {
+public class TALoginFileLoader implements FileLoader<TALogin> {
 
-    public TAAccountList loadFromFile(String filePath) {
-        TAAccountList list = new TAAccountList();
+    public TALogin loadFromFile(String filePath) {
+        TALogin list = new TALogin();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;

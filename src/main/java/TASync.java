@@ -1,4 +1,4 @@
-import accounts.TAAccountList;
+import login.TALogin;
 import attendance.AttendanceFile;
 import tutorial.TutorialClassList;
 import util.DataManager;
@@ -18,7 +18,7 @@ public class TASync {
         boolean run = true;
 
         ui.printLogin();
-        TAAccountList accountList = dataManager.loadAccounts();
+        TALogin accountList = dataManager.loadAccounts();
         while (run) {
             String input = ui.getUserCommand();
             assert input != null : "Error: User input should not be null";
