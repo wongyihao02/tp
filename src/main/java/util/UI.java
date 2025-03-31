@@ -51,6 +51,17 @@ public class UI {
         return scanner.nextLine().trim();
     }
 
+    public void printLogin() {
+        System.out.println("Login menu for TASync");
+        System.out.println("----------------------------------------------------");
+        System.out.println("Login method");
+        System.out.println("/login [username]//@@//[password]");
+        System.out.println("Note that the square brackets are for illustration purposes only,there is no need to actually add them");
+        System.out.println("----------------------------------------------------");
+        System.out.println("Create a new account method");
+        System.out.println("/create [username]//@@//[password]");
+    }
+
     /**
      * Prints a goodbye message.
      */

@@ -1,3 +1,4 @@
+import accounts.TAAccountList;
 import attendance.AttendanceFile;
 import tutorial.TutorialClassList;
 import util.DataManager;
@@ -13,6 +14,16 @@ import java.util.ArrayList;
 public class TASync {
     public static void main(String[] args) {
         DataManager dataManager = new DataManager();
+        UI ui = new UI();
+        boolean run = true;
+
+        ui.printLogin();
+        TAAccountList accountList = dataManager.loadAccounts();
+        while (run) {
+            String input = ui.getUserCommand();
+            assert input != null : "Error: User input should not be null";
+
+        }
 
         // Load tutorials
         TutorialClassList tutorialList = dataManager.loadTutorials();
@@ -41,7 +52,7 @@ public class TASync {
 
         TaskList taskList = new TaskList();
         StudentList studentlist = new StudentList();
-        UI ui = new UI();
+
 
         assert tutorialList != null : "Error: tutorialList should not be null";
         assert attendanceFile != null : "Error: attendanceFile should not be null";
