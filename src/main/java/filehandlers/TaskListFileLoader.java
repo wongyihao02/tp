@@ -36,6 +36,8 @@ public class TaskListFileLoader implements FileLoader<ArrayList<Task>> {
             System.out.println("Error loading tasks: " + e.getMessage());
         } catch (TASyncException e) {
             throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.out.println("Error loading tasks: File has been tampered with " + e.getMessage());
         }
         return tasks;  // Return the tasks list directly
     }

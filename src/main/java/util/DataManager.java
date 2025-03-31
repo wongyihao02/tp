@@ -1,7 +1,5 @@
 package util;
 
-import attendance.AttendanceFile;
-import attendance.AttendanceList;
 import filehandlers.AttendanceFileFileLoader;
 import filehandlers.AttendanceFileFileSaver;
 import filehandlers.FileLoader;
@@ -10,6 +8,8 @@ import filehandlers.TutorialClassListFileLoader;
 import filehandlers.TutorialClassListFileSaver;
 import filehandlers.MarksListLoader;
 import filehandlers.MarksListSaver;
+import attendance.AttendanceFile;
+import attendance.AttendanceList;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 
