@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import exception.TASyncException;
 
 class ConsultationTest {
+
     @Test
     void testConsultationStartingToday() throws TASyncException {
         // Create a consultation starting today in "dd/MM/yyyy HH:mm" format
