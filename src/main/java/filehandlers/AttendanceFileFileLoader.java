@@ -46,11 +46,7 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
                     currentTutorial = header[0].trim();
                     currentWeek = Integer.parseInt(header[1].trim());
 
-                    currentClass = classList.getByName(currentTutorial);
-                    if (currentClass == null) {
-                        System.err.println("Tutorial class not found: " + currentTutorial);
-                        continue;
-                    }
+                    currentClass = classList.getTutorialByName(currentTutorial);
 
                     // Reset for new list
                     attendanceMap = new HashMap<>();

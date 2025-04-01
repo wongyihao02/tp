@@ -59,7 +59,7 @@ public class NewStudentCommand implements Command<TutorialClassList> {
             }
 
             // Retrieve the TutorialClass by its code
-            TutorialClass tutorialClass = tutorialClassList.getByName(tutorialClassCode);
+            TutorialClass tutorialClass = tutorialClassList.getTutorialByName(tutorialClassCode);
             if (tutorialClass == null) {
                 throw new TASyncException("No tutorial class found with code: " + tutorialClassCode);
             }

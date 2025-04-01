@@ -40,7 +40,7 @@ public class DeleteMarksCommand implements Command<TutorialClassList> {
             String assignmentName = partsArray[2].trim();
 
             // Retrieve the tutorial class by its code
-            TutorialClass tutorialClass = tutorialClassList.getByName(tutorialID);
+            TutorialClass tutorialClass = tutorialClassList.getTutorialByName(tutorialID);
             if (tutorialClass == null) {
                 throw new TASyncException("No tutorial class found with code " + tutorialID);
             }

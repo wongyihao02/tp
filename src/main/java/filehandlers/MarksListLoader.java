@@ -38,8 +38,8 @@ public class MarksListLoader implements FileLoader<TutorialClassList> {
                 int marks = Integer.parseInt(parts[3]);
                 int maxMark = Integer.parseInt(parts[4]);
 
-                TutorialClass tutorialClass = tutorialClassList.getByName(tutID);
-                if (tutorialClass == null || marks > maxMark){
+                TutorialClass tutorialClass = tutorialClassList.getTutorialByName(tutID);
+                if (marks > maxMark){
                     System.out.println("Invalid marks in file");
                     continue;
                 }

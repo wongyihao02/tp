@@ -13,6 +13,12 @@ public class TutorialClass {
     private LocalTime endTime;
     private DayOfWeek dayOfWeek;
 
+    public TutorialClass(String tutorialName){
+        this.tutorialName = tutorialName;
+    }
+    public TutorialClass(){
+    }
+
     public String getTutorialName() {
         return tutorialName;
     }

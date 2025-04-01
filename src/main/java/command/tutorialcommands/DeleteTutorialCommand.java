@@ -24,7 +24,7 @@ public class DeleteTutorialCommand implements Command<TutorialClassList> {
             }
 
             // Search for the tutorial class by its code
-            TutorialClass tutorialClass = tutorialClassList.getByName(input);
+            TutorialClass tutorialClass = tutorialClassList.getTutorialByName(input);
 
             // If the tutorial class is found, remove it
             if (tutorialClass != null) {
