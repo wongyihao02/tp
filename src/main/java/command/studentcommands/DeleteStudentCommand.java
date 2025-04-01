@@ -49,7 +49,7 @@ public class DeleteStudentCommand implements Command<TutorialClassList> {
 
             // Retrieve the tutorial class by its code
             TutorialClass tutorialClass = tutorialClassList.getTutorialByName(tutorialClassCode);
-            if (tutorialClass == null) {
+            if (tutorialClass.getStartTime() == null) {
                 throw new TASyncException("No tutorial class found with code: " + tutorialClassCode);
             }
 

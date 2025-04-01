@@ -9,7 +9,11 @@ import java.time.LocalTime;
 public class TutorialClass {
     private String tutorialName;
     private StudentList studentList=new StudentList();
-    private LocalTime startTime;
+    private LocalTime startTime=null;
+    //only this is initialised to null deliberately such that:
+    // when .getTutorialByName(name) method from TutorialClassList is called,
+    //the new tutorial class created has startTime of null. and we can use if(tutorial.getStartTime() == null)
+    // to see that there is no existing tutorial with the name
     private LocalTime endTime;
     private DayOfWeek dayOfWeek;
 

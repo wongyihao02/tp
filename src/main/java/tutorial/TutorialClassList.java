@@ -28,6 +28,9 @@ public class TutorialClassList {
             }
         }
         return new TutorialClass(name);
+        //return new tutorial class was done intentionally
+        //such that when loading attendanceFile with a tampered tutorialList File, a new Tutorial class is Created
+        // this is to prevent attendancelist loading from having errors
     }
 
     public void removeTutorialClass(TutorialClass tutorialClass) {
