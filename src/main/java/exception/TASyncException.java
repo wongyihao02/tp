@@ -49,7 +49,7 @@ public class TASyncException extends Exception {
     public static TASyncException invalidNewStudentCommand() {
         return new TASyncException(
                 "Invalid NewStudent command, please key command in the format: " +
-                        "NewStudent <name> <age> <gender> <contact> <matricNumber> <tutorialClass>."
+                        "NewStudent -t <name> <dob> <gender> <contact> <matricNumber> <tutorialClass>."
         );
     }
 

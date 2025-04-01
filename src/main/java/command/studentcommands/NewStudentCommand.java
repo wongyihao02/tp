@@ -22,7 +22,7 @@ public class NewStudentCommand implements Command<TutorialClassList> {
             }
 
             // Split the input into parts
-            String[] studentParts = parts.split(",");
+            String[] studentParts = parts.split(" ");
             if (studentParts.length != 6) {
                 throw TASyncException.invalidNewStudentCommand();
             }

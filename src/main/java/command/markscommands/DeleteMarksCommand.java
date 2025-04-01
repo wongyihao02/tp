@@ -30,7 +30,7 @@ public class DeleteMarksCommand implements Command<TutorialClassList> {
                 throw TASyncException.invalidDeleteMarksCommand();
             }
 
-            String[] partsArray = parts.split(",");
+            String[] partsArray = parts.split(" ");
             if (partsArray.length < 3){
                 throw TASyncException.invalidDeleteMarksCommand();
             }

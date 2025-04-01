@@ -27,7 +27,7 @@ public class ListMarksCommand implements Command<TutorialClassList> {
                 throw TASyncException.invalidListMarksCommand();
             }
 
-            String[] partsArray = parts.split(",");
+            String[] partsArray = parts.split(" ");
             if (partsArray.length < 2){
                 throw TASyncException.invalidListMarksCommand();
             }
