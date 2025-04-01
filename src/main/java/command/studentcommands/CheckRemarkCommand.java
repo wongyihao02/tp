@@ -45,7 +45,7 @@ public class CheckRemarkCommand implements Command<TutorialClassList> {
             // Retrieve the tutorial class by its code
             TutorialClass tutorialClass = tutorialClassList.getTutorialByName(tutorialClassCode);
             if (tutorialClass.getStartTime() == null) {
-                throw new TASyncException("No tutorial class found with code: " + tutorialClassCode);
+                throw TASyncException.invalidCheckRemarkCommand();
             }
 
             // Retrieve the student list from the tutorial class

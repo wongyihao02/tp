@@ -1,4 +1,0 @@
-T02,A009,final,88,100
-T02,A009,quizzes,73,77
-T02,A012,midterm retake,90,125
-T05,A036,Project,90,100
