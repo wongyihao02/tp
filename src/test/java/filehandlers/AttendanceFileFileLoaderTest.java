@@ -1,8 +1,5 @@
 package filehandlers;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,7 +11,7 @@ import attendance.AttendanceFile;
 import attendance.AttendanceList;
 import tutorial.TutorialClassList;
 
-
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class AttendanceFileFileLoaderTest {
@@ -174,6 +171,12 @@ public class AttendanceFileFileLoaderTest {
 
         AttendanceList t02w3 = attendanceFile.getAttendanceByNameAndWeek(2, "T02");
         assertNotNull(t02w3, "T02 should be loaded");
+
+        AttendanceList to6w1 = attendanceFile.getAttendanceByNameAndWeek(1, "T06");
+        assertNull(to6w1, "T06 should be null");
+
+        AttendanceList to1w10 = attendanceFile.getAttendanceByNameAndWeek(10, "T01");
+        assertNull(to1w10, "T01 should be null");
 
         attendanceFileForTest = attendanceFile;
         tutorialClassListForTest = tutorialList;

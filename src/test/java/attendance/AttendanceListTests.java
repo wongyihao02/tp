@@ -1,14 +1,12 @@
 package attendance;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Map;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,12 +17,15 @@ import students.StudentList;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class AttendanceListTests {
 
     private AttendanceFile attendanceFileForTest;
     private TutorialClassList tutorialClassListForTest;
+    private Path tempFileGlobal;
+    private Path tempFile2Global;
 
     @BeforeEach
     void setup() throws IOException {
@@ -160,9 +161,11 @@ public class AttendanceListTests {
         // Step 2: Write to a temporary file
         Path tempFile = Files.createTempFile("tutorial_classes", ".txt");
         Files.writeString(tempFile, tutorials);
+        tempFileGlobal = tempFile;
 
         Path tempFile2 = Files.createTempFile("attendanceFile", ".txt");
         Files.writeString(tempFile2, attendancefiletext);
+        tempFile2Global = tempFile2;
 
         // Step 3: Load using your file loader
         TutorialClassListFileLoader loader = new TutorialClassListFileLoader();
@@ -173,6 +176,12 @@ public class AttendanceListTests {
         ArrayList<AttendanceList> attendanceFileList = attendanceFile.getAttendanceList();
         attendanceFileForTest = attendanceFile;
         tutorialClassListForTest = tutorialList;
+    }
+
+    @AfterEach
+    public void deleteTempFiles() throws IOException {
+        Files.deleteIfExists(tempFileGlobal);
+        Files.deleteIfExists(tempFile2Global);
     }
 
     @Test
@@ -195,6 +204,7 @@ public class AttendanceListTests {
         TutorialClass tutorial = attendancelist.getTutorialClass();
         StudentList listOfStudents = tutorial.getStudentList();
         Student phoebeOng = listOfStudents.getStudentByName("Phoebe Ong");
+        Student Kenny = listOfStudents.getStudentByName("Kenny Yeo");
         assertEquals("Phoebe Ong", phoebeOng.getName());
         ArrayList<String> comments = attendancelist.getComment(phoebeOng);
 
@@ -207,5 +217,35 @@ public class AttendanceListTests {
         assertEquals("Excellent teamwork", comments.get(0));
         assertEquals("attentive in class", comments.get(1));
         assertEquals("submits work on time", comments.get(2));
+    }
+
+    @Test
+    public void testWeekNum() {
+        ArrayList<AttendanceList> attendanceFileList = attendanceFileForTest.getAttendanceList();
+        AttendanceList attendancelist = attendanceFileForTest.getAttendanceByNameAndWeek(2, "T02");
+        TutorialClass tutorial = attendancelist.getTutorialClass();
+        assertEquals(2, attendancelist.getWeekNumber());
+        assertEquals("T02", tutorial.getTutorialName());
+        attendancelist.setWeekNumber(1);
+        assertEquals(1, attendancelist.getWeekNumber());
+
+    }
+
+    @Test
+    public void testSetTutorialClass() {
+        TutorialClass tutorial2 = tutorialClassListForTest.getByName("T01");
+        AttendanceList attendancelist = attendanceFileForTest.getAttendanceByNameAndWeek(2, "T02");
+        attendancelist.setTutorialClass(tutorial2);
+        assertEquals("T01", tutorial2.getTutorialName());
+        Map<Student, ArrayList<String>> comments = attendancelist.getCommentList();
+        Map<Student, String> attendanceMap = attendancelist.getAttendanceMap();
+        for (Map.Entry<Student, ArrayList<String>> entry : comments.entrySet()) {
+            assertTrue(entry.getValue().isEmpty());
+        }
+        for (Map.Entry<Student, String> entry : attendanceMap.entrySet()) {
+            assertTrue(entry.getValue().equals("Absent"));
+        }
+
+
     }
 }
