@@ -59,7 +59,7 @@ public class NewStudentCommand implements Command<TutorialClassList> {
             }
 
             // Retrieve the TutorialClass by its code
-            TutorialClass tutorialClass = tutorialClassList.getByName(tutorialClassCode);
+            TutorialClass tutorialClass = tutorialClassList.getTutorialByName(tutorialClassCode);
             if (tutorialClass == null) {
                 throw new TASyncException("No tutorial class found with code: " + tutorialClassCode);
             }
@@ -70,7 +70,7 @@ public class NewStudentCommand implements Command<TutorialClassList> {
             }
 
             // Create and add the student to the tutorial class
-            Student student = new Student(studentName, dob, gender, contact, matricNumber, tutorialClassCode);
+            Student student = new Student(studentName, dob, gender, contact, matricNumber);
             tutorialClass.getStudentList().addStudent(student);
 
             // Log and display success message

@@ -21,13 +21,13 @@ public class TutorialClassList {
         tutorialClasses.add(tutorialClass);
     }
 
-    public TutorialClass getByName(String name) {
+    public TutorialClass getTutorialByName(String name) {
         for (TutorialClass t : tutorialClasses) {
             if (t.getTutorialName().equalsIgnoreCase(name)) {
                 return t;
             }
         }
-        return null;
+        return new TutorialClass(name);
     }
 
     public void removeTutorialClass(TutorialClass tutorialClass) {

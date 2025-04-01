@@ -37,7 +37,7 @@ public class CheckRemarkCommand implements Command<TutorialClassList> {
             String matricNumber = inputParts[1].trim();
 
             // Retrieve the tutorial class by its code
-            TutorialClass tutorialClass = tutorialClassList.getByName(tutorialClassCode);
+            TutorialClass tutorialClass = tutorialClassList.getTutorialByName(tutorialClassCode);
             if (tutorialClass == null) {
                 throw new TASyncException("No tutorial class found with code: " + tutorialClassCode);
             }

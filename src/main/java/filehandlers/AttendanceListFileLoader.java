@@ -56,7 +56,7 @@ public class AttendanceListFileLoader implements FileLoader<AttendanceList> {
                     String[] parts = line.split(",", -1);
                     String name = parts[0].trim();
                     String matric = parts[1].trim();
-                    Student student = new Student(name, LocalDate.now(), "", "", matric, tutorialName);
+                    Student student = new Student(name, LocalDate.now(), "", "", matric);
                     ArrayList<String> comments = new ArrayList<>();
 
                     for (int i = 2; i < parts.length; i++) {
@@ -70,7 +70,7 @@ public class AttendanceListFileLoader implements FileLoader<AttendanceList> {
                     String matric = parts[1].trim();
                     String status = parts[2].trim();
 
-                    Student student = new Student(name, LocalDate.now(), "", "", matric, tutorialName);
+                    Student student = new Student(name, LocalDate.now(), "", "", matric);
                     students.add(student);
                     attendanceMap.put(student, status);
                 }
