@@ -12,7 +12,7 @@ public class StudentFileLoader implements FileLoader<Student> {
         throw new UnsupportedOperationException("Use loadFromLine(String line) instead for unified file.");
     }
 
-    public Student loadFromLine(String line, String tutorialName) {
+    public Student loadFromLine(String line) {
         String[] parts = line.split(",", -1);
         String name = parts[0];
         LocalDate dob = DateTimeFormatterUtil.parseDate(parts[1]);
@@ -21,7 +21,7 @@ public class StudentFileLoader implements FileLoader<Student> {
         String matric = parts[4];
         String remark = parts.length > 5 ? parts[5] : "";
 
-        Student student = new Student(name, dob, gender, contact, matric, tutorialName);
+        Student student = new Student(name, dob, gender, contact, matric);
         student.setRemark(remark);
         return student;
     }

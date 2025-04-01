@@ -30,7 +30,7 @@ public class AddMarksCommand implements Command<TutorialClassList> {
                 throw TASyncException.invalidNewMarksCommand();
             }
 
-            String[] partsArray = parts.split(",");
+            String[] partsArray = parts.split(" ");
             if (partsArray.length < 5){
                 throw TASyncException.invalidNewMarksCommand();
             }
@@ -46,7 +46,7 @@ public class AddMarksCommand implements Command<TutorialClassList> {
             }
 
             // Retrieve the tutorial class by its code
-            TutorialClass tutorialClass = tutorialClassList.getByName(tutorialID);
+            TutorialClass tutorialClass = tutorialClassList.getTutorialByName(tutorialID);
             if (tutorialClass == null) {
                 throw new TASyncException("No tutorial class found with code " + tutorialID);
             }

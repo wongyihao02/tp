@@ -7,6 +7,12 @@ import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 import command.taskcommands.Command;
 
+/**
+ * Represents the "CHECK_REMARK" command that retrieves and displays the remark
+ * of a specific student in a tutorial class. The command searches for the student
+ * using the provided matric number within the specified tutorial class and
+ * displays their remark if found.
+ */
 public class CheckRemarkCommand implements Command<TutorialClassList> {
 
     /**
@@ -28,7 +34,7 @@ public class CheckRemarkCommand implements Command<TutorialClassList> {
             }
 
             // Split the input into tutorial class code and matric number
-            String[] inputParts = parts.split(",");
+            String[] inputParts = parts.split(" ");
             if (inputParts.length != 2) {
                 throw TASyncException.invalidCheckRemarkCommand();
             }
@@ -37,8 +43,8 @@ public class CheckRemarkCommand implements Command<TutorialClassList> {
             String matricNumber = inputParts[1].trim();
 
             // Retrieve the tutorial class by its code
-            TutorialClass tutorialClass = tutorialClassList.getByName(tutorialClassCode);
-            if (tutorialClass == null) {
+            TutorialClass tutorialClass = tutorialClassList.getTutorialByName(tutorialClassCode);
+            if (tutorialClass.getStartTime() == null) {
                 throw new TASyncException("No tutorial class found with code: " + tutorialClassCode);
             }
 

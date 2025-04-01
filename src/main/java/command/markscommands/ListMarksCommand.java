@@ -27,7 +27,7 @@ public class ListMarksCommand implements Command<TutorialClassList> {
                 throw TASyncException.invalidListMarksCommand();
             }
 
-            String[] partsArray = parts.split(",");
+            String[] partsArray = parts.split(" ");
             if (partsArray.length < 2){
                 throw TASyncException.invalidListMarksCommand();
             }
@@ -36,7 +36,7 @@ public class ListMarksCommand implements Command<TutorialClassList> {
             String matricNumber = partsArray[1].trim();
 
             // Retrieve the tutorial class by its code
-            TutorialClass tutorialClass = tutorialClassList.getByName(tutorialID);
+            TutorialClass tutorialClass = tutorialClassList.getTutorialByName(tutorialID);
             if (tutorialClass == null) {
                 throw new TASyncException("No tutorial class found with code " + tutorialID);
             }

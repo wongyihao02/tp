@@ -11,8 +11,22 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
+/**
+ * Represents the "LIST_UPCOMING_TUTORIALS" command that lists upcoming tutorial classes
+ * based on the current date and an input end date.
+ * The tutorials are displayed along with their names, dates, and times until the specified end date.
+ * If the input is invalid or any exceptions occur, appropriate error messages are displayed.
+ */
 public class ListUpcomingTutorialsCommand implements Command<TutorialClassList> {
 
+    /**
+     * Executes the "LIST_UPCOMING_TUTORIALS" command to display all upcoming tutorial sessions
+     * from the current date until the given end date. The list includes the tutorial class name,
+     * date, start time, and end time.
+     *
+     * @param inputDate The end date as a string, used to limit the range of upcoming tutorials.
+     * @param tutorialClassList The list of tutorial classes to search through.
+     */
     @Override
     public void execute(String inputDate, TutorialClassList tutorialClassList) {
         try {
@@ -60,8 +74,6 @@ public class ListUpcomingTutorialsCommand implements Command<TutorialClassList> 
             }
             System.out.println("End of list");
 
-        } catch (TASyncException e) {
-            System.out.println(e.getMessage());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

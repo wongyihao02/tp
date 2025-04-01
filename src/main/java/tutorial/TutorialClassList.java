@@ -21,13 +21,16 @@ public class TutorialClassList {
         tutorialClasses.add(tutorialClass);
     }
 
-    public TutorialClass getByName(String name) {
+    public TutorialClass getTutorialByName(String name) {
         for (TutorialClass t : tutorialClasses) {
             if (t.getTutorialName().equalsIgnoreCase(name)) {
                 return t;
             }
         }
-        return null;
+        return new TutorialClass(name);
+        //return new tutorial class was done intentionally
+        //such that when loading attendanceFile with a tampered tutorialList File, a new Tutorial class is Created
+        // this is to prevent attendancelist loading from having errors
     }
 
     public void removeTutorialClass(TutorialClass tutorialClass) {

@@ -18,7 +18,7 @@ public class Student {
 
     public Student(
             String name, LocalDate dateOfBirth, String gender,
-            String contact, String matricNumber, String tutorialClass
+            String contact, String matricNumber
     ) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -26,6 +26,14 @@ public class Student {
         this.contact = contact;
         this.matricNumber = matricNumber;
         this.marksList = new MarksList();
+    }
+    public Student(String name, String matricNumber) {
+        this.name = name;
+        this.matricNumber = matricNumber;
+        this.marksList = new MarksList();
+        dateOfBirth = LocalDate.now();
+        gender = "M";
+        contact = "";
     }
 
 

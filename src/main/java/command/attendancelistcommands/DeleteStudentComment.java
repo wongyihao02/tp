@@ -24,7 +24,7 @@ public class DeleteStudentComment implements Command<AttendanceFile> {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
 
-            String[] partsArray = partsArray2[0].split(",");
+            String[] partsArray = partsArray2[0].split(" ");
 
             ArrayList<AttendanceList> list = attendanceList.getAttendanceList();
 
@@ -44,7 +44,8 @@ public class DeleteStudentComment implements Command<AttendanceFile> {
             ArrayList<Student> stdList = theOne.getTutorialClass().getStudentList().getStudents();
             Student derStudent = null;
             for (Student s : stdList) {
-                if (s.getMatricNumber().equals(partsArray[3]) && s.getName().equals(partsArray[2])) {
+                if (s.getMatricNumber().equalsIgnoreCase(partsArray[3])
+                        && s.getName().equalsIgnoreCase(partsArray[2])) {
                     derStudent = s;
                 }
             }

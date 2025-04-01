@@ -30,7 +30,7 @@ public class DeleteMarksCommand implements Command<TutorialClassList> {
                 throw TASyncException.invalidDeleteMarksCommand();
             }
 
-            String[] partsArray = parts.split(",");
+            String[] partsArray = parts.split(" ");
             if (partsArray.length < 3){
                 throw TASyncException.invalidDeleteMarksCommand();
             }
@@ -40,7 +40,7 @@ public class DeleteMarksCommand implements Command<TutorialClassList> {
             String assignmentName = partsArray[2].trim();
 
             // Retrieve the tutorial class by its code
-            TutorialClass tutorialClass = tutorialClassList.getByName(tutorialID);
+            TutorialClass tutorialClass = tutorialClassList.getTutorialByName(tutorialID);
             if (tutorialClass == null) {
                 throw new TASyncException("No tutorial class found with code " + tutorialID);
             }

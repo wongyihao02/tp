@@ -7,6 +7,11 @@ import students.StudentList;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 
+/**
+ * Represents the "DELETESTUDENT" command that removes a student from a specific
+ * tutorial class. The command searches for the student using the provided matric number
+ * within the specified tutorial class and removes them if found.
+ */
 public class DeleteStudentCommand implements Command<TutorialClassList> {
 
     /**
@@ -34,7 +39,7 @@ public class DeleteStudentCommand implements Command<TutorialClassList> {
             }
 
             // Split the input into tutorial class code and matric number
-            String[] inputParts = parts.split(",");
+            String[] inputParts = parts.split(" ");
             if (inputParts.length != 2) {
                 throw TASyncException.invalidDeleteStudentCommand();
             }
@@ -43,8 +48,8 @@ public class DeleteStudentCommand implements Command<TutorialClassList> {
             String matricNumber = inputParts[1].trim();
 
             // Retrieve the tutorial class by its code
-            TutorialClass tutorialClass = tutorialClassList.getByName(tutorialClassCode);
-            if (tutorialClass == null) {
+            TutorialClass tutorialClass = tutorialClassList.getTutorialByName(tutorialClassCode);
+            if (tutorialClass.getStartTime() == null) {
                 throw new TASyncException("No tutorial class found with code: " + tutorialClassCode);
             }
 

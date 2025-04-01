@@ -7,6 +7,12 @@ import students.StudentList;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 
+/**
+ * Represents the "CHANGE_REMARK" command that updates the remark of a student
+ * in a specific tutorial class. The command searches for the student using
+ * the provided matric number within the specified tutorial class and modifies
+ * their remark accordingly.
+ */
 public class ChangeRemarkCommand implements Command<TutorialClassList> {
 
     /**
@@ -28,7 +34,7 @@ public class ChangeRemarkCommand implements Command<TutorialClassList> {
 
         try {
             // Split the input into tutorial class code, matric number, and new remark
-            String[] partsArray = parts.split(",", 3); // Split into 3 parts: tutorialClassCode, matricNumber, newRemark
+            String[] partsArray = parts.split(" ", 3); // Split into 3 parts: tutorialClassCode, matricNumber, newRemark
             if (partsArray.length < 3) {
                 throw TASyncException.invalidChangeRemarkCommand();
             }
@@ -38,8 +44,8 @@ public class ChangeRemarkCommand implements Command<TutorialClassList> {
             String newRemark = partsArray[2].trim();
 
             // Retrieve the tutorial class by its code
-            TutorialClass tutorialClass = tutorialClassList.getByName(tutorialClassCode);
-            if (tutorialClass == null) {
+            TutorialClass tutorialClass = tutorialClassList.getTutorialByName(tutorialClassCode);
+            if (tutorialClass.getStartTime() == null) {
                 throw new TASyncException("No tutorial class found with code: " + tutorialClassCode);
             }
 
