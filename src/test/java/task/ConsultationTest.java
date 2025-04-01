@@ -24,7 +24,8 @@ class ConsultationTest {
 
     @Test
     void testConsultationToFileFormat() throws TASyncException {
-        Consultation consultation = new Consultation("Alice", true, "15/04/2025 09:30", "15/04/2025 11:00");
+        Consultation consultation = new Consultation("Alice", true,
+                "15/04/2025 09:30", "15/04/2025 11:00");
 
         assertEquals("C,true,Alice,15/04/2025 09:30,15/04/2025 11:00\n", consultation.toFileFormat());
     }

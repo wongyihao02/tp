@@ -13,7 +13,8 @@ class EventTest {
     void testEventStartingToday() throws TASyncException {
         // Create an event starting today in "dd/MM/yyyy HH:mm" format
         String todayStr = LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " 10:00";
-        String tomorrowStr = LocalDate.now().plusDays(1).format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " 12:00";
+        String tomorrowStr = LocalDate.now().plusDays(1).
+                format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " 12:00";
 
         Event event = new Event("Workshop", false, todayStr, tomorrowStr);
 
