@@ -37,7 +37,7 @@ public class ListTutorialStudentsCommand implements Command<TutorialClassList> {
 
             // Find the tutorial by name
             for (TutorialClass tutorial : tutorials) {
-                if (tutorial.getTutorialName().equals(tutorialName)) {
+                if (tutorial.getTutorialName().equalsIgnoreCase(tutorialName)) {
                     targetTutorial = tutorial;
                 }
             }

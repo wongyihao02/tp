@@ -38,7 +38,7 @@ public class CommentOnStudentCommand implements Command<AttendanceFile> {
 
             for (AttendanceList a : list) {
                 if (a.getWeekNumber() == Integer.parseInt(partsArray[1])
-                        && a.getTutorialClass().getTutorialName().equals(partsArray[0])) {
+                        && a.getTutorialClass().getTutorialName().equalsIgnoreCase(partsArray[0])) {
                     theOne = a;
                 }
             }
@@ -50,7 +50,7 @@ public class CommentOnStudentCommand implements Command<AttendanceFile> {
             ArrayList<Student> stdList = theOne.getTutorialClass().getStudentList().getStudents();
             Student derStudent = null;
             for (Student s : stdList) {
-                if (s.getMatricNumber().equals(partsArray[3]) && s.getName().equals(partsArray[2])) {
+                if (s.getMatricNumber().equalsIgnoreCase(partsArray[3]) && s.getName().equalsIgnoreCase(partsArray[2])) {
                     derStudent = s;
                 }
             }

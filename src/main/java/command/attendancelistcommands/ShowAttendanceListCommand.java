@@ -34,7 +34,7 @@ public class ShowAttendanceListCommand implements Command<AttendanceFile> {
 
             for (AttendanceList a : list) {
                 if (a.getWeekNumber() == weekNumber
-                        && a.getTutorialClass().getTutorialName().equals(tutorialName)) {
+                        && a.getTutorialClass().getTutorialName().equalsIgnoreCase(tutorialName)) {
                     theOne = a;
                 }
             }
