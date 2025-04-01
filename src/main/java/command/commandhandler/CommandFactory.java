@@ -62,7 +62,6 @@ public class CommandFactory {
             return null;
         }
 
-        // Remove the leading '/' and convert the command to uppercase
         String command = parts[0].toUpperCase();
         String taskTypeShortcut = parts[1];
         String listType = parts[1];

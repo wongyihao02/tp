@@ -21,7 +21,7 @@ public class CreateNewAttendanceList implements Command<ArrayList<Object>> {
             if (parts == null || parts.trim().isEmpty()) {
                 throw TASyncException.invalidListAttendanceListCommand();
             }
-            String[] partsArray = parts.split(" ");
+            String[] partsArray = parts.split(",");
             if (partsArray.length != 2) {
                 throw TASyncException.invalidListAttendanceListCommand();
             }
