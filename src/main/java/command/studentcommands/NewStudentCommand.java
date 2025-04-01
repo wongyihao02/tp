@@ -7,8 +7,6 @@ import command.taskcommands.Command;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 import java.time.LocalDate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Represents the "NEWSTUDENT" command that adds a new student to a specified tutorial class.
@@ -16,7 +14,6 @@ import java.util.logging.Logger;
  * before adding the student to the class.
  */
 public class NewStudentCommand implements Command<TutorialClassList> {
-    private static final Logger logger = Logger.getLogger(NewStudentCommand.class.getName());
 
     /**
      * Executes the "NEWSTUDENT" command by creating a new student and adding them
@@ -38,7 +35,7 @@ public class NewStudentCommand implements Command<TutorialClassList> {
         try {
             // Validate input
             if (parts == null || parts.trim().isEmpty()) {
-                throw new TASyncException("Invalid input: Student details cannot be empty.");
+                throw TASyncException.invalidNewStudentCommand();
             }
 
             // Split the input into parts
@@ -94,7 +91,6 @@ public class NewStudentCommand implements Command<TutorialClassList> {
             tutorialClass.getStudentList().addStudent(student);
 
             // Log and display success message
-            logger.log(Level.INFO, "New student added to tutorial class " + tutorialClassCode + ": " + studentName);
             System.out.println("New student added to tutorial class " + tutorialClassCode + ": " + studentName);
 
         } catch (TASyncException e) {
