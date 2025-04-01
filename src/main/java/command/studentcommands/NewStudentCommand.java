@@ -70,7 +70,7 @@ public class NewStudentCommand implements Command<TutorialClassList> {
             }
 
             // Create and add the student to the tutorial class
-            Student student = new Student(studentName, dob, gender, contact, matricNumber, tutorialClassCode);
+            Student student = new Student(studentName, dob, gender, contact, matricNumber);
             tutorialClass.getStudentList().addStudent(student);
 
             // Log and display success message

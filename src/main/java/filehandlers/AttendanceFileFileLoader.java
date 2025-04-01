@@ -73,7 +73,6 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
                         attendanceLists.add(list);
                     }
 
-                    currentTutorial = null;
                     currentClass = null;
                     attendanceMap = new HashMap<>();
                     commentMap = new HashMap<>();
@@ -107,15 +106,16 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
                     if (parts.length < 3) {
                         continue;
                     }
-
+                    String name = parts[0].trim();
                     String matric = parts[1].trim();
                     String status = parts[2].trim();
-                    Student student = currentClass.getStudentList().getStudentByMatricNumber(matric);
-                    if (student == null) {
-                        System.err.println("Attendance student not found: " + matric);
-                        continue;
+                    Student student;
+                    try{
+                        student = currentClass.getStudentList().getStudentByMatricNumber(matric);
+                    }catch (NullPointerException e){
+                        System.err.println("Student with" + matric +"no longer found in list" );
+                        student = new Student(name, matric);
                     }
-
                     attendanceMap.put(student, status);
                 }
             }

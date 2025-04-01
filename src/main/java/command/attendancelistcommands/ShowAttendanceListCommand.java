@@ -20,7 +20,7 @@ public class ShowAttendanceListCommand implements Command<AttendanceFile> {
                 throw TASyncException.invalidListAttendanceListCommand();
             }
 
-            String[] partsArray = parts.split(",");
+            String[] partsArray = parts.split(" ");
             //if not all inputs given or too many
             if (partsArray.length != 2) {
                 throw TASyncException.invalidListAttendanceListCommand();
