@@ -9,7 +9,7 @@ import java.time.LocalTime;
 public class TutorialClass {
     private String tutorialName;
     private StudentList studentList=new StudentList();
-    private LocalTime startTime;
+    private LocalTime startTime=null;
     private LocalTime endTime;
     private DayOfWeek dayOfWeek;
 
