@@ -69,7 +69,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "NEWSTUDENT: Adds a new student using provided information. " +
-                            "Usage: NEWSTUDENT -t <name> <dob> <gender> <contact> <matric_number> <tutorial_class>"
+                            "Usage: NEWSTUDENT -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>"
             );
         }
     },
@@ -78,7 +78,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "CHANGEREMARK: Updates a student's remark. " +
-                            "Usage: CHANGEREMARK -t <tutorial_name> <matric_number> <new_remark>"
+                            "Usage: CHANGEREMARK -t <tutorial_name>,<matric_number>,<new_remark>"
             );
         }
     },
@@ -87,7 +87,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "CHECKREMARK: Checks remarks for a student. " +
-                            "Usage: CHECKREMARK -t <tutorial_name> <matric_number>"
+                            "Usage: CHECKREMARK -t <tutorial_name>,<matric_number>"
             );
         }
     },
@@ -96,7 +96,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "DELETESTUDENT: Removes a student from a tutorial. " +
-                            "Usage: DELETESTUDENT -t <tutorial_name> <matric_number>"
+                            "Usage: DELETESTUDENT -t <tutorial_name>,<matric_number>"
             );
         }
     },
@@ -114,7 +114,7 @@ public enum CommandList {
         public void printCommand(){
             System.out.println(
                     "NEWMARKS: Adds new marks for a student. " +
-                            "Usage: NEWMARKS -m <tut_id> <matric_num> <assignment_name> <marks_achieved> <max_marks>"
+                            "Usage: NEWMARKS -m <tut_id>,<matric_num>,<assignment_name>,<marks_achieved> <max_marks>"
             );
         }
     },
@@ -123,7 +123,7 @@ public enum CommandList {
         public void printCommand(){
             System.out.println(
                     "DELETEMARKS: Deletes marks for a given student by assignment name. " +
-                            "Usage: DELETEMARKS -m <tutorial_id> <matric_number> <assignment_name>"
+                            "Usage: DELETEMARKS -m <tutorial_id>,<matric_number>,<assignment_name>"
             );
         }
     },
@@ -132,7 +132,7 @@ public enum CommandList {
         public void printCommand(){
             System.out.println(
                     "LISTMARKS: Lists the marks achieved in all assignments for the given student. " +
-                            "Usage: LIST -m <tutorial_id> <matric_number>"
+                            "Usage: LIST -m <tutorial_id>,<matric_number>"
             );
         }
     },
@@ -141,7 +141,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "NEWTUTORIAL: Creates a new tutorial. " +
-                            "Usage: NEWTUTORIAL -t <tutorial_name> <day_of_week> <start_time> <end_time>"
+                            "Usage: NEWTUTORIAL -t <tutorial_name>,<day_of_week>,<start_time> <end_time>"
             );
         }
     },
@@ -177,7 +177,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "MARKSTUDENT: Marks a student's attendance as present. " +
-                            "Usage: MARK -a <Tutname,weeknum,studentname,studentmatricnumber>"
+                            "Usage: MARK -a <Tutname>,<weeknum>,<studentname>,<studentmatricnumber>"
             );
         }
     },
@@ -186,7 +186,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "UNMARKSTUDENT: Marks a student's attendance as absent. " +
-                            "Usage: UNMARK -a <Tutname,weeknum,studentname,studentmatricnumber>"
+                            "Usage: UNMARK -a <Tutname>,<weeknum>,<studentname>,<studentmatricnumber>"
             );
         }
     },
@@ -195,7 +195,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "LISTATTENDANCESTUDENTS: Shows students and attendance status. " +
-                            "Usage: LIST -a <Tutname,weeknum>"
+                            "Usage: LIST -a <Tutname>,<weeknum>"
             );
         }
     },
@@ -204,7 +204,8 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "COMMENT: Adds a comment to a student. " +
-                            "Usage: COMMENT -a <Tutname,weeknum,studentname,studentmatricnumber//comment1;comment2>"
+                            "Usage: COMMENT -a <Tutname>,<weeknum,<studentname>," +
+                            "<studentmatricnumber>//comment1;comment2>"
             );
         }
     },
@@ -213,7 +214,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "VIEWCOMMENT: Shows comments on a student. " +
-                            "Usage: VIEWCOMMENT -a <Tutname,weeknum,studentname,studentmatricnumber>"
+                            "Usage: VIEWCOMMENT -a <Tutname>,<weeknum>,<studentname>,<studentmatricnumber>"
             );
         }
     },
@@ -222,7 +223,8 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "DELETECOMMENT: Deletes a student's comment. " +
-                            "Usage: DELETECOMMENT -a <Tutname,weeknum,studentname,studentmatricnumber//commentnum>"
+                            "Usage: DELETECOMMENT -a <Tutname>,<weeknum>," +
+                            "<studentname>,<studentmatricnumber>//commentnum>"
             );
         }
     },
