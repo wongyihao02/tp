@@ -7,6 +7,12 @@ import students.StudentList;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 
+/**
+ * Represents the "CHANGE_REMARK" command that updates the remark of a student
+ * in a specific tutorial class. The command searches for the student using
+ * the provided matric number within the specified tutorial class and modifies
+ * their remark accordingly.
+ */
 public class ChangeRemarkCommand implements Command<TutorialClassList> {
 
     /**

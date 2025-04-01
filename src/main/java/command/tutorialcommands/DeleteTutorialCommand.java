@@ -5,7 +5,10 @@ import tutorial.TutorialClassList;
 import exception.TASyncException;
 import command.taskcommands.Command;
 
-
+/**
+ * Represents the "DELETE_TUTORIAL" command that removes a tutorial class by its code.
+ * If the specified tutorial class does not exist, an appropriate message is displayed.
+ */
 public class DeleteTutorialCommand implements Command<TutorialClassList> {
 
     /**
