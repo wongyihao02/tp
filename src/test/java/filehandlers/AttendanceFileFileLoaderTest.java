@@ -1,5 +1,10 @@
 package filehandlers;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,7 +16,6 @@ import attendance.AttendanceFile;
 import attendance.AttendanceList;
 import tutorial.TutorialClassList;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 
 public class AttendanceFileFileLoaderTest {
