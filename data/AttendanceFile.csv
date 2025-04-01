@@ -11,7 +11,12 @@ Chloe Ong,A003,Present
 //comments
 Alice Tan,A001,Absent without valid reason
 Harry Choo,A008,Participated actively
+Farhan Lee,A006,
 Grace Tan,A007,Asked thoughtful questions
+David Ng,A004,
+Ella Sim,A005,
+Ben Lim,A002,
+Chloe Ong,A003,
 //commentEnd
 
 # T01,2
@@ -25,7 +30,13 @@ Ben Lim,A002,Present
 Chloe Ong,A003,Present
 
 //comments
+Alice Tan,A001,
+Harry Choo,A008,
+Farhan Lee,A006,
+Grace Tan,A007,
 David Ng,A004,Consistent participation
+Ella Sim,A005,
+Ben Lim,A002,
 Chloe Ong,A003,Submitted work early
 //commentEnd
 
@@ -40,8 +51,14 @@ Ben Lim,A002,Present
 Chloe Ong,A003,Present
 
 //comments
+Alice Tan,A001,
 Harry Choo,A008,Helped peers
+Farhan Lee,A006,
+Grace Tan,A007,
+David Ng,A004,
 Ella Sim,A005,Good engagement in class
+Ben Lim,A002,
+Chloe Ong,A003,
 //commentEnd
 
 # T01,4
@@ -55,8 +72,14 @@ Ben Lim,A002,Present
 Chloe Ong,A003,Present
 
 //comments
+Alice Tan,A001,
+Harry Choo,A008,
 Farhan Lee,A006,Excellent presentation
+Grace Tan,A007,
+David Ng,A004,
+Ella Sim,A005,
 Ben Lim,A002,Active in group discussion
+Chloe Ong,A003,
 //commentEnd
 
 # T02,1
@@ -70,8 +93,14 @@ Marcus Chin,A013,Present
 Nicole Tay,A014,Present
 
 //comments
+Kenny Yeo,A011,
 Lena Khoo,A012,Shared helpful resources
+Jasmine Goh,A010,
 Isaac Tan,A009,Absent without informing
+Owen Teo,A015,
+Phoebe Ong,A016,
+Marcus Chin,A013,
+Nicole Tay,A014,
 //commentEnd
 
 # T02,2
@@ -85,7 +114,13 @@ Marcus Chin,A013,Present
 Nicole Tay,A014,Present
 
 //comments
+Kenny Yeo,A011,
+Lena Khoo,A012,
+Jasmine Goh,A010,
+Isaac Tan,A009,
+Owen Teo,A015,
 Phoebe Ong,A016,Excellent teamwork
+Marcus Chin,A013,
 Nicole Tay,A014,Consistent contributor
 //commentEnd
 
@@ -101,7 +136,13 @@ Nicole Tay,A014,Present
 
 //comments
 Kenny Yeo,A011,Assisted with setup
+Lena Khoo,A012,
 Jasmine Goh,A010,Very attentive
+Isaac Tan,A009,
+Owen Teo,A015,
+Phoebe Ong,A016,
+Marcus Chin,A013,
+Nicole Tay,A014,
 //commentEnd
 
 # T02,4
@@ -115,8 +156,14 @@ Marcus Chin,A013,Present
 Nicole Tay,A014,Present
 
 //comments
+Kenny Yeo,A011,
+Lena Khoo,A012,
+Jasmine Goh,A010,
+Isaac Tan,A009,
 Owen Teo,A015,Contributed good insights
+Phoebe Ong,A016,
 Marcus Chin,A013,Provided peer feedback
+Nicole Tay,A014,
 //commentEnd
 
 # T03,1
@@ -130,8 +177,14 @@ Rachel Lim,A018,Present
 Xinyi Tay,A024,Present
 
 //comments
+Valerie Goh,A022,
+William Sim,A023,
+Tina Choo,A020,
+Umar Ng,A021,
+Samuel Yeo,A019,
 Quincy Tan,A017,Absent without reason
 Rachel Lim,A018,Great presentation
+Xinyi Tay,A024,
 //commentEnd
 
 # T03,2
@@ -146,7 +199,13 @@ Xinyi Tay,A024,Present
 
 //comments
 Valerie Goh,A022,On-time and prepared
+William Sim,A023,
+Tina Choo,A020,
 Umar Ng,A021,Led group discussion
+Samuel Yeo,A019,
+Quincy Tan,A017,
+Rachel Lim,A018,
+Xinyi Tay,A024,
 //commentEnd
 
 # T03,3
@@ -160,8 +219,14 @@ Rachel Lim,A018,Present
 Xinyi Tay,A024,Present
 
 //comments
+Valerie Goh,A022,
 William Sim,A023,Clear communication
 Tina Choo,A020,Good progress
+Umar Ng,A021,
+Samuel Yeo,A019,
+Quincy Tan,A017,
+Rachel Lim,A018,
+Xinyi Tay,A024,
 //commentEnd
 
 # T03,4
@@ -175,7 +240,13 @@ Rachel Lim,A018,Present
 Xinyi Tay,A024,Present
 
 //comments
+Valerie Goh,A022,
+William Sim,A023,
+Tina Choo,A020,
+Umar Ng,A021,
 Samuel Yeo,A019,Great improvement
+Quincy Tan,A017,
+Rachel Lim,A018,
 Xinyi Tay,A024,Very responsive
 //commentEnd
 
@@ -190,7 +261,13 @@ Amanda Lim,A027,Present
 Yvonne Lee,A025,Absent
 
 //comments
+Elaine Sim,A031,
+Felix Tan,A032,
 Darren Goh,A030,Strong leadership
+Brandon Chua,A028,
+Cassandra Ong,A029,
+Zachary Teo,A026,
+Amanda Lim,A027,
 Yvonne Lee,A025,Medical leave
 //commentEnd
 
@@ -205,8 +282,14 @@ Amanda Lim,A027,Present
 Yvonne Lee,A025,Absent
 
 //comments
+Elaine Sim,A031,
+Felix Tan,A032,
+Darren Goh,A030,
 Brandon Chua,A028,Quick thinker
+Cassandra Ong,A029,
+Zachary Teo,A026,
 Amanda Lim,A027,Good organisation
+Yvonne Lee,A025,
 //commentEnd
 
 # T04,3
@@ -220,8 +303,14 @@ Amanda Lim,A027,Present
 Yvonne Lee,A025,Absent
 
 //comments
+Elaine Sim,A031,
 Felix Tan,A032,Submitted early
+Darren Goh,A030,
+Brandon Chua,A028,
+Cassandra Ong,A029,
 Zachary Teo,A026,Helpful to classmates
+Amanda Lim,A027,
+Yvonne Lee,A025,
 //commentEnd
 
 # T04,4
@@ -236,11 +325,18 @@ Yvonne Lee,A025,Absent
 
 //comments
 Elaine Sim,A031,Well prepared
+Felix Tan,A032,
+Darren Goh,A030,
+Brandon Chua,A028,
 Cassandra Ong,A029,Improved confidence
+Zachary Teo,A026,
+Amanda Lim,A027,
+Yvonne Lee,A025,
 //commentEnd
 
 # T05,1
 Gina Yeo,A033,Absent
+john pam,A0123123A,Present
 Henry Lim,A034,Present
 Nathan Choo,A040,Present
 Melissa Ong,A039,Present
@@ -251,11 +347,19 @@ Jason Tan,A036,Present
 
 //comments
 Gina Yeo,A033,Absent for unknown reason
+john pam,A0123123A,
+Henry Lim,A034,
+Nathan Choo,A040,
+Melissa Ong,A039,
+Karen Ng,A037,
 Leonard Lee,A038,Very engaged
+Isabelle Goh,A035,
+Jason Tan,A036,
 //commentEnd
 
 # T05,2
 Gina Yeo,A033,Absent
+john pam,A0123123A,Present
 Henry Lim,A034,Present
 Nathan Choo,A040,Present
 Melissa Ong,A039,Present
@@ -265,12 +369,20 @@ Isabelle Goh,A035,Present
 Jason Tan,A036,Present
 
 //comments
+Gina Yeo,A033,
+john pam,A0123123A,
+Henry Lim,A034,
+Nathan Choo,A040,
 Melissa Ong,A039,Good time management
+Karen Ng,A037,
+Leonard Lee,A038,
+Isabelle Goh,A035,
 Jason Tan,A036,Offered creative ideas
 //commentEnd
 
 # T05,3
 Gina Yeo,A033,Absent
+john pam,A0123123A,Present
 Henry Lim,A034,Present
 Nathan Choo,A040,Present
 Melissa Ong,A039,Present
@@ -280,12 +392,20 @@ Isabelle Goh,A035,Present
 Jason Tan,A036,Present
 
 //comments
+Gina Yeo,A033,
+john pam,A0123123A,
+Henry Lim,A034,
+Nathan Choo,A040,
+Melissa Ong,A039,
 Karen Ng,A037,Well spoken in discussion
+Leonard Lee,A038,
 Isabelle Goh,A035,Encouraged peers
+Jason Tan,A036,
 //commentEnd
 
 # T05,4
 Gina Yeo,A033,Absent
+john pam,A0123123A,Present
 Henry Lim,A034,Present
 Nathan Choo,A040,Present
 Melissa Ong,A039,Present
@@ -295,8 +415,15 @@ Isabelle Goh,A035,Present
 Jason Tan,A036,Present
 
 //comments
+Gina Yeo,A033,
+john pam,A0123123A,
 Henry Lim,A034,Consistently punctual
 Nathan Choo,A040,Strong project input
+Melissa Ong,A039,
+Karen Ng,A037,
+Leonard Lee,A038,
+Isabelle Goh,A035,
+Jason Tan,A036,
 //commentEnd
 
 # T01,5
@@ -318,5 +445,28 @@ David Ng,A004,
 Ella Sim,A005,
 Ben Lim,A002,
 Chloe Ong,A003,
+//commentEnd
+
+# T05,7
+Gina Yeo,A033,Absent
+john pam,A0123123A,Absent
+Henry Lim,A034,Absent
+Nathan Choo,A040,Absent
+Melissa Ong,A039,Absent
+Karen Ng,A037,Absent
+Leonard Lee,A038,Absent
+Isabelle Goh,A035,Absent
+Jason Tan,A036,Absent
+
+//comments
+Gina Yeo,A033,
+john pam,A0123123A,
+Henry Lim,A034,
+Nathan Choo,A040,
+Melissa Ong,A039,
+Karen Ng,A037,
+Leonard Lee,A038,
+Isabelle Goh,A035,
+Jason Tan,A036,
 //commentEnd
 

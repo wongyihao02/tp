@@ -54,14 +54,14 @@ class TutorialClassListFileLoaderTest {
         List<TutorialClass> tutorials = tutorialList.getTutorialClasses();
         assertEquals(5, tutorials.size(), "Should load 5 tutorial classes");
 
-        TutorialClass t01 = tutorialList.getByName("T01");
+        TutorialClass t01 = tutorialList.getTutorialByName("T01");
         assertNotNull(t01, "T01 should be loaded");
         assertEquals(DayOfWeek.MONDAY, t01.getDayOfWeek());
         assertEquals(LocalTime.of(9, 0), t01.getStartTime());
         assertEquals(LocalTime.of(10, 30), t01.getEndTime());
         assertEquals(2, t01.getStudentList().getStudents().size(), "T01 should have 2 students");
 
-        TutorialClass t05 = tutorialList.getByName("T05");
+        TutorialClass t05 = tutorialList.getTutorialByName("T05");
         assertNotNull(t05, "T05 should be loaded");
         assertEquals(DayOfWeek.FRIDAY, t05.getDayOfWeek());
         assertEquals(2, t05.getStudentList().getStudents().size(), "T05 should have 2 students");

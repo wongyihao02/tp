@@ -24,7 +24,7 @@ public class TutorialClassFileLoader implements FileLoader<TutorialClass> {
         LocalTime end = LocalTime.parse(meta[3].trim());
 
         List<String> studentLines = blockLines.subList(1, blockLines.size());
-        StudentList studentList = studentListFileLoader.loadFromLines(studentLines, name);
+        StudentList studentList = studentListFileLoader.loadFromLines(studentLines);
 
         TutorialClass tutorial = new TutorialClass();
         tutorial.setTutorialName(name);

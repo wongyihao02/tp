@@ -1,5 +1,6 @@
 package students;
 
+import marks.MarksList;
 import util.DateTimeFormatterUtil;
 
 import java.time.LocalDate;
@@ -13,16 +14,26 @@ public class Student {
     private String contact;
     private String matricNumber;
     private String remark;
+    private MarksList marksList;
 
     public Student(
             String name, LocalDate dateOfBirth, String gender,
-            String contact, String matricNumber, String tutorialClass
+            String contact, String matricNumber
     ) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.contact = contact;
         this.matricNumber = matricNumber;
+        this.marksList = new MarksList();
+    }
+    public Student(String name, String matricNumber) {
+        this.name = name;
+        this.matricNumber = matricNumber;
+        this.marksList = new MarksList();
+        dateOfBirth = LocalDate.now();
+        gender = "M";
+        contact = "";
     }
 
 
@@ -77,6 +88,18 @@ public class Student {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public MarksList getMarksList() {
+        return marksList;
+    }
+
+    public void setMarksList(MarksList marksList) {
+        this.marksList = marksList;
+    }
+
+    public String toFileFormat() {
+        return getName() +","+ getAge() +"," + getGender() +"," + getContact() +","+ getMatricNumber() +"/n";
     }
 
     @Override

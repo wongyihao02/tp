@@ -14,10 +14,10 @@ public class StudentListFileLoader implements FileLoader<StudentList> {
         throw new UnsupportedOperationException("Use loadFromLines(List<String>, tutorialName) instead.");
     }
 
-    public StudentList loadFromLines(List<String> lines, String tutorialName) {
+    public StudentList loadFromLines(List<String> lines) {
         ArrayList<Student> students = new ArrayList<>();
         for (String line : lines) {
-            Student s = studentLoader.loadFromLine(line, tutorialName);
+            Student s = studentLoader.loadFromLine(line);
             if (s != null) {
                 students.add(s);
             }

@@ -56,7 +56,7 @@ public class CommandLoopHandler {
                 commandHandler = new CommandHandler(taskList, parts);
             } else if (listType.equalsIgnoreCase("-s")) {
                 commandHandler = new CommandHandler(studentList, parts);
-            } else if (listType.equalsIgnoreCase("-t")) {
+            } else if (listType.equalsIgnoreCase("-t") || listType.equalsIgnoreCase("-m")) {
                 commandHandler = new CommandHandler(tutorialList, parts);
             } else if (listType.equalsIgnoreCase("-a")) {
                 commandHandler = new CommandHandler(attendanceFile, parts);
