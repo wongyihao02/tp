@@ -236,7 +236,7 @@ public class AttendanceListTests {
 
     @Test
     public void testSetTutorialClass() {
-        TutorialClass tutorial2 = tutorialClassListForTest.getByName("T01");
+        TutorialClass tutorial2 = tutorialClassListForTest.getTutorialByName("T01");
         AttendanceList attendancelist = attendanceFileForTest.getAttendanceByNameAndWeek(2, "T02");
         attendancelist.setTutorialClass(tutorial2);
         assertEquals("T01", tutorial2.getTutorialName());
