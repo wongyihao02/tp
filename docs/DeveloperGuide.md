@@ -20,6 +20,140 @@ The `command` package contains the following sub-packages:
 
 
 ### Attendance List Commands
+#### 1.ShowAttendanceListCommand
+This is part of the Attendancelistcommands package,the function of this class is to show the user the attendance list of the tutorial and week the user asks for.
+
+#### Implementation details
+This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial and week the user has given
+and print the names and attendance status of the students in that tutorial,if it exists.
+
+#### operations
+- `ShowAttendanceListCommand.execute()`
+- extracts tutorial name and week number from the given input.
+- Exception thrown if no input or not enough input given.
+- The AttendancFile is searched to find the relevant AttendanceList
+- Exception is thrown and handled if none found.
+- The hashMap containing the attendance status of the students will be printed.
+- A different message will be printed if this hashMap is empty(signalling that the attendanceList has no students in it).
+- An error message will be printed when an Exception is handled.
+- 
+
+#### 2.MarkStudentAttendanceCommand
+This is part of the Attendancelistcommands package,the function of this class is to mark a student present for a specific tutorial
+
+#### Implementation details
+This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial,week and the student name and matric number  that the user has given
+and set the attendance status of the given student as Present in the attendanceList for the given tutorial name and week.
+
+#### operations
+- `MarkStudentAttendanceCommand.execute()`
+- extracts tutorial name, week number and student name and matric number from the given input.
+- Exception thrown if no inputs, not enough inputs or too much inputs are given.
+- The AttendancFile is searched to find the relevant AttendanceList
+- Exception is thrown and handled if none found.
+- This AttendanceList is then checked is it has a student with the same name and matric number is found.
+- Exception is thrown and handled if none found.
+- The value for the student in the hashMap containing the attendance status of the students will be changed to Present.
+- An error message will be printed when an Exception is handled.
+
+
+#### 3.UnmarkStudentAttendanceCommand
+This is part of the Attendancelistcommands package,the function of this class is to mark a student Absent for a specific tutorial
+
+#### Implementation details
+This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial,week and the student that the user has given
+and set the attendance status of the given student as Absent in the attendanceList for the given tutorial name and week.
+
+#### operations
+- `UnmarkStudentAttendanceCommand.execute()`
+- extracts tutorial name, week number and student name and matric number from the given input.
+- Exception thrown if no inputs, not enough inputs or too much inputs are given.
+- The AttendancFile is searched to find the relevant AttendanceList
+- Exception is thrown and handled if none found.
+- This AttendanceList is then checked is it has a student with the same name and matric number is found.
+- Exception is thrown and handled if none found.
+- The value for the student in the hashMap containing the attendance status of the students will be changed to Absent.
+- An error message will be printed when an Exception is handled.
+
+
+#### 4.ViewStudentCommentsCommand
+This is part of the Attendancelistcommands package,the function of this class is print out all the comments given for a student in the particular tutorial and week.
+
+#### Implementation details
+This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial,week and the student name and matric number
+that the user has given and print all comments for the given student in the attendanceList for the given tutorial name and week.
+
+#### operations
+- `ViewStudentCommentsCommand.execute()`
+- extracts tutorial name, week number and student name and matric number from the given input.
+- Exception thrown if no inputs, not enough inputs or too much inputs are given.
+- The AttendancFile is searched to find the relevant AttendanceList
+- Exception is thrown and handled if none found.
+- This AttendanceList is then checked is it has a student with the same name and matric number is found.
+- Exception is thrown and handled if none found.
+- The elements of the ArrayList<String> associated with the student in the hashmap for students to comments is printed
+- A special message will be printed if this ArrayList is empty.
+- An error message will be printed when an Exception is handled.
+
+
+#### 5.CommentOnStudentCommand
+This is part of the Attendancelistcommands package,the function of this class is to add a comment(s) to a student in the particular tutorial and week.
+
+#### Implementation details
+This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial,week and the student name and matric number
+and their comments that the user has given and add all comments to the ArrayList containing all comments for a given student in the attendanceList for the given tutorial name and week.
+
+#### operations
+- `CommentOnStudentCommand.execute()`
+- extracts tutorial name, week number , student name and matric number and the comments to be added from the given input.
+- Exception thrown if no inputs, not enough inputs or too much inputs are given.
+- The AttendancFile is searched to find the relevant AttendanceList
+- Exception is thrown and handled if none found.
+- This AttendanceList is then checked is it has a student with the same name and matric number is found.
+- Exception is thrown and handled if none found.
+- The ArrayList<String> associated with the student in the hashmap for student comments have the given comments added to them.
+- An error message will be printed when an Exception is handled.
+
+
+#### 6.DeleteStudentCommentCommand
+This is part of the Attendancelistcommands package,the function of this class is to remove a comment to a student in the particular tutorial and week.
+
+#### Implementation details
+This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial,week and the student name and matric number
+and the number position of the comment to be removed that the user has given and remove the comment in the ArrayList containing all comments for a given student in the attendanceList for the given tutorial name and week.
+
+#### operations
+- `DeleteStudentCommentCommand.execute()`
+- extracts tutorial name, week number , student name and matric number and the number position of the comment to be removed from the given input.
+- Exception thrown if no inputs, not enough inputs or too much inputs are given.
+- The AttendancFile is searched to find the relevant AttendanceList
+- Exception is thrown and handled if none found.
+- This AttendanceList is then checked is it has a student with the same name and matric number is found.
+- Exception is thrown and handled if none found.
+- The ArrayList<String> associated with the student that stores comments for the has the (num given - 1)th element removed.A message will then be printed stating that the comment was successfully deleted.
+- Different messages will be printed if the student has no comments associated with them or if the num given is outside the boundaries of the comments ArrayList.
+- An error message will be printed when an Exception is handled.
+
+
+#### 7.CreateNewAttendanceList
+This is part of the Attendancelistcommands package,the function of this class is to create an AttendanceList for a particular tutorial and week.
+
+#### Implementation details
+This class implements the Command<ArrayList<Object>> interface.Its function is to take in the input from the user and extract the tutorial,week that the 
+user has given create a new AttendanceList from it to add to the attendanceFile.The ArrayList will have the TutorialClassList as the first element and the 
+AttendanceFile as the second element.
+
+#### operations
+- `CreateNewAttendanceList.execute()`
+- extracts tutorial name, week number for the new AttendanceList to be created from the given input.
+- Exception thrown if no inputs, not enough inputs or too much inputs are given.
+- The TutorialClassList is searched to find the relevant TutorialClass.
+- Exception is thrown and handled if none found.
+- The AttendanceFile is searched to find if it contains an AttendanceList for the given tutorial name and week.
+- A new AttendanceList would be created for the given tutorial name and week if non found.
+- Different message will be printed if the an AttendanceList was found.
+- An error message will be printed when an Exception is handled.
+
 
 ### Command Handler 
 

@@ -26,7 +26,7 @@ class TaskListTest {
 
     @Test
     void addTodoTask() {
-        // Create and add a Todo task
+        // Create and add task
         Todo todo = new Todo("Study Java", false);
         taskList.addTask(todo);
 
