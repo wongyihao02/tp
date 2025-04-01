@@ -43,7 +43,8 @@ public class MarkStudentAttendanceCommand implements Command<AttendanceFile> {
             ArrayList<Student> stdList = theOne.getTutorialClass().getStudentList().getStudents();
             Student derStudent = null;
             for (Student s : stdList) {
-                if (s.getMatricNumber().equalsIgnoreCase(partsArray[3]) && s.getName().equalsIgnoreCase(partsArray[2])) {
+                if (s.getMatricNumber().equalsIgnoreCase(partsArray[3])
+                        && s.getName().equalsIgnoreCase(partsArray[2])) {
                     derStudent = s;
                 }
             }
