@@ -39,7 +39,7 @@ public class DeleteStudentCommand implements Command<TutorialClassList> {
             }
 
             // Split the input into tutorial class code and matric number
-            String[] inputParts = parts.split(",");
+            String[] inputParts = parts.split(" ");
             if (inputParts.length != 2) {
                 throw TASyncException.invalidDeleteStudentCommand();
             }

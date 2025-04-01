@@ -17,7 +17,7 @@ public class UnmarkStudentAttendanceCommand implements Command<AttendanceFile> {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
 
-            String[] partsArray = parts.split(",");
+            String[] partsArray = parts.split(" ");
             //if not all inputs given or too many
             if (partsArray.length != 4) {
                 throw TASyncException.invalidmarkAttendanceListCommand();

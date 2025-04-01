@@ -30,7 +30,7 @@ public class AddMarksCommand implements Command<TutorialClassList> {
                 throw TASyncException.invalidNewMarksCommand();
             }
 
-            String[] partsArray = parts.split(",");
+            String[] partsArray = parts.split(" ");
             if (partsArray.length < 5){
                 throw TASyncException.invalidNewMarksCommand();
             }
