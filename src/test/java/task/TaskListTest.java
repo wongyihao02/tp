@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
@@ -22,6 +23,11 @@ class TaskListTest {
 
         // Create a new task list with empty ArrayList to avoid file operations
         taskList = new TaskList(new ArrayList<>());
+    }
+
+    @AfterEach
+    void tearDown() {
+        taskList = null; // Ensure TaskList is reset
     }
 
     @Test

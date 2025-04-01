@@ -37,6 +37,8 @@ public class Event extends Task {
         return eventStart;
     }
 
+    public String getEventEnd() { return eventEnd;}
+
     /**
      * Checks if the event starts today.
      *
