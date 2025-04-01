@@ -53,8 +53,30 @@ The class implements the following main operation:
 - Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
 
 #### 2. DeleteStudentCommand
+
+The `DeleteStudentCommand` is part of the `studentcommands` package and is responsible for removing a 
+student from a specific tutorial class.
+
 #### Implementation Details
+
+The `DeleteStudentCommand` class implements the Command<TutorialClassList> interface. It is responsible for
+parsing the input to extract the tutorial class code and matriculation number, validating them, and removing 
+the student from the appropriate tutorial class.
+
 #### Operations
+
+The class implements the following main operation:
+
+- `DeleteStudentCommand#execute()`
+- Parses the input to extract the tutorial class code and matriculation number. 
+- Validates the input to ensure it follows the expected format and does not contain any errors. 
+- Retrieves the specified tutorial class based on the provided class code. 
+- Checks if the tutorial class exists. If it does not, an error message is shown. 
+- Retrieves the student list from the tutorial class. 
+- Checks if the student with the given matriculation number exists in the class. 
+- If the student exists, removes them from the student list and displays a success message. 
+- If the student does not exist, an error message is shown indicating that no such student was found. 
+- Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
 
 #### 3. ChangeRemarkCommand
 
@@ -80,12 +102,54 @@ This command is executed as part of the TASync system when a user provides a pro
 
 
 #### 4. CheckRemarkCommand
+
+The `CheckRemarkCommand` is part of the `studentcommands` package and is responsible for retrieving and displaying
+a student’s remark in a specific tutorial class.
+
 #### Implementation Details
+
+The `CheckRemarkCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for parsing the input
+to extract the tutorial class code and matriculation number, validating them, and retrieving the remark of the specified student.
+
 #### Operations
 
+The class implements the following main operation:
+
+- `CheckRemarkCommand#execute()`
+- Parses the input to extract the tutorial class code and matriculation number. 
+- Validates the input to ensure it follows the expected format and does not contain any errors. 
+- Retrieves the specified tutorial class based on the provided class code. 
+- Checks if the tutorial class exists. If it does not, an error message is shown. 
+- Retrieves the student list from the tutorial class. 
+- Checks if the student with the given matriculation number exists in the class. 
+- If the student exists, retrieves their remark. 
+- If the student has a remark, displays it. Otherwise, indicates that no remarks were found. 
+- If the student does not exist, an error message is shown indicating that no such student was found. 
+- Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
+
 #### 5. FindStudentCommand
+
+The `FindStudentCommand` is part of the `studentcommands` package and is responsible for searching for students by partial 
+matching of their name or matriculation number across all tutorial classes.
+
 #### Implementation Details
+
+The `FindStudentCommand` class implements the `Command<TutorialClassList> interface`. It is responsible for parsing the input to 
+extract the search keyword, validating it, and searching for students who match the keyword in any tutorial class.
+
 #### Operations
+
+The class implements the following main operation:
+
+- `FindStudentCommand#execute()`
+- Parses the input to extract the search keyword. 
+- Validates the keyword to ensure it is not empty. If the input is invalid, an error message is displayed. 
+- Iterates through each tutorial class in the tutorial class list. 
+- Retrieves the list of students in each tutorial class. 
+- Checks if any student's name or matriculation number partially matches the keyword (case-insensitive). 
+- If a match is found, prints the tutorial class name and the matching students. 
+- If no matching students are found in any tutorial class, prints a message indicating that no results were found. 
+- Handles any exceptions by displaying relevant error messages if validation fails.
 
 
 ### Task Commands
