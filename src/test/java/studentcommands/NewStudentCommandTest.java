@@ -25,7 +25,7 @@ public class NewStudentCommandTest {
 
     @Test
     public void testValidNewStudent() {
-        String input = "Mark 20/10/1987 Male 12345678 A2457654W T11";
+        String input = "Mark,20/10/1987,Male,12345678,A2457654W,T11";
         NewStudentCommand newStudentCommand = new NewStudentCommand();
         newStudentCommand.execute(input, tutorialClassList);
 
