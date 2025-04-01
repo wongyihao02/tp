@@ -204,7 +204,8 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "COMMENT: Adds a comment to a student. " +
-                            "Usage: COMMENT -a <Tutname>,<weeknum,<studentname>,<studentmatricnumber>//comment1;comment2>"
+                            "Usage: COMMENT -a <Tutname>,<weeknum,<studentname>," +
+                            "<studentmatricnumber>//comment1;comment2>"
             );
         }
     },
@@ -222,7 +223,8 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "DELETECOMMENT: Deletes a student's comment. " +
-                            "Usage: DELETECOMMENT -a <Tutname>,<weeknum>,<studentname>,<studentmatricnumber>//commentnum>"
+                            "Usage: DELETECOMMENT -a <Tutname>,<weeknum>," +
+                            "<studentname>,<studentmatricnumber>//commentnum>"
             );
         }
     },
