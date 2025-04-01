@@ -57,7 +57,8 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
                         startComments = true;
                     } else if (line.equalsIgnoreCase("//commentEnd")) {
                         if (currentClass == null) {
-                            System.err.println("Warning: Tutorial class '" + currentTutorial + "' not found. Skipping block.");
+                            System.err.println("Warning: Tutorial class '"
+                                    + currentTutorial + "' not found. Skipping block.");
                             continue;
                         }
 
