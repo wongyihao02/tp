@@ -34,7 +34,7 @@ public class ChangeRemarkCommand implements Command<TutorialClassList> {
 
         try {
             // Split the input into tutorial class code, matric number, and new remark
-            String[] partsArray = parts.split(" ", 3); // Split into 3 parts: tutorialClassCode, matricNumber, newRemark
+            String[] partsArray = parts.split(",", 3); // Split into 3 parts: tutorialClassCode, matricNumber, newRemark
             if (partsArray.length < 3) {
                 throw TASyncException.invalidChangeRemarkCommand();
             }

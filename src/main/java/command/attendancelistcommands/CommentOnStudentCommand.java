@@ -24,7 +24,7 @@ public class CommentOnStudentCommand implements Command<AttendanceFile> {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
 
-            String[] partsArray = partsArray2[0].split(" ");
+            String[] partsArray = partsArray2[0].split(",");
             String[] commentsArray = partsArray2[1].split(";");
             ArrayList<String> comments = new ArrayList<>();
 

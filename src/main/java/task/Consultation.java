@@ -58,10 +58,6 @@ public class Consultation extends Task {
         return consultationStart;
     }
 
-    public String getConsultationEnd() {
-        return consultationEnd;
-    }
-
     /**
      * Checks if the consultation starts today.
      *
@@ -73,6 +69,7 @@ public class Consultation extends Task {
             return false;
         }
         LocalDateTime startDateTime = DateTimeFormatterUtil.parseDateTime(consultationStart);
+        assert startDateTime != null;
         return startDateTime.toLocalDate().equals(today);
     }
 
