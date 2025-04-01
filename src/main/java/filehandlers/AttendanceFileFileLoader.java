@@ -3,6 +3,7 @@ package filehandlers;
 import attendance.AttendanceFile;
 import attendance.AttendanceList;
 import students.Student;
+import students.StudentList;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 
@@ -48,6 +49,7 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
 
                     currentClass = classList.getTutorialByName(currentTutorial);
 
+
                     // Reset for new list
                     attendanceMap = new HashMap<>();
                     commentMap = new HashMap<>();
@@ -56,18 +58,18 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
                     startComments = true;
                 } else if (line.equalsIgnoreCase("//commentEnd")) {
 
-                    if (currentClass != null) {
-                        AttendanceList list = new AttendanceList(currentClass, currentWeek);
-                        list.getAttendanceMap().clear();
-                        list.getCommentList().clear();
-                        list.getAttendanceMap().putAll(attendanceMap);
 
-                        for (Map.Entry<Student, ArrayList<String>> entry : commentMap.entrySet()) {
-                            list.addComments(entry.getKey(), entry.getValue());
-                        }
+                    AttendanceList list = new AttendanceList(currentClass, currentWeek);
+                    list.getAttendanceMap().clear();
+                    list.getCommentList().clear();
+                    list.getAttendanceMap().putAll(attendanceMap);
 
-                        attendanceLists.add(list);
+                    for (Map.Entry<Student, ArrayList<String>> entry : commentMap.entrySet()) {
+                        list.addComments(entry.getKey(), entry.getValue());
                     }
+
+                    attendanceLists.add(list);
+
 
                     currentClass = null;
                     attendanceMap = new HashMap<>();
@@ -82,11 +84,18 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
                     String name = parts[0].trim();
                     String matric = parts[1].trim();
                     Student student;
-                    try{
-                        student = currentClass.getStudentList().getStudentByMatricNumber(matric);
-                    }catch (NullPointerException e){
-                        System.err.println("Student with" + matric +"no longer found in list" );
+                    StudentList studentList = currentClass.getStudentList();
+
+                    if (studentList == null) {
+                        System.err.println("Student with matric " + matric + " not found in class " + currentTutorial);
                         student = new Student(name, matric);
+                    }else{
+                        student = studentList.getStudentByMatricNumber(matric);
+                        if (student == null) {
+                            System.err.println("Student with matric " + matric +
+                                    " not found in class " + currentTutorial);
+                            student = new Student(name, matric);
+                        }
                     }
 
                     ArrayList<String> comments = new ArrayList<>();
@@ -108,10 +117,10 @@ public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
                     String matric = parts[1].trim();
                     String status = parts[2].trim();
                     Student student;
-                    try{
-                        student = currentClass.getStudentList().getStudentByMatricNumber(matric);
-                    }catch (NullPointerException e){
-                        System.err.println("Student with" + matric +"no longer found in list" );
+                    StudentList studentList = currentClass.getStudentList();
+                    student = studentList.getStudentByMatricNumber(matric);
+                    if (student == null) {
+                        System.err.println("Student with matric " + matric + " not found in class " + currentTutorial);
                         student = new Student(name, matric);
                     }
                     attendanceMap.put(student, status);

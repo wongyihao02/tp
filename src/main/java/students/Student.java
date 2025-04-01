@@ -30,6 +30,10 @@ public class Student {
     public Student(String name, String matricNumber) {
         this.name = name;
         this.matricNumber = matricNumber;
+        this.marksList = new MarksList();
+        dateOfBirth = LocalDate.now();
+        gender = "M";
+        contact = "";
     }
 
 
