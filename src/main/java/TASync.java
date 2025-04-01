@@ -19,12 +19,6 @@ public class TASync {
         TaskList taskList = new TaskList();
         StudentList studentlist = new StudentList();
 
-        /*
-        for (AttendanceList attendanceList : attendanceFile.getAttendanceList()) {
-            System.out.println(attendanceList);
-        } // just to check if attendanceFile imported correctly
-        */
-
 
         assert tutorialList != null : "Error: tutorialList should not be null";
         assert attendanceFile != null : "Error: attendanceFile should not be null";

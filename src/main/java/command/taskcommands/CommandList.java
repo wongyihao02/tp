@@ -69,7 +69,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "NEWSTUDENT: Adds a new student using provided information. " +
-                            "Usage: /NEWSTUDENT -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>"
+                            "Usage: NEWSTUDENT -t <name> <dob> <gender> <contact> <matric_number> <tutorial_class>"
             );
         }
     },
@@ -78,7 +78,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "CHANGEREMARK: Updates a student's remark. " +
-                            "Usage: CHANGEREMARK -t <tutorial_name>,<matric_number>,<new_remark>"
+                            "Usage: CHANGEREMARK -t <tutorial_name> <matric_number> <new_remark>"
             );
         }
     },
@@ -87,7 +87,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "CHECKREMARK: Checks remarks for a student. " +
-                            "Usage: CHECKREMARK -t <tutorial_name>,<matric_number>"
+                            "Usage: CHECKREMARK -t <tutorial_name> <matric_number>"
             );
         }
     },
@@ -96,7 +96,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "DELETESTUDENT: Removes a student from a tutorial. " +
-                            "Usage: DELETESTUDENT -t <tutorial_name>,<matric_number>"
+                            "Usage: DELETESTUDENT -t <tutorial_name> <matric_number>"
             );
         }
     },
@@ -114,7 +114,7 @@ public enum CommandList {
         public void printCommand(){
             System.out.println(
                     "NEWMARKS: Adds new marks for a student. " +
-                            "Usage: NEWMARKS -m <tut_id>,<matric_num>,<assignment_name>,<marks_achieved>,<max_marks>"
+                            "Usage: NEWMARKS -m <tut_id> <matric_num> <assignment_name> <marks_achieved> <max_marks>"
             );
         }
     },
@@ -123,7 +123,7 @@ public enum CommandList {
         public void printCommand(){
             System.out.println(
                     "DELETEMARKS: Deletes marks for a given student by assignment name. " +
-                            "Usage: DELETEMARKS -m <tutorial_id>,<matric_number>,<assignment_name>"
+                            "Usage: DELETEMARKS -m <tutorial_id> <matric_number> <assignment_name>"
             );
         }
     },
@@ -132,7 +132,7 @@ public enum CommandList {
         public void printCommand(){
             System.out.println(
                     "LISTMARKS: Lists the marks achieved in all assignments for the given student. " +
-                            "Usage: LIST -m <tutorial_id>,<matric_number>"
+                            "Usage: LIST -m <tutorial_id> <matric_number>"
             );
         }
     },
