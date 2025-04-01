@@ -33,7 +33,7 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
             }
 
             // Split the input to get tutorial details
-            String[] inputParts = input.split("\\s+");
+            String[] inputParts = input.split(",");
             if (inputParts.length != 4) {
                 throw TASyncException.invalidNewTutorialCommand();
             }
