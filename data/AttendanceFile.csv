@@ -24,6 +24,7 @@ Chloe Ong,A003,
 # T01,2
 Alice Tan,A001,Absent
 john,A1433985N,Present
+Mark,A2457654W,Present
 Harry Choo,A008,Present
 Farhan Lee,A006,Present
 Grace Tan,A007,Present
@@ -35,6 +36,7 @@ Chloe Ong,A003,Present
 //comments
 Alice Tan,A001,
 john,A1433985N,
+Mark,A2457654W,
 Harry Choo,A008,
 Farhan Lee,A006,
 Grace Tan,A007,
@@ -47,6 +49,7 @@ Chloe Ong,A003,Submitted work early
 # T01,3
 Alice Tan,A001,Absent
 john,A1433985N,Present
+Mark,A2457654W,Present
 Harry Choo,A008,Present
 Farhan Lee,A006,Present
 Grace Tan,A007,Present
@@ -58,6 +61,7 @@ Chloe Ong,A003,Present
 //comments
 Alice Tan,A001,
 john,A1433985N,
+Mark,A2457654W,
 Harry Choo,A008,Helped peers
 Farhan Lee,A006,
 Grace Tan,A007,
@@ -70,6 +74,7 @@ Chloe Ong,A003,
 # T01,4
 Alice Tan,A001,Absent
 john,A1433985N,Present
+Mark,A2457654W,Present
 Harry Choo,A008,Present
 Farhan Lee,A006,Present
 Grace Tan,A007,Present
@@ -81,6 +86,7 @@ Chloe Ong,A003,Present
 //comments
 Alice Tan,A001,
 john,A1433985N,
+Mark,A2457654W,
 Harry Choo,A008,
 Farhan Lee,A006,Excellent presentation
 Grace Tan,A007,
@@ -437,6 +443,7 @@ Jason Tan,A036,
 # T01,5
 Alice Tan,A001,Absent
 john,A1433985N,Present
+Mark,A2457654W,Present
 Harry Choo,A008,Absent
 Farhan Lee,A006,Absent
 Grace Tan,A007,Absent
@@ -448,6 +455,7 @@ Chloe Ong,A003,Absent
 //comments
 Alice Tan,A001,
 john,A1433985N,
+Mark,A2457654W,
 Harry Choo,A008,
 Farhan Lee,A006,
 Grace Tan,A007,
