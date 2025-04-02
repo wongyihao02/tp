@@ -78,7 +78,6 @@ Format: `CHECKREMARK -t <tutorial_name>,<matric_number>`
 Examples:
 - `CHECKREMARK -t T123,A2345674W`
 
-
 ### Tutorial Commands
 
 {Give detailed description of each feature}
