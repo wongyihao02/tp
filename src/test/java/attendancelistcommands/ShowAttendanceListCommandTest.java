@@ -40,12 +40,34 @@ public class ShowAttendanceListCommandTest {
     @Test
     public void testNormalInput() {
         String input = "T01,1";
-        AttendanceList attendanceList = attendanceFile.getAttendanceByNameAndWeek(1, "T01");
         ShowAttendanceListCommand command = new ShowAttendanceListCommand();
         command.execute(input, attendanceFile);
         String output = outputStream.toString().trim();
 
         assertTrue(output.contains("Attendance List for tutorial T01 week 1:"));
         assertTrue(output.contains("Roselle Gustave Bonaparte(A333): Absent"));
+        assertTrue(output.contains("Kim Dokja(A003): Absent"));
+        assertFalse(output.contains("Han sooyung(A490): Absent"));
+        assertTrue(output.contains("end of list"));
     }
+
+    @Test
+    void testEmptyList() {
+        String input = "T03,1";
+        ShowAttendanceListCommand command = new ShowAttendanceListCommand();
+        command.execute(input, attendanceFile);
+        String output = outputStream.toString().trim();
+        assertTrue(output.contains("Attendance List for tutorial T03 week 1:"));
+        assertTrue(output.contains("No student in attendance list"));
+    }
+
+    @Test
+    void testemptyInput() {
+        String input = "";
+        ShowAttendanceListCommand command = new ShowAttendanceListCommand();
+        command.execute(input, attendanceFile);
+        String output = outputStream.toString().trim();
+        assertTrue(output.contains("Invalid List all students in attendanceList command, please specify a valid attendancelist with a valid tutorial id and a valid week"));
+    }
+
 }
