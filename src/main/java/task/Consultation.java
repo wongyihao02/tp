@@ -58,6 +58,10 @@ public class Consultation extends Task {
         return consultationStart;
     }
 
+    public String getConsultationEnd() {
+        return consultationEnd;
+    }
+
     /**
      * Checks if the consultation starts today.
      *
