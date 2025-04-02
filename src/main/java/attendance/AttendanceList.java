@@ -18,7 +18,7 @@ public class AttendanceList {
         attendanceMap = new HashMap<>();
         commentList = new HashMap<>();
         for (Student student : tutorialClass.getStudentList().getStudents()) {
-            attendanceMap.put(student, "Present");
+            attendanceMap.put(student, "Absent");
             commentList.put(student, new ArrayList<String>());
         }
 

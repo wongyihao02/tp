@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.jupiter.api.AfterEach;
@@ -238,10 +239,27 @@ public class AttendanceListTests {
     public void testSetTutorialClass() {
         TutorialClass tutorial2 = tutorialClassListForTest.getTutorialByName("T01");
         AttendanceList attendancelist = attendanceFileForTest.getAttendanceByNameAndWeek(2, "T02");
-        attendancelist.setTutorialClass(tutorial2);
-        assertEquals("T01", tutorial2.getTutorialName());
+        Map<Student, ArrayList<String>> tempHolderComments = attendancelist.getCommentList();
+        Map<Student, String> tempHolderAttendance = attendancelist.getAttendanceMap();
+        Map<Student, String> ogAttendance = new HashMap<>(tempHolderAttendance);
+        Map<Student, ArrayList<String>> ogComments = new HashMap<>(tempHolderComments);
+        TutorialClass tutorial = attendancelist.getTutorialClass();
+        //set same tut
+        attendancelist.setTutorialClass(tutorial);
+        assertEquals("T02", attendancelist.getTutorialClass().getTutorialName());
         Map<Student, ArrayList<String>> comments = attendancelist.getCommentList();
         Map<Student, String> attendanceMap = attendancelist.getAttendanceMap();
+        for (Map.Entry<Student, ArrayList<String>> entry : comments.entrySet()) {
+            assertTrue(entry.getValue().equals(ogComments.get(entry.getKey())));
+        }
+        for (Map.Entry<Student, String> entry : attendanceMap.entrySet()) {
+            assertTrue(entry.getValue().equals(ogAttendance.get(entry.getKey())));
+        }
+        //change tut
+        attendancelist.setTutorialClass(tutorial2);
+        assertEquals("T01", attendancelist.getTutorialClass().getTutorialName());
+        comments = attendancelist.getCommentList();
+        attendanceMap = attendancelist.getAttendanceMap();
         for (Map.Entry<Student, ArrayList<String>> entry : comments.entrySet()) {
             assertTrue(entry.getValue().isEmpty());
         }
