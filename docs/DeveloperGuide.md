@@ -298,11 +298,186 @@ The `DeleteTaskCommand` class implements the `Command<TaskList>` interface and i
 
 #### Operations
 
-- `DeleteTaskCommand#execute()`
+`DeleteTaskCommand#execute()`
   - Retrieves the task to be deleted based on user input.
   - Removes the task from the `TaskList`.
   - Displays a confirmation message upon successful removal.
   - If the task is not found, an error message is shown.
+
+#### 2. ConsultationCommand
+The `ConsultationCommand` handles the creation of a consultation task with specific timings. It requires the student's name along with `/from` and `/to` tags to specify the start and end times.
+
+#### Implementation Details
+
+The `ConsultationCommand` class implements the `Command<TaskList>` interface and interacts with the `TaskList` to add a new consultation task.
+
+#### Operations
+
+`ConsultationCommand#execute(String parts, TaskList taskList)`
+
+- Parses the student name, start time, and end time from the user input.
+- Ensures that both `/from` and `/to` tags are provided in the input.
+- Validates the datetime format using `DateTimeFormatterUtil`.
+- Creates a `Consultation` task and adds it to the `TaskList`.
+- If the input format is incorrect, prompts the user to re-enter the command.
+- Displays an error message if:
+  - The `/from` or `/to` tags are missing.
+  - The datetime format is incorrect.
+  - Any input is missing.
+
+#### 3. DeadlineCommand
+
+The `DeadlineCommand` handles the creation of a task with a deadline. It requires a task description and a `/by` tag to specify the deadline.
+
+#### Implementation Details
+
+The `DeadlineCommand` class implements the `Command<TaskList>` interface and interacts with the `TaskList` to add a new deadline task.
+
+#### Operations
+
+`DeadlineCommand#execute(String parts, TaskList taskList)`
+
+- Parses the task description and deadline from the user input.
+- Ensures that the `/by` tag is provided in the input.
+- Validates the deadline format using `DateTimeFormatterUtil`.
+- Creates a `Deadline` task and adds it to the `TaskList`.
+- If the input format is incorrect, prompts the user to re-enter the command.
+- Displays an error message if:
+  - The `/by` tag is missing.
+  - The deadline format is incorrect.
+  - Any input is missing.
+
+#### 4. EventCommand
+
+The `EventCommand` handles the creation of a task with event timings. It requires a task description along with `/from` and `/to` tags to specify the start and end times.
+
+#### Implementation Details
+
+The `EventCommand` class implements the `Command<TaskList>` interface and interacts with the `TaskList` to add a new event task.
+
+#### Operations
+
+`EventCommand#execute(String parts, TaskList taskList)`
+
+- Parses the task description, start time, and end time from the user input.
+- Ensures that both `/from` and `/to` tags are provided in the input.
+- Validates the datetime format using `DateTimeFormatterUtil`.
+- Creates an `Event` task and adds it to the `TaskList`.
+- If the input format is incorrect, prompts the user to re-enter the command.
+- Displays an error message if:
+  - The `/from` or `/to` tags are missing.
+  - The datetime format is incorrect.
+  - Any input is missing.
+
+#### 5. TodoCommand
+
+The `TodoCommand` handles the creation of a new todo task. It requires a task description as input.
+
+#### Implementation Details
+
+The `TodoCommand` class implements the `Command<TaskList>` interface and interacts with the `TaskList` to add a new todo task.
+
+#### Operations
+
+`TodoCommand#execute(String parts, TaskList taskList)`
+
+- Parses the task description from the user input.
+- Ensures that a non-empty description is provided.
+- Creates a `Todo` task and adds it to the `TaskList`.
+- Displays an error message if:
+  - The task description is missing or empty.
+
+#### 6. FindTaskCommand
+
+The `FindTaskCommand` handles searching for tasks that contain a specified keyword. It retrieves and displays all matching tasks from the task list.
+
+#### Implementation Details
+
+The `FindTaskCommand` class implements the `Command<TaskList>` interface and interacts with the `TaskList` to search for tasks based on the given keyword.
+
+#### Operations
+
+`FindTaskCommand#execute(String parts, TaskList taskList)`
+
+- Searches for tasks that contain the specified keyword.
+- Retrieves a list of matching tasks using `taskList.getTaskListWithKeyWord(parts)`.
+- If matching tasks are found, displays them to the user.
+- Displays an error message if:
+  - The keyword is missing or empty.
+  - No matching tasks are found.
+
+#### 7. ListTaskCommand
+
+The `ListTaskCommand` handles displaying all tasks in the task list. If there are no tasks, it prints a message indicating that no tasks are available.
+
+#### Implementation Details
+
+The `ListTaskCommand` class implements the `Command<TaskList>` interface and interacts with the `TaskList` to retrieve and display tasks.
+
+#### Operations
+
+`ListTaskCommand#execute(String parts, TaskList taskList)`
+
+- Retrieves all tasks from the `TaskList`.
+- If tasks exist, prints the list of tasks to the user.
+- If no tasks exist, displays the message: `noting to do yet`.
+- The `parts` parameter is not used for this command.
+
+#### 8. MarkTaskCommand
+
+The `MarkTaskCommand` handles marking a task as completed. It requires a valid task number as input.
+
+#### Implementation Details
+
+The `MarkTaskCommand` class implements the `Command<TaskList>` interface and interacts with the `TaskList` to mark a specified task as done.
+
+#### Operations
+
+`MarkTaskCommand#execute(String parts, TaskList taskList)`
+
+- Validates whether the provided input is a valid integer using `IntegerChecker.isInteger(parts)`.
+- Converts the input to an integer and marks the corresponding task as done using `taskList.markTaskAsDone(taskNumber)`.
+- Displays an error message if:
+  - The input is not a valid task number.
+  - The task number does not exist in the list.
+
+#### 9. UnmarkTaskCommand
+
+The `UnmarkTaskCommand` handles marking a task as undone. It requires a valid task number as input.
+
+#### Implementation Details
+
+The `UnmarkTaskCommand` class implements the `Command<TaskList>` interface and interacts with the `TaskList` to mark a specified task as undone.
+
+#### Operations
+
+`UnmarkTaskCommand#execute(String parts, TaskList taskList)`
+
+- Validates whether the provided input is a valid integer using `IntegerChecker.isInteger(parts)`.
+- Converts the input to an integer and marks the corresponding task as undone using `taskList.markTaskAsUndone(taskNumber)`.
+- Displays an error message if:
+  - The input is not a valid task number.
+  - The task number does not exist in the list.
+
+#### 10. RenameTaskCommand
+
+The `RenameTaskCommand` handles renaming a task. It requires a task number and the new task name.
+
+#### Implementation Details
+
+The `RenameTaskCommand` class implements the `Command<TaskList>` interface and interacts with the `TaskList` to rename a specified task.
+
+#### Operations
+
+`RenameTaskCommand#execute(String parts, TaskList taskList)`
+
+- Parses the task number and the new task name from the user input.
+- Renames the specified task in the `TaskList` using `taskList.renameTask(taskNumber, newTaskName)`.
+- Displays an error message if:
+  - The input is missing the task number or new task name.
+  - The task number format is invalid.
+  - The task number does not exist in the list.
+
 
 ### Tutorial Commands
 
