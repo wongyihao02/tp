@@ -1,8 +1,7 @@
 package filehandlers;
 
-import tutorial.TutorialClass;
-import tutorial.TutorialClassList;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,8 +10,10 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Test;
+
+import tutorial.TutorialClass;
+import tutorial.TutorialClassList;
 
 
 class TutorialClassListFileLoaderTest {
