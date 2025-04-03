@@ -16,6 +16,18 @@
     - [Delete tutorial: `DELETETUT -t`](#delete-tutorial-deletetutorial--t)
     - [List students in tutorial: `LISTSTUDENTS -t`](#list-students-in-tutorial-liststudents--t)
     - [List upcoming tutorials: `LIST -t`](#list-upcoming-tutorials-list--t)
+  - [Task Commands](#task-commands)
+    - [Adding a todo: `TODO`](#adding-a-todo-todo)
+    - [Adding a deadline: `DEADLINE`](#adding-a-deadline-deadline)
+    - [Adding an event: `EVENT`](#adding-an-event-event)
+    - [Adding a consultation: `CONSULTATION`](#adding-a-consultation-consultation)
+    - [Listing the tasks: `LIST`](#listing-the-tasks-list)
+    - [Deleting a task: `DELETE`](#deleting-a-task-delete)
+    - [Marking a task: `MARK`](#marking-a-task-mark)
+    - [Unmarking a task: `UNMARK`](#unmarking-a-task-unmark)
+    - [Finding a task: `FIND`](#finding-a-task-find)
+    - [Renaming a task: `RENAME`](#renaming-a-task-rename)
+  - [Bye Command](#bye-command-bye)
 - [FAQ](#faq)
 - [Command Summary](#Command-Summary)
 ## Quick Start
@@ -23,7 +35,7 @@
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 17 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Down the latest version of `TASync` from [here](http://link.to/duke).
 
 ## Features 
 
@@ -130,19 +142,127 @@ Examples:
 
 ### Task Commands
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+#### Adding a todo: `TODO`
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Adds a personal todo to the task list.
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+Format: `add -pt <todo name>`
 
-Example of usage: 
+Examples:
+- `add -pt Task A `
+- `add -pt Write the rest of the User Guide`
 
-`todo n/Write the rest of the User Guide d/next week`
+#### Adding a deadline: `DEADLINE`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+Adds a personal deadline to the task list.
+
+Format: `add -pd <deadline name> /by <dd/MM/yyyy HH:mm>`
+
+Examples:
+- `add -pd Deadline A /by 03/04/2025 23:59`
+- `add -pd Update DG /by 06/04/2025 23:59`
+
+#### Adding an event: `EVENT`
+
+Adds a personal event to the task list.
+
+Format: `add -pe <event name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`
+
+Examples:
+- `add -pe Event A /from 03/04/2025 16:00 /to 03/04/2025 17:00`
+- `add -pe Concert /from 05/04/2025 18:00 /to 05/04/2025 20:00`
+
+#### Adding a consultation: `CONSULTATION`
+
+Adds a consultation with a student to the task list.
+
+Format: `add -c <student_name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`
+
+Examples:
+- `add -c Student A /from 03/04/2025 12:00 /to 03/04/2025 13:00`
+- `add -c Kevin /from 05/04/2025 14:00 /to 05/04/2025 14:30`
+
+#### Listing the tasks: `LIST`
+
+Displays all the tasks in the task list.
+
+Format: `list -p`
+
+Examples:
+- `list -p` returns: `1.[T][ ] Study Java`
+
+#### Deleting a task: `DELETE`
+
+Delete a task from the task list.
+
+Format: `delete -p <task_number>`
+
+Examples:
+- Original:
+  - `1.[T][ ] Study Java`
+  - `2.[C][ ] Study Python`
+- `delete -p 1`
+- Output:
+  - `1.[C][ ] Study Python`
+
+#### Marking a task: `MARK`
+
+Marks a task as done.
+
+Format: `mark -p <task_number>`
+
+Examples:
+- Original:
+  - `1.[T][ ] Study Java`
+- `mark -p 1`
+- Output:
+  - `1.[T][X] Study Java`
+
+#### Unmarking a task: `UNMARK`
+
+Marks a task as undone.
+
+Format: `unmark -p <task_number>`
+
+Examples:
+- Original:
+  - `1.[T][X] Study Java`
+- `unmark -p 1`
+- Output:
+  - `1.[T][ ] Study Java`
+
+#### Finding a task: `FIND`
+
+Finds a task based on the keyword given.
+
+Format: `find -p <keyword>`
+
+Examples:
+- Original:
+  - `1.[T][X] Study Java`
+  - `2.[T][X] Study Python`
+- `find -p java`
+- Output:
+  - `1.[T][X] Study Java`
+
+#### Renaming a task: `RENAME`
+
+Renames a task based on the task number given.
+
+Format: `rename -p <task_number> <new_name>`
+
+Examples:
+- Original:
+  - `1.[T][X] Study Java`
+- `rename -p 1 Study Python`
+- Output:
+  - `1.[T][X] Study Python`
+
+### Bye Command: `BYE`
+
+Exits the application.
+
+Format: `bye`
 
 ## FAQ
 
