@@ -47,6 +47,8 @@ public class CreateNewAttendanceList implements Command<ArrayList<Object>> {
             }
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("second parameter has to be numbers only");
         }
     }
 }

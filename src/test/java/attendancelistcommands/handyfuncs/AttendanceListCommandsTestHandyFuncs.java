@@ -33,7 +33,7 @@ public class AttendanceListCommandsTestHandyFuncs {
         Student student1 = new Student("Alice Tan", LocalDate.of(2002, 5, 14), "Female", "91234567", "A001");
         Student student2 = new Student("Bob Lim", LocalDate.of(2001, 3, 22), "Male", "92345678", "A002");
         Student student3 = new Student("Kim Dokja", LocalDate.of(2002, 2, 15), "Male", "92345678", "A003");
-        Student student4 = new Student("Han sooyung", LocalDate.of(2002, 2, 15), "Male", "92345678", "A490");
+        Student student4 = new Student("Han sooyung", LocalDate.of(2002, 2, 15), "Female", "92345678", "A490");
         Student student5 = new Student("Person 4", LocalDate.of(2005, 10, 31), "Male", "92345678", "A948");
         Student student6 = new Student("Person 5", LocalDate.of(2000, 5, 20), "Female", "92345678", "A287");
         Student student7 = new Student("Roselle Gustave Bonaparte", LocalDate.of(1998, 1, 11),
@@ -59,6 +59,9 @@ public class AttendanceListCommandsTestHandyFuncs {
 
     public static AttendanceFile initializeAttendanceFile() {
         TutorialClassList tutorialClassList = initializeTutorialClasses();
+        TutorialClass class1 = tutorialClassList.getTutorialByName("T01");
+        Student Roselle = class1.getStudentList().getStudentByName("Roselle Gustave Bonaparte");
+        Student Kim = class1.getStudentList().getStudentByName("Kim Dokja");
         AttendanceList first = new AttendanceList(tutorialClassList.getTutorialByName("T01"), 1);
         AttendanceList second = new AttendanceList(tutorialClassList.getTutorialByName("T01"), 2);
         AttendanceList third = new AttendanceList(tutorialClassList.getTutorialByName("T01"), 3);
@@ -69,6 +72,12 @@ public class AttendanceListCommandsTestHandyFuncs {
         AttendanceList eighth = new AttendanceList(tutorialClassList.getTutorialByName("T02"), 6);
         AttendanceList ninth = new AttendanceList(tutorialClassList.getTutorialByName("T02"), 7);
         AttendanceList tenth = new AttendanceList(tutorialClassList.getTutorialByName("T03"), 1);
+        ArrayList<String> RoselleComments = new ArrayList<>();
+        ArrayList<String> KimComments = new ArrayList<>();
+        RoselleComments.add("Savant transmigrator");
+        KimComments.add("ugly squid");
+        first.addComments(Roselle, RoselleComments);
+        first.addComments(Kim, KimComments);
         ArrayList<AttendanceList> list = new ArrayList<>();
         list.add(first);
         list.add(seventh);

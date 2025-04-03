@@ -54,7 +54,7 @@ public class ViewStudentCommentsCommand implements Command<AttendanceFile> {
             }
 
 
-            if (theOne.getCommentList().containsKey(derStudent)) {
+            if (theOne.getCommentList().containsKey(derStudent) && !theOne.getCommentList().get(derStudent).isEmpty()) {
                 ArrayList<String> comments = theOne.getCommentList().get(derStudent);
 
                 System.out.println("List of comments: ");
@@ -67,6 +67,8 @@ public class ViewStudentCommentsCommand implements Command<AttendanceFile> {
 
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("second parameter has to be numbers only");
         }
 
     }

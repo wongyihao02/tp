@@ -57,6 +57,8 @@ public class UnmarkStudentAttendanceCommand implements Command<AttendanceFile> {
             attendanceMap.replace(derStudent, "Absent");
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("second parameter has to be numbers only");
         }
 
     }

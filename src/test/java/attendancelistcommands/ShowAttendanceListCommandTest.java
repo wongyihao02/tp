@@ -55,7 +55,7 @@ public class ShowAttendanceListCommandTest {
     }
 
     @Test
-    void testemptyInput() {
+    void testEmptyInput() {
         String input = "";
         ShowAttendanceListCommand command = new ShowAttendanceListCommand();
         command.execute(input, attendanceFile);
@@ -65,23 +65,58 @@ public class ShowAttendanceListCommandTest {
 
     @Test
     void testOneInputWrong() {
-        String[] input = {"T01", "1", "12fvc", "T10", "9"};
+
+        String[] input = {"T01,99", "1", "12fvc", "T02,22", "9"};
         for (String s : input) {
+            outputStream = captureSystemOut();
             ShowAttendanceListCommand command = new ShowAttendanceListCommand();
             command.execute(s, attendanceFile);
             String output = outputStream.toString().trim();
-            assertTrue(output.contains("Invalid List all students in attendanceList command, please specify a valid attendancelist with a valid tutorial id and a valid week"));
+            assertTrue(output.contains("Invalid List all students in attendanceList command, " +
+                    "please specify a valid attendancelist with a valid tutorial id and a valid week"));
 
         }
+
     }
 
     @Test
-    void testDontHaveTutInput() {
-        String input = "";
+    void testSecondInputNonNumWrong() {
+        String input = "T01,sba";
         ShowAttendanceListCommand command = new ShowAttendanceListCommand();
         command.execute(input, attendanceFile);
         String output = outputStream.toString().trim();
-        assertTrue(output.contains("Invalid List all students in attendanceList command, please specify a valid attendancelist with a valid tutorial id and a valid week"));
+        assertTrue(output.contains("second parameter has to be numbers only"));
+
+
+    }
+
+    @Test
+    void testTooManyInputsWrong() {
+        String[] input = {"T01,1,1,1", "1239c,12313,111", "T03,1,2", "T10,2,1", "9,3,1"};
+        for (String s : input) {
+            outputStream = captureSystemOut();
+            ShowAttendanceListCommand command = new ShowAttendanceListCommand();
+            command.execute(s, attendanceFile);
+            String output = outputStream.toString().trim();
+            assertTrue(output.contains("Invalid List all students in attendanceList command, " +
+                    "please specify a valid attendancelist with a valid tutorial id and a valid week"));
+
+        }
+
+    }
+
+    @Test
+    void testDontHaveAttendanceList() {
+        String[] input = {"T01,10", "T01,11", "T03,2", "T10,1", "T02,8"};
+        for (String s : input) {
+            outputStream = captureSystemOut();
+            ShowAttendanceListCommand command = new ShowAttendanceListCommand();
+            command.execute(s, attendanceFile);
+            String output = outputStream.toString().trim();
+            assertTrue(output.contains("Invalid List all students in attendanceList command, " +
+                    "please specify a valid attendancelist with a valid tutorial id and a valid week"));
+
+        }
     }
 
 }

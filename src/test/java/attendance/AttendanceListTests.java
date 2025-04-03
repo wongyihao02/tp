@@ -160,7 +160,8 @@ public class AttendanceListTests {
                 Marcus Chin,25/07/2001,Male,81234579,A013,
                 Nicole Tay,10/08/2001,Female,81234580,A014,
                 Owen Teo,18/09/2001,Male,81234581,A015,
-                Phoebe Ong,05/10/2001,Female,81234582,A016,""";
+                Phoebe Ong,05/10/2001,Female,81234582,A016,
+                """;
 
         // Step 2: Write to a temporary file
         Path tempFile = Files.createTempFile("tutorial_classes", ".txt");

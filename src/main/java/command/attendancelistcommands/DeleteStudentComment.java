@@ -73,6 +73,8 @@ public class DeleteStudentComment implements Command<AttendanceFile> {
 
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("second parameter and comment number has to be numbers only");
         }
 
     }
