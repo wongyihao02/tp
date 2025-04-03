@@ -18,7 +18,7 @@ public class AttendanceList {
         attendanceMap = new HashMap<>();
         commentList = new HashMap<>();
         for (Student student : tutorialClass.getStudentList().getStudents()) {
-            attendanceMap.put(student, "Present");
+            attendanceMap.put(student, "Absent");
             commentList.put(student, new ArrayList<String>());
         }
 
@@ -86,7 +86,20 @@ public class AttendanceList {
     }
 
     public void setTutorialClass(TutorialClass tutorialClass) {
-        this.tutorialClass = tutorialClass;
+
+        try {
+            if (!tutorialClass.getTutorialName().equals(this.tutorialClass.getTutorialName())) {
+                this.tutorialClass = tutorialClass;
+                this.attendanceMap.clear();
+                this.commentList.clear();
+                for (Student student : tutorialClass.getStudentList().getStudents()) {
+                    attendanceMap.put(student, "Absent");
+                    commentList.put(student, new ArrayList<String>());
+                }
+            }
+        } catch (NullPointerException e) {
+            System.out.println("error setting tutorial class : " + e.getMessage());
+        }
     }
 
     @Override
