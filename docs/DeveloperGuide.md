@@ -553,11 +553,11 @@ The `RenameTaskCommand` class implements the `Command<TaskList>` interface and i
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+Our target users are teaching assistants (TAs) and tutors who manage both student-related administrative tasks and personal workload. They often handle responsibilities like tracking attendance, recording remarks, and planning tutorials, requiring an efficient way to stay organized. These users are comfortable with command-line interfaces (CLI) and prefer automation to manual data entry, seeking a tool that integrates smoothly into their workflow without the overhead of graphical applications.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+Teaching assistants and tutors often struggle with time-consuming administrative tasks which can be tedious and inefficient with traditional tools. Our CLI-based solution streamlines these processes, offering a fast, automated, and distraction-free way to manage academic responsibilities. By eliminating the need for GUI-based software, it enhances productivity and reduces manual effort.
 
 ## User Stories
 
@@ -572,7 +572,11 @@ The `RenameTaskCommand` class implements the `Command<TaskList>` interface and i
 
 ## Glossary
 
-* *glossary item* - Definition
+* *CLI* - Command Line Interface
+* *GUI* - Graphical User Interface
+* *Mainstream OS* - Windows, Linux, Unix, macOS
+* *TA* - Teaching Assistants
+
 
 ## Instructions for manual testing
 
