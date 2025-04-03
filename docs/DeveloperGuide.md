@@ -19,6 +19,8 @@ The `command` package contains the following sub-packages:
 - `tutorialcommands` - Handles tutorial-related commands
 
 
+### Command Handler
+
 ### Attendance List Commands
 #### 1.ShowAttendanceListCommand
 This is part of the Attendancelistcommands package,the function of this class is to show the user the attendance list of the tutorial and week the user asks for.
@@ -27,16 +29,15 @@ This is part of the Attendancelistcommands package,the function of this class is
 This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial and week the user has given
 and print the names and attendance status of the students in that tutorial,if it exists.
 
-#### operations
+#### Operations
 - `ShowAttendanceListCommand.execute()`
-- extracts tutorial name and week number from the given input.
-- Exception thrown if no input or not enough input given.
-- The AttendancFile is searched to find the relevant AttendanceList
-- Exception is thrown and handled if none found.
-- The hashMap containing the attendance status of the students will be printed.
-- A different message will be printed if this hashMap is empty(signalling that the attendanceList has no students in it).
-- An error message will be printed when an Exception is handled.
-- 
+  - Extracts tutorial name and week number from the given input.
+  - Exception thrown if no input or not enough input given.
+  - The AttendanceFile is searched to find the relevant AttendanceList
+  - Exception is thrown and handled if none found.
+  - The hashMap containing the attendance status of the students will be printed.
+  - A different message will be printed if this hashMap is empty(signalling that the attendanceList has no students in it).
+  - An error message will be printed when an Exception is handled.
 
 #### 2.MarkStudentAttendanceCommand
 This is part of the Attendancelistcommands package,the function of this class is to mark a student present for a specific tutorial
@@ -45,16 +46,16 @@ This is part of the Attendancelistcommands package,the function of this class is
 This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial,week and the student name and matric number  that the user has given
 and set the attendance status of the given student as Present in the attendanceList for the given tutorial name and week.
 
-#### operations
+#### Operations
 - `MarkStudentAttendanceCommand.execute()`
-- extracts tutorial name, week number and student name and matric number from the given input.
-- Exception thrown if no inputs, not enough inputs or too much inputs are given.
-- The AttendancFile is searched to find the relevant AttendanceList
-- Exception is thrown and handled if none found.
-- This AttendanceList is then checked is it has a student with the same name and matric number is found.
-- Exception is thrown and handled if none found.
-- The value for the student in the hashMap containing the attendance status of the students will be changed to Present.
-- An error message will be printed when an Exception is handled.
+  - Extracts tutorial name, week number and student name and matric number from the given input.
+  - Exception thrown if no inputs, not enough inputs or too many inputs are given.
+  - The AttendanceFile is searched to find the relevant AttendanceList
+  - Exception is thrown and handled if none found.
+  - This AttendanceList is then checked is it has a student with the same name and matric number is found.
+  - Exception is thrown and handled if none found.
+  - The value for the student in the hashMap containing the attendance status of the students will be changed to Present.
+  - An error message will be printed when an Exception is handled.
 
 
 #### 3.UnmarkStudentAttendanceCommand
@@ -64,16 +65,16 @@ This is part of the Attendancelistcommands package,the function of this class is
 This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial,week and the student that the user has given
 and set the attendance status of the given student as Absent in the attendanceList for the given tutorial name and week.
 
-#### operations
+#### Operations
 - `UnmarkStudentAttendanceCommand.execute()`
-- extracts tutorial name, week number and student name and matric number from the given input.
-- Exception thrown if no inputs, not enough inputs or too much inputs are given.
-- The AttendancFile is searched to find the relevant AttendanceList
-- Exception is thrown and handled if none found.
-- This AttendanceList is then checked is it has a student with the same name and matric number is found.
-- Exception is thrown and handled if none found.
-- The value for the student in the hashMap containing the attendance status of the students will be changed to Absent.
-- An error message will be printed when an Exception is handled.
+  - Extracts tutorial name, week number and student name and matric number from the given input.
+  - Exception thrown if no inputs, not enough inputs or too many inputs are given.
+  - The AttendancFile is searched to find the relevant AttendanceList
+  - Exception is thrown and handled if none found.
+  - This AttendanceList is then checked is it has a student with the same name and matric number is found.
+  - Exception is thrown and handled if none found.
+  - The value for the student in the hashMap containing the attendance status of the students will be changed to Absent.
+  - An error message will be printed when an Exception is handled.
 
 
 #### 4.ViewStudentCommentsCommand
@@ -83,17 +84,17 @@ This is part of the Attendancelistcommands package,the function of this class is
 This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial,week and the student name and matric number
 that the user has given and print all comments for the given student in the attendanceList for the given tutorial name and week.
 
-#### operations
+#### Operations
 - `ViewStudentCommentsCommand.execute()`
-- extracts tutorial name, week number and student name and matric number from the given input.
-- Exception thrown if no inputs, not enough inputs or too much inputs are given.
-- The AttendancFile is searched to find the relevant AttendanceList
-- Exception is thrown and handled if none found.
-- This AttendanceList is then checked is it has a student with the same name and matric number is found.
-- Exception is thrown and handled if none found.
-- The elements of the ArrayList<String> associated with the student in the hashmap for students to comments is printed
-- A special message will be printed if this ArrayList is empty.
-- An error message will be printed when an Exception is handled.
+  - Extracts tutorial name, week number and student name and matric number from the given input.
+  - Exception thrown if no inputs, not enough inputs or too many inputs are given.
+  - The AttendancFile is searched to find the relevant AttendanceList
+  - Exception is thrown and handled if none found.
+  - This AttendanceList is then checked is it has a student with the same name and matric number is found.
+  - Exception is thrown and handled if none found.
+  - The elements of the ArrayList<String> associated with the student in the hashmap for students to comments is printed
+  - A special message will be printed if this ArrayList is empty.
+  - An error message will be printed when an Exception is handled.
 
 
 #### 5.CommentOnStudentCommand
@@ -103,16 +104,16 @@ This is part of the Attendancelistcommands package,the function of this class is
 This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial,week and the student name and matric number
 and their comments that the user has given and add all comments to the ArrayList containing all comments for a given student in the attendanceList for the given tutorial name and week.
 
-#### operations
+#### Operations
 - `CommentOnStudentCommand.execute()`
-- extracts tutorial name, week number , student name and matric number and the comments to be added from the given input.
-- Exception thrown if no inputs, not enough inputs or too much inputs are given.
-- The AttendancFile is searched to find the relevant AttendanceList
-- Exception is thrown and handled if none found.
-- This AttendanceList is then checked is it has a student with the same name and matric number is found.
-- Exception is thrown and handled if none found.
-- The ArrayList<String> associated with the student in the hashmap for student comments have the given comments added to them.
-- An error message will be printed when an Exception is handled.
+  - Extracts tutorial name, week number , student name and matric number and the comments to be added from the given input.
+  - Exception thrown if no inputs, not enough inputs or too many inputs are given.
+  - The AttendancFile is searched to find the relevant AttendanceList
+  - Exception is thrown and handled if none found.
+  - This AttendanceList is then checked is it has a student with the same name and matric number is found.
+  - Exception is thrown and handled if none found.
+  - The ArrayList<String> associated with the student in the hashmap for student comments have the given comments added to them.
+  - An error message will be printed when an Exception is handled.
 
 
 #### 6.DeleteStudentCommentCommand
@@ -122,17 +123,17 @@ This is part of the Attendancelistcommands package,the function of this class is
 This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial,week and the student name and matric number
 and the number position of the comment to be removed that the user has given and remove the comment in the ArrayList containing all comments for a given student in the attendanceList for the given tutorial name and week.
 
-#### operations
+#### Operations
 - `DeleteStudentCommentCommand.execute()`
-- extracts tutorial name, week number , student name and matric number and the number position of the comment to be removed from the given input.
-- Exception thrown if no inputs, not enough inputs or too much inputs are given.
-- The AttendancFile is searched to find the relevant AttendanceList
-- Exception is thrown and handled if none found.
-- This AttendanceList is then checked is it has a student with the same name and matric number is found.
-- Exception is thrown and handled if none found.
-- The ArrayList<String> associated with the student that stores comments for the has the (num given - 1)th element removed.A message will then be printed stating that the comment was successfully deleted.
-- Different messages will be printed if the student has no comments associated with them or if the num given is outside the boundaries of the comments ArrayList.
-- An error message will be printed when an Exception is handled.
+  - Extracts tutorial name, week number , student name and matric number and the number position of the comment to be removed from the given input.
+  - Exception thrown if no inputs, not enough inputs or too many inputs are given.
+  - The AttendancFile is searched to find the relevant AttendanceList
+  - Exception is thrown and handled if none found.
+  - This AttendanceList is then checked is it has a student with the same name and matric number is found.
+  - Exception is thrown and handled if none found.
+  - The ArrayList<String> associated with the student that stores comments for the has the (num given - 1)th element removed.A message will then be printed stating that the comment was successfully deleted.
+  - Different messages will be printed if the student has no comments associated with them or if the num given is outside the boundaries of the comments ArrayList.
+  - An error message will be printed when an Exception is handled.
 
 
 #### 7.CreateNewAttendanceList
@@ -143,26 +144,23 @@ This class implements the Command<ArrayList<Object>> interface.Its function is t
 user has given create a new AttendanceList from it to add to the attendanceFile.The ArrayList will have the TutorialClassList as the first element and the 
 AttendanceFile as the second element.
 
-#### operations
+#### Operations
 - `CreateNewAttendanceList.execute()`
-- extracts tutorial name, week number for the new AttendanceList to be created from the given input.
-- Exception thrown if no inputs, not enough inputs or too much inputs are given.
-- The TutorialClassList is searched to find the relevant TutorialClass.
-- Exception is thrown and handled if none found.
-- The AttendanceFile is searched to find if it contains an AttendanceList for the given tutorial name and week.
-- A new AttendanceList would be created for the given tutorial name and week if non found.
-- Different message will be printed if the an AttendanceList was found.
-- An error message will be printed when an Exception is handled.
+  - Extracts tutorial name, week number for the new AttendanceList to be created from the given input.
+  - Exception thrown if no inputs, not enough inputs or too many inputs are given.
+  - The TutorialClassList is searched to find the relevant TutorialClass.
+  - Exception is thrown and handled if none found.
+  - The AttendanceFile is searched to find if it contains an AttendanceList for the given tutorial name and week.
+  - A new AttendanceList would be created for the given tutorial name and week if non found.
+  - Different message will be printed if the AttendanceList was found.
+  - An error message will be printed when an Exception is handled.
 
-
-### Command Handler 
 
 ### **Student Commands**
 
 The `studentcommands` package includes commands that handle student-related functionalities in TASync. 
 These commands interact with the tutorial classes and the student list, allowing users to manage student records 
 effectively. 
-
 
 #### 1. NewStudentCommand
 
@@ -178,13 +176,13 @@ extract the student’s details, validating them, and adding the student to the 
 The class implements the following main operation:
 
 - `NewStudentCommand#execute()`
-- Parses the input to extract the student’s name, date of birth (DOB), gender, contact number, matriculation number, and tutorial class code. 
-- Validates the student details to ensure they are correctly formatted and do not contain any errors. 
-- Retrieves the specified tutorial class based on the provided class code. 
-- Checks if the matriculation number already exists in the class. If it does, an error message is shown. 
-- Creates a new Student object and adds it to the student list of the tutorial class. 
-- Logs and displays a success message if the student is successfully added to the tutorial class. 
-- Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
+  - **Parses the input** to extract the student’s name, date of birth (DOB), gender, contact number, matriculation number, and tutorial class code. 
+  - **Validates the student details** to ensure they are correctly formatted and do not contain any errors. 
+  - Retrieves the specified tutorial class based on the provided class code. 
+  - Checks if the matriculation number already exists in the class. If it does, an error message is shown. 
+  - Creates a new Student object and adds it to the student list of the tutorial class. 
+  - Logs and displays a success message if the student is successfully added to the tutorial class. 
+  - Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
 
 #### 2. DeleteStudentCommand
 
@@ -202,15 +200,15 @@ the student from the appropriate tutorial class.
 The class implements the following main operation:
 
 - `DeleteStudentCommand#execute()`
-- Parses the input to extract the tutorial class code and matriculation number. 
-- Validates the input to ensure it follows the expected format and does not contain any errors. 
-- Retrieves the specified tutorial class based on the provided class code. 
-- Checks if the tutorial class exists. If it does not, an error message is shown. 
-- Retrieves the student list from the tutorial class. 
-- Checks if the student with the given matriculation number exists in the class. 
-- If the student exists, removes them from the student list and displays a success message. 
-- If the student does not exist, an error message is shown indicating that no such student was found. 
-- Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
+  - **Parses the input** to extract the tutorial class code and matriculation number. 
+  - **Validates the input** to ensure it follows the expected format and does not contain any errors. 
+  - Retrieves the specified tutorial class based on the provided class code. 
+  - Checks if the tutorial class exists. If it does not, an error message is shown. 
+  - Retrieves the student list from the tutorial class. 
+  - Checks if the student with the given matriculation number exists in the class. 
+  - If the student exists, removes them from the student list and displays a success message. 
+  - If the student does not exist, an error message is shown indicating that no such student was found. 
+  - Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
 
 #### 3. ChangeRemarkCommand
 
@@ -227,7 +225,7 @@ on the provided tutorial class code and matriculation number.
 The class implements the following main operation:
 
 - `ChangeRemarkCommand#execute()`
-  - Parses the input to extract the tutorial class code, matriculation number and new remark.
+  - **Parses the input** to extract the tutorial class code, matriculation number and new remark.
   - Retrieves the specified tutorial class and student.
   - Updates the student's remark and displays a confirmation message.
   - If the tutorial class or student is not found, an error message is shown.
@@ -250,16 +248,17 @@ to extract the tutorial class code and matriculation number, validating them, an
 The class implements the following main operation:
 
 - `CheckRemarkCommand#execute()`
-- Parses the input to extract the tutorial class code and matriculation number. 
-- Validates the input to ensure it follows the expected format and does not contain any errors. 
-- Retrieves the specified tutorial class based on the provided class code. 
-- Checks if the tutorial class exists. If it does not, an error message is shown. 
-- Retrieves the student list from the tutorial class. 
-- Checks if the student with the given matriculation number exists in the class. 
-- If the student exists, retrieves their remark. 
-- If the student has a remark, displays it. Otherwise, indicates that no remarks were found. 
-- If the student does not exist, an error message is shown indicating that no such student was found. 
-- Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
+  - **Parses the input** to extract the tutorial class code and matriculation number. 
+  - **Validates the input** to ensure it follows the expected format and does not contain any errors. 
+  - **Retrieves the specified tutorial class** based on the provided class code. 
+  - **Checks if the tutorial class exists**
+    - If it does not, an error message is shown. 
+  - Retrieves the student list from the tutorial class. 
+  - Checks if the student with the given matriculation number exists in the class. 
+  - If the student exists, retrieves their remark. 
+  - If the student has a remark, displays it. Otherwise, indicates that no remarks were found. 
+  - If the student does not exist, an error message is shown indicating that no such student was found. 
+  - Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
 
 #### 5. FindStudentCommand
 
@@ -276,14 +275,113 @@ extract the search keyword, validating it, and searching for students who match 
 The class implements the following main operation:
 
 - `FindStudentCommand#execute()`
-- Parses the input to extract the search keyword. 
-- Validates the keyword to ensure it is not empty. If the input is invalid, an error message is displayed. 
-- Iterates through each tutorial class in the tutorial class list. 
-- Retrieves the list of students in each tutorial class. 
-- Checks if any student's name or matriculation number partially matches the keyword (case-insensitive). 
-- If a match is found, prints the tutorial class name and the matching students. 
-- If no matching students are found in any tutorial class, prints a message indicating that no results were found. 
-- Handles any exceptions by displaying relevant error messages if validation fails.
+  - **Parses the input** to extract the search keyword. 
+  - **Validates the keyword** to ensure it is not empty. If the input is invalid, an error message is displayed. 
+  - Iterates through each tutorial class in the tutorial class list. 
+  - Retrieves the list of students in each tutorial class. 
+  - Checks if any student's name or matriculation number partially matches the keyword (case-insensitive). 
+  - If a match is found, prints the tutorial class name and the matching students. 
+  - If no matching students are found in any tutorial class, prints a message indicating that no results were found. 
+  - Handles any exceptions by displaying relevant error messages if validation fails.
+
+### Tutorial Commands
+
+#### 1. NewTutorialCommand
+
+The `NewTutorialCommand` is part of the `tutorialcommands` package and is responsible for adding a new tutorial class 
+to the tutorial class list. This operation ensures that the tutorial class is valid, does not duplicate an 
+existing class, and has the correct details.
+
+#### Implementation Details
+
+The `NewTutorialCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for parsing 
+the input, validating the tutorial details, and adding the new tutorial to the list.
+
+#### Operations
+
+The class implements the following main operation:
+
+- `NewTutorialCommand#execute()`
+  - **Parses the input** to extract the tutorial details: name, day of the week, start time, and end time.
+  - **Validates the input** to ensure:
+    - The input is not empty or invalid.
+    - The day of the week is a valid integer between 1 and 7.
+    - The start and end times are in a valid format.
+    - The tutorial is not a duplicate of an existing tutorial in the list.
+  - **Checks if a duplicate tutorial exists** by comparing the tutorial name, day of the week, start time, and end time.
+  - If a duplicate is found, throws a `TASyncException.duplicateTutorial()` exception.
+  - If the tutorial details are valid and no duplicates are found, creates a new `TutorialClass` object.
+  - Adds the new tutorial to the tutorial class list.
+  - Prints a success message upon successful addition of the tutorial.
+  - If the input or any other data is invalid, catches and handles exceptions and displays appropriate error messages.
+
+#### 2. DeleteTutorialCommand
+
+The `DeleteTutorialCommand` is part of the `tutorialcommands` package and is responsible for removing a tutorial class 
+from the tutorial class list by its name. This operation ensures that a tutorial class is deleted if it exists, 
+and provides appropriate feedback if the class does not exist in the list.
+
+#### Implementation Details
+
+The `DeleteTutorialCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for parsing 
+the input, validating it, and deleting the corresponding tutorial class from the list.
+
+#### Operations
+
+The class implements the following main operation:
+
+- `DeleteTutorialCommand#execute()`
+  - **Validates the input** to ensure that the tutorial class code is not empty or invalid.
+  - **Searches for the tutorial class** by its name (code) in the tutorial class list.
+  - If the tutorial class is found, it is removed from the list.
+  - **Handles cases where no tutorial class is found** with the specified code and displays a message indicating that the tutorial class does not exist.
+  - **Error handling**: Catches any exceptions that occur during the execution and displays the error message.
+
+
+#### 3. ListTutorialStudentsCommand
+
+The `ListTutorialStudentsCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for
+parsing the input, validating the tutorial name, and listing the students enrolled in the specified tutorial class.
+
+#### Implementation Details
+
+The `ListTutorialStudentsCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for 
+parsing the input, validating the tutorial name, and listing the students enrolled in the specified tutorial class.
+
+#### Operations
+
+The class implements the following main operation:
+
+- `ListTutorialStudentsCommand#execute()`
+  - **Validates the input** to ensure the tutorial name is not empty or invalid.
+  - **Searches for the tutorial class** by its name within the list of tutorial classes.
+  - If the tutorial class is found, it retrieves the list of students enrolled in the tutorial class.
+  - If there are no students enrolled, a message is displayed indicating that the tutorial has no students.
+  - If students are found, their details are printed.
+  - **Error handling**: If the tutorial name does not match any existing tutorial class or the input is invalid, 
+  an exception is thrown, and an error message is displayed.
+
+#### 4. ListUpcomingTutorialsCommand
+
+The `ListUpcomingTutorialsCommand` is part of the `tutorialcommands` package and is responsible for listing all upcoming
+tutorial sessions from the current date until a given end date. The tutorials are displayed with their names, dates, and times. 
+If the input is invalid or any exceptions occur, appropriate error messages are displayed.
+
+#### Implementation Details
+
+The `ListUpcomingTutorialsCommand` class implements the `Command<TutorialClassList>` interface. It handles parsing the input, 
+validating the date, and listing the upcoming tutorials that fall within the specified date range.
+
+#### Operations
+
+The class implements the following main operation:
+
+- `ListUpcomingTutorialsCommand#execute()`
+  - **Validates the input**: Ensures the end date string is not null or empty.
+  - **Parses the input date**: Converts the input end date string into a `LocalDate` format using `DateTimeFormatterUtil.parseDate()`.
+  - **Calculates the first upcoming tutorial date**: Determines the next occurrence of the first tutorial class based on the current date and the day of the week.
+  - **Lists tutorials**: Iterates through the tutorial classes, printing their names, dates, start times, and end times for each tutorial class that happens before the end date.
+  - **Error handling**: If any exceptions occur during parsing or processing, the relevant error messages are displayed.
 
 ### Marks Commands
 
@@ -546,11 +644,9 @@ The `RenameTaskCommand` class implements the `Command<TaskList>` interface and i
   - The task number format is invalid.
   - The task number does not exist in the list.
 
+  
 
-### Tutorial Commands
-
-
-## Product scope
+## Appendix A: Product scope
 ### Target user profile
 
 {Describe the target user profile}
