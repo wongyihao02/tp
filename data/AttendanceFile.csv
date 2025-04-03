@@ -1,6 +1,7 @@
 # T01,1
 Alice Tan,A001,Absent
 john,A1433985N,Present
+Mark,A2457654W,Present
 Harry Choo,A008,Present
 Farhan Lee,A006,Present
 Grace Tan,A007,Present
@@ -12,6 +13,7 @@ Chloe Ong,A003,Present
 //comments
 Alice Tan,A001,Absent without valid reason
 john,A1433985N,
+Mark,A2457654W,
 Harry Choo,A008,Participated actively
 Farhan Lee,A006,
 Grace Tan,A007,Asked thoughtful questions
