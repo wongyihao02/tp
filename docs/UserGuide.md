@@ -440,61 +440,61 @@ computer
 
 # Student Commands
 
-CommandName|Form|Example
------------|:---|:------:
-Add Student|`newstudent -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>`|`newstudent -t kim dokja,15-02-2000,Male,99224 806,A002,T01`
-Delete Student|`deletestudent -t <tutorial_name>,<matric_number>`|`DELETESTUDENT -t T123,A7656765W`
-Find Student|`find -t <keyword>`|`FIND -t Charlie Song`  `FIND -t A7645342D`
-Change Student Remark| `changeremark -t <tutorial_name>,<matric_number>,<new_remark>`|`CHANGEREMARK -t T123,A2345674W,Excellent job in class!`
-Check Student Remark| `checkremarks -t <tutorial_name>,<matric_number>`|`CHECKREMARK -t T123,A2345674W`
+| CommandName           | Form                                                                             |                           Example                            |
+|-----------------------|:---------------------------------------------------------------------------------|:------------------------------------------------------------:|
+| Add Student           | `newstudent -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>` | `newstudent -t kim dokja,15-02-2000,Male,99224 806,A002,T01` |
+| Delete Student        | `deletestudent -t <tutorial_name>,<matric_number>`                               |              `DELETESTUDENT -t T123,A7656765W`               |
+| Find Student          | `find -t <keyword>`                                                              |         `FIND -t Charlie Song`  `FIND -t A7645342D`          |
+| Change Student Remark | `changeremark -t <tutorial_name>,<matric_number>,<new_remark>`                   |   `CHANGEREMARK -t T123,A2345674W,Excellent job in class!`   |
+| Check Student Remark  | `checkremarks -t <tutorial_name>,<matric_number>`                                |               `CHECKREMARK -t T123,A2345674W`                |
 
 ## Marks Commands
 
-CommandName|Form|Example
------------|:---|:------:
-Add Marks| `newmarks -m <tutorial_name>,<matric_number>,<assignment_name>,<marks_achieved>,<max_marks>`|`NEWMARKS -m T123,A1234567W,Midterm Exam,75,100`
-Delete Marks| `deletemarks -m <tutorial_name>,<matric_number>,<assignment_name>`|`DELETEMARKS -m T123,A1234567W,Midterm Exam`
-List Marks| `list -m <tutorial_name>,<matric_number>`|`LIST -m T123,A1234567W`
+| CommandName  | Form                                                                                         |                     Example                      |
+|--------------|:---------------------------------------------------------------------------------------------|:------------------------------------------------:|
+| Add Marks    | `newmarks -m <tutorial_name>,<matric_number>,<assignment_name>,<marks_achieved>,<max_marks>` | `NEWMARKS -m T123,A1234567W,Midterm Exam,75,100` |
+| Delete Marks | `deletemarks -m <tutorial_name>,<matric_number>,<assignment_name>`                           |   `DELETEMARKS -m T123,A1234567W,Midterm Exam`   |
+| List Marks   | `list -m <tutorial_name>,<matric_number>`                                                    |             `LIST -m T123,A1234567W`             |
 
 ## Tutorial Commands
 
-CommandName|Form|Example
------------|:---|:------:
-Create Tutorial| `newtutorial -t <tutorial_name>,<day_of_week>,<start_time>,<end_time>`|`NEWTUTORIAL -t T123,2,11:00,13:00`
-Delete Tutorial| `deletetut -t <tutorial_name>`|`DELETETUT -t T123`
-List Students in Tutorial| `listsstudents -t <tutorial_name>`|`LISTSTUDENTS -t T123`
-List Upcoming Tutorials| `list -t <date>`|`LIST -t 12/03/2025`
+| CommandName               | Form                                                                   |               Example               |
+|---------------------------|:-----------------------------------------------------------------------|:-----------------------------------:|
+| Create Tutorial           | `newtutorial -t <tutorial_name>,<day_of_week>,<start_time>,<end_time>` | `NEWTUTORIAL -t T123,2,11:00,13:00` |
+| Delete Tutorial           | `deletetut -t <tutorial_name>`                                         |         `DELETETUT -t T123`         |
+| List Students in Tutorial | `listsstudents -t <tutorial_name>`                                     |       `LISTSTUDENTS -t T123`        |
+| List Upcoming Tutorials   | `list -t <date>`                                                       |        `LIST -t 12/03/2025`         |
 
 ## Task Commands
 
-CommandName|Form|Example
------------|:---|:------:
-Add To-Do| `add -pt <todo_name>`|`add -pt Read book`
-Add Deadline| `add -pd <deadline_name> /by <dd/MM/yyyy HH:mm>`|`add -pd Assignment submission /by 03/04/2025 23:59`
-Add Event| `add -pe <event_name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`|`add -pe Concert /from 03/04/2025 15:00 /to 03/04/2025 16:00`
-Add Consultation| `add -c <student_name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`|`add -c Kevin /from 05/04/2025 15:00 /to 05/04/2025 16:00`
-List Tasks| `list -p`|`list -p`
-Delete Task| `delete -p <task_number>`| `delete -p 1`
-Mark Task as Done| `mark -p <task_number>`|`mark -p 1`
-Unmark Task| `unmark -p <task_number>`|`unmark -p 1`
-Find Task| `find -p <keyword>`|`find -p java`
-Rename Task| `rename -p <task_number> <new_name>`|`rename -p 1 Study Python`
+| CommandName       | Form                                                                    |                            Example                            |
+|-------------------|:------------------------------------------------------------------------|:-------------------------------------------------------------:|
+| Add To-Do         | `add -pt <todo_name>`                                                   |                      `add -pt Read book`                      |
+| Add Deadline      | `add -pd <deadline_name> /by <dd/MM/yyyy HH:mm>`                        |     `add -pd Assignment submission /by 03/04/2025 23:59`      |
+| Add Event         | `add -pe <event_name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`  | `add -pe Concert /from 03/04/2025 15:00 /to 03/04/2025 16:00` |
+| Add Consultation  | `add -c <student_name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>` |  `add -c Kevin /from 05/04/2025 15:00 /to 05/04/2025 16:00`   |
+| List Tasks        | `list -p`                                                               |                           `list -p`                           |
+| Delete Task       | `delete -p <task_number>`                                               |                         `delete -p 1`                         |
+| Mark Task as Done | `mark -p <task_number>`                                                 |                          `mark -p 1`                          |
+| Unmark Task       | `unmark -p <task_number>`                                               |                         `unmark -p 1`                         |
+| Find Task         | `find -p <keyword>`                                                     |                        `find -p java`                         |
+| Rename Task       | `rename -p <task_number> <new_name>`                                    |                  `rename -p 1 Study Python`                   |
 
 ## Attendance Commands
 
-CommandName|Form|Example
------------|:---|:------:
-View Attendance List|`list -a <Tut_name>,<Week_num>` | `list -a T01,1`
-Mark Student Present| `mark -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`|`mark -a T01,1,john,A001`
-Mark Student Absent| `unmark -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`|`mark -a T01,1,john,A001`
-View Comments| `viewcomment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`|`viewcomment -a T01,1,john,A001`
-Add Comment| `comment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//comment1;comment2`|`comment -a T01,1,john,A001//john is studious;john does everything`
-Delete Comment| `deletecomment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//num_pos_to_delete`|`deletecomment -a T01,1,john,A001//1`
-Create Attendance List| `create -at <Tut_name>,<Week_num>`|`create -at T01,1`
+| CommandName            | Form                                                                                   |                               Example                               |
+|------------------------|:---------------------------------------------------------------------------------------|:-------------------------------------------------------------------:|
+| View Attendance List   | `list -a <Tut_name>,<Week_num>`                                                        |                           `list -a T01,1`                           |
+| Mark Student Present   | `mark -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`                             |                      `mark -a T01,1,john,A001`                      |
+| Mark Student Absent    | `unmark -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`                           |                      `mark -a T01,1,john,A001`                      |
+| View Comments          | `viewcomment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`                      |                  `viewcomment -a T01,1,john,A001`                   |
+| Add Comment            | `comment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//comment1;comment2`       | `comment -a T01,1,john,A001//john is studious;john does everything` |
+| Delete Comment         | `deletecomment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//num_pos_to_delete` |                `deletecomment -a T01,1,john,A001//1`                |
+| Create Attendance List | `create -at <Tut_name>,<Week_num>`                                                     |                         `create -at T01,1`                          |
 
 ## Exit Command
 
-CommandName|Form|Example
------------|:---|:------:
-Exit Application| `bye`|`bye`
+| CommandName      | Form  | Example |
+|------------------|:------|:-------:|
+| Exit Application | `bye` |  `bye`  |
 
