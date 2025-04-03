@@ -9,12 +9,12 @@ import java.util.Objects;
 
 public class Student {
     private String name;
-    private LocalDate dateOfBirth;
-    private String gender;
-    private String contact;
+    private LocalDate dateOfBirth = LocalDate.now();
+    private String gender = "Male";
+    private String contact = "";
     private String matricNumber;
     private String remark;
-    private MarksList marksList;
+    private MarksList marksList = new MarksList();
 
     public Student(
             String name, LocalDate dateOfBirth, String gender,
@@ -30,10 +30,6 @@ public class Student {
     public Student(String name, String matricNumber) {
         this.name = name;
         this.matricNumber = matricNumber;
-        this.marksList = new MarksList();
-        dateOfBirth = LocalDate.now();
-        gender = "M";
-        contact = "";
     }
 
 
