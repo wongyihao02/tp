@@ -285,6 +285,74 @@ The class implements the following main operation:
 - If no matching students are found in any tutorial class, prints a message indicating that no results were found. 
 - Handles any exceptions by displaying relevant error messages if validation fails.
 
+### Marks Commands
+
+#### 1. AddMarksCommand
+
+The `AddMarksCommand` handles the addition of new marks to a given student's marksList.
+
+#### Implementation Details
+
+The `AddMarksCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for parsing the input to 
+extract the tutorial class code, student matriculation number, assignment name, marks achieved and maximum marks, validating them,
+and instantiating and saving a Marks object with the details to the given student's marksList.
+
+#### Operations
+
+`AddMarksCommand#execute()`
+- Validates the input to ensure it follows the expected format and is not missing arguments.
+- Parses the input to extract the tutorial class code, matric number, assignment name, marks and maximum marks.
+- Validates parsed inputs marks and maximum marks to make sure they are valid, non-negative integers with maximum marks >= marks.
+- Retrieves the `tutorialClass` with the given tutorial class code.
+- Checks if the `tutorialClass` retrieved exists, prints an error message otherwise.
+- Retrieves the student with the given matric number from the retrieved `tutorialClass` student list.
+- Checks if the student exists, prints an error message otherwise.
+- Checks if the student's `marksList` already contains a marks object with the same assignment name, prints an error message if so.
+- Instantiates the `marks` object with given assignment name, marks and max marks, and adds it to `marksList`.
+
+### 2. DeleteMarksCommand
+
+The `DeleteMarksCommand` handles the removal of a student's marks entry for a specified assignment.
+
+### Implementation Details
+
+The `DeleteMarksCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for parsing the input  
+to extract the tutorial class code, student matriculation number, and assignment name, validating them, and removing the  
+corresponding `Marks` object from the student's `marksList`.
+
+### Operations
+
+#### `DeleteMarksCommand#execute()`
+- Validates the input to ensure it follows the expected format and is not missing arguments.
+- Parses the input to extract the tutorial class code, matric number, and assignment name.
+- Retrieves the `TutorialClass` with the given tutorial class code.
+- Checks if the `TutorialClass` exists, prints an error message otherwise.
+- Retrieves the student with the given matric number from the retrieved `TutorialClass` student list.
+- Checks if the student exists, prints an error message otherwise.
+- Checks if the student's `marksList` contains a `Marks` object with the given assignment name, prints an error message if not.
+- Removes the corresponding `Marks` object from the student's `marksList` and prints a success message.
+
+### 3. ListMarksCommand
+
+The `ListMarksCommand` handles retrieving and displaying all marks for a specified student.
+
+### Implementation Details
+
+The `ListMarksCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for parsing the input  
+to extract the tutorial class code and student matriculation number, validating them, and printing all marks recorded for  
+the student.
+
+### Operations
+
+#### `ListMarksCommand#execute()`
+- Validates the input to ensure it follows the expected format and is not missing arguments.
+- Parses the input to extract the tutorial class code and matric number.
+- Retrieves the `TutorialClass` with the given tutorial class code.
+- Checks if the `TutorialClass` exists, prints an error message otherwise.
+- Retrieves the student with the given matric number from the retrieved `TutorialClass` student list.
+- Checks if the student exists, prints an error message otherwise.
+- Prints the student's name followed by all marks recorded in their `marksList`.
+
 
 ### Task Commands
 
