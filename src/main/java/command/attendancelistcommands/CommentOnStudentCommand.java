@@ -20,13 +20,18 @@ public class CommentOnStudentCommand implements Command<AttendanceFile> {
 
             String[] partsArray2 = parts.split("//");
             //if not all inputs given or too many
-            if (partsArray2.length != 2) {
+            if (partsArray2.length != 2 || partsArray2[0].trim().isEmpty() || partsArray2[1].trim().isEmpty()) {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
+
 
             String[] partsArray = partsArray2[0].split(",");
             String[] commentsArray = partsArray2[1].split(";");
             ArrayList<String> comments = new ArrayList<>();
+
+            if (partsArray.length != 4) {
+                throw TASyncException.invalidmarkAttendanceListCommand();
+            }
 
             for (String comment : commentsArray) {
                 comments.add(comment.trim());

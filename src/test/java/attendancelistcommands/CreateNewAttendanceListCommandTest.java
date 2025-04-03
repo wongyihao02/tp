@@ -8,37 +8,45 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
 
 import attendance.AttendanceFile;
+import attendance.AttendanceList;
+import command.attendancelistcommands.CreateNewAttendanceList;
 import command.attendancelistcommands.ShowAttendanceListCommand;
-
-
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import tutorial.TutorialClassList;
 
-public class ShowAttendanceListCommandTest {
+public class CreateNewAttendanceListCommandTest {
 
     private AttendanceFile attendanceFile;
     private TutorialClassList tutorialClassList;
     private ByteArrayOutputStream outputStream;
+    private ArrayList<Object> tutAtten;
 
     @BeforeEach
     public void setup() {
         attendanceFile = initializeAttendanceFile();
         tutorialClassList = initializeTutorialClasses();
         outputStream = captureSystemOut();
+        ArrayList<Object> tutAtten1 = new ArrayList<Object>();
+        tutAtten1.add(tutorialClassList);
+        tutAtten1.add(attendanceFile);
+        tutAtten = tutAtten1;
     }
 
     @Test
     public void testNormalInput() {
-        String input = "T01,1";
+        String input = "T01,100";
+
         ShowAttendanceListCommand command = new ShowAttendanceListCommand();
+        CreateNewAttendanceList command1 = new CreateNewAttendanceList();
+        command1.execute(input, tutAtten);
         command.execute(input, attendanceFile);
         String output = outputStream.toString().trim();
 
-        assertTrue(output.contains("Attendance List for tutorial T01 week 1:"));
+        assertTrue(output.contains("Attendance List for tutorial T01 week 100:"));
         assertTrue(output.contains("Roselle Gustave Bonaparte(A333): Absent"));
         assertTrue(output.contains("Kim Dokja(A003): Absent"));
         assertFalse(output.contains("Han sooyung(A490): Absent"));
@@ -46,32 +54,13 @@ public class ShowAttendanceListCommandTest {
     }
 
     @Test
-    void testEmptyList() {
-        String input = "T03,1";
-        ShowAttendanceListCommand command = new ShowAttendanceListCommand();
-        command.execute(input, attendanceFile);
-        String output = outputStream.toString().trim();
-        assertTrue(output.contains("Attendance List for tutorial T03 week 1:"));
-        assertTrue(output.contains("No student in attendance list"));
-    }
-
-    @Test
-    void testEmptyInput() {
-        String input = "";
-        ShowAttendanceListCommand command = new ShowAttendanceListCommand();
-        command.execute(input, attendanceFile);
-        String output = outputStream.toString().trim();
-        assertTrue(output.contains("Invalid List all students in attendanceList command, please specify a valid attendancelist with a valid tutorial id and a valid week"));
-    }
-
-    @Test
     void testOneInputWrong() {
 
-        String[] input = {"T01,99", "1", "12fvc", "T02,22", "9"};
+        String[] input = {"T01", "1", "12fvc", "T02", "9"};
         for (String s : input) {
             outputStream = captureSystemOut();
-            ShowAttendanceListCommand command = new ShowAttendanceListCommand();
-            command.execute(s, attendanceFile);
+            CreateNewAttendanceList command1 = new CreateNewAttendanceList();
+            command1.execute(s, tutAtten);
             String output = outputStream.toString().trim();
             assertTrue(output.contains("Invalid List all students in attendanceList command, "
                     + "please specify a valid attendancelist with a valid tutorial id and a valid week"));
@@ -83,8 +72,8 @@ public class ShowAttendanceListCommandTest {
     @Test
     void testSecondInputNonNumWrong() {
         String input = "T01,sba";
-        ShowAttendanceListCommand command = new ShowAttendanceListCommand();
-        command.execute(input, attendanceFile);
+        CreateNewAttendanceList command1 = new CreateNewAttendanceList();
+        command1.execute(input, tutAtten);
         String output = outputStream.toString().trim();
         assertTrue(output.contains("second parameter has to be numbers only"));
 
@@ -96,28 +85,25 @@ public class ShowAttendanceListCommandTest {
         String[] input = {"T01,1,1,1", "1239c,12313,111", "T03,1,2", "T10,2,1", "9,3,1"};
         for (String s : input) {
             outputStream = captureSystemOut();
-            ShowAttendanceListCommand command = new ShowAttendanceListCommand();
-            command.execute(s, attendanceFile);
+            CreateNewAttendanceList command1 = new CreateNewAttendanceList();
+            command1.execute(s, tutAtten);
             String output = outputStream.toString().trim();
-            assertTrue(output.contains("Invalid List all students in attendanceList command, " +
-                    "please specify a valid attendancelist with a valid tutorial id and a valid week"));
+            assertTrue(output.contains("Invalid List all students in attendanceList command, "
+                    + "please specify a valid attendancelist with a valid tutorial id and a valid week"));
 
         }
-
     }
 
     @Test
-    void testDontHaveAttendanceList() {
-        String[] input = {"T01,10", "T01,11", "T03,2", "T10,1", "T02,8"};
+    void createExistingAttendanceList() {
+        String[] input = {"T01,1", "T01,2", "T01,3", "T02,3", "T02,6", "T03,1"};
         for (String s : input) {
             outputStream = captureSystemOut();
-            ShowAttendanceListCommand command = new ShowAttendanceListCommand();
-            command.execute(s, attendanceFile);
+            CreateNewAttendanceList command1 = new CreateNewAttendanceList();
+            command1.execute(s, tutAtten);
             String output = outputStream.toString().trim();
-            assertTrue(output.contains("Invalid List all students in attendanceList command, " +
-                    "please specify a valid attendancelist with a valid tutorial id and a valid week"));
+            assertTrue(output.contains("Attendance list for the week already exists"));
 
         }
     }
-
 }

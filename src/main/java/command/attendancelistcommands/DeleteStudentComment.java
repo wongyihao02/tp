@@ -26,6 +26,14 @@ public class DeleteStudentComment implements Command<AttendanceFile> {
 
             String[] partsArray = partsArray2[0].split(",");
 
+            if (partsArray.length != 4) {
+                throw TASyncException.invalidmarkAttendanceListCommand();
+            }
+
+            if (Integer.parseInt(partsArray2[1].trim()) < 1) {
+                throw TASyncException.invalidmarkAttendanceListCommand();
+            }
+
             ArrayList<AttendanceList> list = attendanceList.getAttendanceList();
 
             AttendanceList theOne = null;
@@ -58,7 +66,10 @@ public class DeleteStudentComment implements Command<AttendanceFile> {
             Map<Student, ArrayList<String>> commentlist = theOne.getCommentList();
 
             if (commentlist.containsKey(derStudent)) {
-                int index = Integer.parseInt(partsArray[1]) - 1;
+                if (commentlist.get(derStudent).isEmpty()) {
+                    System.out.println("student has no comments");
+                }
+                int index = Integer.parseInt(partsArray2[1]) - 1;
                 int size = commentlist.get(derStudent).size();
 
                 if (index >= 0 && index < size) {
@@ -67,8 +78,6 @@ public class DeleteStudentComment implements Command<AttendanceFile> {
                 } else {
                     System.out.println("Comment to be deleted was not present");
                 }
-            } else {
-                System.out.println("Student has no comments");
             }
 
         } catch (TASyncException e) {

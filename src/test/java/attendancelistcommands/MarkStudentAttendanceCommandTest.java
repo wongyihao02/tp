@@ -80,34 +80,36 @@ public class MarkStudentAttendanceCommandTest {
             MarkStudentAttendanceCommand command1 = new MarkStudentAttendanceCommand();
             command1.execute(s, attendanceFile);
             String output = outputStream.toString().trim();
-            assertTrue(output.contains("Invalid mark attendance command, " +
-                    "please specify a valid attendancelist with a tutorial id, week and valid student id and name"));
+            assertTrue(output.contains("Invalid mark attendance command, "
+                    + "please specify a valid attendancelist with a tutorial id, week and valid student id and name"));
         }
     }
 
     @Test
     public void testDontHaveTheStudentInputs() {
-        String[] input = {"T01,2,Wong Yi Hao,A002", "T02,3,Klein,A000", "T01,3,Aseop,A220", "T02,2,Imhotep,A103", "T02,1,Aardvark,A117", "T03,1,Roselle Gustave Bonaparte,A333"};
+        String[] input = {"T01,2,Wong Yi Hao,A002", "T02,3,Klein,A000", "T01,3,Aseop,A220",
+                          "T02,2,Imhotep,A103", "T02,1,Aardvark,A117", "T03,1,Roselle Gustave Bonaparte,A333"};
         for (String s : input) {
             outputStream = captureSystemOut();
             MarkStudentAttendanceCommand command1 = new MarkStudentAttendanceCommand();
             command1.execute(s, attendanceFile);
             String output = outputStream.toString().trim();
-            assertTrue(output.contains("Invalid mark attendance command, " +
-                    "please specify a valid attendancelist with a tutorial id, week and valid student id and name"));
+            assertTrue(output.contains("Invalid mark attendance command, "
+                    + "please specify a valid attendancelist with a tutorial id, week and valid student id and name"));
         }
     }
 
     @Test
     void testDontHaveAttendanceList() {
-        String[] input = {"T01,10,Roselle Gustave Bonaparte,A333", "T01,11,Kim Dokja,A003", "T03,2,Kim Dokja,A003", "T10,1,Roselle Gustave Bonaparte,A333", "T02,8,Roselle Gustave Bonaparte,A333"};
+        String[] input = {"T01,10,Roselle Gustave Bonaparte,A333", "T01,11,Kim Dokja,A003",
+                          "T03,2,Kim Dokja,A003", "T10,1,Roselle Gustave Bonaparte,A333", "T02,8,Roselle Gustave Bonaparte,A333"};
         for (String s : input) {
             outputStream = captureSystemOut();
             MarkStudentAttendanceCommand command1 = new MarkStudentAttendanceCommand();
             command1.execute(s, attendanceFile);
             String output = outputStream.toString().trim();
-            assertTrue(output.contains("Invalid mark attendance command, " +
-                    "please specify a valid attendancelist with a tutorial id, week and valid student id and name"));
+            assertTrue(output.contains("Invalid mark attendance command, "
+                    + "please specify a valid attendancelist with a tutorial id, week and valid student id and name"));
 
         }
     }
