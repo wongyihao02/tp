@@ -31,6 +31,14 @@
     - [Unmarking a task: `UNMARK`](#unmarking-a-task-unmark)
     - [Finding a task: `FIND`](#finding-a-task-find)
     - [Renaming a task: `RENAME`](#renaming-a-task-rename)
+  - [AttendanceList Commands](#attendancelist-commands)
+    - [View the attendance list: `LIST`](#view-the-attendance-list-list)
+    - [Mark present a student: `MARK`](#mark-present-a-student-mark)
+    - [Mark absent a student: `UNMARK`](#mark-absent-a-student-unmark)
+    - [View comments for a student: `VIEWCOMMENT`](#view-comments-for-a-student-viewcomment)
+    - [Add comments for a student: `COMMENT`](#add-comments-for-a-student-comment)
+    - [delete comments for a student: `DELETECOMMENT`](#delete-comment-for-a-student-deletecomment)
+    - [Create a new attendancelist`CREATE`](#create-an-attendance-list-create)
   - [Bye Command](#bye-command-bye)
 - [FAQ](#faq)
 - [Command Summary](#Command-Summary)
@@ -307,6 +315,105 @@ Example:
 > rename -p 1 Study Python
 Study Java renamed to Study Python
 ```
+### AttendanceList Commands
+
+#### View the attendance list: `LIST`
+
+Lists out the attendance for a given tutorial name and week
+
+Format: `list -a <Tut_name>,<Week_num>`
+
+Example:
+```
+> list -a T01,1
+Attendance List for tutorial T01 week1:
+personname(matricnum1): Absent
+end of list
+```
+
+#### mark present a student: `MARK`
+
+marks a student present in a attendance list for a given tutorial name and week
+
+Format: `mark -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`
+
+Example:
+```
+> mark -a T01,1,john,A001
+```
+
+#### mark absent a student: `UNMARK`
+
+marks a student absent in a attendance list for a given tutorial name and week
+
+Format: `unmark -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`
+
+Example:
+```
+> mark -a T01,1,john,A001
+```
+
+#### View comments for a student: `VIEWCOMMENT`
+
+Lists out the comments for a student for a given tutorial name and week
+
+Format: `viewcomment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`
+
+Example:
+```
+> viewcomment -a T01,1,john,A001
+list of comments:
+1.john is studious
+2.john is hardworking
+```
+
+#### add comments for a student: `COMMENT`
+
+adds comments to a student for a given tutorial name and week
+
+Format: `comment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//comment1;comment2`
+
+Example:
+```
+> comment -a T01,1,john,A001//john is studious;john does everything
+
+> viewcomment -a T01,1,john,A001
+list of comments:
+1.john is studious
+2.john does everything
+```
+
+#### delete comment for a student: `DELETECOMMENT`
+
+deletes a comment for a student for a given tutorial name and week
+
+Format: `deletecomment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//num_pos_to_delete`
+
+Example:
+```
+> viewcomment -a T01,1,john,A001
+list of comments:
+1.john is studious
+2.john does everything
+
+> deletecomment -a T01,1,john,A001//1
+
+> viewcomment -a T01,1,john,A001
+list of comments:
+1.john does everything
+```
+#### Create an attendance list: `CREATE`
+
+Creates an attendance List for a given tutorial name and week if it does not already exist.
+Note that the tage is -at instead of -t this time.
+
+Format: `create -at <Tut_name>,<Week_num>`
+
+Example:
+```
+> create -at T01,1
+Attendance List created
+```
 
 ### Bye Command: `BYE`
 
@@ -330,6 +437,75 @@ All data saved successfully!
 
 ## Command Summary
 
-{Give a 'cheat sheet' of taskcommands here}
+# Student Commands
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+Add Student: `newstudent -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>`
+
+Delete Student: `deletestudent -t <tutorial_name>,<matric_number>`
+
+Find Student: `find -t <keyword>`
+
+Change Student Remark: `changeremark -t <tutorial_name>,<matric_number>,<new_remark>`
+
+Check Student Remark: `checkremarks -t <tutorial_name>,<matric_number>`
+
+## Marks Commands
+
+Add Marks: `newmarks -m <tutorial_name>,<matric_number>,<assignment_name>,<marks_achieved>,<max_marks>`
+
+Delete Marks: `deletemarks -m <tutorial_name>,<matric_number>,<assignment_name>`
+
+List Marks: `list -m <tutorial_name>,<matric_number>`
+
+## Tutorial Commands
+
+Create Tutorial: `newtutorial -t <tutorial_name>,<day_of_week>,<start_time>,<end_time>`
+
+Delete Tutorial: `deletetut -t <tutorial_name>`
+
+List Students in Tutorial: `listsstudents -t <tutorial_name>`
+
+List Upcoming Tutorials: `list -t <date>`
+
+## Task Commands
+
+Add To-Do: `add -pt <todo_name>`
+
+Add Deadline: `add -pd <deadline_name> /by <dd/MM/yyyy HH:mm>`
+
+Add Event: `add -pe <event_name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`
+
+Add Consultation: `add -c <student_name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`
+
+List Tasks: `list -p`
+
+Delete Task: `delete -p <task_number>`
+
+Mark Task as Done: `mark -p <task_number>`
+
+Unmark Task: `unmark -p <task_number>`
+
+Find Task: `find -p <keyword>`
+
+Rename Task: `rename -p <task_number> <new_name>`
+
+## Attendance Commands
+
+View Attendance List: `list -a <Tut_name>,<Week_num>`
+
+Mark Student Present: `mark -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`
+
+Mark Student Absent: `unmark -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`
+
+View Comments: `viewcomment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`
+
+Add Comment: `comment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//comment1;comment2`
+
+Delete Comment: `deletecomment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//num_pos_to_delete`
+
+Create Attendance List: `create -at <Tut_name>,<Week_num>`
+
+## Exit Command
+
+Exit Application: `bye`
+
