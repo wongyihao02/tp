@@ -331,7 +331,7 @@ personname(matricnum1): Absent
 end of list
 ```
 
-#### mark present a student: `MARK`
+#### Mark present a student: `MARK`
 
 marks a student present in a attendance list for a given tutorial name and week
 
@@ -342,7 +342,7 @@ Example:
 > mark -a T01,1,john,A001
 ```
 
-#### mark absent a student: `UNMARK`
+#### Mark absent a student: `UNMARK`
 
 marks a student absent in a attendance list for a given tutorial name and week
 
@@ -383,7 +383,7 @@ list of comments:
 2.john does everything
 ```
 
-#### delete comment for a student: `DELETECOMMENT`
+#### Delete comment for a student: `DELETECOMMENT`
 
 deletes a comment for a student for a given tutorial name and week
 
