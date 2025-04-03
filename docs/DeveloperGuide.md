@@ -657,10 +657,22 @@ Teaching assistants and tutors often struggle with time-consuming administrative
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version | As a ...                       | I want to ...                                                                          | So that I can ...                                                                            |
+|---------|--------------------------------|----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| v1.0    | inexperienced or new TA        | know how to use TASync easily by referring to a readily accessible built-in user guide | quickly learn how to use the application and avoid mistakes when interacting with the system |
+| v1.0    | TA                             | edit (add/delete) the student list                                                     | track who is in my class and ensure accurate attendance records                              |
+| v1.0    | TA                             | mark attendance for tutorial sessions                                                  | keep track of student attendance to ensure participation                                     |
+| v1.0    | TA                             | create weekly tutorial attendance list                                                 | organize attendance per session and quickly reference past attendance records                |
+| v1.0    | TA after each session          | add remarks for the student after each tutorial                                        | refer back to feedback for future sessions and provide constructive comments                 |
+| v1.0    | TA with lots of classes        | find students in my tutorials easily                                                   | quickly locate students and manage tutorial-related activities                               |
+| v1.0    | TA after each session          | give remarks on my students for future reference                                       | provide personalized feedback to students for future reference and improvement               |
+| v1.0    | TA managing multiple tutorials | list out my tutorial classes for a specified amount of time                            | view my scheduled tutorials over a period of time for better planning                        |
+| v1.0    | busy TA                        | add consultation slots into the list of todo                                           | show when my consultation slots are and manage my time effectively                           |
+| v1.0    | busy TA                        | find a task by name                                                                    | locate a task without having to go through the entire list                                   |
+| v2.0    | busy TA                        | schedule and modify my teaching schedules                                              | accommodate student consultations/meetings with professors and stay organized                |
+| v2.0    | busy TA                        | print out tutorial + tasks on the particular day once the app is opened                | quickly view my teaching schedule and tasks for the day upon opening the app                 |
+| v2.0    | responsible TA                 | track a student’s individual assignment grades                                         | monitor grades for students to provide timely feedback                                       |
+
 
 ## Non-Functional Requirements
 
