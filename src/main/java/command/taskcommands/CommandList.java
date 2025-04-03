@@ -168,7 +168,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "LISTTUTORIALSTUDENTS: Shows students in a tutorial. " +
-                            "Usage: LISTSTUDENTS -t <Tut name>"
+                            "Usage: LISTSTUDENTS -t <tutorial_name>"
             );
         }
     },
