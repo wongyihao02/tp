@@ -1,22 +1,21 @@
 package attendancelistcommands;
 
+import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.captureSystemOut;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.initializeAttendanceFile;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.initializeTutorialClasses;
-import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.captureSystemOut;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import attendance.AttendanceFile;
 import command.attendancelistcommands.CommentOnStudentCommand;
 import command.attendancelistcommands.DeleteStudentComment;
-import command.attendancelistcommands.MarkStudentAttendanceCommand;
 import command.attendancelistcommands.ViewStudentCommentsCommand;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import tutorial.TutorialClassList;
+
 
 public class DeleteStudentCommentTest {
 
@@ -102,8 +101,9 @@ public class DeleteStudentCommentTest {
 
     @Test
     public void testDontHaveTheStudentInputs() {
-        String[] input = {"T01,2,Wong Yi Hao,A002//1", "T02,3,Klein,A000//1", "T01,3,Aseop,A220//1", "T02,2,Imhotep,A103//1",
-                          "T02,1,Aardvark,A117//1", "T03,1,Roselle Gustave Bonaparte,A333//1"};
+        String[] input = {"T01,2,Wong Yi Hao,A002//1", "T02,3,Klein,A000//1", "T01,3,Aseop,A220//1",
+                          "T02,2,Imhotep,A103//1", "T02,1,Aardvark,A117//1",
+                          "T03,1,Roselle Gustave Bonaparte,A333//1"};
         for (String s : input) {
             outputStream = captureSystemOut();
             DeleteStudentComment command = new DeleteStudentComment();

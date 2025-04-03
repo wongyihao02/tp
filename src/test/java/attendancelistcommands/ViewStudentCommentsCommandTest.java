@@ -3,18 +3,17 @@ package attendancelistcommands;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.initializeAttendanceFile;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.initializeTutorialClasses;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.captureSystemOut;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 
-import attendance.AttendanceFile;
-import command.attendancelistcommands.MarkStudentAttendanceCommand;
-import command.attendancelistcommands.ViewStudentCommentsCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import attendance.AttendanceFile;
+import command.attendancelistcommands.ViewStudentCommentsCommand;
 import tutorial.TutorialClassList;
+
 
 public class ViewStudentCommentsCommandTest {
 
@@ -89,7 +88,8 @@ public class ViewStudentCommentsCommandTest {
     @Test
     void testDontHaveAttendanceList() {
         String[] input = {"T01,10,Roselle Gustave Bonaparte,A333", "T01,11,Kim Dokja,A003",
-                          "T03,2,Kim Dokja,A003", "T10,1,Roselle Gustave Bonaparte,A333", "T02,8,Roselle Gustave Bonaparte,A333"};
+                          "T03,2,Kim Dokja,A003", "T10,1,Roselle Gustave Bonaparte,A333",
+                          "T02,8,Roselle Gustave Bonaparte,A333"};
         for (String s : input) {
             outputStream = captureSystemOut();
             ViewStudentCommentsCommand command = new ViewStudentCommentsCommand();

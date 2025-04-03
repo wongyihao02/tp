@@ -1,21 +1,20 @@
 package attendancelistcommands;
 
+import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.captureSystemOut;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.initializeAttendanceFile;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.initializeTutorialClasses;
-import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.captureSystemOut;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
-import attendance.AttendanceFile;
-import attendance.AttendanceList;
-import command.attendancelistcommands.CreateNewAttendanceList;
-import command.attendancelistcommands.ShowAttendanceListCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import attendance.AttendanceFile;
+import command.attendancelistcommands.CreateNewAttendanceList;
+import command.attendancelistcommands.ShowAttendanceListCommand;
 import tutorial.TutorialClassList;
 
 public class CreateNewAttendanceListCommandTest {

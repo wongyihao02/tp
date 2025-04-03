@@ -1,20 +1,19 @@
 package attendancelistcommands;
 
+import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.captureSystemOut;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.initializeAttendanceFile;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.initializeTutorialClasses;
-import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.captureSystemOut;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import attendance.AttendanceFile;
 import command.attendancelistcommands.MarkStudentAttendanceCommand;
 import command.attendancelistcommands.ShowAttendanceListCommand;
 import command.attendancelistcommands.UnmarkStudentAttendanceCommand;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import tutorial.TutorialClassList;
 
 public class UnmarkStudentAttendanceCommandTest {
@@ -32,7 +31,8 @@ public class UnmarkStudentAttendanceCommandTest {
 
     @Test
     public void testMarkAttendance() {
-        String[] input = {"T01,1,Roselle Gustave Bonaparte,A333", "T01,1,Kim Dokja,A003", "T02,3,Kim Dokja,A003", "T01,2,Roselle Gustave Bonaparte,A333"};
+        String[] input = {"T01,1,Roselle Gustave Bonaparte,A333", "T01,1,Kim Dokja,A003",
+                          "T02,3,Kim Dokja,A003", "T01,2,Roselle Gustave Bonaparte,A333"};
 
 
         ShowAttendanceListCommand command = new ShowAttendanceListCommand();
@@ -104,7 +104,8 @@ public class UnmarkStudentAttendanceCommandTest {
 
     @Test
     public void testDontHaveTheStudentInputs() {
-        String[] input = {"T01,2,Wong Yi Hao,A002", "T02,3,Klein,A000", "T01,3,Aseop,A220", "T02,2,Imhotep,A103", "T02,1,Aardvark,A117", "T03,1,Roselle Gustave Bonaparte,A333"};
+        String[] input = {"T01,2,Wong Yi Hao,A002", "T02,3,Klein,A000", "T01,3,Aseop,A220",
+                          "T02,2,Imhotep,A103", "T02,1,Aardvark,A117", "T03,1,Roselle Gustave Bonaparte,A333"};
         for (String s : input) {
             outputStream = captureSystemOut();
             UnmarkStudentAttendanceCommand command2 = new UnmarkStudentAttendanceCommand();
@@ -117,7 +118,8 @@ public class UnmarkStudentAttendanceCommandTest {
 
     @Test
     void testDontHaveAttendanceList() {
-        String[] input = {"T01,10,Roselle Gustave Bonaparte,A333", "T01,11,Kim Dokja,A003", "T03,2,Kim Dokja,A003", "T10,1,Roselle Gustave Bonaparte,A333", "T02,8,Roselle Gustave Bonaparte,A333"};
+        String[] input = {"T01,10,Roselle Gustave Bonaparte,A333", "T01,11,Kim Dokja,A003", "T03,2,Kim Dokja,A003",
+                          "T10,1,Roselle Gustave Bonaparte,A333", "T02,8,Roselle Gustave Bonaparte,A333"};
         for (String s : input) {
             outputStream = captureSystemOut();
             UnmarkStudentAttendanceCommand command2 = new UnmarkStudentAttendanceCommand();

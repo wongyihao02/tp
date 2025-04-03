@@ -1,20 +1,18 @@
 package attendancelistcommands;
 
+import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.captureSystemOut;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.initializeAttendanceFile;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.initializeTutorialClasses;
-import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.captureSystemOut;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 
-import attendance.AttendanceFile;
-import command.attendancelistcommands.CommentOnStudentCommand;
-import command.attendancelistcommands.MarkStudentAttendanceCommand;
-import command.attendancelistcommands.ViewStudentCommentsCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import attendance.AttendanceFile;
+import command.attendancelistcommands.CommentOnStudentCommand;
+import command.attendancelistcommands.ViewStudentCommentsCommand;
 import tutorial.TutorialClassList;
 
 public class CommentOnStudentCommandTest {
@@ -85,7 +83,8 @@ public class CommentOnStudentCommandTest {
 
     @Test
     public void testDontHaveTheStudentInputs() {
-        String[] input = {"T01,2,Wong Yi Hao,A002//comment", "T02,3,Klein,A000//asd", "T01,3,Aseop,A220//dsa", "T02,2,Imhotep,A103//asdaa",
+        String[] input = {"T01,2,Wong Yi Hao,A002//comment", "T02,3,Klein,A000//asd",
+                          "T01,3,Aseop,A220//dsa", "T02,2,Imhotep,A103//asdaa",
                           "T02,1,Aardvark,A117//s", "T03,1,Roselle Gustave Bonaparte,A333//a"};
         for (String s : input) {
             outputStream = captureSystemOut();
@@ -100,7 +99,8 @@ public class CommentOnStudentCommandTest {
     @Test
     void testDontHaveAttendanceList() {
         String[] input = {"T01,10,Roselle Gustave Bonaparte,A333//comment2", "T01,11,Kim Dokja,A003//comment3",
-                          "T03,2,Kim Dokja,A003//abds", "T10,1,Roselle Gustave Bonaparte,A333//sadad", "T02,8,Roselle Gustave Bonaparte,A333//abdse"};
+                          "T03,2,Kim Dokja,A003//abds", "T10,1,Roselle Gustave Bonaparte,A333//sadad",
+                          "T02,8,Roselle Gustave Bonaparte,A333//abdse"};
         for (String s : input) {
             outputStream = captureSystemOut();
             CommentOnStudentCommand command = new CommentOnStudentCommand();

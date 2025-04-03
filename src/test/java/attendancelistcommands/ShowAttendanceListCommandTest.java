@@ -1,9 +1,8 @@
 package attendancelistcommands;
 
+import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.captureSystemOut;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.initializeAttendanceFile;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.initializeTutorialClasses;
-import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.captureSystemOut;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -61,7 +60,8 @@ public class ShowAttendanceListCommandTest {
         ShowAttendanceListCommand command = new ShowAttendanceListCommand();
         command.execute(input, attendanceFile);
         String output = outputStream.toString().trim();
-        assertTrue(output.contains("Invalid List all students in attendanceList command, please specify a valid attendancelist with a valid tutorial id and a valid week"));
+        assertTrue(output.contains("Invalid List all students in attendanceList command,"
+                + " please specify a valid attendancelist with a valid tutorial id and a valid week"));
     }
 
     @Test
@@ -99,8 +99,8 @@ public class ShowAttendanceListCommandTest {
             ShowAttendanceListCommand command = new ShowAttendanceListCommand();
             command.execute(s, attendanceFile);
             String output = outputStream.toString().trim();
-            assertTrue(output.contains("Invalid List all students in attendanceList command, " +
-                    "please specify a valid attendancelist with a valid tutorial id and a valid week"));
+            assertTrue(output.contains("Invalid List all students in attendanceList command, "
+                    + "please specify a valid attendancelist with a valid tutorial id and a valid week"));
 
         }
 
@@ -114,8 +114,8 @@ public class ShowAttendanceListCommandTest {
             ShowAttendanceListCommand command = new ShowAttendanceListCommand();
             command.execute(s, attendanceFile);
             String output = outputStream.toString().trim();
-            assertTrue(output.contains("Invalid List all students in attendanceList command, " +
-                    "please specify a valid attendancelist with a valid tutorial id and a valid week"));
+            assertTrue(output.contains("Invalid List all students in attendanceList command, "
+                    + "please specify a valid attendancelist with a valid tutorial id and a valid week"));
 
         }
     }
