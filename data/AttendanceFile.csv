@@ -1,7 +1,7 @@
 # T01,1
 Alice Tan,A001,Absent
 john,A1433985N,Present
-Mark,A2457654W,Absent
+Mark,A2457654W,Present
 Harry Choo,A008,Present
 Farhan Lee,A006,Present
 Grace Tan,A007,Present
@@ -26,7 +26,7 @@ Chloe Ong,A003,
 # T01,2
 Alice Tan,A001,Absent
 john,A1433985N,Present
-Mark,A2457654W,Absent
+Mark,A2457654W,Present
 Harry Choo,A008,Present
 Farhan Lee,A006,Present
 Grace Tan,A007,Present
@@ -51,7 +51,7 @@ Chloe Ong,A003,Submitted work early
 # T01,3
 Alice Tan,A001,Absent
 john,A1433985N,Present
-Mark,A2457654W,Absent
+Mark,A2457654W,Present
 Harry Choo,A008,Present
 Farhan Lee,A006,Present
 Grace Tan,A007,Present
@@ -76,7 +76,7 @@ Chloe Ong,A003,
 # T01,4
 Alice Tan,A001,Absent
 john,A1433985N,Present
-Mark,A2457654W,Absent
+Mark,A2457654W,Present
 Harry Choo,A008,Present
 Farhan Lee,A006,Present
 Grace Tan,A007,Present
@@ -445,7 +445,7 @@ Jason Tan,A036,
 # T01,5
 Alice Tan,A001,Absent
 john,A1433985N,Present
-Mark,A2457654W,Absent
+Mark,A2457654W,Present
 Harry Choo,A008,Absent
 Farhan Lee,A006,Absent
 Grace Tan,A007,Absent

@@ -8,34 +8,51 @@ public enum CommandList {
     MARK {
         @Override
         public void printCommand() {
-            System.out.println("MARK: Marks a task as done. Usage: MARK <task_number>");
+            System.out.println("MARK: Marks a task as done. Usage: mark -p <task_number>");
         }
     },
     UNMARK {
         @Override
         public void printCommand() {
-            System.out.println("UNMARK: Marks a task as undone. Usage: UNMARK <task_number>");
+            System.out.println("UNMARK: Marks a task as undone. Usage: unmark -p <task_number>");
         }
     },
     TODO {
         @Override
         public void printCommand() {
-            System.out.println("TODO: Creates a new todo task. Usage: TODO <task_description>");
+            System.out.println("TODO: Creates a new todo task. Usage: add -pt <task_description>");
+        }
+    },
+    DEADLINE {
+        @Override
+        public void printCommand() {
+            System.out.println("DEADLINE: Creates a new deadline task. " +
+                                "Usage: add -pd <task_description> /by <due_time>");
         }
     },
     EVENT {
         @Override
         public void printCommand() {
             System.out.println(
-                    "EVENT: Creates a task with an event. " +
-                            "Usage: EVENT <task_description> /from <start_time> /to <end_time>"
+                    "EVENT: Creates a new event. " +
+                    "Usage: add -pe <task_description> /from <start_time> /to <end_time>"
+            );
+        }
+    },
+    CONSULTATION {
+        @Override
+        public void printCommand() {
+            System.out.println(
+                    "CONSULTATION: Creates a new consultation with student. " +
+                            "Usage: add -c <student_name> /from <start_time> /to <end_time>"
             );
         }
     },
     LIST {
         @Override
         public void printCommand() {
-            System.out.println("LIST: Displays all tasks.");
+            System.out.println("LIST: Displays all tasks."+
+                                "Usage: list -p");
         }
     },
     BYE {
@@ -47,20 +64,20 @@ public enum CommandList {
     DELETE {
         @Override
         public void printCommand() {
-            System.out.println("DELETE: Deletes a task. Usage: DELETE -p <task_number>");
+            System.out.println("DELETE: Deletes a task. Usage: delete -p <task_number>");
         }
     },
     FIND {
         @Override
         public void printCommand() {
-            System.out.println("FIND: Finds a task based on the keyword given. Usage: FIND -p <keyword>");
+            System.out.println("FIND: Finds a task based on the keyword given. Usage: find -p <keyword>");
         }
     },
     RENAME {
         @Override
         public void printCommand() {
             System.out.println(
-                    "RENAME: Renames a task based on the task number given. Usage: RENAME -p <task_number> <new_name>"
+                    "RENAME: Renames a task based on the task number given. Usage: rename -p <task_number> <new_name>"
             );
         }
     },
@@ -168,7 +185,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "LISTTUTORIALSTUDENTS: Shows students in a tutorial. " +
-                            "Usage: LISTSTUDENTS -t <Tut name>"
+                            "Usage: LISTSTUDENTS -t <tutorial_name>"
             );
         }
     },

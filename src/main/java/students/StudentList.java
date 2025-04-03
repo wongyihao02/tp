@@ -5,10 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class StudentList {
-    private ArrayList<Student> students;
+    private ArrayList<Student> students = new ArrayList<>();
 
     public StudentList() {
-        this.students = new ArrayList<>();
     }
 
     public StudentList(ArrayList<Student> students) {
