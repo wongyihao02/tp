@@ -8,15 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import attendance.AttendanceFile;
-import attendance.AttendanceList;
 import command.attendancelistcommands.ShowAttendanceListCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -63,6 +56,27 @@ public class ShowAttendanceListCommandTest {
 
     @Test
     void testemptyInput() {
+        String input = "";
+        ShowAttendanceListCommand command = new ShowAttendanceListCommand();
+        command.execute(input, attendanceFile);
+        String output = outputStream.toString().trim();
+        assertTrue(output.contains("Invalid List all students in attendanceList command, please specify a valid attendancelist with a valid tutorial id and a valid week"));
+    }
+
+    @Test
+    void testOneInputWrong() {
+        String[] input = {"T01", "1", "12fvc", "T10", "9"};
+        for (String s : input) {
+            ShowAttendanceListCommand command = new ShowAttendanceListCommand();
+            command.execute(s, attendanceFile);
+            String output = outputStream.toString().trim();
+            assertTrue(output.contains("Invalid List all students in attendanceList command, please specify a valid attendancelist with a valid tutorial id and a valid week"));
+
+        }
+    }
+
+    @Test
+    void testDontHaveTutInput() {
         String input = "";
         ShowAttendanceListCommand command = new ShowAttendanceListCommand();
         command.execute(input, attendanceFile);
