@@ -21,6 +21,72 @@ The `command` package contains the following sub-packages:
 
 ### Command Handler
 
+#### 1. CommandParser
+
+The `CommandParser` is responsible for breaking down user input into a **command keyword** and its corresponding **arguments**.
+
+#### Implementation Details
+
+- Extracts the first word as the command keyword (e.g., `addstudent`, `deletetask`) and treats the remainder as arguments.
+- Trims and sanitizes input to ensure compatibility across all command handlers.
+- Throws relevant exceptions if input is malformed or empty.
+
+#### Operations
+
+- `CommandParser.parse(String input)`
+  - Parses the keyword and arguments from user input.
+  - Returns both as a `ParsedInput` object to the `CommandHandler`.
+  - Handles edge cases like extra whitespace and missing commands.
+
+---
+
+#### 2. CommandFactory
+
+The `CommandFactory` is responsible for returning the correct command object for execution.
+
+#### Implementation Details
+
+- Implements the **Factory Design Pattern** to instantiate command classes without exposing their construction logic to external classes.
+- Maps each supported command keyword (e.g., `addstudent`, `listtasks`, `newtutorial`) to its corresponding command class.
+- Throws descriptive exceptions if an unrecognized command is provided.
+
+#### Operations
+
+- `CommandFactory.getCommand(String keyword)`
+  - Returns a new instance of the corresponding command class that implements `Command<T>`.
+  - Commands are registered in the factory using a `switch-case` or a command map for maintainability.
+  - Supports all domains: `studentcommands`, `taskcommands`, `tutorialcommands`, `attendancelistcommands`, `markscommands`.
+
+---
+
+#### 3. CommandHandler
+
+The `CommandHandler` orchestrates the end-to-end command processing — from parsing to execution.
+
+#### Implementation Details
+
+- Acts as the main entry point when a command is entered via CLI.
+- Delegates parsing to `CommandParser`, command resolution to `CommandFactory`, and execution to the returned `Command` instance.
+- Accepts relevant data structures such as `TaskList`, `TutorialClassList`, and `AttendanceFile` as input to command execution.
+- Handles exception logging and displays error messages to the user if any part of the command flow fails.
+
+#### Operations
+
+- `CommandHandler.handleCommand(String fullInput)`
+  - Calls `CommandParser` to break down the input.
+  - Delegates command creation to `CommandFactory`.
+  - Executes the command using the appropriate data object.
+  - Displays output or error messages based on the outcome.
+
+---
+
+#### Benefits of the Design
+
+- **Modular & Extensible:** Commands can be added or removed without changing the handler logic.
+- **Polymorphic Execution:** All commands implement a common interface `Command<T>`, simplifying invocation logic.
+- **Robust Error Handling:** Clearly separates exceptions thrown during parsing, command creation, and execution.
+- **Testable:** Each component (`Parser`, `Factory`, `Handler`) can be unit tested independently.
+
 ### Attendance List Commands
 #### 1.ShowAttendanceListCommand
 This is part of the Attendancelistcommands package,the function of this class is to show the user the attendance list of the tutorial and week the user asks for.
