@@ -11,6 +11,10 @@
     - [Find a student: `FIND -t`](#find-a-student-find--t)
     - [Change remark of a student: `CHANGEREMARK -t`](#change-remark-of-a-student-changeremark--t)
     - [Check remark of a student: `CHECKREMARK -t`](#check-the-remark-of-a-student-checkremark--t)
+  - [Marks Commands](#marks-commands)
+    - [Adding new marks `NEWMARKS -m`](#adding-new-marks-for-a-student-newmarks--m)
+    - [Deleting marks `DELETEMARKS -m`](#deleting-marks-for-a-student-deletemarks--m)
+    - [List all marks for a student `LIST -m`](#list-all-marks-for-a-student-list--m)
   - [Tutorial Commands](#tutorial-commands)
     - [Create new tutorial: `NEWTUTORIAL -t`](#create-new-tutorial-newtutorial--t)
     - [Delete tutorial: `DELETETUT -t`](#delete-tutorial-deletetutorial--t)
@@ -82,6 +86,38 @@ Format: `CHECKREMARK -t <tutorial_name>,<matric_number>`
 
 Examples:
 - `CHECKREMARK -t T123,A2345674W`
+
+### Marks Commands
+
+#### Adding new marks for a student `NEWMARKS -m`
+
+Adds marks with the given details to the student's marks list.
+
+Format: `NEWMARKS -m <tutorial_name>,<matric_number>,<assignment_name>,<marks_achieved>,<max_marks>`
+* `marks_achieved` and `max_marks` must be entered in numerical format.
+* `marks_achieved` and `max_marks` must be non-negative, with `marks_achieved` <= `max_marks`.
+* Marks will not be added if there already exists marks with the given `assignment_name` in the student's marks list.
+
+Examples: 
+- `NEWMARKS -m T123,A1234567W,Midterm Exam,75,100` 
+
+#### Deleting marks for a student `DELETEMARKS -m`
+
+Deletes marks of the given assignment name from the student's marks list.
+
+Format: `DELETEMARKS -m <tutorial_name>,<matric_number>,<assignment_name>`
+
+Examples: 
+- `DELETEMARKS -m T123,A1234567W,Midterm Exam`
+
+#### List all marks for a student `LIST -m`
+
+Prints a list of all marks for the student.
+
+Format: `LIST -m <tutorial_name>,<matric_number>`
+
+Examples: 
+- `LIST -m T123,A1234567W`
 
 ### Tutorial Commands
 
