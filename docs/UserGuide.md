@@ -16,6 +16,18 @@
     - [Delete tutorial: `DELETETUT -t`](#delete-tutorial-deletetutorial--t)
     - [List students in tutorial: `LISTSTUDENTS -t`](#list-students-in-tutorial-liststudents--t)
     - [List upcoming tutorials: `LIST -t`](#list-upcoming-tutorials-list--t)
+  - [Task Commands](#task-commands)
+    - [Adding a todo: `TODO`](#adding-a-todo-todo)
+    - [Adding a deadline: `DEADLINE`](#adding-a-deadline-deadline)
+    - [Adding an event: `EVENT`](#adding-an-event-event)
+    - [Adding a consultation: `CONSULTATION`](#adding-a-consultation-consultation)
+    - [Listing the tasks: `LIST`](#listing-the-tasks-list)
+    - [Deleting a task: `DELETE`](#deleting-a-task-delete)
+    - [Marking a task: `MARK`](#marking-a-task-mark)
+    - [Unmarking a task: `UNMARK`](#unmarking-a-task-unmark)
+    - [Finding a task: `FIND`](#finding-a-task-find)
+    - [Renaming a task: `RENAME`](#renaming-a-task-rename)
+  - [Bye Command](#bye-command-bye)
 - [FAQ](#faq)
 - [Command Summary](#Command-Summary)
 ## Quick Start
@@ -23,7 +35,7 @@
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 17 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Down the latest version of `TASync` from [here](http://link.to/duke).
 
 ## Features 
 
@@ -130,19 +142,149 @@ Examples:
 
 ### Task Commands
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+#### Adding a todo: `TODO`
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Adds a personal todo to the task list.
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+Format: `add -pt <todo name>`
 
-Example of usage: 
+Example:
+```
+> add -pt Read book
+task added:
+[T][ ] Read book
+Now you have 1 tasks in the list.
+```
 
-`todo n/Write the rest of the User Guide d/next week`
+#### Adding a deadline: `DEADLINE`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+Adds a personal deadline to the task list.
+
+Format: `add -pd <deadline name> /by <dd/MM/yyyy HH:mm>`
+
+Example:
+```
+> add -pd Assignment submission /by 03/04/2025 23:59
+task added:
+[D][ ] Assignment submission (by: 2025-04-03T23:59)
+Now you have 2 tasks in the list.
+```
+
+#### Adding an event: `EVENT`
+
+Adds a personal event to the task list.
+
+Format: `add -pe <event name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`
+
+Example:
+```
+> add -pe Concert /from 03/04/2025 15:00 /to 03/04/2025 16:00
+task added:
+[E][ ] Concert (from: 2025-04-03T15:00 to: 2025-04-03T16:00)
+Now you have 3 tasks in the list.
+```
+
+#### Adding a consultation: `CONSULTATION`
+
+Adds a consultation with a student to the task list.
+
+Format: `add -c <student_name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`
+
+Example:
+```
+> add -c Kevin /from 05/04/2025 15:00 /to 05/04/2025 16:00
+Task added:
+[C][ ] Kevin (from: 2025-04-05T15:00 to: 2025-04-05T16:00)
+Now you have 4 tasks in the list.
+```
+
+#### Listing the tasks: `LIST`
+
+Displays all the tasks in the task list.
+
+Format: `list -p`
+
+Example:
+```
+> list -p
+1.[T][ ] Study Java
+2.[T][ ] Study Python
+```
+
+#### Deleting a task: `DELETE`
+
+Delete a task from the task list.
+
+Format: `delete -p <task_number>`
+
+Example:
+```
+> delete -p 1
+deleted task: 
+[T][ ] Study Java
+```
+
+#### Marking a task: `MARK`
+
+Marks a task as done.
+
+Format: `mark -p <task_number>`
+
+Example:
+```
+> mark -p 1
+Study Python is marked
+```
+
+#### Unmarking a task: `UNMARK`
+
+Marks a task as undone.
+
+Format: `unmark -p <task_number>`
+
+Example:
+```
+> unmark -p 1
+Study Python is unmarked
+```
+
+#### Finding a task: `FIND`
+
+Finds a task based on the keyword given.
+
+Format: `find -p <keyword>`
+
+Example:
+```
+> find -p java
+1.[T][ ] Study Java
+```
+
+#### Renaming a task: `RENAME`
+
+Renames a task based on the task number given.
+
+Format: `rename -p <task_number> <new_name>`
+
+Example:
+```
+> rename -p 1 Study Python
+Study Java renamed to Study Python
+```
+
+### Bye Command: `BYE`
+
+Exits the application.
+
+Format: `bye`
+
+Example:
+```
+> bye
+Bye. Hope to see you again soon!
+👋 Goodbye! Have a productive day!
+All data saved successfully!
+```
 
 ## FAQ
 
