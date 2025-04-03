@@ -568,11 +568,16 @@ The `RenameTaskCommand` class implements the `Command<TaskList>` interface and i
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Should work on any _mainstream OS_ with Java 17 installed.
+2. All commands should be executable in English text, using only keyboard and no other input devices.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+be able to accomplish most tasks using commands faster than using the mouse.
+4. Should be able to hold up to 1000 students without any noticeable sluggishness in performance for typical usage.
+5. Data must be stored locally in human-editable file formats.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Mainstream OS*: Windows, Linux, Unix, macOS.
 
 ## Instructions for manual testing
 
