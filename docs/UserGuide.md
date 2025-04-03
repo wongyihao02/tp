@@ -11,6 +11,11 @@
     - [Find a student: `FIND -t`](#find-a-student-find--t)
     - [Change remark of a student: `CHANGEREMARK -t`](#change-remark-of-a-student-changeremark--t)
     - [Check remark of a student: `CHECKREMARK -t`](#check-the-remark-of-a-student-checkremark--t)
+  - [Tutorial Commands](#tutorial-commands)
+    - [Create new tutorial: `NEWTUTORIAL -t`](#create-new-tutorial-newtutorial--t)
+    - [Delete tutorial: `DELETETUT -t`](#delete-tutorial-deletetutorial--t)
+    - [List students in tutorial: `LISTSTUDENTS -t`](#list-students-in-tutorial-liststudents--t)
+    - [List upcoming tutorials: `LIST -t`](#list-upcoming-tutorials-list--t)
 - [FAQ](#faq)
 - [Command Summary](#Command-Summary)
 ## Quick Start
@@ -80,7 +85,50 @@ Examples:
 
 ### Tutorial Commands
 
-{Give detailed description of each feature}
+- Things to note:
+  - `<day_of_week>` represents a number from 1-7 that corresponds to each day of the week
+    - Example:
+      - 1 --> Monday, 2--> Tuesday, 3 --> Wednesday
+  - `<start_time>` and `<end_time>` must be in `hh:mm` format
+  - `<date>` must be formatted as `dd/MM/yyyy`
+
+#### Create new tutorial: `NEWTUTORIAL -t`
+
+Creates a new tutorial with the necessary parameters. 
+
+Format: `NEWTUTORIAL -t <tutorial_name>,<day_of_week>,<start_time> <end_time>`
+
+Examples:
+- `NEWTUTORIAL -t T123,2,11:00,13:00`
+
+#### Delete tutorial: `DELETETUTORIAL -t`
+
+Delete a specified tutorial class from the tutorial class list.
+
+Format: `DELETETUT -t <tutorial_name>`
+
+Examples:
+- `DELETETUT -t T123`
+
+#### List Students in Tutorial: `LISTSTUDENTS -t`
+
+Lists all students in the specified tutorial.
+
+Format: `LISTSTUDENTS -t <tutorial_name>`
+
+Examples:
+- `LISTSTUDENTS -t T123`
+
+#### List Upcoming Tutorials: `LIST -t`
+
+Prints tutorial classes from today to the given date in weekly blocks.
+
+Format:`LIST -t <date>`
+
+Examples:
+- `LIST -t 12/03/2025 `
+
+### Task Commands
 
 ### Adding a todo: `todo`
 Adds a new item to the list of todo items.
