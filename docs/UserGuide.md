@@ -493,7 +493,6 @@ computer
 | Create Attendance List | `create -at <Tut_name>,<Week_num>`                                                     |                         `create -at T01,1`                          |
 
 ## Exit Command
-
 | CommandName      | Form  | Example |
 |------------------|:------|:-------:|
 | Exit Application | `bye` |  `bye`  |
