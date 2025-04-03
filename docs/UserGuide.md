@@ -148,9 +148,13 @@ Adds a personal todo to the task list.
 
 Format: `add -pt <todo name>`
 
-Examples:
-- `add -pt Task A `
-- `add -pt Write the rest of the User Guide`
+Example:
+```
+> add -pt Read book
+task added:
+[T][ ] Read book
+Now you have 1 tasks in the list.
+```
 
 #### Adding a deadline: `DEADLINE`
 
@@ -158,9 +162,13 @@ Adds a personal deadline to the task list.
 
 Format: `add -pd <deadline name> /by <dd/MM/yyyy HH:mm>`
 
-Examples:
-- `add -pd Deadline A /by 03/04/2025 23:59`
-- `add -pd Update DG /by 06/04/2025 23:59`
+Example:
+```
+> add -pd Assignment submission /by 03/04/2025 23:59
+task added:
+[D][ ] Assignment submission (by: 2025-04-03T23:59)
+Now you have 2 tasks in the list.
+```
 
 #### Adding an event: `EVENT`
 
@@ -168,9 +176,13 @@ Adds a personal event to the task list.
 
 Format: `add -pe <event name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`
 
-Examples:
-- `add -pe Event A /from 03/04/2025 16:00 /to 03/04/2025 17:00`
-- `add -pe Concert /from 05/04/2025 18:00 /to 05/04/2025 20:00`
+Example:
+```
+> add -pe Concert /from 03/04/2025 15:00 /to 03/04/2025 16:00
+task added:
+[E][ ] Concert (from: 2025-04-03T15:00 to: 2025-04-03T16:00)
+Now you have 3 tasks in the list.
+```
 
 #### Adding a consultation: `CONSULTATION`
 
@@ -178,9 +190,13 @@ Adds a consultation with a student to the task list.
 
 Format: `add -c <student_name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`
 
-Examples:
-- `add -c Student A /from 03/04/2025 12:00 /to 03/04/2025 13:00`
-- `add -c Kevin /from 05/04/2025 14:00 /to 05/04/2025 14:30`
+Example:
+```
+> add -c Kevin /from 05/04/2025 15:00 /to 05/04/2025 16:00
+Task added:
+[C][ ] Kevin (from: 2025-04-05T15:00 to: 2025-04-05T16:00)
+Now you have 4 tasks in the list.
+```
 
 #### Listing the tasks: `LIST`
 
@@ -188,8 +204,12 @@ Displays all the tasks in the task list.
 
 Format: `list -p`
 
-Examples:
-- `list -p` returns: `1.[T][ ] Study Java`
+Example:
+```
+> list -p
+1.[T][ ] Study Java
+2.[T][ ] Study Python
+```
 
 #### Deleting a task: `DELETE`
 
@@ -197,13 +217,12 @@ Delete a task from the task list.
 
 Format: `delete -p <task_number>`
 
-Examples:
-- Original:
-  - `1.[T][ ] Study Java`
-  - `2.[C][ ] Study Python`
-- `delete -p 1`
-- Output:
-  - `1.[C][ ] Study Python`
+Example:
+```
+> delete -p 1
+deleted task: 
+[T][ ] Study Java
+```
 
 #### Marking a task: `MARK`
 
@@ -211,12 +230,11 @@ Marks a task as done.
 
 Format: `mark -p <task_number>`
 
-Examples:
-- Original:
-  - `1.[T][ ] Study Java`
-- `mark -p 1`
-- Output:
-  - `1.[T][X] Study Java`
+Example:
+```
+> mark -p 1
+Study Python is marked
+```
 
 #### Unmarking a task: `UNMARK`
 
@@ -224,12 +242,11 @@ Marks a task as undone.
 
 Format: `unmark -p <task_number>`
 
-Examples:
-- Original:
-  - `1.[T][X] Study Java`
-- `unmark -p 1`
-- Output:
-  - `1.[T][ ] Study Java`
+Example:
+```
+> unmark -p 1
+Study Python is unmarked
+```
 
 #### Finding a task: `FIND`
 
@@ -237,13 +254,11 @@ Finds a task based on the keyword given.
 
 Format: `find -p <keyword>`
 
-Examples:
-- Original:
-  - `1.[T][X] Study Java`
-  - `2.[T][X] Study Python`
-- `find -p java`
-- Output:
-  - `1.[T][X] Study Java`
+Example:
+```
+> find -p java
+1.[T][ ] Study Java
+```
 
 #### Renaming a task: `RENAME`
 
@@ -251,18 +266,25 @@ Renames a task based on the task number given.
 
 Format: `rename -p <task_number> <new_name>`
 
-Examples:
-- Original:
-  - `1.[T][X] Study Java`
-- `rename -p 1 Study Python`
-- Output:
-  - `1.[T][X] Study Python`
+Example:
+```
+> rename -p 1 Study Python
+Study Java renamed to Study Python
+```
 
 ### Bye Command: `BYE`
 
 Exits the application.
 
 Format: `bye`
+
+Example:
+```
+> bye
+Bye. Hope to see you again soon!
+👋 Goodbye! Have a productive day!
+All data saved successfully!
+```
 
 ## FAQ
 
