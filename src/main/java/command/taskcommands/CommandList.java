@@ -167,7 +167,7 @@ public enum CommandList {
         public void printCommand() {
             System.out.println(
                     "DELETE_TUTORIAL: Deletes a tutorial. " +
-                            "Usage: DELETETUT -t <tutorial_name>"
+                            "Usage: DELETE -t <tutorial_name>"
             );
         }
     },
