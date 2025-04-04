@@ -8,6 +8,8 @@ import command.taskcommands.Command;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
+import java.util.Scanner;
 
 /**
  * Represents the "NEW_TUTORIAL" command that adds a new tutorial class to the tutorial class list.
@@ -21,7 +23,7 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
      * The tutorial class must have a valid name, day of the week, start time, and end time.
      * Duplicate tutorials with the same name, day, start time, and end time are not allowed.
      *
-     * @param input The input string containing the tutorial details (name, day, start time, and end time).
+     * @param input             The input string containing the tutorial details (name, day, start time, and end time).
      * @param tutorialClassList The list of tutorial classes to which the new tutorial class will be added.
      */
     @Override
@@ -38,10 +40,10 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
                 throw TASyncException.invalidNewTutorialCommand();
             }
 
-            String tutorialName = inputParts[0];
-            String dayOfWeekStr = inputParts[1];
-            String startTimeStr = inputParts[2];
-            String endTimeStr = inputParts[3];
+            String tutorialName = inputParts[0].trim();
+            String dayOfWeekStr = inputParts[1].trim();
+            String startTimeStr = inputParts[2].trim();
+            String endTimeStr = inputParts[3].trim();
 
             // Parse and validate day of the week
             int dayOfWeek;
@@ -56,8 +58,30 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
 
             // Parse and validate start and end time
 
-            LocalTime startTime = LocalTime.parse(startTimeStr);
-            LocalTime endTime = LocalTime.parse(endTimeStr);
+            LocalTime startTime;
+            LocalTime endTime;
+            try {
+                startTime = LocalTime.parse(startTimeStr);
+                endTime = LocalTime.parse(endTimeStr);
+
+                if (!startTime.isBefore(endTime)) {
+                    throw TASyncException.invalidTimeRange();
+                }
+
+            } catch (DateTimeParseException e) {
+                throw TASyncException.invalidTimeFormat();
+            }
+
+
+            if (tutorialName.isEmpty()) {
+                Scanner scanner = new Scanner(System.in);
+
+                while (tutorialName.isEmpty()) {
+                    System.out.println("Tutorial name cannot be empty. Please enter a valid tutorial name:");
+                    tutorialName = scanner.nextLine().trim();
+                }
+            }
+
 
             // Check if the tutorial already exists in the list
             for (TutorialClass existingTutorial : tutorialClassList.getTutorialClasses()) {

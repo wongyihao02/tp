@@ -30,7 +30,7 @@ public class DeleteTutorialCommand implements Command<TutorialClassList> {
             TutorialClass tutorialClass = tutorialClassList.getTutorialByName(input);
 
             // If the tutorial class is found, remove it
-            if (tutorialClass != null) {
+            if (tutorialClass.getStartTime() != null) {
                 tutorialClassList.removeTutorialClass(tutorialClass);
                 System.out.println("Tutorial class deleted: " + input);
             } else {
