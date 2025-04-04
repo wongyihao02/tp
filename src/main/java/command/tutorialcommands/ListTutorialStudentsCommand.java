@@ -56,9 +56,8 @@ public class ListTutorialStudentsCommand implements Command<TutorialClassList> {
             if (enrolledStudents.isEmpty()) {
                 System.out.println(targetTutorial.getTutorialName() + " has no students");
             } else {
-                for (Student student : enrolledStudents) {
-                    System.out.println(student.toString());
-                }
+                System.out.println("List of enrolled students in " + targetTutorial.getTutorialName() + ":");
+                Student.printStudentTable(enrolledStudents);
             }
 
             System.out.println();
