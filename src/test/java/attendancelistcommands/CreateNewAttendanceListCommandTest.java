@@ -105,4 +105,18 @@ public class CreateNewAttendanceListCommandTest {
 
         }
     }
+
+    @Test
+    void testNegativeWeek() {
+        String[] input = {"T01,-1", "T01,-2", "T01,-3", "T02,-3", "T02,-6", "T03,-1"};
+        for (String s : input) {
+            outputStream = captureSystemOut();
+            CreateNewAttendanceListCommand command1 = new CreateNewAttendanceListCommand();
+            command1.execute(s, tutAtten);
+            String output = outputStream.toString().trim();
+            assertTrue(output.contains("Invalid List all students in attendanceList command, "
+                    + "please specify a valid attendancelist with a valid tutorial id and a valid week"));
+
+        }
+    }
 }

@@ -26,6 +26,10 @@ public class CreateNewAttendanceListCommand implements Command<ArrayList<Object>
                 throw TASyncException.invalidListAttendanceListCommand();
             }
 
+            if (Integer.parseInt(partsArray[1]) < 0) {
+                throw TASyncException.invalidListAttendanceListCommand();
+            }
+
             TutorialClass tutClass = tutlist.getTutorialByName(partsArray[0]);
 
             if (tutClass == null) {
