@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+
+
+participant "command" as command
+participant "listOfAttendanceList : AttendanceFile" as listOfAttendanceList
+participant "theOne : AttendanceList" as theOne
+participant "TutorialClass" as tutorialClass
+participant "StudentList" as studentList
+
+group sd get student in tutorial
+    command -> listOfAttendanceList : getAttendanceList()
+    activate listOfAttendanceList
+    command <-- listOfAttendanceList : return theOne
+    deactivate listOfAttendanceList
+
+    command -> theOne : getTutorialClass()
+    activate theOne
+    command <-- theOne : return tutorialClass
+    deactivate theOne
+
+    command -> tutorialClass : getStudentList()
+        activate tutorialClass
+        command <-- tutorialClass : return StudentList
+        deactivate tutorialClass
+
+    command -> studentList : getStudents()
+    activate studentList
+    command <-- studentList : return ArrayList<Student>
+    deactivate studentList
+
+    loop for each student in studentList
+    opt student matches the name and matric number
+
+    create "derStudent : Student" as derStudent
+    command -> derStudent : derStudent = student
+    derStudent --> command : derStudent
+    end opt
+    end loop
+    end
+@enduml

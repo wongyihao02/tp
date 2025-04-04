@@ -13,7 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import attendance.AttendanceFile;
-import command.attendancelistcommands.CreateNewAttendanceList;
+import command.attendancelistcommands.CreateNewAttendanceListCommand;
 import command.attendancelistcommands.ShowAttendanceListCommand;
 import tutorial.TutorialClassList;
 
@@ -40,7 +40,7 @@ public class CreateNewAttendanceListCommandTest {
         String input = "T01,100";
 
         ShowAttendanceListCommand command = new ShowAttendanceListCommand();
-        CreateNewAttendanceList command1 = new CreateNewAttendanceList();
+        CreateNewAttendanceListCommand command1 = new CreateNewAttendanceListCommand();
         command1.execute(input, tutAtten);
         command.execute(input, attendanceFile);
         String output = outputStream.toString().trim();
@@ -58,7 +58,7 @@ public class CreateNewAttendanceListCommandTest {
         String[] input = {"T01", "1", "12fvc", "T02", "9"};
         for (String s : input) {
             outputStream = captureSystemOut();
-            CreateNewAttendanceList command1 = new CreateNewAttendanceList();
+            CreateNewAttendanceListCommand command1 = new CreateNewAttendanceListCommand();
             command1.execute(s, tutAtten);
             String output = outputStream.toString().trim();
             assertTrue(output.contains("Invalid List all students in attendanceList command, "
@@ -71,7 +71,7 @@ public class CreateNewAttendanceListCommandTest {
     @Test
     void testSecondInputNonNumWrong() {
         String input = "T01,sba";
-        CreateNewAttendanceList command1 = new CreateNewAttendanceList();
+        CreateNewAttendanceListCommand command1 = new CreateNewAttendanceListCommand();
         command1.execute(input, tutAtten);
         String output = outputStream.toString().trim();
         assertTrue(output.contains("second parameter has to be numbers only"));
@@ -84,7 +84,7 @@ public class CreateNewAttendanceListCommandTest {
         String[] input = {"T01,1,1,1", "1239c,12313,111", "T03,1,2", "T10,2,1", "9,3,1"};
         for (String s : input) {
             outputStream = captureSystemOut();
-            CreateNewAttendanceList command1 = new CreateNewAttendanceList();
+            CreateNewAttendanceListCommand command1 = new CreateNewAttendanceListCommand();
             command1.execute(s, tutAtten);
             String output = outputStream.toString().trim();
             assertTrue(output.contains("Invalid List all students in attendanceList command, "
@@ -98,7 +98,7 @@ public class CreateNewAttendanceListCommandTest {
         String[] input = {"T01,1", "T01,2", "T01,3", "T02,3", "T02,6", "T03,1"};
         for (String s : input) {
             outputStream = captureSystemOut();
-            CreateNewAttendanceList command1 = new CreateNewAttendanceList();
+            CreateNewAttendanceListCommand command1 = new CreateNewAttendanceListCommand();
             command1.execute(s, tutAtten);
             String output = outputStream.toString().trim();
             assertTrue(output.contains("Attendance list for the week already exists"));
