@@ -1,8 +1,9 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 actor user
+autonumber
 
-participant "CommentOnStudentCommand" as command
+participant "CommentOnStudent: Command<Attendancefile>" as command
 participant "parts: String" as parts
 participant "partsArray2: String[]" as partsArray
 participant "comments : java.util.ArrayList" as comments
@@ -21,15 +22,20 @@ skinparam sequenceAltBackgroundColor #f7807c
 
 user -> command : execute(parts : String, target : T)
 activate command
-
 alt try
 
     command -> parts : split("//")
+    activate parts
     parts --> command : partsArray2
+    deactivate parts
     command -> partsArray : partsArray2[0].split(",")
+    activate partsArray
     command <-- partsArray : partsArray
+    deactivate partsArray
     command -> partsArray : partsArray2[1].split(";")
+    activate partsArray
     command <-- partsArray : commentsArray
+    deactivate partsArray
     create comments
     command --> comments: message
 
@@ -39,41 +45,32 @@ alt try
     end loop
 
 ref over command, listOfAttendanceList, theOne, tutorialClass, studentList
-get student in Tutorial if have
+find student in tutorial
 end ref
 
-    command -> theOne : addComments(student : Student = derStudent, comments : ArrayList<String> = comments) : void
 
+    command -> theOne : addComments(student : Student = derStudent, comments : ArrayList<String> = comments) : void
+    activate theOne
+    command --> user : print the comments
+
+deactivate theOne
     else catch TASyncException
+
+
     command -> e : e.getMessage
+    activate e
     user <-- command : error message
+    deactivate e
 
     else catch NumberFormatException
      command -> n : n.getMessage
+     activate n
      user <-- command : error message
-    end
+     deactivate n
+end
+destroy parts
+destroy partsArray
+destroy comments
+destroy comment
 
-
-
-'command -> command : split("//")
-'command -> command : split(",")
-'command -> command : split(";")
-'
-'loop
-'    command -> comment : trim()
-'    command -> comments : add(comment.trim())
-'end
-'
-'command -> command : getTutorialClass()
-'command -> command : getAttendanceList()
-'command -> command : getStudentList()
-'command -> command : getStudents()
-'
-'alt [try]
-'    loop for each commentsArray
-'        command -> studentList : addComments(student, comments)
-'    end
-'else [catch TASyncException]
-'    e -> e : getMessage()
-'end
 @enduml

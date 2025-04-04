@@ -3,7 +3,7 @@
 hide footbox
 
 
-participant "CommentOnStudentCommand" as command
+participant "command" as command
 participant "listOfAttendanceList : AttendanceFile" as listOfAttendanceList
 participant "theOne : AttendanceList" as theOne
 participant "TutorialClass" as tutorialClass
