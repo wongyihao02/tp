@@ -33,11 +33,16 @@ public class ListTutorialStudentsCommand implements Command<TutorialClassList> {
             }
 
             TutorialClass targetTutorial = null;
-            ArrayList<TutorialClass> tutorials = tutorialClassList.getTutorialClasses();
+            ArrayList<TutorialClass> tutorialClasses = tutorialClassList.getTutorialClasses();
+
+            if(tutorialClasses.isEmpty()) {
+                System.out.println("There are no tutorial created yet.");
+                return;
+            }
 
             // Find the tutorial by name
-            for (TutorialClass tutorial : tutorials) {
-                if (tutorial.getTutorialName().equalsIgnoreCase(tutorialName)) {
+            for (TutorialClass tutorial : tutorialClasses) {
+                if (tutorial.getTutorialName().equals(tutorialName)) {
                     targetTutorial = tutorial;
                 }
             }
