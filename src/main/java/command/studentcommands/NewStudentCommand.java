@@ -95,7 +95,7 @@ public class NewStudentCommand implements Command<TutorialClassList> {
 
         } catch (TASyncException e) {
             // Handle TASyncException
-            System.out.println("Error: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

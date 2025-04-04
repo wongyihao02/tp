@@ -65,7 +65,7 @@ public class ListTutorialStudentsCommand implements Command<TutorialClassList> {
 
         } catch (TASyncException e) {
             // Specific exception thrown by our TASyncException class
-            System.out.println("TASyncException: " + e.getMessage());
+            System.out.println(e.getMessage());
         } 
     }
 }

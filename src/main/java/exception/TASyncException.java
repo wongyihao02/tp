@@ -47,9 +47,8 @@ public class TASyncException extends Exception {
         );
     }
     public static TASyncException invalidNewStudentCommand() {
-        return new TASyncException(
-                "Invalid NewStudent command, please key command in the format: " +
-                        "NewStudent -t <name> <dob> <gender> <contact> <matricNumber> <tutorialClass>."
+        return new TASyncException("Invalid new student command, please key command in the format: " +
+                        "NEWSTUDENT -t <name>,<dob>,<gender>,<contact>,<matricNumber>,<tutorialClass>"
         );
     }
 
@@ -79,14 +78,14 @@ public class TASyncException extends Exception {
     public static TASyncException invalidListTutorialStudentsCommand() {
         return new TASyncException(
                 "Invalid list all students in tutorial command, please key command in the format: " +
-                        "/liststudents -t <tutorialCode>"
+                        "LISTSTUDENTS -t <tutorialCode>"
         );
     }
 
     public static Exception invalidNewTutorialCommand() {
         return new TASyncException(
                 "Invalid new tutorial command, please key command in the format:" +
-                        " /newtutorial <tutorialCode>"
+                        " NEWTUTORIAL -t <tutorialCode>,<day_of_week>,<start_time>,<end_time>"
         );
     }
 
@@ -97,7 +96,8 @@ public class TASyncException extends Exception {
 
     public static Exception invalidDeleteTutorialCommand() {
         return new TASyncException(
-                "Invalid delete tutorial command, please key command in the format /delete -t <tutorialCode>"
+                "Invalid delete tutorial command, please key command in the format:" +
+                        "DELETE -t <tutorialCode>"
         );
     }
 
