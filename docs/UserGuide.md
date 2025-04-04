@@ -152,7 +152,7 @@ Examples:
 
 Creates a new tutorial with the necessary parameters. 
 
-Format: `NEWTUTORIAL -t <tutorial_name>,<day_of_week>,<start_time> <end_time>`
+Format: `NEWTUTORIAL -t <tutorial_name>,<day_of_week>,<start_time>,<end_time>`
 
 Examples:
 - `NEWTUTORIAL -t T123,2,11:00,13:00`
@@ -440,13 +440,13 @@ computer
 
 # Student Commands
 
-| CommandName           | Form                                                                             |                           Example                            |
-|-----------------------|:---------------------------------------------------------------------------------|:------------------------------------------------------------:|
-| Add Student           | `newstudent -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>` | `newstudent -t kim dokja,15-02-2000,Male,99224 806,A002,T01` |
-| Delete Student        | `deletestudent -t <tutorial_name>,<matric_number>`                               |              `DELETESTUDENT -t T123,A7656765W`               |
-| Find Student          | `find -t <keyword>`                                                              |         `FIND -t Charlie Song`  `FIND -t A7645342D`          |
-| Change Student Remark | `changeremark -t <tutorial_name>,<matric_number>,<new_remark>`                   |   `CHANGEREMARK -t T123,A2345674W,Excellent job in class!`   |
-| Check Student Remark  | `checkremarks -t <tutorial_name>,<matric_number>`                                |               `CHECKREMARK -t T123,A2345674W`                |
+| CommandName           | Form                                                                             |                             Example                              |
+|-----------------------|:---------------------------------------------------------------------------------|:----------------------------------------------------------------:|
+| Add Student           | `newstudent -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>` | `NEWSTUDENT -t Mark Lim,20/03/2005,Male,97654344,A2387653D,T123` |
+| Delete Student        | `deletestudent -t <tutorial_name>,<matric_number>`                               |                `DELETESTUDENT -t T123,A7656765W`                 |
+| Find Student          | `find -t <keyword>`                                                              |           `FIND -t Charlie Song`  `FIND -t A7645342D`            |
+| Change Student Remark | `changeremark -t <tutorial_name>,<matric_number>,<new_remark>`                   |     `CHANGEREMARK -t T123,A2345674W,Excellent job in class!`     |
+| Check Student Remark  | `checkremarks -t <tutorial_name>,<matric_number>`                                |                 `CHECKREMARK -t T123,A2345674W`                  |
 
 ## Marks Commands
 
@@ -486,7 +486,7 @@ computer
 |------------------------|:---------------------------------------------------------------------------------------|:-------------------------------------------------------------------:|
 | View Attendance List   | `list -a <Tut_name>,<Week_num>`                                                        |                           `list -a T01,1`                           |
 | Mark Student Present   | `mark -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`                             |                      `mark -a T01,1,john,A001`                      |
-| Mark Student Absent    | `unmark -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`                           |                      `mark -a T01,1,john,A001`                      |
+| Mark Student Absent    | `unmark -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`                           |                     `unmark -a T01,1,john,A001`                     |
 | View Comments          | `viewcomment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`                      |                  `viewcomment -a T01,1,john,A001`                   |
 | Add Comment            | `comment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//comment1;comment2`       | `comment -a T01,1,john,A001//john is studious;john does everything` |
 | Delete Comment         | `deletecomment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//num_pos_to_delete` |                `deletecomment -a T01,1,john,A001//1`                |

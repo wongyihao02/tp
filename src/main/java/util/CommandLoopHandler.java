@@ -10,19 +10,21 @@ import tutorial.TutorialClassList;
 import java.util.ArrayList;
 
 public class CommandLoopHandler {
-    private  UI ui;
-    private  TaskList taskList;
-    private  StudentList studentList;
-    private  TutorialClassList tutorialList;
-    private  AttendanceFile attendanceFile;
+    private UI ui;
+    private TaskList taskList;
+    private StudentList studentList;
+    private TutorialClassList tutorialList;
+    private AttendanceFile attendanceFile;
+    private DataManager dataManager;
 
     public CommandLoopHandler(UI ui, TaskList taskList, StudentList studentList,
-                              TutorialClassList tutorialList, AttendanceFile attendanceFile) {
+                              TutorialClassList tutorialList, AttendanceFile attendanceFile, DataManager dataManager) {
         this.ui = ui;
         this.taskList = taskList;
         this.studentList = studentList;
         this.tutorialList = tutorialList;
         this.attendanceFile = attendanceFile;
+        this.dataManager = dataManager;
 
     }
 
@@ -38,7 +40,7 @@ public class CommandLoopHandler {
 
             if (parts.length < 2) {
                 System.out.println("Invalid command format. Please use: add -[type] [task details]");
-                break;
+                continue;
             }
 
             String command = parts[0].toUpperCase();
@@ -68,6 +70,10 @@ public class CommandLoopHandler {
             }
 
             isRunning = commandHandler.runCommand();
+            dataManager.saveTutorials(tutorialList);
+            dataManager.saveAttendanceFile(attendanceFile);
+            dataManager.saveMarksList(tutorialList);
+
         }
 
     }

@@ -97,14 +97,16 @@ and print the names and attendance status of the students in that tutorial,if it
 
 #### Operations
 - `ShowAttendanceListCommand.execute()`
-  - Extracts tutorial name and week number from the given input.
+![ShowAttendanceListCommand.png](diagrams/attendancelistcommands/ShowAttendanceListCommand.png)
+  - Extracts tutorial name and week number from the given input(parts) and stores it in partsArray.
   - Exception thrown if no input or not enough input given.
   - The AttendanceFile is searched to find the relevant AttendanceList
   - Exception is thrown and handled if none found.
   - The hashMap containing the attendance status of the students will be printed.
   - A different message will be printed if this hashMap is empty(signalling that the attendanceList has no students in it).
   - An error message will be printed when an Exception is handled.
-
+![findStudentInTutorial.png](diagrams/attendancelistcommands/findStudentInTutorial.png)
+`Reference Block`
 #### 2.MarkStudentAttendanceCommand
 This is part of the Attendancelistcommands package,the function of this class is to mark a student present for a specific tutorial
 
@@ -122,6 +124,7 @@ and set the attendance status of the given student as Present in the attendanceL
   - Exception is thrown and handled if none found.
   - The value for the student in the hashMap containing the attendance status of the students will be changed to Present.
   - An error message will be printed when an Exception is handled.
+  - sequence diagram is similar to 1 but instead at the end the student is marked present in the attendanceList and nothing is printed if there are no exceptions
 
 
 #### 3.UnmarkStudentAttendanceCommand
@@ -141,7 +144,7 @@ and set the attendance status of the given student as Absent in the attendanceLi
   - Exception is thrown and handled if none found.
   - The value for the student in the hashMap containing the attendance status of the students will be changed to Absent.
   - An error message will be printed when an Exception is handled.
-
+- sequence diagram is similar to 1 but instead at the end the student is marked Absent in the attendanceList and nothing is printed if there are no exceptions
 
 #### 4.ViewStudentCommentsCommand
 This is part of the Attendancelistcommands package,the function of this class is print out all the comments given for a student in the particular tutorial and week.
@@ -166,22 +169,26 @@ that the user has given and print all comments for the given student in the atte
 #### 5.CommentOnStudentCommand
 This is part of the Attendancelistcommands package,the function of this class is to add a comment(s) to a student in the particular tutorial and week.
 
+
 #### Implementation details
 This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial,week and the student name and matric number
 and their comments that the user has given and add all comments to the ArrayList containing all comments for a given student in the attendanceList for the given tutorial name and week.
 
 #### Operations
+
 - `CommentOnStudentCommand.execute()`
-  - Extracts tutorial name, week number , student name and matric number and the comments to be added from the given input.
-  - Exception thrown if no inputs, not enough inputs or too many inputs are given.
-  - The AttendancFile is searched to find the relevant AttendanceList
-  - Exception is thrown and handled if none found.
-  - This AttendanceList is then checked is it has a student with the same name and matric number is found.
-  - Exception is thrown and handled if none found.
+![CommentOnStudentCommandSequenceDiagram.png](diagrams/attendancelistcommands/CommentOnStudentCommandSequenceDiagram.png)
+
+  - As seen in the diagram,the input from parts is split between data used to find the student and the comments to be added to the student and placed into a string array.
+  - The relevant data is then extracted from each index and put into arrays.For the comments they are put into an ArrayList<String>
+  - The attendanceFile is searched for an AttendanceList with the given Tutorial name and week number.
+  - This AttendanceList is then searched for the student with the name and matric number.
+  - The above 2 are located in the reference block highlighted in red.
   - The ArrayList<String> associated with the student in the hashmap for student comments have the given comments added to them.
-  - An error message will be printed when an Exception is handled.
-
-
+  - As seen at the bottom,if an exception is thrown, an error message will be printed when an Exception is handled.
+  - TASYNC exception will be thrown if the inputs do not follow the set form or has invalid inputs.It will also be thrown if the attendanceList cannot be found or the student cannot be found.
+![findStudentInTutorial.png](diagrams/attendancelistcommands/findStudentInTutorial.png)
+`find student in tutorial reference diagram`
 #### 6.DeleteStudentCommentCommand
 This is part of the Attendancelistcommands package,the function of this class is to remove a comment to a student in the particular tutorial and week.
 
@@ -200,7 +207,7 @@ and the number position of the comment to be removed that the user has given and
   - The ArrayList<String> associated with the student that stores comments for the has the (num given - 1)th element removed.A message will then be printed stating that the comment was successfully deleted.
   - Different messages will be printed if the student has no comments associated with them or if the num given is outside the boundaries of the comments ArrayList.
   - An error message will be printed when an Exception is handled.
-
+  - sequence diagram is similar to 5 but instead at the end the comment is deleted and a message stating that it is deleted is printed
 
 #### 7.CreateNewAttendanceList
 This is part of the Attendancelistcommands package,the function of this class is to create an AttendanceList for a particular tutorial and week.
@@ -220,7 +227,8 @@ AttendanceFile as the second element.
   - A new AttendanceList would be created for the given tutorial name and week if non found.
   - Different message will be printed if the AttendanceList was found.
   - An error message will be printed when an Exception is handled.
-
+![CreateNewAttendanceListCommand.png](diagrams/attendancelistcommands/CreateNewAttendanceListCommand.png)
+  - Sequence diagram
 
 ### **Student Commands**
 

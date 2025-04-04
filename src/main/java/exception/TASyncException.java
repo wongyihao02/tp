@@ -47,9 +47,8 @@ public class TASyncException extends Exception {
         );
     }
     public static TASyncException invalidNewStudentCommand() {
-        return new TASyncException(
-                "Invalid NewStudent command, please key command in the format: " +
-                        "NewStudent -t <name> <dob> <gender> <contact> <matricNumber> <tutorialClass>."
+        return new TASyncException("Invalid new student command, please key command in the format: " +
+                        "NEWSTUDENT -t <name>,<dob>,<gender>,<contact>,<matricNumber>,<tutorialClass>"
         );
     }
 
@@ -79,29 +78,26 @@ public class TASyncException extends Exception {
     public static TASyncException invalidListTutorialStudentsCommand() {
         return new TASyncException(
                 "Invalid list all students in tutorial command, please key command in the format: " +
-                        "/liststudents -t <tutorialCode>"
+                        "LISTSTUDENTS -t <tutorialCode>"
         );
     }
 
     public static Exception invalidNewTutorialCommand() {
         return new TASyncException(
                 "Invalid new tutorial command, please key command in the format:" +
-                        " /newtutorial <tutorialCode>"
+                        " NEWTUTORIAL -t <tutorialCode>,<day_of_week>,<start_time>,<end_time>"
         );
     }
 
     public static Exception invalidDayOfWeek() {
-        return new TASyncException("Invalid day of week command, please specify day of week");
+        return new TASyncException("Invalid day of week command, please specify day of week from 1 to 7.");
     }
 
-
-    public static Exception duplicateTutorial() {
-        return new TASyncException("Duplicate tutorial input, please try again");
-    }
 
     public static Exception invalidDeleteTutorialCommand() {
         return new TASyncException(
-                "Invalid delete tutorial command, please key command in the format /delete -t <tutorialCode>"
+                "Invalid delete tutorial command, please key command in the format:" +
+                        "DELETE -t <tutorialCode>"
         );
     }
 
@@ -138,5 +134,18 @@ public class TASyncException extends Exception {
                 "Invalid delete marks command, please key command in the format: " +
                         "DeleteMarks -m <tutorial_id>,<matric_number>,<assignment_name>"
         );
+    }
+
+    public static TASyncException invalidTimeRange() {
+        return new TASyncException("Invalid time range, start time must be before end time");
+    }
+
+    public static Exception overlappingTutorialTime() {
+        return new TASyncException("The tutorial start time and end time is overlapping with another" +
+                " tutorial time");
+    }
+
+    public static Exception duplicateTutorialName() {
+        return new TASyncException("A tutorial with the same name already exists");
     }
 }

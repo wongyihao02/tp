@@ -33,11 +33,16 @@ public class ListTutorialStudentsCommand implements Command<TutorialClassList> {
             }
 
             TutorialClass targetTutorial = null;
-            ArrayList<TutorialClass> tutorials = tutorialClassList.getTutorialClasses();
+            ArrayList<TutorialClass> tutorialClasses = tutorialClassList.getTutorialClasses();
+
+            if(tutorialClasses.isEmpty()) {
+                System.out.println("There are no tutorial created yet.");
+                return;
+            }
 
             // Find the tutorial by name
-            for (TutorialClass tutorial : tutorials) {
-                if (tutorial.getTutorialName().equalsIgnoreCase(tutorialName)) {
+            for (TutorialClass tutorial : tutorialClasses) {
+                if (tutorial.getTutorialName().equals(tutorialName)) {
                     targetTutorial = tutorial;
                 }
             }
@@ -56,16 +61,15 @@ public class ListTutorialStudentsCommand implements Command<TutorialClassList> {
             if (enrolledStudents.isEmpty()) {
                 System.out.println(targetTutorial.getTutorialName() + " has no students");
             } else {
-                for (Student student : enrolledStudents) {
-                    System.out.println(student.toString());
-                }
+                System.out.println("List of enrolled students in " + targetTutorial.getTutorialName() + ":");
+                Student.printStudentTable(enrolledStudents);
             }
 
             System.out.println();
 
         } catch (TASyncException e) {
             // Specific exception thrown by our TASyncException class
-            System.out.println("TASyncException: " + e.getMessage());
+            System.out.println(e.getMessage());
         } 
     }
 }
