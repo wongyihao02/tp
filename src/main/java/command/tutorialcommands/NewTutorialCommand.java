@@ -9,6 +9,7 @@ import command.taskcommands.Command;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
+
 /**
  * Represents the "NEW_TUTORIAL" command that adds a new tutorial class to the tutorial class list.
  * The tutorial is added only if its details are valid and do not duplicate any existing tutorials.
@@ -21,7 +22,7 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
      * The tutorial class must have a valid name, day of the week, start time, and end time.
      * Duplicate tutorials with the same name or overlapping start time and end time are not allowed.
      *
-     * @param input The input string containing the tutorial details (name, day, start time, and end time).
+     * @param input             The input string containing the tutorial details (name, day, start time, and end time).
      * @param tutorialClassList The list of tutorial classes to which the new tutorial class will be added.
      */
     @Override
@@ -85,8 +86,6 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
                     }
                 }
             }
-
-
 
             // Create a new TutorialClass object
             StudentList emptyStudentList = new StudentList(); // Empty list for students

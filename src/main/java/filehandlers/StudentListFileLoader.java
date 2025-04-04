@@ -17,9 +17,13 @@ public class StudentListFileLoader implements FileLoader<StudentList> {
     public StudentList loadFromLines(List<String> lines) {
         ArrayList<Student> students = new ArrayList<>();
         for (String line : lines) {
-            Student s = studentLoader.loadFromLine(line);
-            if (s != null) {
-                students.add(s);
+            try {
+                Student s = studentLoader.loadFromLine(line);
+                if (s != null) {
+                    students.add(s);
+                }
+            } catch (Exception e) {
+                System.out.println("Warning: Skipping malformed student line: \"" + line + "\"");
             }
         }
         return new StudentList(students);

@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor User
+participant "ShowAttendanceListCommand : Command<AttendanceFile>" as command
+participant "partsArray: String[]" as parts
+participant "listOfAttendanceList : AttendanceFile" as listOfAttendanceList
+participant "theOne : AttendanceList" as theOne
+participant "TutorialClass" as tutorialClass
+participant "StudentList" as studentList
+participant "e : TASyncException" as e
+participant "n : NumberFormatException" as n
+
+skinparam sequenceReferenceBackgroundColor #f7807c
+
+User -> command : execute(parts : String, target : T)
+activate command
+alt try
+
+create parts
+command -> parts : parts.split(",")
+ref over command, listOfAttendanceList, theOne, tutorialClass, studentList
+find student in tutorial
+end ref
+
+activate listOfAttendanceList
+activate tutorialClass
+activate studentList
+activate theOne
+command -> theOne : getAttendanceMap()
+theOne --> command : return attendanceMap
+deactivate theOne
+deactivate tutorialClass
+deactivate studentList
+command --> User : print out the attendanceMap\n according to format
+
+else catch TASyncException
+
+
+    command -> e : e.getMessage
+    activate e
+    command --> User  : error message
+    deactivate e
+
+    else catch NumberFormatException
+     command -> n : n.getMessage
+     activate n
+     command --> User : error message
+     deactivate n
+end
+destroy parts
+
+
+@enduml

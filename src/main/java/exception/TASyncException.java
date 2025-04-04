@@ -90,7 +90,7 @@ public class TASyncException extends Exception {
     }
 
     public static Exception invalidDayOfWeek() {
-        return new TASyncException("Invalid day of week command, please specify day of week");
+        return new TASyncException("Invalid day of week command, please specify day of week from 1 to 7.");
     }
 
 
