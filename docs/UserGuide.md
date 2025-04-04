@@ -440,13 +440,13 @@ computer
 
 # Student Commands
 
-| CommandName           | Form                                                                             |                           Example                            |
-|-----------------------|:---------------------------------------------------------------------------------|:------------------------------------------------------------:|
-| Add Student           | `newstudent -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>` | `newstudent -t kim dokja,15-02-2000,Male,99224 806,A002,T01` |
-| Delete Student        | `deletestudent -t <tutorial_name>,<matric_number>`                               |              `DELETESTUDENT -t T123,A7656765W`               |
-| Find Student          | `find -t <keyword>`                                                              |         `FIND -t Charlie Song`  `FIND -t A7645342D`          |
-| Change Student Remark | `changeremark -t <tutorial_name>,<matric_number>,<new_remark>`                   |   `CHANGEREMARK -t T123,A2345674W,Excellent job in class!`   |
-| Check Student Remark  | `checkremarks -t <tutorial_name>,<matric_number>`                                |               `CHECKREMARK -t T123,A2345674W`                |
+| CommandName           | Form                                                                             |                             Example                             |
+|-----------------------|:---------------------------------------------------------------------------------|:---------------------------------------------------------------:|
+| Add Student           | `newstudent -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>` | `newstudent -t kim dokja,15-02-2000,Male,99224421 806,A002,T01` |
+| Delete Student        | `deletestudent -t <tutorial_name>,<matric_number>`                               |                `DELETESTUDENT -t T123,A7656765W`                |
+| Find Student          | `find -t <keyword>`                                                              |           `FIND -t Charlie Song`  `FIND -t A7645342D`           |
+| Change Student Remark | `changeremark -t <tutorial_name>,<matric_number>,<new_remark>`                   |    `CHANGEREMARK -t T123,A2345674W,Excellent job in class!`     |
+| Check Student Remark  | `checkremarks -t <tutorial_name>,<matric_number>`                                |                 `CHECKREMARK -t T123,A2345674W`                 |
 
 ## Marks Commands
 
