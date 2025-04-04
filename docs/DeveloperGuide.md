@@ -104,6 +104,7 @@ This is part of the Attendancelistcommands package,the function of this class is
 This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial,week and the student name and matric number
 and their comments that the user has given and add all comments to the ArrayList containing all comments for a given student in the attendanceList for the given tutorial name and week.
 
+
 #### Operations
 - `CommentOnStudentCommand.execute()`
   - Extracts tutorial name, week number , student name and matric number and the comments to be added from the given input.
