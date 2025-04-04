@@ -27,7 +27,7 @@ public class TASync {
         ui.displayDailySchedule(taskList, tutorialList);
 
         CommandLoopHandler loopHandler = new CommandLoopHandler(ui, taskList, studentlist,
-                tutorialList, attendanceFile);
+                tutorialList, attendanceFile, dataManager);
         loopHandler.runCommandLoop();
 
 
