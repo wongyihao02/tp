@@ -2,8 +2,8 @@ package command.commandhandler;
 
 
 import command.attendancelistcommands.CommentOnStudentCommand;
-import command.attendancelistcommands.CreateNewAttendanceList;
-import command.attendancelistcommands.DeleteStudentComment;
+import command.attendancelistcommands.CreateNewAttendanceListCommand;
+import command.attendancelistcommands.DeleteStudentCommentCommand;
 import command.attendancelistcommands.MarkStudentAttendanceCommand;
 import command.attendancelistcommands.ShowAttendanceListCommand;
 import command.attendancelistcommands.UnmarkStudentAttendanceCommand;
@@ -154,7 +154,7 @@ public class CommandFactory {
             case "VIEWCOMMENT":
                 return new ViewStudentCommentsCommand();
             case "DELETECOMMENT":
-                return new DeleteStudentComment();
+                return new DeleteStudentCommentCommand();
             case "LIST":
                 return new ShowAttendanceListCommand();
             default:
@@ -164,7 +164,7 @@ public class CommandFactory {
             }
         } else if (listType.equalsIgnoreCase("-at")) {
             if (command.equals("CREATE")) {
-                return new CreateNewAttendanceList();
+                return new CreateNewAttendanceListCommand();
             }
             System.out.println("Sorry, TASync does not know what \"" + command + "\" means.");
             CommandListPrinter.printCommands();

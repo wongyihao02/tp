@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import attendance.AttendanceFile;
 import command.attendancelistcommands.CommentOnStudentCommand;
-import command.attendancelistcommands.DeleteStudentComment;
+import command.attendancelistcommands.DeleteStudentCommentCommand;
 import command.attendancelistcommands.ViewStudentCommentsCommand;
 import tutorial.TutorialClassList;
 
@@ -36,7 +36,7 @@ public class DeleteStudentCommentTest {
         String[] newComments = {"chinese;clown", "korean;Reader"};
         ViewStudentCommentsCommand command = new ViewStudentCommentsCommand();
         CommentOnStudentCommand command1 = new CommentOnStudentCommand();
-        DeleteStudentComment command2 = new DeleteStudentComment();
+        DeleteStudentCommentCommand command2 = new DeleteStudentCommentCommand();
         outputStream = captureSystemOut();
         command1.execute(input[0] + "//" + newComments[0], attendanceFile);
         command.execute(input[0], attendanceFile);
@@ -77,7 +77,7 @@ public class DeleteStudentCommentTest {
 
         for (String s : input) {
             outputStream = captureSystemOut();
-            DeleteStudentComment command = new DeleteStudentComment();
+            DeleteStudentCommentCommand command = new DeleteStudentCommentCommand();
             command.execute(s, attendanceFile);
             String output = outputStream.toString().trim();
             assertTrue(output.contains("Comment to be deleted was not present"));
@@ -91,7 +91,7 @@ public class DeleteStudentCommentTest {
                           "abs,11,wong,A001", "123,222,fasc,222,4411,asdqewded" + "//comment"};
         for (String s : input) {
             outputStream = captureSystemOut();
-            DeleteStudentComment command = new DeleteStudentComment();
+            DeleteStudentCommentCommand command = new DeleteStudentCommentCommand();
             command.execute(s, attendanceFile);
             String output = outputStream.toString().trim();
             assertTrue(output.contains("Invalid mark attendance command, "
@@ -106,7 +106,7 @@ public class DeleteStudentCommentTest {
                           "T03,1,Roselle Gustave Bonaparte,A333//1"};
         for (String s : input) {
             outputStream = captureSystemOut();
-            DeleteStudentComment command = new DeleteStudentComment();
+            DeleteStudentCommentCommand command = new DeleteStudentCommentCommand();
             command.execute(s, attendanceFile);
             String output = outputStream.toString().trim();
             assertTrue(output.contains("Invalid mark attendance command, "
@@ -121,7 +121,7 @@ public class DeleteStudentCommentTest {
                              "T02,8,Roselle Gustave Bonaparte,A333//2"};
         for (String s : input) {
             outputStream = captureSystemOut();
-            DeleteStudentComment command = new DeleteStudentComment();
+            DeleteStudentCommentCommand command = new DeleteStudentCommentCommand();
             command.execute(s, attendanceFile);
             String output = outputStream.toString().trim();
             assertTrue(output.contains("Invalid mark attendance command, "
@@ -133,7 +133,7 @@ public class DeleteStudentCommentTest {
     @Test
     void testSecondInputNonNumWrong() {
         String input = "T01,sba,Kim Dokja,A003//2";
-        DeleteStudentComment command = new DeleteStudentComment();
+        DeleteStudentCommentCommand command = new DeleteStudentCommentCommand();
         command.execute(input, attendanceFile);
         String output = outputStream.toString().trim();
         assertTrue(output.contains("second parameter and comment number has to be numbers only"));
