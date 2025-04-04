@@ -157,14 +157,14 @@ Format: `NEWTUTORIAL -t <tutorial_name>,<day_of_week>,<start_time> <end_time>`
 Examples:
 - `NEWTUTORIAL -t T123,2,11:00,13:00`
 
-#### Delete tutorial: `DELETETUTORIAL -t`
+#### Delete tutorial: `DELETE -t`
 
 Delete a specified tutorial class from the tutorial class list.
 
-Format: `DELETETUT -t <tutorial_name>`
+Format: `DELETE -t <tutorial_name>`
 
 Examples:
-- `DELETETUT -t T123`
+- `DELETE -t T123`
 
 #### List Students in Tutorial: `LISTSTUDENTS -t`
 
@@ -461,7 +461,7 @@ computer
 | CommandName               | Form                                                                   |               Example               |
 |---------------------------|:-----------------------------------------------------------------------|:-----------------------------------:|
 | Create Tutorial           | `newtutorial -t <tutorial_name>,<day_of_week>,<start_time>,<end_time>` | `NEWTUTORIAL -t T123,2,11:00,13:00` |
-| Delete Tutorial           | `deletetut -t <tutorial_name>`                                         |         `DELETETUT -t T123`         |
+| Delete Tutorial           | `deletetut -t <tutorial_name>`                                         |          `DELETE -t T123`           |
 | List Students in Tutorial | `listsstudents -t <tutorial_name>`                                     |       `LISTSTUDENTS -t T123`        |
 | List Upcoming Tutorials   | `list -t <date>`                                                       |        `LIST -t 12/03/2025`         |
 
