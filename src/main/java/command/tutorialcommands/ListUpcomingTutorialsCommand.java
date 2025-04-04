@@ -42,6 +42,10 @@ public class ListUpcomingTutorialsCommand implements Command<TutorialClassList> 
 
             // Get the list of tutorials
             ArrayList<TutorialClass> tutorialClasses = tutorialClassList.getTutorialClasses();
+            if(tutorialClasses.isEmpty()) {
+                System.out.println("There are no tutorial created yet.");
+                return;
+            }
 
             // Calculate the number of days to add in order to reach the first tutorial session
             int daysUntilFirstTutorial = (tutorialClasses.get(0).getDayOfWeek().getValue()
@@ -55,6 +59,7 @@ public class ListUpcomingTutorialsCommand implements Command<TutorialClassList> 
             DayOfWeek nextTutorialDayOfWeek = nextTutorialDate.getDayOfWeek();
 
             // Loop through the upcoming tutorial sessions until the end date
+
             while (nextTutorialDate.isBefore(endDate)) {
                 for (TutorialClass tutorialClass : tutorialClasses) {
                     int daysDifference = tutorialClass.getDayOfWeek().getValue() - nextTutorialDayOfWeek.getValue();

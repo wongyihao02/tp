@@ -79,19 +79,19 @@ public class TASyncException extends Exception {
     public static TASyncException invalidListTutorialStudentsCommand() {
         return new TASyncException(
                 "Invalid list all students in tutorial command, please key command in the format: " +
-                        "/liststudents -t <tutorialCode>"
+                        "liststudents -t <tutorialCode>"
         );
     }
 
     public static Exception invalidNewTutorialCommand() {
         return new TASyncException(
                 "Invalid new tutorial command, please key command in the format:" +
-                        " /newtutorial <tutorialCode>"
+                        " newtutorial -t <tutorial_name>,<day_of_week>,<start_time>,<end_time>"
         );
     }
 
     public static Exception invalidDayOfWeek() {
-        return new TASyncException("Invalid day of week command, please specify day of week");
+        return new TASyncException("Invalid day of week command, please specify day of week from 1 to 7.");
     }
 
 
@@ -138,5 +138,17 @@ public class TASyncException extends Exception {
                 "Invalid delete marks command, please key command in the format: " +
                         "DeleteMarks -m <tutorial_id>,<matric_number>,<assignment_name>"
         );
+    }
+
+
+    public static TASyncException invalidTimeFormat() {
+        return new TASyncException("Invalid time format. Please use HH:mm (e.g., 14:00).");
+    }
+
+    public static TASyncException invalidTimeRange() {
+        return new TASyncException("Start time must be before end time.");
+    }
+    public static TASyncException invalidTutorialName() {
+        return new TASyncException("Tutorial name cannot be empty. Re-Enter Tutorial Name again.");
     }
 }
