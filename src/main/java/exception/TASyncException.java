@@ -95,10 +95,6 @@ public class TASyncException extends Exception {
     }
 
 
-    public static Exception duplicateTutorial() {
-        return new TASyncException("Duplicate tutorial input, please try again");
-    }
-
     public static Exception invalidDeleteTutorialCommand() {
         return new TASyncException(
                 "Invalid delete tutorial command, please key command in the format /delete -t <tutorialCode>"
@@ -138,5 +134,18 @@ public class TASyncException extends Exception {
                 "Invalid delete marks command, please key command in the format: " +
                         "DeleteMarks -m <tutorial_id>,<matric_number>,<assignment_name>"
         );
+    }
+
+    public static TASyncException invalidTimeRange() {
+        return new TASyncException("Invalid time range, start time must be before end time");
+    }
+
+    public static Exception overlappingTutorialTime() {
+        return new TASyncException("The tutorial start time and end time is overlapping with another" +
+                " tutorial time");
+    }
+
+    public static Exception duplicateTutorialName() {
+        return new TASyncException("A tutorial with the same name already exists");
     }
 }
