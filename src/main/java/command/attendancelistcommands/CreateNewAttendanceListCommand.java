@@ -10,7 +10,7 @@ import command.taskcommands.Command;
 
 import java.util.ArrayList;
 
-public class CreateNewAttendanceList implements Command<ArrayList<Object>> {
+public class CreateNewAttendanceListCommand implements Command<ArrayList<Object>> {
 
     //parts in tutname,week num
     public void execute(String parts, ArrayList<Object> tutAtten) {
@@ -23,6 +23,10 @@ public class CreateNewAttendanceList implements Command<ArrayList<Object>> {
             }
             String[] partsArray = parts.split(",");
             if (partsArray.length != 2) {
+                throw TASyncException.invalidListAttendanceListCommand();
+            }
+
+            if (Integer.parseInt(partsArray[1]) < 0) {
                 throw TASyncException.invalidListAttendanceListCommand();
             }
 

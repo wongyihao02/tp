@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor User
+participant "ShowAttendanceListCommand : Command<AttendanceFile>" as command
+participant "partsArray: String[]" as parts
+participant "listOfAttendanceList : AttendanceFile" as listOfAttendanceList
+participant "listOfTutorials : TutorialClassList" as listOfTutorials
+participant "attenList : AttendanceList" as attenList
+participant "e : TASyncException" as e
+participant "n : NumberFormatException" as n
+
+User -> command : execute(parts : String, target : T)
+activate command
+alt try
+create parts
+command -> parts : parts.split(",")
+activate listOfAttendanceList
+command -> listOfAttendanceList : getAttendanceListByNameAndWeek(week,name)
+
+alt the attendanceList is null
+create attenList
+command -> attenList
+activate attenList
+attenList --> command : it is returned to be stored in local var
+command -> listOfAttendanceList : listOfAttendanceList.addAttendanceList(attenList)
+
+deactivate attenList
+deactivate listOfAttendanceList
+command --> User : print("Attendance list for the week already exists")
+else the attendanceList is not null
+command --> User : print message stating attendanceList already exists
+end alt
+
+else catch TASyncException
+
+
+    command -> e : e.getMessage
+    activate e
+    command --> User  : error message
+    deactivate e
+
+    else catch NumberFormatException
+     command -> n : n.getMessage
+     activate n
+     command --> User : error message
+     deactivate n
+end
+
+destroy parts
+@enduml
