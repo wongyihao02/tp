@@ -78,7 +78,7 @@ public class NewStudentCommandTest {
         command.execute(input, tutorialClassList);
 
         // Assert the output error message for invalid DOB
-        assertTrue(outputStream.toString().contains("Error: Please enter a valid dob."));
+        assertTrue(outputStream.toString().contains("Please enter a valid dob."));
     }
 
     @Test
@@ -91,7 +91,7 @@ public class NewStudentCommandTest {
         command.execute(input, tutorialClassList);
 
         // Assert the output error message for invalid gender
-        assertTrue(outputStream.toString().contains("Error: Invalid input: Gender must be 'Male' or 'Female'."));
+        assertTrue(outputStream.toString().contains("Invalid input: Gender must be 'Male' or 'Female'."));
     }
 
     @Test
@@ -104,7 +104,7 @@ public class NewStudentCommandTest {
         command.execute(input, tutorialClassList);
 
         // Assert the output error message for non-existing tutorial class
-        assertTrue(outputStream.toString().contains("Error: No tutorial class found with code: CS9999X"));
+        assertTrue(outputStream.toString().contains("No tutorial class found with code: CS9999X"));
     }
 
     @Test
@@ -117,6 +117,6 @@ public class NewStudentCommandTest {
         command.execute(input, tutorialClassList);
 
         // Assert the output error message for invalid matric number format
-        assertTrue(outputStream.toString().contains("Error: Invalid matric number: Must follow the format A1234567X."));
+        assertTrue(outputStream.toString().contains("Invalid matric number: Must follow the format A1234567X."));
     }
 }

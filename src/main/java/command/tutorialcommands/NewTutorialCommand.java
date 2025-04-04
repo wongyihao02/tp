@@ -8,8 +8,7 @@ import command.taskcommands.Command;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
-import java.util.Scanner;
+
 
 /**
  * Represents the "NEW_TUTORIAL" command that adds a new tutorial class to the tutorial class list.
@@ -21,7 +20,7 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
     /**
      * Executes the "NEW_TUTORIAL" command to add a new tutorial class to the tutorial class list.
      * The tutorial class must have a valid name, day of the week, start time, and end time.
-     * Duplicate tutorials with the same name, day, start time, and end time are not allowed.
+     * Duplicate tutorials with the same name or overlapping start time and end time are not allowed.
      *
      * @param input             The input string containing the tutorial details (name, day, start time, and end time).
      * @param tutorialClassList The list of tutorial classes to which the new tutorial class will be added.
@@ -45,6 +44,10 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
             String startTimeStr = inputParts[2].trim();
             String endTimeStr = inputParts[3].trim();
 
+            if (tutorialName.isBlank() || dayOfWeekStr.isBlank() || startTimeStr.isBlank() || endTimeStr.isBlank()) {
+                throw TASyncException.invalidNewTutorialCommand();
+            }
+
             // Parse and validate day of the week
             int dayOfWeek;
             try {
@@ -58,38 +61,29 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
 
             // Parse and validate start and end time
 
-            LocalTime startTime;
-            LocalTime endTime;
-            try {
-                startTime = LocalTime.parse(startTimeStr);
-                endTime = LocalTime.parse(endTimeStr);
+            LocalTime startTime = LocalTime.parse(startTimeStr);
+            LocalTime endTime = LocalTime.parse(endTimeStr);
 
-                if (!startTime.isBefore(endTime)) {
-                    throw TASyncException.invalidTimeRange();
-                }
-
-            } catch (DateTimeParseException e) {
-                throw TASyncException.invalidTimeFormat();
+            if (!endTime.isAfter(startTime)) {
+                throw TASyncException.invalidTimeRange();
             }
 
 
-            if (tutorialName.isEmpty()) {
-                Scanner scanner = new Scanner(System.in);
-
-                while (tutorialName.isEmpty()) {
-                    System.out.println("Tutorial name cannot be empty. Please enter a valid tutorial name:");
-                    tutorialName = scanner.nextLine().trim();
-                }
-            }
-
-
-            // Check if the tutorial already exists in the list
             for (TutorialClass existingTutorial : tutorialClassList.getTutorialClasses()) {
-                if (existingTutorial.getTutorialName().equals(tutorialName) &&
-                        existingTutorial.getDayOfWeek().getValue() == dayOfWeek &&
-                        existingTutorial.getStartTime().equals(startTime) &&
-                        existingTutorial.getEndTime().equals(endTime)) {
-                    throw TASyncException.duplicateTutorial();
+                // Check for duplicate tutorial name
+                if (existingTutorial.getTutorialName().equalsIgnoreCase(tutorialName)) {
+                    throw TASyncException.duplicateTutorialName();
+                }
+
+                // Check for overlapping time intervals on the same day
+                if (existingTutorial.getDayOfWeek().getValue() == dayOfWeek) {
+                    LocalTime existingStart = existingTutorial.getStartTime();
+                    LocalTime existingEnd = existingTutorial.getEndTime();
+
+                    boolean overlaps = !(endTime.isBefore(existingStart) || startTime.isAfter(existingEnd));
+                    if (overlaps) {
+                        throw TASyncException.overlappingTutorialTime();
+                    }
                 }
             }
 
@@ -105,12 +99,18 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
             // Add the new tutorial to the tutorial class list
             tutorialClassList.addTutorialClass(newTutorial);
 
-            // Output success message
-            System.out.println("New tutorial added: " + newTutorial);
+            System.out.printf(
+                    "Tutorial \"%s\" successfully scheduled on %s from %s to %s.%n",
+                    tutorialName,
+                    DayOfWeek.of(dayOfWeek),
+                    startTime,
+                    endTime
+            );
+
 
         } catch (TASyncException e) {
             // Handle TASyncException
-            System.out.println("Error: " + e.getMessage());
+            System.out.println(e.getMessage());
         } catch (Exception e) {
             // Handle any other unexpected exceptions
             System.out.println("An unexpected error occurred: " + e.getMessage());

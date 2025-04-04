@@ -61,16 +61,15 @@ public class ListTutorialStudentsCommand implements Command<TutorialClassList> {
             if (enrolledStudents.isEmpty()) {
                 System.out.println(targetTutorial.getTutorialName() + " has no students");
             } else {
-                for (Student student : enrolledStudents) {
-                    System.out.println(student.toString());
-                }
+                System.out.println("List of enrolled students in " + targetTutorial.getTutorialName() + ":");
+                Student.printStudentTable(enrolledStudents);
             }
 
             System.out.println();
 
         } catch (TASyncException e) {
             // Specific exception thrown by our TASyncException class
-            System.out.println("TASyncException: " + e.getMessage());
+            System.out.println(e.getMessage());
         } 
     }
 }

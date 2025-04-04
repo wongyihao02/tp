@@ -5,6 +5,7 @@ import util.DateTimeFormatterUtil;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Student {
@@ -120,5 +121,40 @@ public class Student {
         return "Student [name=" + name + ", dateOfBirth=" + DateTimeFormatterUtil.formatDate(dateOfBirth)
                 + ", gender=" + gender + ", contact=" + contact + ", matricNumber=" + matricNumber + "]";
     }
+
+
+    public static int getMaxNameLength(ArrayList<Student> students) {
+        int maxLength = "Name".length(); // So header isn't shorter
+        for (Student student : students) {
+            if (student.getName().length() > maxLength) {
+                maxLength = student.getName().length();
+            }
+        }
+        return maxLength;
+    }
+
+    public static void printStudentTable(ArrayList<Student> students) {
+        int nameWidth = getMaxNameLength(students) + 2; // Add buffer
+
+        String format = String.format("%%-%ds %%-%ds %%-%ds %%-%ds %%-%ds\n",
+                nameWidth, 12, 6, 15, 12); // Adjust widths
+
+        // Print header
+        System.out.printf(format, "Name", "DOB", "Gender", "Contact", "Matric No.");
+        System.out.println("-".repeat(nameWidth + 12 + 6 + 15 + 12 + 4)); // +4 for spacing
+
+        // Print each student
+        for (Student student : students) {
+            System.out.printf(format,
+                    student.getName(),
+                    DateTimeFormatterUtil.formatDate(student.getDateOfBirth()),
+                    student.getGender(),
+                    student.getContact(),
+                    student.getMatricNumber());
+        }
+    }
+
+
+
 
 }
