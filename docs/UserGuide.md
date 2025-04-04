@@ -152,7 +152,7 @@ Examples:
 
 Creates a new tutorial with the necessary parameters. 
 
-Format: `NEWTUTORIAL -t <tutorial_name>,<day_of_week>,<start_time> <end_time>`
+Format: `NEWTUTORIAL -t <tutorial_name>,<day_of_week>,<start_time>,<end_time>`
 
 Examples:
 - `NEWTUTORIAL -t T123,2,11:00,13:00`
