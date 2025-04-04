@@ -21,6 +21,72 @@ The `command` package contains the following sub-packages:
 
 ### Command Handler
 
+#### 1. CommandParser
+
+The `CommandParser` is responsible for breaking down user input into a **command keyword** and its corresponding **arguments**.
+
+#### Implementation Details
+
+- Extracts the first word as the command keyword (e.g., `addstudent`, `deletetask`) and treats the remainder as arguments.
+- Trims and sanitizes input to ensure compatibility across all command handlers.
+- Throws relevant exceptions if input is malformed or empty.
+
+#### Operations
+
+- `CommandParser.parse(String input)`
+  - Parses the keyword and arguments from user input.
+  - Returns both as a `ParsedInput` object to the `CommandHandler`.
+  - Handles edge cases like extra whitespace and missing commands.
+
+---
+
+#### 2. CommandFactory
+
+The `CommandFactory` is responsible for returning the correct command object for execution.
+
+#### Implementation Details
+
+- Implements the **Factory Design Pattern** to instantiate command classes without exposing their construction logic to external classes.
+- Maps each supported command keyword (e.g., `addstudent`, `listtasks`, `newtutorial`) to its corresponding command class.
+- Throws descriptive exceptions if an unrecognized command is provided.
+
+#### Operations
+
+- `CommandFactory.getCommand(String keyword)`
+  - Returns a new instance of the corresponding command class that implements `Command<T>`.
+  - Commands are registered in the factory using a `switch-case` or a command map for maintainability.
+  - Supports all domains: `studentcommands`, `taskcommands`, `tutorialcommands`, `attendancelistcommands`, `markscommands`.
+
+---
+
+#### 3. CommandHandler
+
+The `CommandHandler` orchestrates the end-to-end command processing — from parsing to execution.
+
+#### Implementation Details
+
+- Acts as the main entry point when a command is entered via CLI.
+- Delegates parsing to `CommandParser`, command resolution to `CommandFactory`, and execution to the returned `Command` instance.
+- Accepts relevant data structures such as `TaskList`, `TutorialClassList`, and `AttendanceFile` as input to command execution.
+- Handles exception logging and displays error messages to the user if any part of the command flow fails.
+
+#### Operations
+
+- `CommandHandler.handleCommand(String fullInput)`
+  - Calls `CommandParser` to break down the input.
+  - Delegates command creation to `CommandFactory`.
+  - Executes the command using the appropriate data object.
+  - Displays output or error messages based on the outcome.
+
+---
+
+#### Benefits of the Design
+
+- **Modular & Extensible:** Commands can be added or removed without changing the handler logic.
+- **Polymorphic Execution:** All commands implement a common interface `Command<T>`, simplifying invocation logic.
+- **Robust Error Handling:** Clearly separates exceptions thrown during parsing, command creation, and execution.
+- **Testable:** Each component (`Parser`, `Factory`, `Handler`) can be unit tested independently.
+
 ### Attendance List Commands
 #### 1.ShowAttendanceListCommand
 This is part of the Attendancelistcommands package,the function of this class is to show the user the attendance list of the tutorial and week the user asks for.
@@ -658,10 +724,22 @@ Teaching assistants and tutors often struggle with time-consuming administrative
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version | As a ...                       | I want to ...                                                                          | So that I can ...                                                                            |
+|---------|--------------------------------|----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| v1.0    | inexperienced or new TA        | know how to use TASync easily by referring to a readily accessible built-in user guide | quickly learn how to use the application and avoid mistakes when interacting with the system |
+| v1.0    | TA                             | edit (add/delete) the student list                                                     | track who is in my class and ensure accurate attendance records                              |
+| v1.0    | TA                             | mark attendance for tutorial sessions                                                  | keep track of student attendance to ensure participation                                     |
+| v1.0    | TA                             | create weekly tutorial attendance list                                                 | organize attendance per session and quickly reference past attendance records                |
+| v1.0    | TA after each session          | add remarks for the student after each tutorial                                        | refer back to feedback for future sessions and provide constructive comments                 |
+| v1.0    | TA with lots of classes        | find students in my tutorials easily                                                   | quickly locate students and manage tutorial-related activities                               |
+| v1.0    | TA after each session          | give remarks on my students for future reference                                       | provide personalized feedback to students for future reference and improvement               |
+| v1.0    | TA managing multiple tutorials | list out my tutorial classes for a specified amount of time                            | view my scheduled tutorials over a period of time for better planning                        |
+| v1.0    | busy TA                        | add consultation slots into the list of todo                                           | show when my consultation slots are and manage my time effectively                           |
+| v1.0    | busy TA                        | find a task by name                                                                    | locate a task without having to go through the entire list                                   |
+| v2.0    | busy TA                        | schedule and modify my teaching schedules                                              | accommodate student consultations/meetings with professors and stay organized                |
+| v2.0    | busy TA                        | print out tutorial + tasks on the particular day once the app is opened                | quickly view my teaching schedule and tasks for the day upon opening the app                 |
+| v2.0    | responsible TA                 | track a student’s individual assignment grades                                         | monitor grades for students to provide timely feedback                                       |
+
 
 ## Non-Functional Requirements
 
