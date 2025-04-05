@@ -52,7 +52,8 @@ public class CheckRemarkCommandTest {
         command.execute("CS1010S,A9999999Z", tutorialClassList);
 
         String output = outputStream.toString().trim();
-        assertTrue(output.contains("No student found with matric number: A9999999Z"));
+        assertTrue(output.contains("Invalid check remark command, please specify which a valid student " +
+                "and tutorial to check."));
     }
 
     @Test
@@ -61,7 +62,8 @@ public class CheckRemarkCommandTest {
         command.execute("CS9999,A1234567W", tutorialClassList);
 
         String output = outputStream.toString().trim();
-        assertTrue(output.contains("Invalid check remark command, please specify which student to check."));
+        assertTrue(output.contains("Invalid check remark command, please specify which a valid student " +
+                "and tutorial to check."));
     }
 
     @Test
@@ -70,6 +72,6 @@ public class CheckRemarkCommandTest {
         command.execute("InvalidInput", tutorialClassList);
 
         String output = outputStream.toString().trim();
-        assertTrue(output.contains("Invalid check remark command, please specify which student to check."));
+        assertTrue(output.contains("Please check that you have entered the correct command parameters."));
     }
 }

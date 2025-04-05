@@ -62,7 +62,8 @@ public class TASyncException extends Exception {
     }
 
     public static TASyncException invalidCheckRemarkCommand() {
-        return new TASyncException("Invalid check remark command, please specify which student to check.");
+        return new TASyncException("Invalid check remark command, please specify which a valid student " +
+                "and tutorial to check.");
     }
 
 
@@ -143,4 +144,6 @@ public class TASyncException extends Exception {
     public static TASyncException invalidCommand() {
         return new TASyncException("Please check that you have entered the correct command parameters.");
     }
+
+
 }

@@ -1,8 +1,5 @@
 # T01,1
-xyz,A1234567R,Absent
-Alice Tan,A001,Absent
-john,A1433985N,Present
-Mark,A2457654W,Present
+samantha,A1234768D,Absent
 Harry Choo,A008,Present
 Farhan Lee,A006,Present
 Grace Tan,A007,Present
@@ -11,12 +8,13 @@ Ella Sim,A005,Present
 me,A1234567W,Absent
 Ben Lim,A002,Present
 Chloe Ong,A003,Present
+xyz,A1234567R,Absent
+Alice Tan,A001,Absent
+john,A1433985N,Present
+Mark,A2457654W,Present
 
 //comments
-xyz,A1234567R,
-Alice Tan,A001,Absent without valid reason
-john,A1433985N,
-Mark,A2457654W,
+samantha,A1234768D,
 Harry Choo,A008,Participated actively
 Farhan Lee,A006,
 Grace Tan,A007,Asked thoughtful questions
@@ -25,13 +23,14 @@ Ella Sim,A005,
 me,A1234567W,
 Ben Lim,A002,
 Chloe Ong,A003,
+xyz,A1234567R,
+Alice Tan,A001,Absent without valid reason
+john,A1433985N,
+Mark,A2457654W,
 //commentEnd
 
 # T01,2
-xyz,A1234567R,Absent
-Alice Tan,A001,Absent
-john,A1433985N,Present
-Mark,A2457654W,Present
+samantha,A1234768D,Absent
 Harry Choo,A008,Present
 Farhan Lee,A006,Present
 Grace Tan,A007,Present
@@ -40,12 +39,13 @@ Ella Sim,A005,Present
 me,A1234567W,Absent
 Ben Lim,A002,Present
 Chloe Ong,A003,Present
+xyz,A1234567R,Absent
+Alice Tan,A001,Absent
+john,A1433985N,Present
+Mark,A2457654W,Present
 
 //comments
-xyz,A1234567R,
-Alice Tan,A001,
-john,A1433985N,
-Mark,A2457654W,
+samantha,A1234768D,
 Harry Choo,A008,
 Farhan Lee,A006,
 Grace Tan,A007,
@@ -54,13 +54,14 @@ Ella Sim,A005,
 me,A1234567W,
 Ben Lim,A002,
 Chloe Ong,A003,Submitted work early
+xyz,A1234567R,
+Alice Tan,A001,
+john,A1433985N,
+Mark,A2457654W,
 //commentEnd
 
 # T01,3
-xyz,A1234567R,Absent
-Alice Tan,A001,Absent
-john,A1433985N,Present
-Mark,A2457654W,Present
+samantha,A1234768D,Absent
 Harry Choo,A008,Present
 Farhan Lee,A006,Present
 Grace Tan,A007,Present
@@ -69,12 +70,13 @@ Ella Sim,A005,Present
 me,A1234567W,Absent
 Ben Lim,A002,Present
 Chloe Ong,A003,Present
+xyz,A1234567R,Absent
+Alice Tan,A001,Absent
+john,A1433985N,Present
+Mark,A2457654W,Present
 
 //comments
-xyz,A1234567R,
-Alice Tan,A001,
-john,A1433985N,
-Mark,A2457654W,
+samantha,A1234768D,
 Harry Choo,A008,Helped peers
 Farhan Lee,A006,
 Grace Tan,A007,
@@ -83,13 +85,14 @@ Ella Sim,A005,Good engagement in class
 me,A1234567W,
 Ben Lim,A002,
 Chloe Ong,A003,
+xyz,A1234567R,
+Alice Tan,A001,
+john,A1433985N,
+Mark,A2457654W,
 //commentEnd
 
 # T01,4
-xyz,A1234567R,Absent
-Alice Tan,A001,Absent
-john,A1433985N,Present
-Mark,A2457654W,Present
+samantha,A1234768D,Absent
 Harry Choo,A008,Present
 Farhan Lee,A006,Present
 Grace Tan,A007,Present
@@ -98,12 +101,13 @@ Ella Sim,A005,Present
 me,A1234567W,Absent
 Ben Lim,A002,Present
 Chloe Ong,A003,Present
+xyz,A1234567R,Absent
+Alice Tan,A001,Absent
+john,A1433985N,Present
+Mark,A2457654W,Present
 
 //comments
-xyz,A1234567R,
-Alice Tan,A001,
-john,A1433985N,
-Mark,A2457654W,
+samantha,A1234768D,
 Harry Choo,A008,
 Farhan Lee,A006,Excellent presentation
 Grace Tan,A007,
@@ -112,6 +116,10 @@ Ella Sim,A005,
 me,A1234567W,
 Ben Lim,A002,Active in group discussion
 Chloe Ong,A003,
+xyz,A1234567R,
+Alice Tan,A001,
+john,A1433985N,
+Mark,A2457654W,
 //commentEnd
 
 # T02,1
@@ -459,10 +467,7 @@ Jason Tan,A036,
 //commentEnd
 
 # T01,5
-xyz,A1234567R,Absent
-Alice Tan,A001,Absent
-john,A1433985N,Present
-Mark,A2457654W,Present
+samantha,A1234768D,Absent
 Harry Choo,A008,Absent
 Farhan Lee,A006,Absent
 Grace Tan,A007,Absent
@@ -471,12 +476,13 @@ Ella Sim,A005,Absent
 me,A1234567W,Absent
 Ben Lim,A002,Absent
 Chloe Ong,A003,Absent
+xyz,A1234567R,Absent
+Alice Tan,A001,Absent
+john,A1433985N,Present
+Mark,A2457654W,Present
 
 //comments
-xyz,A1234567R,
-Alice Tan,A001,
-john,A1433985N,
-Mark,A2457654W,
+samantha,A1234768D,
 Harry Choo,A008,
 Farhan Lee,A006,
 Grace Tan,A007,
@@ -485,6 +491,10 @@ Ella Sim,A005,
 me,A1234567W,
 Ben Lim,A002,
 Chloe Ong,A003,
+xyz,A1234567R,
+Alice Tan,A001,
+john,A1433985N,
+Mark,A2457654W,
 //commentEnd
 
 # T05,7

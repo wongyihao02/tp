@@ -63,7 +63,6 @@ public class DeleteStudentCommandTest {
         command.execute("InvalidInput", tutorialClassList);
 
         String output = outputStream.toString().trim();
-        assertTrue(output.contains("Invalid delete student command, please specify the tutorial number" +
-                " and the matriculation number of the student to delete from the list."));
+        assertTrue(output.contains("Please check that you have entered the correct command parameters."));
     }
 }
