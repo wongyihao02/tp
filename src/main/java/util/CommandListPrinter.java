@@ -131,13 +131,10 @@ public class CommandListPrinter {
                 "Exits the application\n  Usage: BYE";
         case RENAME ->
                 "Renames a task based on the task number given\n " +
-                        "Usage: rename -p <task_number> <new_name>";
-
+                        "Usage: RENAME -p <task_number> <new_name>";
         case CREATE ->
                 "Creates an attendance list for the given week if valid and not existing\n" +
                         "Usage: CREATE -ay <Tutname,weeknum>";
-        default ->
-                "Unknown command";
         };
     }
 }
