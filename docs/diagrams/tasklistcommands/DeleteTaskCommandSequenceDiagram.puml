@@ -1,8 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-actor user
-autonumber
+actor User
 
 participant "DeleteTaskCommand" as DeleteCmd
 participant "IntegerChecker" as Checker
