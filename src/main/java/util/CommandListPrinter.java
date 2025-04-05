@@ -97,7 +97,7 @@ public class CommandListPrinter {
         case DELETE_TUTORIAL ->
                 "Deletes a tutorial\n  Usage: DELETE -t <tutorial_name>";
         case LISTTUTORIALS ->
-                "Lists tutorial classes up to a specified date\n  Usage: LIST -t <date>";
+                "Lists existing tutorial classes\n  Usage: LIST -t";
         case LISTTUTORIALSTUDENTS ->
                 "Shows students in a tutorial\n  Usage: LISTSTUDENTS -t <tutorial_name>";
         case MARKSTUDENT ->

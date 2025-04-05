@@ -29,8 +29,8 @@ import command.taskcommands.RenameTaskCommand;
 import command.taskcommands.TodoCommand;
 import command.taskcommands.UnmarkTaskCommand;
 import command.tutorialcommands.DeleteTutorialCommand;
+import command.tutorialcommands.ListExistingTutorialsCommand;
 import command.tutorialcommands.ListTutorialStudentsCommand;
-import command.tutorialcommands.ListUpcomingTutorialsCommand;
 import command.tutorialcommands.NewTutorialCommand;
 import task.TaskType;
 import util.CommandListPrinter;
@@ -125,7 +125,7 @@ public class CommandFactory {
             case "DELETE":
                 return new DeleteTutorialCommand();
             case "LIST":
-                return new ListUpcomingTutorialsCommand();
+                return new ListExistingTutorialsCommand();
             case "NEWSTUDENT":
                 return new NewStudentCommand();
             case "DELETESTUDENT":
