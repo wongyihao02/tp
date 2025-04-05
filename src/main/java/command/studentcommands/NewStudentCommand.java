@@ -66,7 +66,7 @@ public class NewStudentCommand implements Command<TutorialClassList> {
             }
 
             String matricNumber = studentParts[4].trim();
-            if (!matricNumber.matches("A\\d{7}[A-Z]")) {
+            if (!matricNumber.matches("[A-Z]\\d{7}[A-Z]")) {
                 throw new TASyncException("Invalid matric number: Must follow the format A1234567X.");
             }
 

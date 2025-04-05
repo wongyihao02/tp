@@ -54,7 +54,7 @@
 ### Student Commands
 
 - Things to note:
-  - `<matric_number>` must start with a valid english alphabet, followed by 7 digits and ending with another valid English alphabet.
+  - `<matric_number>` must start with a valid capitalised english alphabet, followed by 7 digits and ending with another valid capitalised English alphabet.
   - `<contact>` follow the Singapore phone number format which has 8 digits
   - `<dob>` must be formatted as `dd/MM/yyyy`
   - Student commands only work on valid tutorial classes
