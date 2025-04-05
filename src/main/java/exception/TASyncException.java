@@ -53,7 +53,8 @@ public class TASyncException extends Exception {
     }
 
     public static TASyncException invalidChangeRemarkCommand() {
-        return new TASyncException("Invalid change remark command, please specify which task to change remark.");
+        return new TASyncException("Invalid change remark command, please specify a valid tutorial " +
+                "and student to change remark.");
     }
 
     public static TASyncException invalidDeleteStudentCommand() {
@@ -71,21 +72,18 @@ public class TASyncException extends Exception {
         return new TASyncException("Invalid check remark command, please specify which student to check.");
     }
 
-    public static TASyncException invalidListUpcomingTutorialsCommand() {
-        return new TASyncException("Invalid List Upcoming Tutorials command, please specify an end date");
-    }
 
     public static TASyncException invalidListTutorialStudentsCommand() {
         return new TASyncException(
                 "Invalid list all students in tutorial command, please key command in the format: " +
-                        "LISTSTUDENTS -t <tutorialCode>"
+                        "LISTSTUDENTS -t <tutorial_code>"
         );
     }
 
     public static Exception invalidNewTutorialCommand() {
         return new TASyncException(
                 "Invalid new tutorial command, please key command in the format:" +
-                        " NEWTUTORIAL -t <tutorialCode>,<day_of_week>,<start_time>,<end_time>"
+                        " NEWTUTORIAL -t <tutorial_code>,<day_of_week>,<start_time>,<end_time>"
         );
     }
 

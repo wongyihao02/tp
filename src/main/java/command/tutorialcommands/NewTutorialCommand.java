@@ -8,6 +8,7 @@ import command.taskcommands.Command;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 
 /**
@@ -61,8 +62,16 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
 
             // Parse and validate start and end time
 
-            LocalTime startTime = LocalTime.parse(startTimeStr);
-            LocalTime endTime = LocalTime.parse(endTimeStr);
+            LocalTime startTime;
+            LocalTime endTime;
+
+
+            try {
+                startTime = LocalTime.parse(startTimeStr);
+                endTime = LocalTime.parse(endTimeStr);
+            } catch (DateTimeParseException e) {
+                throw new TASyncException("Invalid time format. Please enter valid start and end times.");
+            }
 
             if (!endTime.isAfter(startTime)) {
                 throw TASyncException.invalidTimeRange();

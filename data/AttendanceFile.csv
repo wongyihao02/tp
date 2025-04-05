@@ -1,4 +1,5 @@
 # T01,1
+xyz,A1234567R,Absent
 Alice Tan,A001,Absent
 john,A1433985N,Present
 Mark,A2457654W,Present
@@ -11,6 +12,7 @@ Ben Lim,A002,Present
 Chloe Ong,A003,Present
 
 //comments
+xyz,A1234567R,
 Alice Tan,A001,Absent without valid reason
 john,A1433985N,
 Mark,A2457654W,
@@ -24,6 +26,7 @@ Chloe Ong,A003,
 //commentEnd
 
 # T01,2
+xyz,A1234567R,Absent
 Alice Tan,A001,Absent
 john,A1433985N,Present
 Mark,A2457654W,Present
@@ -36,6 +39,7 @@ Ben Lim,A002,Present
 Chloe Ong,A003,Present
 
 //comments
+xyz,A1234567R,
 Alice Tan,A001,
 john,A1433985N,
 Mark,A2457654W,
@@ -49,6 +53,7 @@ Chloe Ong,A003,Submitted work early
 //commentEnd
 
 # T01,3
+xyz,A1234567R,Absent
 Alice Tan,A001,Absent
 john,A1433985N,Present
 Mark,A2457654W,Present
@@ -61,6 +66,7 @@ Ben Lim,A002,Present
 Chloe Ong,A003,Present
 
 //comments
+xyz,A1234567R,
 Alice Tan,A001,
 john,A1433985N,
 Mark,A2457654W,
@@ -74,6 +80,7 @@ Chloe Ong,A003,
 //commentEnd
 
 # T01,4
+xyz,A1234567R,Absent
 Alice Tan,A001,Absent
 john,A1433985N,Present
 Mark,A2457654W,Present
@@ -86,6 +93,7 @@ Ben Lim,A002,Present
 Chloe Ong,A003,Present
 
 //comments
+xyz,A1234567R,
 Alice Tan,A001,
 john,A1433985N,
 Mark,A2457654W,
@@ -443,6 +451,7 @@ Jason Tan,A036,
 //commentEnd
 
 # T01,5
+xyz,A1234567R,Absent
 Alice Tan,A001,Absent
 john,A1433985N,Present
 Mark,A2457654W,Present
@@ -455,6 +464,7 @@ Ben Lim,A002,Absent
 Chloe Ong,A003,Absent
 
 //comments
+xyz,A1234567R,
 Alice Tan,A001,
 john,A1433985N,
 Mark,A2457654W,

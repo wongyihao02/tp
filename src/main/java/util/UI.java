@@ -16,7 +16,7 @@ public class UI {
      * Prints the welcome message when the program starts.
      */
     public void printWelcome() {
-        System.out.println("👋 Welcome to TASync!");
+        System.out.println("Welcome to TASync!");
         System.out.println("Type a command to get started, or type HELP to see available commands.");
         System.out.println("----------------------------------------------------");
     }
@@ -77,7 +77,7 @@ public class UI {
      * Prints a goodbye message.
      */
     public void printGoodbye() {
-        System.out.println("👋 Goodbye! Have a productive day!");
+        System.out.println("Goodbye! Have a productive day!");
     }
 
     /**
