@@ -55,7 +55,7 @@ Given below are my contributions to the project.
   - https://nus-cs2113-ay2425s2.github.io/tp-dashboard/?search=samstt&breakdown=true
 
 - **Project management**
-  - Managed releases `v1.0` and `v2.0` on GitHub
+  - Managed releases `v1.0`,`v2.0` and `v2.1` on GitHub
     - Set up a potential roadmap to further extensions through brainstorming ideas for `v3.0`
     - Set up issue tracker for `v1.0` and allocated issues to groupmates
   - Monitored issue tracker consistently and helped to close or create new issues based on team progress
