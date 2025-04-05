@@ -36,4 +36,6 @@ public class TutorialClassList {
     public void removeTutorialClass(TutorialClass tutorialClass) {
         tutorialClasses.remove(tutorialClass);
     }
+
+
 }

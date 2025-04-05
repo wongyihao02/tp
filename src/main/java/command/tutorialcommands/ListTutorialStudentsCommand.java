@@ -54,8 +54,6 @@ public class ListTutorialStudentsCommand implements Command<TutorialClassList> {
 
             ArrayList<Student> enrolledStudents = targetTutorial.getStudentList().getStudents();
 
-            // Print the title
-            System.out.println("List of students in tutorial " + targetTutorial.getTutorialName() + ":");
 
             // If no students are enrolled in the tutorial
             if (enrolledStudents.isEmpty()) {
