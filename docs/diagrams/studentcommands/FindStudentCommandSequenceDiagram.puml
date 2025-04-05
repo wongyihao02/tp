@@ -1,0 +1,47 @@
+@startuml
+actor User
+
+participant "FindStudentCommand" as FSC
+participant "TutorialClassList" as TCL
+participant "TutorialClass" as TC
+participant "StudentList" as SL
+participant "Student" as S
+
+User -> FSC: execute(keyword)
+activate FSC
+
+    FSC -> TCL: getTutorialClasses()
+    activate TCL
+    TCL --> FSC: return tutorialClasses
+    deactivate TCL
+
+    loop for each TutorialClass
+        FSC -> TC: getStudentList()
+        activate TC
+        TC --> FSC: StudentList
+        deactivate TC
+
+        FSC -> SL: getStudents()
+        activate SL
+        SL --> FSC: return list of students
+        deactivate SL
+
+        loop for each Student
+            FSC -> S: getName(), getMatricNumber()
+            activate S
+            S --> FSC: name, matric
+            deactivate S
+
+            alt name or matric matches
+                FSC -> User: print student details
+            end
+        end
+    end
+
+    alt no match found
+        FSC -> User: print "No students found"
+    end
+
+    deactivate FSC
+
+@enduml

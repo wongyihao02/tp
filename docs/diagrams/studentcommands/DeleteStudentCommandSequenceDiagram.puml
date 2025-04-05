@@ -1,0 +1,43 @@
+@startuml
+actor User
+
+participant "DeleteStudentCommand" as DSC
+participant "TutorialClassList" as TCL
+participant "TutorialClass" as TC
+participant "StudentList" as SL
+
+User -> DSC: execute(input)
+activate DSC
+
+DSC -> TCL: getTutorialByName(tutorialClassCode)
+activate TCL
+TCL --> DSC: TutorialClass
+deactivate TCL
+
+alt tutorial not found
+    DSC -> User: print "No tutorial class found"
+    deactivate DSC
+else tutorial found
+    DSC -> TC: getStudentList()
+    activate TC
+    TC --> DSC: StudentList
+    deactivate TC
+
+    DSC -> SL: getStudentByMatricNumber(matricNumber)
+    activate SL
+    SL --> DSC: Student
+    deactivate SL
+
+    alt student found
+        DSC -> SL: removeStudent(student)
+        activate SL
+        SL --> DSC
+        deactivate SL
+        DSC -> User: print "Student removed successfully"
+    else student not found
+        DSC -> User: print "No student found"
+    end
+    deactivate DSC
+end
+
+@enduml

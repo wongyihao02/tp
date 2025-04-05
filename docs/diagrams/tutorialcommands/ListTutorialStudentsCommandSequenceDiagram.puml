@@ -1,0 +1,55 @@
+@startuml
+
+actor User
+
+participant "ListTutorialStudentsCommand" as LTSC
+participant "TutorialClassList" as TCL
+participant "tutorialClasses: ArrayList<TutorialClass>" as List
+participant "TutorialClass" as TC
+participant "StudentList" as SL
+participant "Student" as ST
+
+User -> LTSC: execute(tutorialName, tutorialClassList)
+activate LTSC
+
+LTSC -> TCL: getTutorialClasses()
+activate TCL
+TCL --> LTSC: ArrayList<TutorialClass>
+deactivate TCL
+
+alt tutorialClasses is empty
+    LTSC -> User: print "There are no tutorial created yet."
+else
+    LTSC -> List: getTutorialName() [loop through list]
+    activate List
+    TC --> LTSC: tutorialName
+    deactivate List
+
+    alt no match found
+        LTSC -> User: print "Invalid tutorial name"
+    else
+        LTSC -> TC: getStudentList()
+        activate TC
+        TC -> SL: getStudents()
+        activate SL
+        SL --> LTSC: enrolledStudents
+        deactivate SL
+        deactivate TC
+
+        alt enrolledStudents is empty
+            LTSC -> User: print "<Tutorial> has no students"
+        else
+            LTSC -> User: print "List of enrolled students"
+            LTSC -> ST: printStudentTable(enrolledStudents)
+            activate ST
+            ST --> LTSC: [prints table]
+            deactivate ST
+        end
+
+        LTSC -> User: print newline
+    end
+end
+
+deactivate LTSC
+
+@enduml

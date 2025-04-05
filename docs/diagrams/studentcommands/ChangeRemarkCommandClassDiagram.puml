@@ -1,0 +1,48 @@
+@startuml
+package command.studentcommands {
+    class ChangeRemarkCommand {
+        +execute(parts: String, tutorialClassList: TutorialClassList): void
+    }
+}
+
+package command.taskcommands {
+    interface Command<T> {
+        +execute(input: String, context: T): void
+    }
+}
+
+package tutorial {
+    class TutorialClass {
+        +getStartTime(): LocalTime
+        +getStudentList(): StudentList
+    }
+
+    class TutorialClassList {
+        +getTutorialByName(name: String): TutorialClass
+    }
+}
+
+package students {
+    class Student {
+        +setRemark(remark: String): void
+    }
+
+    class StudentList {
+        +getStudentByMatricNumber(matricNumber: String): Student
+    }
+}
+
+package exception {
+    class TASyncException extends Exception {
+        +invalidChangeRemarkCommand(): TASyncException
+    }
+}
+
+' Relationships
+ChangeRemarkCommand ..|> Command
+ChangeRemarkCommand --> TutorialClassList
+ChangeRemarkCommand --> TutorialClass
+ChangeRemarkCommand --> StudentList
+ChangeRemarkCommand --> Student
+ChangeRemarkCommand --> TASyncException
+@enduml
