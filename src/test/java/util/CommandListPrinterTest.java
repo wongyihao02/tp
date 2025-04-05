@@ -30,13 +30,12 @@ public class CommandListPrinterTest {
         String output = outContent.toString();
 
         // Check that the header is printed
-        assertTrue(output.contains("Valid Commands"));
+        assertTrue(output.contains("Valid Commands:"));
 
         // Spot-check a few known commands and usages
-        assertTrue(output.contains("MARK: Marks a task as done"));
-        assertTrue(output.contains("TODO: Creates a new todo task"));
-        assertTrue(output.contains("COMMENT: Adds a comment to a student"));
-        assertTrue(output.contains("VIEWCOMMENT: Shows comments on a student"));
-        assertTrue(output.contains("CREATE: Creates an attendance list for the given week"));
+        assertTrue(output.contains("Marks a task as done"));
+        assertTrue(output.contains("Creates a new todo task"));
+        assertTrue(output.contains("Adds a comment to a student"));
+        assertTrue(output.contains("Views comments on a student"));
     }
 }

@@ -16,7 +16,8 @@ public class CommandListPrinter {
         System.out.println("=".repeat(50));
 
         printCommandGroup("Task Management", CommandList.MARK, CommandList.UNMARK, CommandList.TODO,
-                CommandList.DEADLINE, CommandList.EVENT, CommandList.LIST, CommandList.FIND, CommandList.DELETE);
+                CommandList.DEADLINE, CommandList.EVENT, CommandList.CONSULTATION, CommandList.RENAME,
+                CommandList.LIST, CommandList.FIND, CommandList.DELETE);
         printCommandGroup("Student Management", CommandList.NEW_STUDENT, CommandList.DELETE_STUDENT,
                 CommandList.FIND_STUDENT);
         printCommandGroup("Marks Management", CommandList.ADD_MARKS, CommandList.DELETE_MARKS,
@@ -74,6 +75,9 @@ public class CommandListPrinter {
                 "Creates a new deadline task\n  Usage: ADD -pd <task_description> /by <due_time>";
         case EVENT ->
                 "Creates a new event\n  Usage: ADD -pe <task_description> /from <start_time> /to <end_time>";
+        case CONSULTATION ->
+                "Creates a new consultation with student\n " +
+                        "Usage: ADD -c <student_name> /from <start_time> /to <end_time>";
         case NEW_STUDENT ->
                 "Adds a new student\n  " +
                         "Usage: NEWSTUDENT -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>";
@@ -125,6 +129,13 @@ public class CommandListPrinter {
                 "Deletes a task\n  Usage: DELETE -p <task_number>";
         case BYE ->
                 "Exits the application\n  Usage: BYE";
+        case RENAME ->
+                "Renames a task based on the task number given\n " +
+                        "Usage: rename -p <task_number> <new_name>";
+
+        case CREATE ->
+                "Creates an attendance list for the given week if valid and not existing\n" +
+                        "Usage: CREATE -ay <Tutname,weeknum>";
         default ->
                 "Unknown command";
         };
