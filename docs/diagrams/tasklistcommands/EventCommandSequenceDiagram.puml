@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor User
+
+participant "EventCommand" as EventCmd
+participant "DateTimeFormatterUtil" as Formatter
+participant "Event" as Event
+participant "TaskList" as TaskList
+participant "System" as Console
+
+User -> EventCmd : execute(parts, taskList)
+
+loop until valid input
+    alt missing "/from" or "/to"
+        EventCmd -> EventCmd : throw TASyncException
+        EventCmd -> Console : println(error)
+        Console -> User : prompt for new input
+        User -> EventCmd : provide new parts
+    else invalid datetime
+        EventCmd -> Formatter : isValidDateTime(from)
+        Formatter --> EventCmd : true/false
+        EventCmd -> Formatter : isValidDateTime(to)
+        Formatter --> EventCmd : true/false
+        alt invalid from or to
+            EventCmd -> EventCmd : throw TASyncException
+            EventCmd -> Console : println(error)
+            Console -> User : prompt for new input
+            User -> EventCmd : provide new parts
+        end
+    else valid input
+        EventCmd -> Event : new(taskName, false, from, to)
+        EventCmd -> TaskList : addTask(event)
+    end
+end
+
+@enduml

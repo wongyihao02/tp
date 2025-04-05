@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor User
+
+participant "RenameTaskCommand" as RenameCmd
+participant "TaskList" as TaskList
+participant "System" as Console
+
+User -> RenameCmd : execute(parts, taskList)
+
+RenameCmd -> RenameCmd : split(parts)
+alt valid input (taskNumber and newTaskName)
+    RenameCmd -> TaskList : renameTask(taskNumber, newTaskName)
+else missing part
+    RenameCmd -> RenameCmd : throw TASyncException
+    RenameCmd -> Console : println(e.getMessage())
+else invalid task number
+    RenameCmd -> Console : println("Invalid task number format.")
+end
+
+@enduml
