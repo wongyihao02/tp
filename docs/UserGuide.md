@@ -369,7 +369,7 @@ list of comments:
 
 #### add comments for a student: `COMMENT`
 
-adds comments to a student for a given tutorial name and week
+Adds comments to a student for a given tutorial name and week.More than one comment can be added at a time,ensure that they are seperated by ;
 
 Format: `comment -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//comment1;comment2`
 
