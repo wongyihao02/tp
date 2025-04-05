@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UITest {
 
@@ -31,7 +32,7 @@ public class UITest {
         UI ui = new UI();
         ui.printWelcome();
         String output = outContent.toString();
-        assertEquals(true, output.contains("👋 Welcome to TASync!"));
+        assertTrue(output.contains("Welcome to TASync!"));
     }
 
     @Test
@@ -39,7 +40,7 @@ public class UITest {
         UI ui = new UI();
         ui.printGoodbye();
         String output = outContent.toString();
-        assertEquals(true, output.contains("👋 Goodbye! Have a productive day!"));
+        assertTrue(output.contains("Goodbye! Have a productive day!"));
     }
 
     @Test
@@ -60,7 +61,7 @@ public class UITest {
         UI ui = new UI();
         ui.printDottedLine();
         String output = outContent.toString();
-        assertEquals(true, output.contains("----------------------------------------------------"));
+        assertTrue(output.contains("----------------------------------------------------"));
     }
 
     @Test
@@ -68,7 +69,7 @@ public class UITest {
         UI ui = new UI();
         ui.printLogin();
         String output = outContent.toString();
-        assertEquals(true, output.contains("Login menu for TASync"));
+        assertTrue(output.contains("Login menu for TASync"));
     }
 
     @Test
@@ -76,7 +77,7 @@ public class UITest {
         UI ui = new UI();
         ui.printCreatePasswordMenu();
         String output = outContent.toString();
-        assertEquals(true, output.contains("Password needs to be at least 8 characters long"));
+        assertTrue(output.contains("Password needs to be at least 8 characters long"));
     }
 
     @Test
@@ -84,6 +85,6 @@ public class UITest {
         UI ui = new UI();
         ui.printMessage("Test Message");
         String output = outContent.toString();
-        assertEquals(true, output.contains("Test Message"));
+        assertTrue(output.contains("Test Message"));
     }
 }

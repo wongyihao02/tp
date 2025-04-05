@@ -73,8 +73,8 @@ public class ChangeRemarkCommandTest {
         command.execute(input, tutorialClassList);
 
         // Assert the output error message for tutorial class not found
-        assertTrue(outputStream.toString().contains("Invalid change remark command, " +
-                "please specify which task to change remark."));
+        assertTrue(outputStream.toString().contains("Invalid change remark command, please specify a valid tutorial " +
+                "and student to change remark."));
     }
 
     @Test
@@ -87,8 +87,8 @@ public class ChangeRemarkCommandTest {
         command.execute(input, tutorialClassList);
 
         // Assert the output error message for invalid input format
-        assertTrue(outputStream.toString().contains("Invalid change remark command," +
-                " please specify which task to change remark."));
+        assertTrue(outputStream.toString().contains("Please check that you have entered the " +
+                "correct command parameters."));
     }
 
 }
