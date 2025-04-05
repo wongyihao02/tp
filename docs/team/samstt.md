@@ -47,6 +47,10 @@ Given below are my contributions to the project.
     - **What it does:** Allows the user to check the upcoming tutorials in weekly tutorials up till a specified date in dd/MM/yyyy format.
     - **Justification:** This feature provides TAs with an easy way to track and plan for upcoming tutorial sessions. By specifying a date range, it helps the TA stay organized and ensures they are prepared for all upcoming classes in advance.
 
+#### 3. Help Command
+
+- Helped to create new CommandListPrinter class in order to produce a much clearer help guide for users
+
 - **Code contributed**
   - https://nus-cs2113-ay2425s2.github.io/tp-dashboard/?search=samstt&breakdown=true
 
