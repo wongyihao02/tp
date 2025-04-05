@@ -5,6 +5,7 @@ import tutorial.TutorialClassList;
 import command.taskcommands.Command;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Represents the "LIST_EXISTING_TUTORIALS" command that lists all existing tutorial classes.
@@ -27,6 +28,12 @@ public class ListExistingTutorialsCommand implements Command<TutorialClassList> 
             System.out.println("There are no tutorials created yet.");
             return;
         }
+
+        // Sort the tutorial classes by day of the week first, then by start time
+        tutorialClasses.sort(Comparator
+                .comparing(TutorialClass::getDayOfWeek)  // Sort by day of week
+                .thenComparing(TutorialClass::getStartTime)  // Then by start time
+        );
 
         System.out.println("Existing Tutorials:");
         for (TutorialClass tutorial : tutorialClasses) {

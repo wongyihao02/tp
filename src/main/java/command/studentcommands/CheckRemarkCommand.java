@@ -7,6 +7,8 @@ import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 import command.taskcommands.Command;
 
+import static command.studentcommands.StudentCommandHelper.parseInput;
+
 /**
  * Represents the "CHECK_REMARK" command that retrieves and displays the remark
  * of a specific student in a tutorial class. The command searches for the student
@@ -22,22 +24,14 @@ public class CheckRemarkCommand implements Command<TutorialClassList> {
      * If the input is invalid, the tutorial class is not found, or the student is not found,
      * an appropriate error message is displayed.
      *
-     * @param parts The input string containing the tutorial class code and matric number.
+     * @param parts             The input string containing the tutorial class code and matric number.
      * @param tutorialClassList The tutorial class list to search within.
      */
     @Override
     public void execute(String parts, TutorialClassList tutorialClassList) {
         try {
-            // Check if the input is valid
-            if (parts == null || parts.trim().isEmpty()) {
-                throw TASyncException.invalidCheckRemarkCommand();
-            }
 
-            // Split the input into tutorial class code and matric number
-            String[] inputParts = parts.split(",");
-            if (inputParts.length != 2) {
-                throw TASyncException.invalidCheckRemarkCommand();
-            }
+            String[] inputParts = parseInput(parts, 2);
 
             String tutorialClassCode = inputParts[0].trim();
             String matricNumber = inputParts[1].trim();
@@ -53,18 +47,20 @@ public class CheckRemarkCommand implements Command<TutorialClassList> {
 
             // Search for the student by matric number
             Student student = studentList.getStudentByMatricNumber(matricNumber);
-            if (student != null) {
-                String remark = student.getRemark();
-                if (remark == null || remark.trim().isEmpty()) {
-                    System.out.println("No remarks found for student: " + student.getName());
-                } else {
-                    System.out.println("Remarks for " + student.getName() + ": " + remark);
-                }
-            } else {
-                System.out.println("No student found with matric number: " + matricNumber);
+            if (student == null) {
+                throw TASyncException.invalidCheckRemarkCommand();
             }
+
+            String remark = student.getRemark();
+            if (remark == null || remark.trim().isEmpty()) {
+                System.out.println("No remarks found for student: " + student.getName());
+            } else {
+                System.out.println("Remarks for " + student.getName() + ": " + remark);
+            }
+
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
         }
     }
 }
+

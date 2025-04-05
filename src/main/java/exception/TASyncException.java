@@ -57,13 +57,6 @@ public class TASyncException extends Exception {
                 "and student to change remark.");
     }
 
-    public static TASyncException invalidDeleteStudentCommand() {
-        return new TASyncException(
-                "Invalid delete student command, please specify the tutorial number and " +
-                        "the matriculation number of the student to delete from the list."
-        );
-    }
-
     public static TASyncException invalidFindStudentCommand() {
         return new TASyncException("Invalid find student command, please specify which student to find.");
     }
@@ -145,5 +138,9 @@ public class TASyncException extends Exception {
 
     public static Exception duplicateTutorialName() {
         return new TASyncException("A tutorial with the same name already exists");
+    }
+
+    public static TASyncException invalidCommand() {
+        return new TASyncException("Please check that you have entered the correct command parameters.");
     }
 }

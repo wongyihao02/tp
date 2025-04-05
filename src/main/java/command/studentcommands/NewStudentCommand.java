@@ -8,6 +8,8 @@ import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 import java.time.LocalDate;
 
+import static command.studentcommands.StudentCommandHelper.parseInput;
+
 /**
  * Represents the "NEWSTUDENT" command that adds a new student to a specified tutorial class.
  * The command validates the student's details and ensures no duplicate matric number exists
@@ -33,16 +35,9 @@ public class NewStudentCommand implements Command<TutorialClassList> {
     @Override
     public void execute(String parts, TutorialClassList tutorialClassList) {
         try {
-            // Validate input
-            if (parts == null || parts.trim().isEmpty()) {
-                throw TASyncException.invalidNewStudentCommand();
-            }
 
-            // Split the input into parts
-            String[] studentParts = parts.split(",");
-            if (studentParts.length != 6) {
-                throw TASyncException.invalidNewStudentCommand();
-            }
+
+            String[] studentParts = parseInput(parts,6);
 
             // Extract and validate student details
             String studentName = studentParts[0].trim();
