@@ -53,7 +53,7 @@ public class FindStudentCommand implements Command<TutorialClassList> {
                             foundInThisClass = true;
                         }
                         // Print the student details
-                        System.out.println(student);
+                        System.out.println(formatStudentDetails(student));
                     }
                 }
             }
@@ -65,5 +65,12 @@ public class FindStudentCommand implements Command<TutorialClassList> {
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private String formatStudentDetails(Student student) {
+        // Concatenate the student details in one line, separated by commas
+        return String.format("Name: %s, Matric Number: %s, Date of Birth: %s, Gender: %s, Contact: %s",
+                student.getName(), student.getMatricNumber(), student.getDateOfBirth(),
+                student.getGender(), student.getContact());
     }
 }

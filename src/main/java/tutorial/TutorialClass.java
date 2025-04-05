@@ -20,7 +20,17 @@ public class TutorialClass {
     public TutorialClass(String tutorialName){
         this.tutorialName = tutorialName;
     }
+
+
     public TutorialClass(){
+    }
+
+    public TutorialClass(String tutorialName, DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime) {
+        this.tutorialName = tutorialName;
+        this.dayOfWeek = dayOfWeek;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.studentList = new StudentList(); // Initialize with an empty student list
     }
 
     public String getTutorialName() {

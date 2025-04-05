@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor User
+
+participant "ListTaskCommand" as ListCmd
+participant "TaskList" as TaskList
+participant "System" as Console
+
+User -> ListCmd : execute(parts, taskList)
+
+ListCmd -> TaskList : getTaskCount()
+alt taskCount > 0
+    ListCmd -> TaskList : printTaskList()
+else no tasks
+    ListCmd -> Console : println("nothing to do yet")
+end
+
+@enduml

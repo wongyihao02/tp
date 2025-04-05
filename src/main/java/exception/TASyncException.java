@@ -53,14 +53,8 @@ public class TASyncException extends Exception {
     }
 
     public static TASyncException invalidChangeRemarkCommand() {
-        return new TASyncException("Invalid change remark command, please specify which task to change remark.");
-    }
-
-    public static TASyncException invalidDeleteStudentCommand() {
-        return new TASyncException(
-                "Invalid delete student command, please specify the tutorial number and " +
-                        "the matriculation number of the student to delete from the list."
-        );
+        return new TASyncException("Invalid change remark command, please specify a valid tutorial " +
+                "and student to change remark.");
     }
 
     public static TASyncException invalidFindStudentCommand() {
@@ -68,24 +62,22 @@ public class TASyncException extends Exception {
     }
 
     public static TASyncException invalidCheckRemarkCommand() {
-        return new TASyncException("Invalid check remark command, please specify which student to check.");
+        return new TASyncException("Invalid check remark command, please specify which a valid student " +
+                "and tutorial to check.");
     }
 
-    public static TASyncException invalidListUpcomingTutorialsCommand() {
-        return new TASyncException("Invalid List Upcoming Tutorials command, please specify an end date");
-    }
 
     public static TASyncException invalidListTutorialStudentsCommand() {
         return new TASyncException(
                 "Invalid list all students in tutorial command, please key command in the format: " +
-                        "LISTSTUDENTS -t <tutorialCode>"
+                        "LISTSTUDENTS -t <tutorial_code>"
         );
     }
 
     public static Exception invalidNewTutorialCommand() {
         return new TASyncException(
                 "Invalid new tutorial command, please key command in the format:" +
-                        " NEWTUTORIAL -t <tutorialCode>,<day_of_week>,<start_time>,<end_time>"
+                        " NEWTUTORIAL -t <tutorial_code>,<day_of_week>,<start_time>,<end_time>"
         );
     }
 
@@ -148,4 +140,10 @@ public class TASyncException extends Exception {
     public static Exception duplicateTutorialName() {
         return new TASyncException("A tutorial with the same name already exists");
     }
+
+    public static TASyncException invalidCommand() {
+        return new TASyncException("Please check that you have entered the correct command parameters.");
+    }
+
+
 }

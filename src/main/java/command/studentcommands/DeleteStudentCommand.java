@@ -7,6 +7,8 @@ import students.StudentList;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 
+import static command.studentcommands.StudentCommandHelper.parseInput;
+
 /**
  * Represents the "DELETESTUDENT" command that removes a student from a specific
  * tutorial class. The command searches for the student using the provided matric number
@@ -33,16 +35,7 @@ public class DeleteStudentCommand implements Command<TutorialClassList> {
     public void execute(String parts, TutorialClassList tutorialClassList) {
         try {
 
-            // Check if the input is valid
-            if (parts == null || parts.trim().isEmpty()) {
-                throw TASyncException.invalidDeleteStudentCommand();
-            }
-
-            // Split the input into tutorial class code and matric number
-            String[] inputParts = parts.split(",");
-            if (inputParts.length != 2) {
-                throw TASyncException.invalidDeleteStudentCommand();
-            }
+            String[] inputParts = parseInput(parts,2);
 
             String tutorialClassCode = inputParts[0].trim();
             String matricNumber = inputParts[1].trim();
@@ -71,4 +64,5 @@ public class DeleteStudentCommand implements Command<TutorialClassList> {
             System.out.println(e.getMessage());
         }
     }
+
 }

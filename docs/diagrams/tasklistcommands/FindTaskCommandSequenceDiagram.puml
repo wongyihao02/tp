@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor User
+
+participant "FindTaskCommand" as FindCmd
+participant "TaskList" as TaskList
+participant "System" as Console
+
+User -> FindCmd : execute(parts, taskList)
+
+alt valid keyword
+    FindCmd -> TaskList : getTaskListWithKeyWord(parts)
+    alt matching tasks
+        FindCmd -> TaskList : printTaskList()
+    else no matches
+        FindCmd -> Console : println("No tasks found.")
+    end
+else invalid keyword
+    FindCmd -> FindCmd : throw TASyncException
+    FindCmd -> Console : println(e.getMessage())
+end
+
+@enduml

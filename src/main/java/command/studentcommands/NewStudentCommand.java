@@ -8,6 +8,8 @@ import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 import java.time.LocalDate;
 
+import static command.studentcommands.StudentCommandHelper.parseInput;
+
 /**
  * Represents the "NEWSTUDENT" command that adds a new student to a specified tutorial class.
  * The command validates the student's details and ensures no duplicate matric number exists
@@ -33,16 +35,9 @@ public class NewStudentCommand implements Command<TutorialClassList> {
     @Override
     public void execute(String parts, TutorialClassList tutorialClassList) {
         try {
-            // Validate input
-            if (parts == null || parts.trim().isEmpty()) {
-                throw TASyncException.invalidNewStudentCommand();
-            }
 
-            // Split the input into parts
-            String[] studentParts = parts.split(",");
-            if (studentParts.length != 6) {
-                throw TASyncException.invalidNewStudentCommand();
-            }
+
+            String[] studentParts = parseInput(parts,6);
 
             // Extract and validate student details
             String studentName = studentParts[0].trim();
@@ -51,8 +46,13 @@ public class NewStudentCommand implements Command<TutorialClassList> {
             }
 
             LocalDate dob = DateTimeFormatterUtil.parseDate(studentParts[1].trim());
-            if (dob == null) {
+            if (dob == null ) {
                 throw new TASyncException("Please enter a valid dob.");
+            }
+
+            // Ensure the dob is not after today's date
+            if (dob.isAfter(LocalDate.now())) {
+                throw new TASyncException("Date of birth cannot be in the future.");
             }
 
             String gender = studentParts[2].trim();
@@ -66,7 +66,7 @@ public class NewStudentCommand implements Command<TutorialClassList> {
             }
 
             String matricNumber = studentParts[4].trim();
-            if (!matricNumber.matches("A\\d{7}[A-Z]")) {
+            if (!matricNumber.matches("[A-Z]\\d{7}[A-Z]")) {
                 throw new TASyncException("Invalid matric number: Must follow the format A1234567X.");
             }
 

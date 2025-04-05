@@ -543,6 +543,8 @@ The `DeleteTaskCommand` class implements the `Command<TaskList>` interface and i
   - Removes the task from the `TaskList`.
   - Displays a confirmation message upon successful removal.
   - If the task is not found, an error message is shown.
+  - Sequence diagram
+  - ![DeleteTaskCommandSequenceDiagram.png](diagrams/tasklistcommands/DeleteTaskCommandSequenceDiagram.png)
 
 #### 2. ConsultationCommand
 The `ConsultationCommand` handles the creation of a consultation task with specific timings. It requires the student's name along with `/from` and `/to` tags to specify the start and end times.
@@ -564,6 +566,8 @@ The `ConsultationCommand` class implements the `Command<TaskList>` interface and
   - The `/from` or `/to` tags are missing.
   - The datetime format is incorrect.
   - Any input is missing.
+- Sequence diagram
+- ![ConsultationCommandSequenceDiagram.png](diagrams/tasklistcommands/ConsultationCommandSequenceDiagram.png)
 
 #### 3. DeadlineCommand
 
@@ -586,6 +590,8 @@ The `DeadlineCommand` class implements the `Command<TaskList>` interface and int
   - The `/by` tag is missing.
   - The deadline format is incorrect.
   - Any input is missing.
+- Sequence diagram
+- ![DeadlineCommandSequenceDiagram.png](diagrams/tasklistcommands/DeadlineCommandSequenceDiagram.png)
 
 #### 4. EventCommand
 
@@ -608,6 +614,8 @@ The `EventCommand` class implements the `Command<TaskList>` interface and intera
   - The `/from` or `/to` tags are missing.
   - The datetime format is incorrect.
   - Any input is missing.
+- Sequence diagram
+- ![EventCommandSequenceDiagram.png](diagrams/tasklistcommands/EventCommandSequenceDiagram.png)
 
 #### 5. TodoCommand
 
@@ -626,6 +634,8 @@ The `TodoCommand` class implements the `Command<TaskList>` interface and interac
 - Creates a `Todo` task and adds it to the `TaskList`.
 - Displays an error message if:
   - The task description is missing or empty.
+- Sequence diagram
+- ![TodoCommandSequenceDiagram.png](diagrams/tasklistcommands/TodoCommandSequenceDiagram.png)
 
 #### 6. FindTaskCommand
 
@@ -645,6 +655,8 @@ The `FindTaskCommand` class implements the `Command<TaskList>` interface and int
 - Displays an error message if:
   - The keyword is missing or empty.
   - No matching tasks are found.
+- Sequence diagram
+- ![FindTaskCommandSequenceDiagram.png](diagrams/tasklistcommands/FindTaskCommandSequenceDiagram.png)
 
 #### 7. ListTaskCommand
 
@@ -662,6 +674,8 @@ The `ListTaskCommand` class implements the `Command<TaskList>` interface and int
 - If tasks exist, prints the list of tasks to the user.
 - If no tasks exist, displays the message: `noting to do yet`.
 - The `parts` parameter is not used for this command.
+- Sequence diagram
+- ![ListTaskCommandSequenceDiagram.png](diagrams/tasklistcommands/ListTaskCommandSequenceDiagram.png)
 
 #### 8. MarkTaskCommand
 
@@ -680,6 +694,8 @@ The `MarkTaskCommand` class implements the `Command<TaskList>` interface and int
 - Displays an error message if:
   - The input is not a valid task number.
   - The task number does not exist in the list.
+- Sequence diagram
+- ![MarkTaskCommandSequenceDiagram.png](diagrams/tasklistcommands/MarkTaskCommandSequenceDiagram.png)
 
 #### 9. UnmarkTaskCommand
 
@@ -698,6 +714,8 @@ The `UnmarkTaskCommand` class implements the `Command<TaskList>` interface and i
 - Displays an error message if:
   - The input is not a valid task number.
   - The task number does not exist in the list.
+- Sequence diagram
+- ![UnmarkTaskCommandSequenceDiagram.png](diagrams/tasklistcommands/UnmarkTaskCommandSequenceDiagram.png)
 
 #### 10. RenameTaskCommand
 
@@ -717,6 +735,8 @@ The `RenameTaskCommand` class implements the `Command<TaskList>` interface and i
   - The input is missing the task number or new task name.
   - The task number format is invalid.
   - The task number does not exist in the list.
+- Sequence diagram
+- ![RenameTaskCommandSequenceDiagram.png](diagrams/tasklistcommands/RenameTaskCommandSequenceDiagram.png)
 
   
 

@@ -3,11 +3,11 @@ package command.tutorialcommands;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 import exception.TASyncException;
-import students.StudentList;
 import command.taskcommands.Command;
-
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
+import static command.studentcommands.StudentCommandHelper.parseInput;
 
 
 /**
@@ -28,16 +28,9 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
     @Override
     public void execute(String input, TutorialClassList tutorialClassList) {
         try {
-            // Validate input string
-            if (input == null || input.trim().isEmpty()) {
-                throw TASyncException.invalidNewTutorialCommand();
-            }
 
-            // Split the input to get tutorial details
-            String[] inputParts = input.split(",");
-            if (inputParts.length != 4) {
-                throw TASyncException.invalidNewTutorialCommand();
-            }
+            //Validate that the necessary inputs are correctly inputted
+            String[] inputParts = parseInput(input,4);
 
             String tutorialName = inputParts[0].trim();
             String dayOfWeekStr = inputParts[1].trim();
@@ -60,9 +53,15 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
             }
 
             // Parse and validate start and end time
+            LocalTime startTime;
+            LocalTime endTime;
 
-            LocalTime startTime = LocalTime.parse(startTimeStr);
-            LocalTime endTime = LocalTime.parse(endTimeStr);
+            try {
+                startTime = LocalTime.parse(startTimeStr);
+                endTime = LocalTime.parse(endTimeStr);
+            } catch (DateTimeParseException e) {
+                throw new TASyncException("Invalid time format. Please enter valid start and end times.");
+            }
 
             if (!endTime.isAfter(startTime)) {
                 throw TASyncException.invalidTimeRange();
@@ -87,15 +86,7 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
                 }
             }
 
-            // Create a new TutorialClass object
-            StudentList emptyStudentList = new StudentList(); // Empty list for students
-            TutorialClass newTutorial = new TutorialClass();
-            newTutorial.setTutorialName(tutorialName);
-            newTutorial.setDayOfWeek(DayOfWeek.of(dayOfWeek));  // Convert int to DayOfWeek
-            newTutorial.setStartTime(startTime);
-            newTutorial.setEndTime(endTime);
-            newTutorial.setStudentList(emptyStudentList);  // Set an empty student list
-
+            TutorialClass newTutorial = new TutorialClass(tutorialName, DayOfWeek.of(dayOfWeek), startTime, endTime);
             // Add the new tutorial to the tutorial class list
             tutorialClassList.addTutorialClass(newTutorial);
 
@@ -106,7 +97,6 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
                     startTime,
                     endTime
             );
-
 
         } catch (TASyncException e) {
             // Handle TASyncException
