@@ -17,7 +17,7 @@
     - [List all marks for a student `LIST -m`](#list-all-marks-for-a-student-list--m)
   - [Tutorial Commands](#tutorial-commands)
     - [Create new tutorial: `NEWTUTORIAL -t`](#create-new-tutorial-newtutorial--t)
-    - [Delete tutorial: `DELETETUT -t`](#delete-tutorial-deletetutorial--t)
+    - [Delete tutorial: `DELETE -t`](#delete-tutorial-delete--t)
     - [List students in tutorial: `LISTSTUDENTS -t`](#list-students-in-tutorial-liststudents--t)
     - [List upcoming tutorials: `LIST -t`](#list-upcoming-tutorials-list--t)
   - [Task Commands](#task-commands)
@@ -157,14 +157,14 @@ Format: `NEWTUTORIAL -t <tutorial_name>,<day_of_week>,<start_time>,<end_time>`
 Examples:
 - `NEWTUTORIAL -t T123,2,11:00,13:00`
 
-#### Delete tutorial: `DELETETUTORIAL -t`
+#### Delete tutorial: `DELETE -t`
 
 Delete a specified tutorial class from the tutorial class list.
 
-Format: `DELETETUT -t <tutorial_name>`
+Format: `DELETE -t <tutorial_name>`
 
 Examples:
-- `DELETETUT -t T123`
+- `DELETE -t T123`
 
 #### List Students in Tutorial: `LISTSTUDENTS -t`
 
