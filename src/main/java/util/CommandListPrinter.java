@@ -24,8 +24,8 @@ public class CommandListPrinter {
                 CommandList.LIST_MARKS);
         printCommandGroup("Tutorial Management", CommandList.NEW_TUTORIAL, CommandList.DELETE_TUTORIAL,
                 CommandList.LISTTUTORIALS, CommandList.LISTTUTORIALSTUDENTS);
-        printCommandGroup("Attendance Management", CommandList.MARKSTUDENT, CommandList.UNMARKSTUDENT,
-                CommandList.LISTATTENDANCESTUDENTS);
+        printCommandGroup("Attendance Management", CommandList.CREATE,CommandList.MARKSTUDENT,
+                CommandList.UNMARKSTUDENT, CommandList.LISTATTENDANCESTUDENTS);
         printCommandGroup("Remarks & Comments", CommandList.CHANGE_REMARK, CommandList.CHECK_REMARK,
                 CommandList.COMMENT, CommandList.VIEWCOMMENT, CommandList.DELETECOMMENT);
         printCommandGroup("General Commands",
