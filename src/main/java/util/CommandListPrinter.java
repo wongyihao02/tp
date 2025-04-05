@@ -136,8 +136,6 @@ public class CommandListPrinter {
         case CREATE ->
                 "Creates an attendance list for the given week if valid and not existing\n" +
                         "Usage: CREATE -ay <Tutname,weeknum>";
-        default ->
-                "Unknown command";
         };
     }
 }
