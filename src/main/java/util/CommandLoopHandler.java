@@ -10,12 +10,12 @@ import tutorial.TutorialClassList;
 import java.util.ArrayList;
 
 public class CommandLoopHandler {
-    private  UI ui;
-    private  TaskList taskList;
-    private  StudentList studentList;
-    private  TutorialClassList tutorialList;
-    private  AttendanceFile attendanceFile;
-    private  DataManager dataManager;
+    private UI ui;
+    private TaskList taskList;
+    private StudentList studentList;
+    private TutorialClassList tutorialList;
+    private AttendanceFile attendanceFile;
+    private DataManager dataManager;
 
     public CommandLoopHandler(UI ui, TaskList taskList, StudentList studentList,
                               TutorialClassList tutorialList, AttendanceFile attendanceFile, DataManager dataManager) {
