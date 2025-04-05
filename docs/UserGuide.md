@@ -438,6 +438,15 @@ computer
 
 ## Command Summary
 
+## Tutorial Commands
+
+| CommandName               | Form                                                                   |               Example               |
+|---------------------------|:-----------------------------------------------------------------------|:-----------------------------------:|
+| Create Tutorial           | `newtutorial -t <tutorial_name>,<day_of_week>,<start_time>,<end_time>` | `NEWTUTORIAL -t T123,2,11:00,13:00` |
+| Delete Tutorial           | `delete -t <tutorial_name>`                                            |          `DELETE -t T123`           |
+| List Students in Tutorial | `listsstudents -t <tutorial_name>`                                     |       `LISTSTUDENTS -t T123`        |
+| List Existing Tutorials   | `list -t `                                                             |              `LIST -t`              |
+
 # Student Commands
 
 | CommandName           | Form                                                                             |                             Example                              |
@@ -455,15 +464,6 @@ computer
 | Add Marks    | `newmarks -m <tutorial_name>,<matric_number>,<assignment_name>,<marks_achieved>,<max_marks>` | `NEWMARKS -m T123,A1234567W,Midterm Exam,75,100` |
 | Delete Marks | `deletemarks -m <tutorial_name>,<matric_number>,<assignment_name>`                           |   `DELETEMARKS -m T123,A1234567W,Midterm Exam`   |
 | List Marks   | `list -m <tutorial_name>,<matric_number>`                                                    |             `LIST -m T123,A1234567W`             |
-
-## Tutorial Commands
-
-| CommandName               | Form                                                                   |               Example               |
-|---------------------------|:-----------------------------------------------------------------------|:-----------------------------------:|
-| Create Tutorial           | `newtutorial -t <tutorial_name>,<day_of_week>,<start_time>,<end_time>` | `NEWTUTORIAL -t T123,2,11:00,13:00` |
-| Delete Tutorial           | `deletetut -t <tutorial_name>`                                         |         `DELETETUT -t T123`         |
-| List Students in Tutorial | `listsstudents -t <tutorial_name>`                                     |       `LISTSTUDENTS -t T123`        |
-| List Upcoming Tutorials   | `list -t <date>`                                                       |        `LIST -t 12/03/2025`         |
 
 ## Task Commands
 

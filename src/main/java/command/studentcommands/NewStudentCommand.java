@@ -51,8 +51,13 @@ public class NewStudentCommand implements Command<TutorialClassList> {
             }
 
             LocalDate dob = DateTimeFormatterUtil.parseDate(studentParts[1].trim());
-            if (dob == null) {
+            if (dob == null ) {
                 throw new TASyncException("Please enter a valid dob.");
+            }
+
+            // Ensure the dob is not after today's date
+            if (dob.isAfter(LocalDate.now())) {
+                throw new TASyncException("Date of birth cannot be in the future.");
             }
 
             String gender = studentParts[2].trim();
