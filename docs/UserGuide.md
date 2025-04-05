@@ -2,8 +2,13 @@
 
 ## Introduction
 
-{Give a product intro}
+**TA Assistant** is a command-line application designed to help teaching assistants (TAs) and tutors efficiently manage their administrative tasks and personal workload. Whether it's tracking attendance, recording remarks, or planning tutorials, TA Assistant provides a streamlined solution that automates time-consuming tasks, allowing users to focus on what truly matters – helping students succeed.
 
+Optimized for use via a **Command Line Interface (CLI)**, TA Assistant allows users to quickly execute commands without the overhead of graphical applications. For those who are comfortable typing, the CLI enables faster task execution compared to traditional GUI-based tools. By removing the need for a GUI, TA Assistant offers a distraction-free environment, increasing productivity and reducing manual effort.
+
+Designed specifically for TAs and tutors who manage both student-related administrative duties and personal responsibilities, TA Assistant is the perfect tool to integrate seamlessly into their workflow and enhance efficiency.
+
+- [Quick Start](#quick-start)
 - [Features](#features-)
   - [Student Commands](#student-commands)
     - [Adding a new student: `NEWSTUDENT -t`](#adding-a-new-student-newstudent--t)
@@ -42,12 +47,15 @@
   - [Bye Command](#bye-command-bye)
 - [FAQ](#faq)
 - [Command Summary](#Command-Summary)
+
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 17 or above installed.
-1. Down the latest version of `TASync` from [here](http://link.to/duke).
+2. Download the latest version of `TASync` from [here](https://github.com/AY2425S2-CS2113-T12-3/tp/releases).
+3. Copy the file to the folder you want to use as the home folder for your TASync.
+4. Open a command terminal, cd into the folder you put the jar file in, and use the java -jar TASync.jar command to run the application.
+5. Type the command and press Enter to execute it.
+6. Refer to the [Features](#features-) below for details of each command.
 
 ## Features 
 
@@ -190,11 +198,11 @@ Examples:
 
 Adds a personal todo to the task list.
 
-Format: `add -pt <todo name>`
+Format: `ADD -pt <todo name>`
 
 Example:
 ```
-> add -pt Read book
+> ADD -pt Read book
 task added:
 [T][ ] Read book
 Now you have 1 tasks in the list.
@@ -204,11 +212,11 @@ Now you have 1 tasks in the list.
 
 Adds a personal deadline to the task list.
 
-Format: `add -pd <deadline name> /by <dd/MM/yyyy HH:mm>`
+Format: `ADD -pd <deadline name> /by <dd/MM/yyyy HH:mm>`
 
 Example:
 ```
-> add -pd Assignment submission /by 03/04/2025 23:59
+> ADD -pd Assignment submission /by 03/04/2025 23:59
 task added:
 [D][ ] Assignment submission (by: 2025-04-03T23:59)
 Now you have 2 tasks in the list.
@@ -218,11 +226,11 @@ Now you have 2 tasks in the list.
 
 Adds a personal event to the task list.
 
-Format: `add -pe <event name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`
+Format: `ADD -pe <event name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`
 
 Example:
 ```
-> add -pe Concert /from 03/04/2025 15:00 /to 03/04/2025 16:00
+> ADD -pe Concert /from 03/04/2025 15:00 /to 03/04/2025 16:00
 task added:
 [E][ ] Concert (from: 2025-04-03T15:00 to: 2025-04-03T16:00)
 Now you have 3 tasks in the list.
@@ -232,11 +240,11 @@ Now you have 3 tasks in the list.
 
 Adds a consultation with a student to the task list.
 
-Format: `add -c <student_name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`
+Format: `ADD -c <student_name> /from <dd/MM/yyyy HH:mm> /to <dd/MM/yyyy HH:mm>`
 
 Example:
 ```
-> add -c Kevin /from 05/04/2025 15:00 /to 05/04/2025 16:00
+> ADD -c Kevin /from 05/04/2025 15:00 /to 05/04/2025 16:00
 Task added:
 [C][ ] Kevin (from: 2025-04-05T15:00 to: 2025-04-05T16:00)
 Now you have 4 tasks in the list.
@@ -246,11 +254,11 @@ Now you have 4 tasks in the list.
 
 Displays all the tasks in the task list.
 
-Format: `list -p`
+Format: `LIST -p`
 
 Example:
 ```
-> list -p
+> LIST -p
 1.[T][ ] Study Java
 2.[T][ ] Study Python
 ```
@@ -259,11 +267,11 @@ Example:
 
 Delete a task from the task list.
 
-Format: `delete -p <task_number>`
+Format: `DELETE -p <task_number>`
 
 Example:
 ```
-> delete -p 1
+> DELETE -p 1
 deleted task: 
 [T][ ] Study Java
 ```
@@ -272,11 +280,11 @@ deleted task:
 
 Marks a task as done.
 
-Format: `mark -p <task_number>`
+Format: `MARK -p <task_number>`
 
 Example:
 ```
-> mark -p 1
+> MARK -p 1
 Study Python is marked
 ```
 
@@ -284,11 +292,11 @@ Study Python is marked
 
 Marks a task as undone.
 
-Format: `unmark -p <task_number>`
+Format: `UNMARK -p <task_number>`
 
 Example:
 ```
-> unmark -p 1
+> UNMARK -p 1
 Study Python is unmarked
 ```
 
@@ -296,11 +304,11 @@ Study Python is unmarked
 
 Finds a task based on the keyword given.
 
-Format: `find -p <keyword>`
+Format: `FIND -p <keyword>`
 
 Example:
 ```
-> find -p java
+> FIND -p java
 1.[T][ ] Study Java
 ```
 
@@ -308,11 +316,11 @@ Example:
 
 Renames a task based on the task number given.
 
-Format: `rename -p <task_number> <new_name>`
+Format: `RENAME -p <task_number> <new_name>`
 
 Example:
 ```
-> rename -p 1 Study Python
+> RENAME -p 1 Study Python
 Study Java renamed to Study Python
 ```
 ### AttendanceList Commands
