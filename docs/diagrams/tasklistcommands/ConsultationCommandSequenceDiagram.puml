@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor user
+autonumber
+
+participant "ConsultationCommand" as ConsultCmd
+participant "DateTimeFormatterUtil" as Formatter
+participant "Consultation" as Consultation
+participant "TaskList" as TaskList
+participant "System" as Console
+
+User -> ConsultCmd : execute(parts, taskList)
+
+loop until valid input
+    alt missing "/from" or "/to"
+        ConsultCmd -> ConsultCmd : throw TASyncException
+        ConsultCmd -> Console : println(error)
+        Console -> User : prompt for new input
+        User -> ConsultCmd : provide new parts
+    else invalid datetime
+        ConsultCmd -> Formatter : isValidDateTime(from)
+        Formatter --> ConsultCmd : true/false
+        ConsultCmd -> Formatter : isValidDateTime(to)
+        Formatter --> ConsultCmd : true/false
+        alt either is invalid
+            ConsultCmd -> ConsultCmd : throw TASyncException
+            ConsultCmd -> Console : println(error)
+            Console -> User : prompt for new input
+            User -> ConsultCmd : provide new parts
+        end
+    else valid input
+        ConsultCmd -> Consultation : new(studentName, false, from, to)
+        ConsultCmd -> TaskList : addTask(consultation)
+    end
+end
+
+@enduml

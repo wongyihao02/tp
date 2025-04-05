@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor user
+autonumber
+
+participant "MarkTaskCommand" as MarkCmd
+participant "IntegerChecker" as Checker
+participant "TaskList" as TaskList
+participant "System" as Console
+
+User -> MarkCmd : execute(parts, taskList)
+
+MarkCmd -> Checker : isInteger(parts)
+alt valid integer
+    MarkCmd -> TaskList : markTaskAsDone(Integer.parseInt(parts))
+else invalid input
+    MarkCmd -> MarkCmd : throw TASyncException
+    MarkCmd -> Console : println(e.getMessage())
+end
+
+@enduml

@@ -34,7 +34,7 @@ public class DeadlineCommand implements Command<TaskList> {
                 // Split into description and deadline
                 String[] deadlineParts = parts.split(" /by ", 2);
                 if (deadlineParts.length < 2) {
-                    throw new TASyncException("Missing deadline. Please re-enter the full command.");
+                    throw new TASyncException("Missing deadline name. Please re-enter the full command.");
                 }
 
                 String taskName = deadlineParts[0].trim();

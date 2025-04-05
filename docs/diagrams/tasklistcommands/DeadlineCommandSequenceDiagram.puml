@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor user
+autonumber
+
+participant "DeadlineCommand" as DeadlineCmd
+participant "DateTimeFormatterUtil" as Formatter
+participant "Deadline" as Deadline
+participant "TaskList" as TaskList
+participant "System" as Console
+
+User -> DeadlineCmd : execute(parts, taskList)
+
+loop until valid input
+    alt parts missing "/by" or deadline
+        DeadlineCmd -> DeadlineCmd : throw TASyncException
+        DeadlineCmd -> Console : println(error)
+        Console -> User : prompt for new input
+        User -> DeadlineCmd : provide new parts
+    else invalid date format
+        DeadlineCmd -> Formatter : isValidDateTime(deadlineInput)
+        Formatter --> DeadlineCmd : false
+        DeadlineCmd -> DeadlineCmd : throw TASyncException
+        DeadlineCmd -> Console : println(error)
+        Console -> User : prompt for new input
+        User -> DeadlineCmd : provide new parts
+    else valid input
+        DeadlineCmd -> Formatter : isValidDateTime(deadlineInput)
+        Formatter --> DeadlineCmd : true
+        DeadlineCmd -> Deadline : new(taskName, false, deadlineInput)
+        DeadlineCmd -> TaskList : addTask(dl)
+    end
+end
+
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+actor user
+autonumber
+
+
+participant "TodoCommand" as TodoCmd
+participant "TaskList" as TaskList
+participant "Todo" as Todo
+
+User -> TodoCmd : execute(parts, taskList)
+
+alt parts is not empty
+    TodoCmd -> Todo : new Todo(parts, false)
+    TodoCmd -> TaskList : addTask(todo)
+else parts is empty
+    TodoCmd -> TodoCmd : throw TASyncException
+    TodoCmd -> System : println(e.getMessage())
+end
+
+@enduml
