@@ -472,6 +472,7 @@ and instantiating and saving a Marks object with the details to the given studen
 #### Operations
 
 `AddMarksCommand#execute()`
+- ![AddMarksCommand.png](diagrams/markslistcommands/AddMarksCommand.png)
 - Validates the input to ensure it follows the expected format and is not missing arguments.
 - Parses the input to extract the tutorial class code, matric number, assignment name, marks and maximum marks.
 - Validates parsed inputs marks and maximum marks to make sure they are valid, non-negative integers with maximum marks >= marks.
@@ -495,6 +496,7 @@ corresponding `Marks` object from the student's `marksList`.
 ### Operations
 
 #### `DeleteMarksCommand#execute()`
+- ![DeleteMarksCommand.png](diagrams/markslistcommands/DeleteMarksCommand.png)
 - Validates the input to ensure it follows the expected format and is not missing arguments.
 - Parses the input to extract the tutorial class code, matric number, and assignment name.
 - Retrieves the `TutorialClass` with the given tutorial class code.
@@ -517,6 +519,7 @@ the student.
 ### Operations
 
 #### `ListMarksCommand#execute()`
+- ![ListMarksCommand.png](diagrams/markslistcommands/ListMarksCommand.png)
 - Validates the input to ensure it follows the expected format and is not missing arguments.
 - Parses the input to extract the tutorial class code and matric number.
 - Retrieves the `TutorialClass` with the given tutorial class code.
