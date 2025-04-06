@@ -1,0 +1,55 @@
+@startuml
+actor User
+participant "NewTutorialCommand" as Command
+participant "StudentCommandHelper" as Helper
+participant "TutorialClassList" as List
+participant "TutorialClass" as Tutorial
+
+User -> Command: execute(input, tutorialClassList)
+
+activate Command
+
+Command -> Helper: parseInput(input, 4)
+Helper --> Command: String[] inputParts
+
+alt Any field is blank
+    Command -> Command: throw TASyncException.invalidNewTutorialCommand()
+end
+
+alt Invalid day of week format
+    Command -> Command: throw TASyncException.invalidDayOfWeek()
+end
+
+alt Invalid time format
+    Command -> Command: throw TASyncException("Invalid time format")
+end
+
+alt endTime <= startTime
+    Command -> Command: throw TASyncException.invalidTimeRange()
+end
+
+Command -> List: getTutorialClasses()
+List --> Command: List<TutorialClass>
+
+loop for each existingTutorial
+    alt Duplicate tutorial name
+        Command -> Command: throw TASyncException.duplicateTutorialName()
+    end
+
+    alt Same day and overlapping time
+        Command -> Command: throw TASyncException.overlappingTutorialTime()
+    end
+end
+
+create Tutorial
+Command -> Tutorial: new TutorialClass(name, dayOfWeek, startTime, endTime)
+activate Tutorial
+Tutorial -> Command: new tutorial
+deactivate Tutorial
+
+Command -> List: addTutorialClass(newTutorial)
+
+Command -> System: print success message
+
+deactivate Command
+@enduml
