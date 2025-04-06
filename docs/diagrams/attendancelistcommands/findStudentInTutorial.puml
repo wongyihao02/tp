@@ -35,7 +35,9 @@ group sd get student in tutorial
 
     create "derStudent : Student" as derStudent
     command -> derStudent : derStudent = student
-    derStudent --> command : derStudent
+    activate derStudent
+    derStudent --> command : return derStudent
+    deactivate derStudent
     end opt
     end loop
     end

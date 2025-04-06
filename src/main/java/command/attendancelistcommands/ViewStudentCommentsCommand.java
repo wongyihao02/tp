@@ -18,6 +18,9 @@ public class ViewStudentCommentsCommand implements Command<AttendanceFile> {
             }
 
             String[] partsArray = parts.split(",");
+            for (int i = 0; i < partsArray.length; i++) {
+                partsArray[i] = partsArray[i].trim();
+            }
             //if not all inputs given or too many
             if (partsArray.length != 4) {
                 throw TASyncException.invalidmarkAttendanceListCommand();
@@ -28,7 +31,7 @@ public class ViewStudentCommentsCommand implements Command<AttendanceFile> {
             AttendanceList theOne = null;
 
             for (AttendanceList a : list) {
-                if (a.getWeekNumber() == Integer.parseInt(partsArray[1])
+                if (a.getWeekNumber() == Integer.parseInt(partsArray[1].trim())
                         && a.getTutorialClass().getTutorialName().equalsIgnoreCase(partsArray[0])) {
                     theOne = a;
                 }
@@ -61,6 +64,8 @@ public class ViewStudentCommentsCommand implements Command<AttendanceFile> {
                 for (int i = 0; i < comments.size(); i++) {
                     System.out.println((i + 1) + ". " + comments.get(i));
                 }
+
+                System.out.println("End of list");
             } else {
                 System.out.println("Selected student has no comments given to them");
             }

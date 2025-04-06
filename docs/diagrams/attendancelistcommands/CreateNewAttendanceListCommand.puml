@@ -18,15 +18,21 @@ create parts
 command -> parts : parts.split(",")
 activate listOfAttendanceList
 command -> listOfAttendanceList : getAttendanceListByNameAndWeek(week,name)
+activate listOfTutorials
+listOfAttendanceList -> listOfTutorials : check if tut name exists
+listOfTutorials --> listOfAttendanceList: returns boolean of if it exists
+deactivate listOfTutorials
 
+listOfAttendanceList --> command : returns attendanceList
 alt the attendanceList is null
 create attenList
 command -> attenList
 activate attenList
 attenList --> command : it is returned to be stored in local var
+deactivate attenList
 command -> listOfAttendanceList : listOfAttendanceList.addAttendanceList(attenList)
 
-deactivate attenList
+
 deactivate listOfAttendanceList
 command --> User : print("Attendance list for the week already exists")
 else the attendanceList is not null
@@ -36,16 +42,18 @@ end alt
 else catch TASyncException
 
 
-    command -> e : e.getMessage
-    activate e
-    command --> User  : error message
-    deactivate e
+    command -> e : e.getMessage()
+        activate e
+        e --> command : return error message
+        deactivate e
+        command --> User  : print error message
 
-    else catch NumberFormatException
-     command -> n : n.getMessage
-     activate n
-     command --> User : error message
-     deactivate n
+        else catch NumberFormatException
+         command -> n : n.getMessage()
+         activate n
+         n --> command : return error message
+         deactivate n
+         command --> User : error message
 end
 
 destroy parts

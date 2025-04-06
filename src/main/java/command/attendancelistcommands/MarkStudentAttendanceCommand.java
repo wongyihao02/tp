@@ -20,6 +20,9 @@ public class MarkStudentAttendanceCommand implements Command<AttendanceFile> {
             }
 
             String[] partsArray = parts.split(",");
+            for (int i = 0; i < partsArray.length; i++) {
+                partsArray[i] = partsArray[i].trim();
+            }
             //if not all inputs given or too many
             if (partsArray.length != 4) {
                 throw TASyncException.invalidmarkAttendanceListCommand();
@@ -30,7 +33,7 @@ public class MarkStudentAttendanceCommand implements Command<AttendanceFile> {
             AttendanceList theOne = null;
 
             for (AttendanceList a : list) {
-                if (a.getWeekNumber() == Integer.parseInt(partsArray[1])
+                if (a.getWeekNumber() == Integer.parseInt(partsArray[1].trim())
                         && a.getTutorialClass().getTutorialName().equalsIgnoreCase(partsArray[0])) {
                     theOne = a;
                 }
@@ -56,6 +59,7 @@ public class MarkStudentAttendanceCommand implements Command<AttendanceFile> {
 
             Map<Student, String> attendanceMap = theOne.getAttendanceMap();
             attendanceMap.replace(derStudent, "Present");
+            System.out.println("Student marked Present");
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
         } catch (NumberFormatException e) {

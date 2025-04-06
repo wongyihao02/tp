@@ -21,6 +21,9 @@ public class ShowAttendanceListCommand implements Command<AttendanceFile> {
             }
 
             String[] partsArray = parts.split(",");
+            for (int i = 0; i < partsArray.length; i++) {
+                partsArray[i] = partsArray[i].trim();
+            }
             //if not all inputs given or too many
             if (partsArray.length != 2) {
                 throw TASyncException.invalidListAttendanceListCommand();
@@ -29,7 +32,7 @@ public class ShowAttendanceListCommand implements Command<AttendanceFile> {
             ArrayList<AttendanceList> list = attendanceList.getAttendanceList();
             AttendanceList theOne = null;
 
-            int weekNumber = Integer.parseInt(partsArray[1]);
+            int weekNumber = Integer.parseInt(partsArray[1].trim());
             String tutorialName = partsArray[0];
 
             for (AttendanceList a : list) {
@@ -62,7 +65,7 @@ public class ShowAttendanceListCommand implements Command<AttendanceFile> {
 
                     System.out.println(student.getName() + "(" + student.getMatricNumber() + "): " + attendance);
                 }
-                System.out.println("end of list");
+                System.out.println("End of list");
             }
 
         } catch (TASyncException e) {

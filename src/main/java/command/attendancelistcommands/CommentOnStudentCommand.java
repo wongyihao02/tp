@@ -27,6 +27,12 @@ public class CommentOnStudentCommand implements Command<AttendanceFile> {
 
             String[] partsArray = partsArray2[0].split(",");
             String[] commentsArray = partsArray2[1].split(";");
+            for (int i = 0; i < partsArray.length; i++) {
+                partsArray[i] = partsArray[i].trim();
+            }
+            for (int i = 0; i < commentsArray.length; i++) {
+                commentsArray[i] = commentsArray[i].trim();
+            }
             ArrayList<String> comments = new ArrayList<>();
 
             if (partsArray.length != 4) {
@@ -42,7 +48,7 @@ public class CommentOnStudentCommand implements Command<AttendanceFile> {
             AttendanceList theOne = null;
 
             for (AttendanceList a : list) {
-                if (a.getWeekNumber() == Integer.parseInt(partsArray[1])
+                if (a.getWeekNumber() == Integer.parseInt(partsArray[1].trim())
                         && a.getTutorialClass().getTutorialName().equalsIgnoreCase(partsArray[0])) {
                     theOne = a;
                 }
@@ -67,6 +73,16 @@ public class CommentOnStudentCommand implements Command<AttendanceFile> {
             }
 
             theOne.addComments(derStudent, comments);
+
+            System.out.println("added comment to " + partsArray[2] + " (" + partsArray[3] + ") in tutorial "
+                    + partsArray[0] + " week " + partsArray[1]);
+            int i = 1;
+            for (String comment : comments) {
+                System.out.println(i + ". " + comment);
+                i += 1;
+            }
+
+            System.out.println("End of list");
 
         } catch (TASyncException e) {
             System.out.println(e.getMessage());

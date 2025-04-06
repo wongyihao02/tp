@@ -13,8 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import attendance.AttendanceFile;
 import command.attendancelistcommands.ShowAttendanceListCommand;
-
-
 import tutorial.TutorialClassList;
 
 public class ShowAttendanceListCommandTest {
@@ -32,7 +30,7 @@ public class ShowAttendanceListCommandTest {
 
     @Test
     public void testNormalInput() {
-        String input = "T01,1";
+        String input = " T01, 1";
         ShowAttendanceListCommand command = new ShowAttendanceListCommand();
         command.execute(input, attendanceFile);
         String output = outputStream.toString().trim();
@@ -41,7 +39,7 @@ public class ShowAttendanceListCommandTest {
         assertTrue(output.contains("Roselle Gustave Bonaparte(A333): Absent"));
         assertTrue(output.contains("Kim Dokja(A003): Absent"));
         assertFalse(output.contains("Han sooyung(A490): Absent"));
-        assertTrue(output.contains("end of list"));
+        assertTrue(output.contains("End of list"));
     }
 
     @Test

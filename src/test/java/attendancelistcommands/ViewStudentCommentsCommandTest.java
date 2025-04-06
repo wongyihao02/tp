@@ -1,8 +1,8 @@
 package attendancelistcommands;
 
+import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.captureSystemOut;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.initializeAttendanceFile;
 import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.initializeTutorialClasses;
-import static attendancelistcommands.handyfuncs.AttendanceListCommandsTestHandyFuncs.captureSystemOut;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
@@ -30,7 +30,7 @@ public class ViewStudentCommentsCommandTest {
 
     @Test
     public void testViewStudentComments() {
-        String[] input = {"T01,1,Roselle Gustave Bonaparte,A333", "T01,1,Kim Dokja,A003"};
+        String[] input = {"T01, 1 ,Roselle Gustave Bonaparte ,A333", " T01, 1,Kim Dokja,A003 "};
         ViewStudentCommentsCommand command = new ViewStudentCommentsCommand();
         outputStream = captureSystemOut();
         command.execute(input[0], attendanceFile);
@@ -40,6 +40,7 @@ public class ViewStudentCommentsCommandTest {
         command.execute(input[1], attendanceFile);
         output = outputStream.toString().trim();
         assertTrue(output.contains("ugly squid"));
+        assertTrue(output.contains("End of list"));
 
     }
 

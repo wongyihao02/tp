@@ -8,13 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 
-import attendance.AttendanceFile;
-import command.attendancelistcommands.MarkStudentAttendanceCommand;
-import command.attendancelistcommands.ShowAttendanceListCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
+import attendance.AttendanceFile;
+import command.attendancelistcommands.MarkStudentAttendanceCommand;
+import command.attendancelistcommands.ShowAttendanceListCommand;
 import tutorial.TutorialClassList;
 
 public class MarkStudentAttendanceCommandTest {
@@ -32,8 +31,8 @@ public class MarkStudentAttendanceCommandTest {
 
     @Test
     public void testMarkAttendance() {
-        String[] input = {"T01,1,Roselle Gustave Bonaparte,A333", "T01,1,Kim Dokja,A003",
-                          "T02,3,Kim Dokja,A003", "T01,2,Roselle Gustave Bonaparte,A333"};
+        String[] input = {" T01, 1,Roselle Gustave Bonaparte,A333 ", "T01,1,Kim Dokja ,A003",
+                          "T02,3,Kim Dokja,A003 ", "T01,2, Roselle Gustave Bonaparte,A333"};
 
 
         ShowAttendanceListCommand command = new ShowAttendanceListCommand();
@@ -47,8 +46,10 @@ public class MarkStudentAttendanceCommandTest {
         command1.execute(input[1], attendanceFile);
         command.execute("T01,1", attendanceFile);
         output = outputStream.toString().trim();
+        assertTrue(output.contains("Student marked Present"));
         assertTrue(output.contains("Roselle Gustave Bonaparte(A333): Present"));
         assertTrue(output.contains("Kim Dokja(A003): Present"));
+        assertTrue(output.contains("End of list"));
 
         outputStream = captureSystemOut();
         command.execute("T02,3", attendanceFile);
@@ -58,7 +59,9 @@ public class MarkStudentAttendanceCommandTest {
         command1.execute(input[2], attendanceFile);
         command.execute("T02,3", attendanceFile);
         output = outputStream.toString().trim();
+        assertTrue(output.contains("Student marked Present"));
         assertTrue(output.contains("Kim Dokja(A003): Present"));
+        assertTrue(output.contains("End of list"));
 
 
         outputStream = captureSystemOut();
@@ -69,7 +72,9 @@ public class MarkStudentAttendanceCommandTest {
         command1.execute(input[3], attendanceFile);
         command.execute("T01,2", attendanceFile);
         output = outputStream.toString().trim();
+        assertTrue(output.contains("Student marked Present"));
         assertTrue(output.contains("Roselle Gustave Bonaparte(A333): Present"));
+        assertTrue(output.contains("End of list"));
     }
 
     @Test

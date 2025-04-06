@@ -33,13 +33,16 @@ public class DeleteStudentCommentCommand implements Command<AttendanceFile> {
             if (Integer.parseInt(partsArray2[1].trim()) < 1) {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
+            for (int i = 0; i < partsArray.length; i++) {
+                partsArray[i] = partsArray[i].trim();
+            }
 
             ArrayList<AttendanceList> list = attendanceList.getAttendanceList();
 
             AttendanceList theOne = null;
 
             for (AttendanceList a : list) {
-                if (a.getWeekNumber() == Integer.parseInt(partsArray[1])
+                if (a.getWeekNumber() == Integer.parseInt(partsArray[1].trim())
                         && a.getTutorialClass().getTutorialName().equals(partsArray[0])) {
                     theOne = a;
                 }
@@ -68,15 +71,16 @@ public class DeleteStudentCommentCommand implements Command<AttendanceFile> {
             if (commentlist.containsKey(derStudent)) {
                 if (commentlist.get(derStudent).isEmpty()) {
                     System.out.println("student has no comments");
-                }
-                int index = Integer.parseInt(partsArray2[1]) - 1;
-                int size = commentlist.get(derStudent).size();
-
-                if (index >= 0 && index < size) {
-                    commentlist.get(derStudent).remove(index);
-                    System.out.println("Comment deleted");
                 } else {
-                    System.out.println("Comment to be deleted was not present");
+                    int index = Integer.parseInt(partsArray2[1].trim()) - 1;
+                    int size = commentlist.get(derStudent).size();
+
+                    if (index >= 0 && index < size) {
+                        commentlist.get(derStudent).remove(index);
+                        System.out.println("Comment deleted");
+                    } else {
+                        System.out.println("Comment to be deleted was not present");
+                    }
                 }
             }
 
