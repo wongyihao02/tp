@@ -30,8 +30,8 @@ public class CommentOnStudentCommandTest {
 
     @Test
     public void testViewStudentComments() {
-        String[] input = {"T01, 1,Roselle Gustave Bonaparte,A333", "T01,1,Kim Dokja,A003"};
-        String[] newComments = {"chinese;clown", "korean;Reader"};
+        String[] input = {"T01, 1,Roselle Gustave Bonaparte ,A333", "T01,1,Kim Dokja,A003"};
+        String[] newComments = {"chinese; clown ", "korean;Reader  "};
         ViewStudentCommentsCommand command = new ViewStudentCommentsCommand();
         CommentOnStudentCommand command1 = new CommentOnStudentCommand();
         outputStream = captureSystemOut();

@@ -33,6 +33,9 @@ public class DeleteStudentCommentCommand implements Command<AttendanceFile> {
             if (Integer.parseInt(partsArray2[1].trim()) < 1) {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
+            for (int i = 0; i < partsArray.length; i++) {
+                partsArray[i] = partsArray[i].trim();
+            }
 
             ArrayList<AttendanceList> list = attendanceList.getAttendanceList();
 

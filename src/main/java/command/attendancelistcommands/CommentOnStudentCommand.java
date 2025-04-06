@@ -27,6 +27,12 @@ public class CommentOnStudentCommand implements Command<AttendanceFile> {
 
             String[] partsArray = partsArray2[0].split(",");
             String[] commentsArray = partsArray2[1].split(";");
+            for (int i = 0; i < partsArray.length; i++) {
+                partsArray[i] = partsArray[i].trim();
+            }
+            for (int i = 0; i < commentsArray.length; i++) {
+                commentsArray[i] = commentsArray[i].trim();
+            }
             ArrayList<String> comments = new ArrayList<>();
 
             if (partsArray.length != 4) {

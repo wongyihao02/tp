@@ -30,7 +30,7 @@ public class ViewStudentCommentsCommandTest {
 
     @Test
     public void testViewStudentComments() {
-        String[] input = {"T01, 1 ,Roselle Gustave Bonaparte,A333", "T01,1,Kim Dokja,A003"};
+        String[] input = {"T01, 1 ,Roselle Gustave Bonaparte ,A333", " T01, 1,Kim Dokja,A003 "};
         ViewStudentCommentsCommand command = new ViewStudentCommentsCommand();
         outputStream = captureSystemOut();
         command.execute(input[0], attendanceFile);

@@ -20,6 +20,9 @@ public class MarkStudentAttendanceCommand implements Command<AttendanceFile> {
             }
 
             String[] partsArray = parts.split(",");
+            for (int i = 0; i < partsArray.length; i++) {
+                partsArray[i] = partsArray[i].trim();
+            }
             //if not all inputs given or too many
             if (partsArray.length != 4) {
                 throw TASyncException.invalidmarkAttendanceListCommand();

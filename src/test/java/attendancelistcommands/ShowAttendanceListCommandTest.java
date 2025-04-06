@@ -30,7 +30,7 @@ public class ShowAttendanceListCommandTest {
 
     @Test
     public void testNormalInput() {
-        String input = "T01, 1";
+        String input = " T01, 1";
         ShowAttendanceListCommand command = new ShowAttendanceListCommand();
         command.execute(input, attendanceFile);
         String output = outputStream.toString().trim();

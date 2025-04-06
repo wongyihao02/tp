@@ -22,6 +22,9 @@ public class CreateNewAttendanceListCommand implements Command<ArrayList<Object>
                 throw TASyncException.invalidListAttendanceListCommand();
             }
             String[] partsArray = parts.split(",");
+            for (int i = 0; i < partsArray.length; i++) {
+                partsArray[i] = partsArray[i].trim();
+            }
             if (partsArray.length != 2) {
                 throw TASyncException.invalidListAttendanceListCommand();
             }

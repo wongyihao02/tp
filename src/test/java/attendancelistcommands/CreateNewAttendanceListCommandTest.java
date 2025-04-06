@@ -37,7 +37,7 @@ public class CreateNewAttendanceListCommandTest {
 
     @Test
     public void testNormalInput() {
-        String input = "T01, 100";
+        String input = " T01 , 100";
 
         ShowAttendanceListCommand command = new ShowAttendanceListCommand();
         CreateNewAttendanceListCommand command1 = new CreateNewAttendanceListCommand();
