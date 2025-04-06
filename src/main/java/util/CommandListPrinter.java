@@ -134,7 +134,7 @@ public class CommandListPrinter {
                         "Usage: RENAME -p <task_number> <new_name>";
         case CREATE ->
                 "Creates an attendance list for the given week if valid and not existing\n" +
-                        "Usage: CREATE -ay <Tutname,weeknum>";
+                        "Usage: CREATE -at <Tutname,weeknum>";
         };
     }
 }
