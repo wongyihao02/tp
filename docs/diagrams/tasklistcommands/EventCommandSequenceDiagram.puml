@@ -10,28 +10,45 @@ participant "TaskList" as TaskList
 participant "System" as Console
 
 User -> EventCmd : execute(parts, taskList)
+activate EventCmd
 
 loop until valid input
     alt missing "/from" or "/to"
         EventCmd -> EventCmd : throw TASyncException
         EventCmd -> Console : println(error)
+        activate Console
         Console -> User : prompt for new input
+        deactivate Console
         User -> EventCmd : provide new parts
     else invalid datetime
         EventCmd -> Formatter : isValidDateTime(from)
+        activate Formatter
         Formatter --> EventCmd : true/false
+        deactivate Formatter
+
         EventCmd -> Formatter : isValidDateTime(to)
+        activate Formatter
         Formatter --> EventCmd : true/false
+        deactivate Formatter
+
         alt invalid from or to
             EventCmd -> EventCmd : throw TASyncException
             EventCmd -> Console : println(error)
+            activate Console
             Console -> User : prompt for new input
+            deactivate Console
             User -> EventCmd : provide new parts
         end
     else valid input
         EventCmd -> Event : new(taskName, false, from, to)
+        activate Event
+        deactivate Event
+
         EventCmd -> TaskList : addTask(event)
+        activate TaskList
+        deactivate TaskList
     end
 end
 
+deactivate EventCmd
 @enduml
