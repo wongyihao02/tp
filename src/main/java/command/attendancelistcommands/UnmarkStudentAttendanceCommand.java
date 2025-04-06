@@ -55,6 +55,7 @@ public class UnmarkStudentAttendanceCommand implements Command<AttendanceFile> {
 
             Map<Student, String> attendanceMap = theOne.getAttendanceMap();
             attendanceMap.replace(derStudent, "Absent");
+            System.out.println("Student marked Absent");
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
         } catch (NumberFormatException e) {

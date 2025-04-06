@@ -336,7 +336,7 @@ Example:
 > LIST -a T01,1
 Attendance List for tutorial T01 week1:
 personname(matricnum1): Absent
-end of list
+End of list
 ```
 
 #### Mark present a student: `MARK`
@@ -348,6 +348,7 @@ Format: `MARK -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`
 Example:
 ```
 > MARK -a T01,1,john,A001
+Student marked Present
 ```
 
 #### Mark absent a student: `UNMARK`
@@ -359,6 +360,7 @@ Format: `UNMARK -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`
 Example:
 ```
 > UNMARK -a T01,1,john,A001
+Student marked Absent
 ```
 
 #### View comments for a student: `VIEWCOMMENT`
@@ -373,6 +375,7 @@ Example:
 list of comments:
 1.john is studious
 2.john is hardworking
+End of list
 ```
 
 #### add comments for a student: `COMMENT`
@@ -384,11 +387,16 @@ Format: `COMMENT -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//comment1;c
 Example:
 ```
 > COMMENT -a T01,1,john,A001//john is studious;john does everything
+added comment to john (A001) in tutorial T01  week 1
+1.john is studious
+2.john does everything
+End of list
 
 > VIEWCOMMENT -a T01,1,john,A001
 list of comments:
 1.john is studious
 2.john does everything
+End of list
 ```
 
 #### Delete comment for a student: `DELETECOMMENT`
@@ -403,12 +411,15 @@ Example:
 list of comments:
 1.john is studious
 2.john does everything
+End of list
 
 > DELETECOMMENT -a T01,1,john,A001//1
+Comment deleted
 
 > VIEWCOMMENT -a T01,1,john,A001
 list of comments:
 1.john does everything
+End of list
 ```
 #### Create an attendance list: `CREATE`
 

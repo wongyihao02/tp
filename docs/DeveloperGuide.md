@@ -123,8 +123,9 @@ and set the attendance status of the given student as Present in the attendanceL
   - This AttendanceList is then checked is it has a student with the same name and matric number is found.
   - Exception is thrown and handled if none found.
   - The value for the student in the hashMap containing the attendance status of the students will be changed to Present.
+  - A message stating that the student is marked present is printed.
   - An error message will be printed when an Exception is handled.
-  - sequence diagram is similar to 1 but instead at the end the student is marked present in the attendanceList and nothing is printed if there are no exceptions
+  - Sequence diagram is similar to 1 but instead at the end the student is marked present in the attendanceList and a success message is printed unless there are exceptions
 
 
 #### 3.UnmarkStudentAttendanceCommand
@@ -143,8 +144,9 @@ and set the attendance status of the given student as Absent in the attendanceLi
   - This AttendanceList is then checked is it has a student with the same name and matric number is found.
   - Exception is thrown and handled if none found.
   - The value for the student in the hashMap containing the attendance status of the students will be changed to Absent.
+  - A message stating that the student is marked Absent is printed.
   - An error message will be printed when an Exception is handled.
-- sequence diagram is similar to 1 but instead at the end the student is marked Absent in the attendanceList and nothing is printed if there are no exceptions
+  - Sequence diagram is similar to 2 but instead at the end the student is marked Absent in the attendanceList and a success message is printed unless there are exceptions
 
 #### 4.ViewStudentCommentsCommand
 This is part of the Attendancelistcommands package,the function of this class is print out all the comments given for a student in the particular tutorial and week.
@@ -185,6 +187,7 @@ and their comments that the user has given and add all comments to the ArrayList
   - This AttendanceList is then searched for the student with the name and matric number.
   - The above 2 are located in the reference block highlighted in red.
   - The ArrayList<String> associated with the student in the hashmap for student comments have the given comments added to them.
+  - The comments added will be printed out for the user to see.
   - As seen at the bottom,if an exception is thrown, an error message will be printed when an Exception is handled.
   - TASYNC exception will be thrown if the inputs do not follow the set form or has invalid inputs.It will also be thrown if the attendanceList cannot be found or the student cannot be found.
 ![findStudentInTutorial.png](diagrams/attendancelistcommands/findStudentInTutorial.png)
@@ -207,7 +210,7 @@ and the number position of the comment to be removed that the user has given and
   - The ArrayList<String> associated with the student that stores comments for the has the (num given - 1)th element removed.A message will then be printed stating that the comment was successfully deleted.
   - Different messages will be printed if the student has no comments associated with them or if the num given is outside the boundaries of the comments ArrayList.
   - An error message will be printed when an Exception is handled.
-  - sequence diagram is similar to 5 but instead at the end the comment is deleted and a message stating that it is deleted is printed
+  - Sequence diagram is similar to 5 but instead at the end the comment is deleted and a message stating that it is deleted is printed,unless it dosent exist then nothing is deleted and a missing comment message will be printed.
 
 #### 7.CreateNewAttendanceList
 This is part of the Attendancelistcommands package,the function of this class is to create an AttendanceList for a particular tutorial and week.

@@ -56,6 +56,7 @@ public class MarkStudentAttendanceCommand implements Command<AttendanceFile> {
 
             Map<Student, String> attendanceMap = theOne.getAttendanceMap();
             attendanceMap.replace(derStudent, "Present");
+            System.out.println("Student marked Present");
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
         } catch (NumberFormatException e) {

@@ -42,6 +42,7 @@ public class UnmarkStudentAttendanceCommandTest {
         String output = outputStream.toString().trim();
         assertTrue(output.contains("Roselle Gustave Bonaparte(A333): Absent"));
         assertTrue(output.contains("Kim Dokja(A003): Absent"));
+        assertTrue(output.contains("End of list"));
         outputStream = captureSystemOut();
         command1.execute(input[0], attendanceFile);
         command1.execute(input[1], attendanceFile);
@@ -49,6 +50,7 @@ public class UnmarkStudentAttendanceCommandTest {
         output = outputStream.toString().trim();
         assertTrue(output.contains("Roselle Gustave Bonaparte(A333): Present"));
         assertTrue(output.contains("Kim Dokja(A003): Present"));
+        assertTrue(output.contains("End of list"));
         outputStream = captureSystemOut();
         command2.execute(input[0], attendanceFile);
         command2.execute(input[1], attendanceFile);
@@ -56,37 +58,47 @@ public class UnmarkStudentAttendanceCommandTest {
         output = outputStream.toString().trim();
         assertTrue(output.contains("Roselle Gustave Bonaparte(A333): Absent"));
         assertTrue(output.contains("Kim Dokja(A003): Absent"));
+        assertTrue(output.contains("Student marked Absent"));
+        assertTrue(output.contains("End of list"));
 
         outputStream = captureSystemOut();
         command.execute("T02,3", attendanceFile);
         output = outputStream.toString().trim();
         assertTrue(output.contains("Kim Dokja(A003): Absent"));
+        assertTrue(output.contains("End of list"));
         outputStream = captureSystemOut();
         command1.execute(input[2], attendanceFile);
         command.execute("T02,3", attendanceFile);
         output = outputStream.toString().trim();
         assertTrue(output.contains("Kim Dokja(A003): Present"));
+        assertTrue(output.contains("End of list"));
         outputStream = captureSystemOut();
         command2.execute(input[2], attendanceFile);
         command.execute("T02,3", attendanceFile);
         output = outputStream.toString().trim();
         assertTrue(output.contains("Kim Dokja(A003): Absent"));
+        assertTrue(output.contains("Student marked Absent"));
+        assertTrue(output.contains("End of list"));
 
 
         outputStream = captureSystemOut();
         command.execute("T01,2", attendanceFile);
         output = outputStream.toString().trim();
         assertTrue(output.contains("Roselle Gustave Bonaparte(A333): Absent"));
+        assertTrue(output.contains("End of list"));
         outputStream = captureSystemOut();
         command1.execute(input[3], attendanceFile);
         command.execute("T01,2", attendanceFile);
         output = outputStream.toString().trim();
         assertTrue(output.contains("Roselle Gustave Bonaparte(A333): Present"));
+        assertTrue(output.contains("End of list"));
         outputStream = captureSystemOut();
         command2.execute(input[3], attendanceFile);
         command.execute("T02,3", attendanceFile);
         output = outputStream.toString().trim();
         assertTrue(output.contains("Roselle Gustave Bonaparte(A333): Absent"));
+        assertTrue(output.contains("Student marked Absent"));
+        assertTrue(output.contains("End of list"));
     }
 
     @Test
@@ -97,8 +109,8 @@ public class UnmarkStudentAttendanceCommandTest {
             UnmarkStudentAttendanceCommand command2 = new UnmarkStudentAttendanceCommand();
             command2.execute(s, attendanceFile);
             String output = outputStream.toString().trim();
-            assertTrue(output.contains("Invalid mark attendance command, " +
-                    "please specify a valid attendancelist with a tutorial id, week and valid student id and name"));
+            assertTrue(output.contains("Invalid mark attendance command, "
+                    + "please specify a valid attendancelist with a tutorial id, week and valid student id and name"));
         }
     }
 
@@ -111,8 +123,8 @@ public class UnmarkStudentAttendanceCommandTest {
             UnmarkStudentAttendanceCommand command2 = new UnmarkStudentAttendanceCommand();
             command2.execute(s, attendanceFile);
             String output = outputStream.toString().trim();
-            assertTrue(output.contains("Invalid mark attendance command, " +
-                    "please specify a valid attendancelist with a tutorial id, week and valid student id and name"));
+            assertTrue(output.contains("Invalid mark attendance command, "
+                    + "please specify a valid attendancelist with a tutorial id, week and valid student id and name"));
         }
     }
 
@@ -125,8 +137,8 @@ public class UnmarkStudentAttendanceCommandTest {
             UnmarkStudentAttendanceCommand command2 = new UnmarkStudentAttendanceCommand();
             command2.execute(s, attendanceFile);
             String output = outputStream.toString().trim();
-            assertTrue(output.contains("Invalid mark attendance command, " +
-                    "please specify a valid attendancelist with a tutorial id, week and valid student id and name"));
+            assertTrue(output.contains("Invalid mark attendance command, "
+                    + "please specify a valid attendancelist with a tutorial id, week and valid student id and name"));
 
         }
     }

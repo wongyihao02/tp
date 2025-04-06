@@ -49,7 +49,7 @@ public class CreateNewAttendanceListCommandTest {
         assertTrue(output.contains("Roselle Gustave Bonaparte(A333): Absent"));
         assertTrue(output.contains("Kim Dokja(A003): Absent"));
         assertFalse(output.contains("Han sooyung(A490): Absent"));
-        assertTrue(output.contains("end of list"));
+        assertTrue(output.contains("End of list"));
     }
 
     @Test

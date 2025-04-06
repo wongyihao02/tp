@@ -20,16 +20,19 @@ alt try
 
 create parts
 command -> parts : parts.split(",")
+activate listOfAttendanceList
 ref over command, listOfAttendanceList, theOne, tutorialClass, studentList
 find student in tutorial
 end ref
 
-activate listOfAttendanceList
+
 activate tutorialClass
 activate studentList
 activate theOne
 command -> theOne : getAttendanceMap()
+deactivate listOfAttendanceList
 theOne --> command : return attendanceMap
+
 deactivate theOne
 deactivate tutorialClass
 deactivate studentList
@@ -38,16 +41,19 @@ command --> User : print out the attendanceMap\n according to format
 else catch TASyncException
 
 
-    command -> e : e.getMessage
+    command -> e : e.getMessage()
     activate e
-    command --> User  : error message
+    e --> command : return error message
     deactivate e
+    command --> User  : print error message
 
     else catch NumberFormatException
-     command -> n : n.getMessage
+     command -> n : n.getMessage()
      activate n
-     command --> User : error message
+     n --> command : return error message
      deactivate n
+     command --> User : error message
+
 end
 destroy parts
 

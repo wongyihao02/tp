@@ -61,6 +61,8 @@ public class ViewStudentCommentsCommand implements Command<AttendanceFile> {
                 for (int i = 0; i < comments.size(); i++) {
                     System.out.println((i + 1) + ". " + comments.get(i));
                 }
+
+                System.out.println("End of list");
             } else {
                 System.out.println("Selected student has no comments given to them");
             }

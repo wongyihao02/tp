@@ -68,15 +68,16 @@ public class DeleteStudentCommentCommand implements Command<AttendanceFile> {
             if (commentlist.containsKey(derStudent)) {
                 if (commentlist.get(derStudent).isEmpty()) {
                     System.out.println("student has no comments");
-                }
-                int index = Integer.parseInt(partsArray2[1]) - 1;
-                int size = commentlist.get(derStudent).size();
-
-                if (index >= 0 && index < size) {
-                    commentlist.get(derStudent).remove(index);
-                    System.out.println("Comment deleted");
                 } else {
-                    System.out.println("Comment to be deleted was not present");
+                    int index = Integer.parseInt(partsArray2[1]) - 1;
+                    int size = commentlist.get(derStudent).size();
+
+                    if (index >= 0 && index < size) {
+                        commentlist.get(derStudent).remove(index);
+                        System.out.println("Comment deleted");
+                    } else {
+                        System.out.println("Comment to be deleted was not present");
+                    }
                 }
             }
 

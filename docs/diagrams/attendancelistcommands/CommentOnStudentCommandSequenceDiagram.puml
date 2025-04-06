@@ -37,7 +37,8 @@ alt try
     command <-- partsArray : commentsArray
     deactivate partsArray
     create comments
-    command --> comments: message
+    command -> comments
+    activate comments
 
     loop for each commentsArray
     command -> comments : add(comment.trim())
@@ -51,22 +52,22 @@ end ref
 
     command -> theOne : addComments(student : Student = derStudent, comments : ArrayList<String> = comments) : void
     activate theOne
-    command --> user : print the comments
+    command --> user : print the comments added
+    deactivate comments
 
 deactivate theOne
-    else catch TASyncException
+    command -> e : e.getMessage()
+        activate e
+        e --> command : return error message
+        deactivate e
+        command --> user  : print error message
 
-
-    command -> e : e.getMessage
-    activate e
-    user <-- command : error message
-    deactivate e
-
-    else catch NumberFormatException
-     command -> n : n.getMessage
-     activate n
-     user <-- command : error message
-     deactivate n
+        else catch NumberFormatException
+         command -> n : n.getMessage()
+         activate n
+         n --> command : return error message
+         deactivate n
+         command --> user : error message
 end
 destroy parts
 destroy partsArray

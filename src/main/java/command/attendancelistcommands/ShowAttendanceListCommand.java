@@ -62,7 +62,7 @@ public class ShowAttendanceListCommand implements Command<AttendanceFile> {
 
                     System.out.println(student.getName() + "(" + student.getMatricNumber() + "): " + attendance);
                 }
-                System.out.println("end of list");
+                System.out.println("End of list");
             }
 
         } catch (TASyncException e) {

@@ -41,6 +41,7 @@ public class CommentOnStudentCommandTest {
         assertTrue(output.contains("1. Savant transmigrator"));
         assertTrue(output.contains("2. chinese"));
         assertTrue(output.contains("3. clown"));
+        assertTrue(output.contains("End of list"));
         outputStream = captureSystemOut();
         command1.execute(input[1] + "//" + newComments[1], attendanceFile);
         command.execute(input[1], attendanceFile);
@@ -48,6 +49,7 @@ public class CommentOnStudentCommandTest {
         assertTrue(output.contains("1. ugly squid"));
         assertTrue(output.contains("2. korean"));
         assertTrue(output.contains("3. Reader"));
+        assertTrue(output.contains("End of list"));
 
     }
 

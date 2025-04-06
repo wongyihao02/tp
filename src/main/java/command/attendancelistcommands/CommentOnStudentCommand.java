@@ -68,6 +68,16 @@ public class CommentOnStudentCommand implements Command<AttendanceFile> {
 
             theOne.addComments(derStudent, comments);
 
+            System.out.println("added comment to " + partsArray[2] + " (" + partsArray[3] + ") in tutorial "
+                    + partsArray[0] + " week " + partsArray[1]);
+            int i = 1;
+            for (String comment : comments) {
+                System.out.println(i + ". " + comment);
+                i += 1;
+            }
+
+            System.out.println("End of list");
+
         } catch (TASyncException e) {
             System.out.println(e.getMessage());
         } catch (NumberFormatException e) {
