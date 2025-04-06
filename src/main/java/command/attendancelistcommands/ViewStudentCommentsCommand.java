@@ -28,7 +28,7 @@ public class ViewStudentCommentsCommand implements Command<AttendanceFile> {
             AttendanceList theOne = null;
 
             for (AttendanceList a : list) {
-                if (a.getWeekNumber() == Integer.parseInt(partsArray[1])
+                if (a.getWeekNumber() == Integer.parseInt(partsArray[1].trim())
                         && a.getTutorialClass().getTutorialName().equalsIgnoreCase(partsArray[0])) {
                     theOne = a;
                 }

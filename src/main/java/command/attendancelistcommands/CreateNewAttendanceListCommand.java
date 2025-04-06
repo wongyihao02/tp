@@ -26,7 +26,7 @@ public class CreateNewAttendanceListCommand implements Command<ArrayList<Object>
                 throw TASyncException.invalidListAttendanceListCommand();
             }
 
-            if (Integer.parseInt(partsArray[1]) < 0) {
+            if (Integer.parseInt(partsArray[1].trim()) < 0) {
                 throw TASyncException.invalidListAttendanceListCommand();
             }
 
@@ -36,10 +36,10 @@ public class CreateNewAttendanceListCommand implements Command<ArrayList<Object>
                 throw TASyncException.invalidListAttendanceListCommand();
             }
             AttendanceList attenlist = attendanceFile.getAttendanceByNameAndWeek(
-                    Integer.parseInt(partsArray[1]), tutClass.getTutorialName());
+                    Integer.parseInt(partsArray[1].trim()), tutClass.getTutorialName());
 
             if (attenlist == null) {
-                attenlist = new AttendanceList(tutClass, Integer.parseInt(partsArray[1]));
+                attenlist = new AttendanceList(tutClass, Integer.parseInt(partsArray[1].trim()));
                 for (Student student : attenlist.getTutorialClass().getStudentList().getStudents()) {
                     attenlist.markAbsent(student);
                 }

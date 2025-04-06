@@ -29,7 +29,7 @@ public class ShowAttendanceListCommand implements Command<AttendanceFile> {
             ArrayList<AttendanceList> list = attendanceList.getAttendanceList();
             AttendanceList theOne = null;
 
-            int weekNumber = Integer.parseInt(partsArray[1]);
+            int weekNumber = Integer.parseInt(partsArray[1].trim());
             String tutorialName = partsArray[0];
 
             for (AttendanceList a : list) {

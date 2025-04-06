@@ -31,7 +31,7 @@ public class MarkStudentAttendanceCommandTest {
 
     @Test
     public void testMarkAttendance() {
-        String[] input = {"T01,1,Roselle Gustave Bonaparte,A333", "T01,1,Kim Dokja,A003",
+        String[] input = {"T01, 1,Roselle Gustave Bonaparte,A333", "T01,1,Kim Dokja,A003",
                           "T02,3,Kim Dokja,A003", "T01,2,Roselle Gustave Bonaparte,A333"};
 
 
