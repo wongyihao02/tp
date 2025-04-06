@@ -10,26 +10,43 @@ participant "TaskList" as TaskList
 participant "System" as Console
 
 User -> DeadlineCmd : execute(parts, taskList)
+activate DeadlineCmd
 
 loop until valid input
     alt parts missing "/by" or deadline
         DeadlineCmd -> DeadlineCmd : throw TASyncException
         DeadlineCmd -> Console : println(error)
+        activate Console
         Console -> User : prompt for new input
+        deactivate Console
         User -> DeadlineCmd : provide new parts
     else invalid date format
         DeadlineCmd -> Formatter : isValidDateTime(deadlineInput)
+        activate Formatter
         Formatter --> DeadlineCmd : false
+        deactivate Formatter
+
         DeadlineCmd -> DeadlineCmd : throw TASyncException
         DeadlineCmd -> Console : println(error)
+        activate Console
         Console -> User : prompt for new input
+        deactivate Console
         User -> DeadlineCmd : provide new parts
     else valid input
         DeadlineCmd -> Formatter : isValidDateTime(deadlineInput)
+        activate Formatter
         Formatter --> DeadlineCmd : true
+        deactivate Formatter
+
         DeadlineCmd -> Deadline : new(taskName, false, deadlineInput)
+        activate Deadline
+        deactivate Deadline
+
         DeadlineCmd -> TaskList : addTask(dl)
+        activate TaskList
+        deactivate TaskList
     end
 end
 
+deactivate DeadlineCmd
 @enduml

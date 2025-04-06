@@ -8,15 +8,24 @@ participant "TaskList" as TaskList
 participant "System" as Console
 
 User -> RenameCmd : execute(parts, taskList)
+activate RenameCmd
 
 RenameCmd -> RenameCmd : split(parts)
+
 alt valid input (taskNumber and newTaskName)
     RenameCmd -> TaskList : renameTask(taskNumber, newTaskName)
+    activate TaskList
+    deactivate TaskList
 else missing part
     RenameCmd -> RenameCmd : throw TASyncException
     RenameCmd -> Console : println(e.getMessage())
+    activate Console
+    deactivate Console
 else invalid task number
     RenameCmd -> Console : println("Invalid task number format.")
+    activate Console
+    deactivate Console
 end
 
+deactivate RenameCmd
 @enduml
