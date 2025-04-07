@@ -480,6 +480,7 @@ and instantiating and saving a Marks object with the details to the given studen
 
 `AddMarksCommand#execute()`
 - ![AddMarksCommand.png](diagrams/markslistcommands/AddMarksCommand.png)
+- - Reference diagrams provided at the end of this section.
 - Validates the input to ensure it follows the expected format and is not missing arguments.
 - Parses the input to extract the tutorial class code, matric number, assignment name, marks and maximum marks.
 - Validates parsed inputs marks and maximum marks to make sure they are valid, non-negative integers with maximum marks >= marks.
@@ -504,6 +505,7 @@ corresponding `Marks` object from the student's `marksList`.
 
 #### `DeleteMarksCommand#execute()`
 - ![DeleteMarksCommand.png](diagrams/markslistcommands/DeleteMarksCommand.png)
+- - Reference diagrams provided at the end of this section.
 - Validates the input to ensure it follows the expected format and is not missing arguments.
 - Parses the input to extract the tutorial class code, matric number, and assignment name.
 - Retrieves the `TutorialClass` with the given tutorial class code.
@@ -527,6 +529,7 @@ the student.
 
 #### `ListMarksCommand#execute()`
 - ![ListMarksCommand.png](diagrams/markslistcommands/ListMarksCommand.png)
+- - Reference diagrams provided at the end of this section.
 - Validates the input to ensure it follows the expected format and is not missing arguments.
 - Parses the input to extract the tutorial class code and matric number.
 - Retrieves the `TutorialClass` with the given tutorial class code.
@@ -535,6 +538,10 @@ the student.
 - Checks if the student exists, prints an error message otherwise.
 - Prints the student's name followed by all marks recorded in their `marksList`.
 
+#### Reference diagrams
+1. ![FindTutorialByName](diagrams/markslistcommands/FindTutorialByName.png)
+2. ![FindStudentByMatricNumber](diagrams/markslistcommands/FindStudentByMatricNumber.png)
+3. ![FindMarksByAssignmentName](diagrams/markslistcommands/FindMarksByAssignmentName.png)
 
 ### Task Commands
 

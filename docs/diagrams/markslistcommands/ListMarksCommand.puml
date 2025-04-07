@@ -7,64 +7,71 @@ participant "StudentList" as StudentList
 participant "Student" as Student
 participant "MarksList" as MarksList
 participant "Marks" as Marks
-participant "TASyncException" as TASyncException
+
+skinparam sequenceReferenceBackgroundColor #f7807c
 
 User -> ListMarksCommand : execute(parts, TutorialClassList)
-
-opt Invalid parts (empty or < 2)
-    ListMarksCommand -> ListMarksCommand : throw TASyncException
-    ListMarksCommand -> TASyncException : getMessage()
-    TASyncException --> ListMarksCommand : "Invalid list marks command."
-    ListMarksCommand -> User : print error message
-end
+activate ListMarksCommand
 
 ListMarksCommand -> TutorialClassList : getTutorialByName(tutorialID)
+activate TutorialClassList
+ref over TutorialClassList, TutorialClass : Find tutorial by name
 TutorialClassList --> ListMarksCommand : TutorialClass
+deactivate TutorialClassList
 
 ListMarksCommand -> TutorialClass : getStartTime()
-TutorialClass --> ListMarksCommand : startTime
-
-opt Tutorial not found
-    ListMarksCommand -> ListMarksCommand : throw TASyncException
-    ListMarksCommand -> TASyncException : getMessage()
-    TASyncException --> ListMarksCommand : "No tutorial class found..."
-    ListMarksCommand -> User : print error message
-end
+activate TutorialClass
+TutorialClass --> ListMarksCommand : null / startTime
+deactivate TutorialClass
 
 ListMarksCommand -> TutorialClass : getStudentList()
+activate TutorialClass
 TutorialClass --> ListMarksCommand : StudentList
+deactivate TutorialClass
 
 ListMarksCommand -> StudentList : getStudentByMatricNumber(matricNumber)
-StudentList --> ListMarksCommand : Student
-
-opt Student not found
-    ListMarksCommand -> ListMarksCommand : throw TASyncException
-    ListMarksCommand -> TASyncException : getMessage()
-    TASyncException --> ListMarksCommand : "No student found with matric number..."
-    ListMarksCommand -> User : print error message
-end
+activate StudentList
+ref over StudentList, Student : Find student by matric
+StudentList --> ListMarksCommand : null / Student
+deactivate StudentList
 
 ListMarksCommand -> Student : getMatricNumber()
+activate Student
 Student --> ListMarksCommand : matricNumber
+deactivate Student
 
 ListMarksCommand -> Student : getMarksList()
+activate Student
 Student --> ListMarksCommand : MarksList
+deactivate Student
 
 ListMarksCommand -> MarksList : printMarks()
+activate MarksList
 
 alt MarksList is empty
-      MarksList -> User: print "No marks added yet."
+    MarksList -> User : print "No marks added yet."
 else MarksList is not empty
-      loop all marks in list
-      MarksList -> Marks : toString()
-      Marks --> MarksList : string representation
-      MarksList --> User : print marks string
-      MarksList -> Marks : marks.getMarks()
-      MarksList -> Marks : marks.getMaxMark()
-      MarksList -> User : print "Average: avgPercent%"
-      end
-  end
-  MarksList --> ListMarksCommand : return
+    loop all marks in list
+        MarksList -> Marks : toString()
+        activate Marks
+        Marks --> MarksList : string representation
+        deactivate Marks
+        MarksList --> User : print marks string
+        MarksList -> Marks : marks.getMarks()
+        activate Marks
+        Marks --> MarksList
+        deactivate Marks
+        MarksList -> Marks : marks.getMaxMark()
+        activate Marks
+        Marks --> MarksList
+        deactivate Marks
+        MarksList -> User : print "Average: avgPercent%"
+    end
+end
 
-ListMarksCommand -> User : return
+MarksList --> ListMarksCommand : return
+deactivate MarksList
+
+ListMarksCommand --> User : return
+deactivate ListMarksCommand
 @enduml

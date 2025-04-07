@@ -6,68 +6,67 @@ participant "TutorialClass" as TClass
 participant "StudentList" as SList
 participant "Student" as Student
 participant "MarksList" as MList
-participant "TASyncException" as TASyncEx
+participant "Marks" as Marks
+
+skinparam sequenceReferenceBackgroundColor #f7807c
 
 User -> MarksCommand : execute(parts, TClassList)
-
-opt Invalid parts (empty or < 5)
-    MarksCommand -> MarksCommand : throw TASyncException
-    MarksCommand -> TASyncEx : getMessage()
-    TASyncEx --> MarksCommand : "Invalid new marks command."
-    MarksCommand -> User : print error message
-end
+activate MarksCommand
 
 MarksCommand -> TClassList : getTutorialByName(tutorialID)
+activate TClassList
+ref over TClassList, TClass : Find tutorial by name
 TClassList --> MarksCommand : TutorialClass
+deactivate TClassList
 
 MarksCommand -> TClass : getStartTime()
+activate TClass
 TClass --> MarksCommand : startTime
-
-opt Tutorial not found
-    MarksCommand -> MarksCommand : throw TASyncException
-    MarksCommand -> TASyncEx : getMessage()
-    TASyncEx --> MarksCommand : "No tutorial class found..."
-    MarksCommand -> User : print error message
-end
+deactivate TClass
 
 MarksCommand -> TClass : getStudentList()
+activate TClass
 TClass --> MarksCommand : StudentList
+deactivate TClass
 
 MarksCommand -> SList : getStudentByMatricNumber(matricNumber)
+activate SList
+ref over SList, Student : Find student by matric
 SList --> MarksCommand : Student
-
-opt Student not found
-    MarksCommand -> MarksCommand : throw TASyncException
-    MarksCommand -> TASyncEx : getMessage()
-    TASyncEx --> MarksCommand : "No student found with matric number..."
-    MarksCommand -> User : print error message
-end
+deactivate SList
 
 MarksCommand -> Student : getMarksList()
+activate Student
 Student --> MarksCommand : MarksList
+deactivate Student
 
 MarksCommand -> MList : getByAssignmentName(assignmentName)
+activate MList
+ref over MList, Marks : Find marks by name
 MList --> MarksCommand : null / existingMarks
-
-opt Marks already exists
-    MarksCommand -> MarksCommand : throw TASyncException
-    MarksCommand -> TASyncEx : getMessage()
-    TASyncEx --> MarksCommand : "Marks with assignment name already exists."
-    MarksCommand -> User : print error message
-end
+deactivate MList
 
 create Marks
 MarksCommand -> Marks : Marks(assignmentName, marks, maxMark)
+activate Marks
 Marks --> MarksCommand : newMarks
+deactivate Marks
 
 MarksCommand -> MList : addMarks(newMarks)
+activate MList
 MList --> MarksCommand
+deactivate MList
 
 MarksCommand -> Student : getName()
+activate Student
 Student --> MarksCommand : studentName
+deactivate Student
 
 MarksCommand -> Marks : toString()
+activate Marks
 Marks --> MarksCommand : stringRepresentation
+deactivate Marks
 
 MarksCommand -> User : Print confirmation and mark info
+deactivate MarksCommand
 @enduml

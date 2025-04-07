@@ -6,58 +6,56 @@ participant "TutorialClass" as TutorialClass
 participant "StudentList" as StudentList
 participant "Student" as Student
 participant "MarksList" as MarksList
-participant "TASyncException" as TASyncException
+
+skinparam sequenceReferenceBackgroundColor #f7807c
 
 User -> DeleteMarksCommand : execute(parts, TutorialClassList)
-
-opt Invalid parts (empty or < 3)
-    DeleteMarksCommand -> DeleteMarksCommand : throw TASyncException
-    DeleteMarksCommand -> TASyncException : getMessage()
-    TASyncException --> DeleteMarksCommand : "Invalid delete marks command."
-    DeleteMarksCommand -> User : print error message
-end
+activate DeleteMarksCommand
 
 DeleteMarksCommand -> TutorialClassList : getTutorialByName(tutorialID)
+activate TutorialClassList
+ref over TutorialClassList, TutorialClass : getTutorialByName
 TutorialClassList --> DeleteMarksCommand : TutorialClass
+deactivate TutorialClassList
 
 DeleteMarksCommand -> TutorialClass : getStartTime()
-TutorialClass --> DeleteMarksCommand : startTime
-
-opt Tutorial not found
-    DeleteMarksCommand -> DeleteMarksCommand : throw TASyncException
-    DeleteMarksCommand -> TASyncException : getMessage()
-    TASyncException --> DeleteMarksCommand : "No tutorial class found..."
-    DeleteMarksCommand -> User : print error message
-end
+activate TutorialClass
+TutorialClass --> DeleteMarksCommand : null / startTime
+deactivate TutorialClass
 
 DeleteMarksCommand -> TutorialClass : getStudentList()
+activate TutorialClass
 TutorialClass --> DeleteMarksCommand : StudentList
+deactivate TutorialClass
 
 DeleteMarksCommand -> StudentList : getStudentByMatricNumber(matricNumber)
-StudentList --> DeleteMarksCommand : Student
-
-opt Student not found
-    DeleteMarksCommand -> DeleteMarksCommand : throw TASyncException
-    DeleteMarksCommand -> TASyncException : getMessage()
-    TASyncException --> DeleteMarksCommand : "No student found with matric number..."
-    DeleteMarksCommand -> User : print error message
-end
+activate StudentList
+ref over StudentList, Student : getStudentByMatricNumber
+StudentList --> DeleteMarksCommand : null / Student
+deactivate StudentList
 
 DeleteMarksCommand -> Student : getMarksList()
+activate Student
 Student --> DeleteMarksCommand : MarksList
+deactivate Student
 
 DeleteMarksCommand -> MarksList : getByAssignmentName(assignmentName)
-MarksList --> DeleteMarksCommand : marksToDelete
+activate MarksList
+ref over MarksList, Marks : getByAssignmentName
+MarksList --> DeleteMarksCommand : null / marksToDelete
+deactivate MarksList
 
-opt Marks not found
-    DeleteMarksCommand -> DeleteMarksCommand : throw TASyncException
-    DeleteMarksCommand -> TASyncException : getMessage()
-    TASyncException --> DeleteMarksCommand : "No marks found with assignment name..."
-    DeleteMarksCommand -> User : print error message
+alt Marks not found
+    DeleteMarksCommand -> User : print "No marks found with assignment name..."
+else Marks found
+    DeleteMarksCommand -> MarksList : deleteMarks(marksToDelete)
+    activate MarksList
+    MarksList --> DeleteMarksCommand
+    deactivate MarksList
+
+    DeleteMarksCommand -> User : print "Marks successfully deleted."
 end
 
-DeleteMarksCommand -> MarksList : deleteMarks(marksToDelete)
-MarksList --> DeleteMarksCommand : success
-
-DeleteMarksCommand -> User : print success message ("Marks successfully deleted.")
+DeleteMarksCommand --> User: return
+deactivate DeleteMarksCommand
 @enduml
