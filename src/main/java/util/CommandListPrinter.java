@@ -87,13 +87,14 @@ public class CommandListPrinter {
                 "Finds a student by name or matric number\n  Usage: FIND -t <keyword>";
         case ADD_MARKS ->
                 "Adds new marks for a student\n  " +
-                        "Usage: NEWMARKS -m <tut_id>,<matric_num>,<assignment_name>,<marks_achieved> <max_marks>";
+                        "Usage: NEWMARKS -m <tut_id>,<matric_num>,<assignment_name>,<marks_achieved>,<max_marks>";
         case DELETE_MARKS ->
                 "Deletes marks for a student\n  Usage: DELETEMARKS -m <tutorial_id>,<matric_number>,<assignment_name>";
         case LIST_MARKS ->
                 "Lists marks for a student\n  Usage: LIST -m <tutorial_id>,<matric_number>";
         case NEW_TUTORIAL ->
-                "Creates a new tutorial\n  Usage: NEWTUTORIAL -t <tutorial_name>,<day_of_week>,<start_time> <end_time>";
+                "Creates a new tutorial\n  Usage: NEWTUTORIAL -t <tutorial_name>,<day_of_week>," +
+                        "<start_time>,<end_time>";
         case DELETE_TUTORIAL ->
                 "Deletes a tutorial\n  Usage: DELETE -t <tutorial_name>";
         case LISTTUTORIALS ->
