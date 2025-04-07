@@ -4,26 +4,27 @@ actor user
 autonumber
 
 participant "CommentOnStudent: Command<Attendancefile>" as command
-participant "parts: String" as parts
-participant "partsArray2: String[]" as partsArray
-participant "comments : java.util.ArrayList" as comments
-participant "comment : java.lang.String" as comment
+participant "parts" as parts
+participant "partsArray2" as partsArray
+participant "comments " as comments
+participant "comment " as comment
 participant "listOfAttendanceList : AttendanceFile" as listOfAttendanceList
 participant "theOne : AttendanceList" as theOne
 participant "StudentList" as studentList
 participant "TutorialClass" as tutorialClass
-participant "e : TASyncException" as e
-participant "n : NumberFormatException" as n
-
 
 skinparam sequenceReferenceBackgroundColor #f7807c
-skinparam sequenceAltBackgroundColor #f7807c
 
 
 user -> command : execute(parts : String, target : T)
 activate command
-alt try
-
+alt parts null or is empty
+command -> command : throw TASyncException()
+command --> user : print error message
+else second param is non-number string
+command -> command : throw NumberFormatException()
+command --> user : print error message
+else input is valid
     command -> parts : split("//")
     activate parts
     parts --> command : partsArray2
@@ -36,14 +37,21 @@ alt try
     activate partsArray
     command <-- partsArray : commentsArray
     deactivate partsArray
+    alt commentsArray size is zero or partsArray size is not 4
+    command -> command : throw TASyncException()
+    command --> user : print error message
+    else
     create comments
     command -> comments
     activate comments
 
     loop for each commentsArray
-    command -> comments : add(comment.trim())
+    activate comment
     command -> comment : trim()
+    command -> comments : add(comment.trim())
+
     end loop
+    deactivate comment
 
 ref over command, listOfAttendanceList, theOne, tutorialClass, studentList
 find student in tutorial
@@ -56,19 +64,10 @@ end ref
     deactivate comments
 
 deactivate theOne
-    command -> e : e.getMessage()
-        activate e
-        e --> command : return error message
-        deactivate e
-        command --> user  : print error message
 
-        else catch NumberFormatException
-         command -> n : n.getMessage()
-         activate n
-         n --> command : return error message
-         deactivate n
-         command --> user : error message
 end
+end
+
 destroy parts
 destroy partsArray
 destroy comments
