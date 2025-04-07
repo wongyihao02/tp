@@ -8,7 +8,7 @@ class CommandHandler {
 class TASync {
 }
 class CommandFactory {
-    + _createCommand(commandString : String): Command
+    + createCommand(commandString : String): Command
 }
 class UI {
     + printWelcome()
@@ -64,18 +64,31 @@ class DataManager{
     + getAttendanceFilePath() : String
     + ensureFileAndDirectoryExist(filePath :String, directoryPath: String )
 
-
-
 }
-interface FileLoader<T> {
+
+class TaskCommands
+
+class MarksCommands
+
+class AttendanceListCommands
+
+class StudentCommands
+
+class TutorialCommands
+
+class XYZFileLoaders
+
+class XYZFileSavers
+
+interface "<<interface>> \n FileLoader<T>" {
     + loadFromFile() : T
 }
 
-interface FileSaver<T> {
+interface "<<interface>> \n FileSaver<T>" {
     + saveToFile(data: T) : void
 }
 
-interface Command<T> {
+interface "<<interface>> Command<T>" {
     + execute(parts : String , target : T) : void
 }
 
@@ -85,8 +98,8 @@ CommandLoopHandler --> TutorialClassList
 CommandLoopHandler --> CommandParser
 CommandLoopHandler --> CommandHandler
 CommandHandler --> CommandFactory
-CommandFactory --> Command
-CommandHandler --> Command
+CommandFactory --> "<<interface>> Command<T>"
+CommandHandler --> "<<interface>> Command<T>"
 CommandHandler --> StudentList
 CommandHandler --> TutorialClassList
 CommandHandler --> AttendanceFile
@@ -97,14 +110,18 @@ TASync --> CommandLoopHandler
 TASync --> DataLoader
 TASync --> DataManager
 DataLoader o-- DataManager
-DataManager --> FileSaver
-DataManager --> FileLoader
+DataManager --> "<<interface>> \n FileSaver<T>"
+DataManager --> "<<interface>> \n FileLoader<T>"
 
-Command <|.. TaskCommands : <<implements>>
-Command <|.. MarksCommands : <<implements>>
-Command <|.. AttendanceListCommands : <<implements>>
-Command <|.. StudentCommands : <<implements>>
-Command <|.. TutorialCommands : <<implements>>
+"<<interface>> Command<T>"  <|.. TaskCommands : <<implements>>
+"<<interface>> Command<T>"  <|.. MarksCommands : <<implements>>
+"<<interface>> Command<T>"  <|.. AttendanceListCommands : <<implements>>
+"<<interface>> Command<T>"  <|.. StudentCommands : <<implements>>
+"<<interface>> Command<T>"  <|.. TutorialCommands : <<implements>>
+
+"<<interface>> \n FileLoader<T>" <|.. XYZFileLoaders : <<implements>>
+"<<interface>> \n FileSaver<T>" <|.. XYZFileSavers : <<implements>>
+
 
 Task <|-- Todo
 Task <|-- Deadline
@@ -116,49 +133,5 @@ StudentList --> Student
 MarksList --> Marks
 AttendanceFile --> AttendanceList
 
-package TaskCommands {
-  class ListTaskCommand
-  class DeleteTaskCommand
-  class MarkTaskCommand
-  class UnmarkTaskCommand
-  class FindTaskCommand
-  class RenameTaskCommand
-  class TodoCommand
-  class DeadlineCommand
-  class EventCommand
-  class ConsultationCommand
-}
-
-package MarksCommands {
-  class AddMarksCommand
-  class ListMarksCommand
-  class DeleteMarksCommand
-}
-
-package AttendanceListCommands {
-  class CommentOnStudentCommand
-  class CreateNewAttendanceListCommand
-  class DeleteStudentCommentCommand
-  class MarkStudentAttendanceCommand
-  class ShowAttendanceListCommand
-  class ViewStudentCommentsCommand
-  class UnmarkStudentAttendanceCommand
-}
-
-package StudentCommands {
-  class ChangeRemarkCommand
-  class DeleteStudentCommand
-  class CheckRemarkCommand
-  class FindStudentCommand
-  class NewStudentCommand
-  class StudentCommandHelper
-}
-
-package TutorialCommands {
-  class NewTutorialCommand
-  class DeleteTutorialCommand
-  class ListExistingTutorialsCommand
-  class ListTutorialStudentsCommand
-}
 
 @enduml

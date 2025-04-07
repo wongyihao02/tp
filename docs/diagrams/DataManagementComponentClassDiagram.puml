@@ -1,0 +1,39 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+class DataLoader{
+    + loadTutorialClasses()
+    + loadAttendanceFile(tutorialList : TutorialClassList)
+}
+class DataManager{
+    - DIRECTORY_PATH : String
+    - TUTORIAL_FILE_PATH : String
+    - ATTENDANCE_FILE_PATH : String
+    - MARKS_FILE_PATH : String
+    + loadTutorials()
+    + loadAttendanceFiles(classList : TutorialClassList)
+    + loadMarks(tutorialClassList : TutorialClassList)
+    + saveTutorials(tutorialList: TutorialClassList)
+    + saveAttendanceFile(attendanceFile : AttendanceFile)
+    + saveMarksList(tutorialList: TutorialClassList)
+    + getTutorialFilePath() : String
+    + getAttendanceFilePath() : String
+    + ensureFileAndDirectoryExist(filePath :String, directoryPath: String )
+
+}
+
+interface "<<interface>> \n FileLoader<T>" {
+    + loadFromFile() : T
+}
+
+interface "<<interface>> \n FileSaver<T>" {
+    + saveToFile(data: T) : void
+}
+
+DataLoader o-- DataManager
+DataManager --> "<<interface>> \n FileSaver<T>"
+DataManager --> "<<interface>> \n FileLoader<T>"
+"<<interface>> \n FileLoader<T>" <|.. XYZFileLoaders : <<implements>>
+"<<interface>> \n FileSaver<T>" <|.. XYZFileSavers : <<implements>>
+
+@enduml

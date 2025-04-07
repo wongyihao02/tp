@@ -1,0 +1,92 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+class CommandHandler {
+    - parts : String
+    + runCommand()
+}
+class TASync {
+}
+class CommandFactory {
+    + createCommand(commandString : String): Command
+}
+class UI {
+    + printWelcome()
+    + displayDailySchedule()
+    + printMessage()
+    + getUserCommand()
+    + printLogin()
+    + printCreatePasswordMenu()
+    + printDottedLine()
+    + printGoodbye()
+    + close()
+}
+class CommandParser {
+    - parts[]: String
+    + getParts: String[]
+}
+class TutorialClassList {
+
+}
+class CommandLoopHandler {
+    - ui : UI
+    - taskList : TaskList
+    - studentList : StudentList
+    - tutorialList : TutorialClassList
+    - attendanceFile : AttendanceFile
+    - dataManager : DataManager
+    + runCommandLoop()
+}
+
+class DataLoader{
+    + loadTutorialClasses()
+    + loadAttendanceFile(tutorialList : TutorialClassList)
+}
+class DataManager{
+
+}
+
+class XYZTasks
+
+class XYZCommands
+
+
+
+
+interface "<<interface>> Command<T>" {
+    + execute(parts : String , target : T) : void
+}
+
+CommandLoopHandler --> UI
+CommandLoopHandler --> AttendanceFile
+CommandLoopHandler --> TutorialClassList
+CommandLoopHandler --> CommandParser
+CommandLoopHandler --> CommandHandler
+CommandHandler --> CommandFactory
+CommandFactory --> "<<interface>> Command<T>"
+CommandHandler --> "<<interface>> Command<T>"
+CommandHandler --> StudentList
+CommandHandler --> TutorialClassList
+CommandHandler --> TaskList
+CommandHandler --> MarksList
+CommandLoopHandler --> DataManager
+TASync --> CommandLoopHandler
+TASync --> DataLoader
+TASync --> DataManager
+DataLoader o-- DataManager
+
+
+"<<interface>> Command<T>"  <|.. XYZCommands : <<implements>>
+
+
+
+Task <|-- XYZTasks
+
+TaskList --> Task
+TutorialClassList --> TutorialClass
+StudentList --> Student
+MarksList --> Marks
+AttendanceFile --> AttendanceList
+
+
+@enduml

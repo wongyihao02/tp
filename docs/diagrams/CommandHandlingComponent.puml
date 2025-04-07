@@ -1,0 +1,36 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+    class CommandHandler {
+        - parts : String
+        + runCommand()
+    }
+
+    class CommandFactory {
+        + createCommand(commandString : String): Command
+    }
+
+    class CommandParser {
+        - parts[] : String
+        + getParts : String[]
+    }
+
+    class CommandLoopHandler {
+        - ui : UI
+        - taskList : TaskList
+        - studentList : StudentList
+        - tutorialList : TutorialClassList
+        - attendanceFile : AttendanceFile
+        - dataManager : DataManager
+        + runCommandLoop()
+    }
+
+    class XYZCommands
+
+CommandLoopHandler --> CommandParser
+CommandLoopHandler --> CommandHandler
+CommandHandler --> CommandFactory
+CommandFactory --> XYZCommands
+
+@enduml
