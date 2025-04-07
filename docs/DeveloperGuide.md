@@ -4,7 +4,14 @@
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
-## **Design & implementation**
+## **Design**
+
+Firstly, the overall class diagram of TASync is provided below. It gives a quick overview of the key classes that work with one another
+to create a functional TASync program and is not fully comprehensive. The focus of this diagram is to provide a high-level understanding of the system's structure,
+with further details, such as class methods, attributes, and specific interactions omitted. This serves as a foundation for understanding the
+key components and how they contribute to the overall functionality of TASync.
+
+## **implementation**
 
 This section describes some important details on how certain features in TASync are implemented.
 
@@ -95,6 +102,234 @@ The `CommandFactory` is responsible for returning the correct command object for
   - `CommandHandler` uses `createCommand()` method from `CommandFactory` to generate `Command` Object
   - The CommandLoopHandler then calls `runCommand()` method in `CommandHandler`
   - CommandHandler then runs the Command
+### Tutorial Commands
+
+#### 1. NewTutorialCommand
+
+The `NewTutorialCommand` is part of the `tutorialcommands` package and is responsible for adding a new tutorial class
+to the tutorial class list. This operation ensures that the tutorial class is valid, does not duplicate an
+existing class, and has the correct details.
+
+#### Implementation Details
+
+The `NewTutorialCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for parsing
+the input, validating the tutorial details, and adding the new tutorial to the list.
+
+#### Operations
+
+The class implements the following main operation:
+
+- `NewTutorialCommand#execute()`
+  - **Parses the input** to extract the tutorial details: name, day of the week, start time, and end time.
+  - **Validates the input** to ensure:
+    - The input is not empty or invalid.
+    - The day of the week is a valid integer between 1 and 7.
+    - The start and end times are in a valid format.
+    - The tutorial is not a duplicate of an existing tutorial in the list.
+  - **Checks if a duplicate tutorial exists** by comparing the tutorial name, day of the week, start time, and end time.
+  - If a duplicate is found, throws a `TASyncException.duplicateTutorial()` exception.
+  - If the tutorial details are valid and no duplicates are found, creates a new `TutorialClass` object.
+  - Adds the new tutorial to the tutorial class list.
+  - Prints a success message upon successful addition of the tutorial.
+  - If the input or any other data is invalid, catches and handles exceptions and displays appropriate error messages.
+
+#### 2. DeleteTutorialCommand
+
+The `DeleteTutorialCommand` is part of the `tutorialcommands` package and is responsible for removing a tutorial class
+from the tutorial class list by its name. This operation ensures that a tutorial class is deleted if it exists,
+and provides appropriate feedback if the class does not exist in the list.
+
+#### Implementation Details
+
+The `DeleteTutorialCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for parsing
+the input, validating it, and deleting the corresponding tutorial class from the list.
+
+#### Operations
+
+The class implements the following main operation:
+
+- `DeleteTutorialCommand#execute()`
+  - **Validates the input** to ensure that the tutorial class code is not empty or invalid.
+  - **Searches for the tutorial class** by its name (code) in the tutorial class list.
+  - If the tutorial class is found, it is removed from the list.
+  - **Handles cases where no tutorial class is found** with the specified code and displays a message indicating that the tutorial class does not exist.
+  - **Error handling**: Catches any exceptions that occur during the execution and displays the error message.
+
+
+#### 3. ListTutorialStudentsCommand
+
+The `ListTutorialStudentsCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for
+parsing the input, validating the tutorial name, and listing the students enrolled in the specified tutorial class.
+
+#### Implementation Details
+
+The `ListTutorialStudentsCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for
+parsing the input, validating the tutorial name, and listing the students enrolled in the specified tutorial class.
+
+#### Operations
+
+The class implements the following main operation:
+
+- `ListTutorialStudentsCommand#execute()`
+  - **Validates the input** to ensure the tutorial name is not empty or invalid.
+  - **Searches for the tutorial class** by its name within the list of tutorial classes.
+  - If the tutorial class is found, it retrieves the list of students enrolled in the tutorial class.
+  - If there are no students enrolled, a message is displayed indicating that the tutorial has no students.
+  - If students are found, their details are printed.
+  - **Error handling**: If the tutorial name does not match any existing tutorial class or the input is invalid,
+    an exception is thrown, and an error message is displayed.
+
+#### 4. ListUpcomingTutorialsCommand
+
+The `ListUpcomingTutorialsCommand` is part of the `tutorialcommands` package and is responsible for listing all upcoming
+tutorial sessions from the current date until a given end date. The tutorials are displayed with their names, dates, and times.
+If the input is invalid or any exceptions occur, appropriate error messages are displayed.
+
+#### Implementation Details
+
+The `ListUpcomingTutorialsCommand` class implements the `Command<TutorialClassList>` interface. It handles parsing the input,
+validating the date, and listing the upcoming tutorials that fall within the specified date range.
+
+#### Operations
+
+The class implements the following main operation:
+
+- `ListUpcomingTutorialsCommand#execute()`
+  - **Validates the input**: Ensures the end date string is not null or empty.
+  - **Parses the input date**: Converts the input end date string into a `LocalDate` format using `DateTimeFormatterUtil.parseDate()`.
+  - **Calculates the first upcoming tutorial date**: Determines the next occurrence of the first tutorial class based on the current date and the day of the week.
+  - **Lists tutorials**: Iterates through the tutorial classes, printing their names, dates, start times, and end times for each tutorial class that happens before the end date.
+  - **Error handling**: If any exceptions occur during parsing or processing, the relevant error messages are displayed.
+
+
+### **Student Commands**
+
+The `studentcommands` package includes commands that handle student-related functionalities in TASync.
+These commands interact with the tutorial classes and the student list, allowing users to manage student records
+effectively.
+
+#### 1. NewStudentCommand
+
+The NewStudentCommand is part of the `studentcommands` package and is responsible for adding a new student to a
+specific tutorial class.
+
+#### Implementation Details
+
+The NewStudentCommand class implements the Command<TutorialClassList> interface. It is responsible for parsing the input to
+extract the student’s details, validating them, and adding the student to the appropriate tutorial class.
+#### Operations
+
+The class implements the following main operation:
+
+- `NewStudentCommand#execute()`
+  - **Parses the input** to extract the student’s name, date of birth (DOB), gender, contact number, matriculation number, and tutorial class code.
+  - **Validates the student details** to ensure they are correctly formatted and do not contain any errors.
+  - Retrieves the specified tutorial class based on the provided class code.
+  - Checks if the matriculation number already exists in the class. If it does, an error message is shown.
+  - Creates a new Student object and adds it to the student list of the tutorial class.
+  - Logs and displays a success message if the student is successfully added to the tutorial class.
+  - Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
+
+#### 2. DeleteStudentCommand
+
+The `DeleteStudentCommand` is part of the `studentcommands` package and is responsible for removing a
+student from a specific tutorial class.
+
+#### Implementation Details
+
+The `DeleteStudentCommand` class implements the Command<TutorialClassList> interface. It is responsible for
+parsing the input to extract the tutorial class code and matriculation number, validating them, and removing
+the student from the appropriate tutorial class.
+
+#### Operations
+
+The class implements the following main operation:
+
+- `DeleteStudentCommand#execute()`
+  - **Parses the input** to extract the tutorial class code and matriculation number.
+  - **Validates the input** to ensure it follows the expected format and does not contain any errors.
+  - Retrieves the specified tutorial class based on the provided class code.
+  - Checks if the tutorial class exists. If it does not, an error message is shown.
+  - Retrieves the student list from the tutorial class.
+  - Checks if the student with the given matriculation number exists in the class.
+  - If the student exists, removes them from the student list and displays a success message.
+  - If the student does not exist, an error message is shown indicating that no such student was found.
+  - Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
+
+#### 3. ChangeRemarkCommand
+
+The `ChangeRemarkCommand` is part of the `studentcommands` package and is responsible for modifying the remark of a
+student in a specific tutorial class.
+
+#### Implementation Details
+
+The `ChangeRemarkCommand` class implements the `Command<TutorialClassList>` interface and modifies a student's remark based
+on the provided tutorial class code and matriculation number.
+
+#### Operations
+
+The class implements the following main operation:
+
+- `ChangeRemarkCommand#execute()`
+  - **Parses the input** to extract the tutorial class code, matriculation number and new remark.
+  - Retrieves the specified tutorial class and student.
+  - Updates the student's remark and displays a confirmation message.
+  - If the tutorial class or student is not found, an error message is shown.
+
+This command is executed as part of the TASync system when a user provides a properly formatted input string.
+
+
+#### 4. CheckRemarkCommand
+
+The `CheckRemarkCommand` is part of the `studentcommands` package and is responsible for retrieving and displaying
+a student’s remark in a specific tutorial class.
+
+#### Implementation Details
+
+The `CheckRemarkCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for parsing the input
+to extract the tutorial class code and matriculation number, validating them, and retrieving the remark of the specified student.
+
+#### Operations
+
+The class implements the following main operation:
+
+- `CheckRemarkCommand#execute()`
+  - **Parses the input** to extract the tutorial class code and matriculation number.
+  - **Validates the input** to ensure it follows the expected format and does not contain any errors.
+  - **Retrieves the specified tutorial class** based on the provided class code.
+  - **Checks if the tutorial class exists**
+    - If it does not, an error message is shown.
+  - Retrieves the student list from the tutorial class.
+  - Checks if the student with the given matriculation number exists in the class.
+  - If the student exists, retrieves their remark.
+  - If the student has a remark, displays it. Otherwise, indicates that no remarks were found.
+  - If the student does not exist, an error message is shown indicating that no such student was found.
+  - Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
+
+#### 5. FindStudentCommand
+
+The `FindStudentCommand` is part of the `studentcommands` package and is responsible for searching for students by partial
+matching of their name or matriculation number across all tutorial classes.
+
+#### Implementation Details
+
+The `FindStudentCommand` class implements the `Command<TutorialClassList> interface`. It is responsible for parsing the input to
+extract the search keyword, validating it, and searching for students who match the keyword in any tutorial class.
+
+#### Operations
+
+The class implements the following main operation:
+
+- `FindStudentCommand#execute()`
+  - **Parses the input** to extract the search keyword.
+  - **Validates the keyword** to ensure it is not empty. If the input is invalid, an error message is displayed.
+  - Iterates through each tutorial class in the tutorial class list.
+  - Retrieves the list of students in each tutorial class.
+  - Checks if any student's name or matriculation number partially matches the keyword (case-insensitive).
+  - If a match is found, prints the tutorial class name and the matching students.
+  - If no matching students are found in any tutorial class, prints a message indicating that no results were found.
+  - Handles any exceptions by displaying relevant error messages if validation fails.
+
 
 ### Attendance List Commands
 #### Class diagram for attendanceListCommands
@@ -245,233 +480,6 @@ AttendanceFile as the second element.
   - An error message will be printed when an Exception is handled.
 ![CreateNewAttendanceListCommand.png](diagrams/attendancelistcommands/CreateNewAttendanceListCommand.png)
   - Sequence diagram
-
-### **Student Commands**
-
-The `studentcommands` package includes commands that handle student-related functionalities in TASync. 
-These commands interact with the tutorial classes and the student list, allowing users to manage student records 
-effectively. 
-
-#### 1. NewStudentCommand
-
-The NewStudentCommand is part of the `studentcommands` package and is responsible for adding a new student to a
-specific tutorial class.
-
-#### Implementation Details
-
-The NewStudentCommand class implements the Command<TutorialClassList> interface. It is responsible for parsing the input to
-extract the student’s details, validating them, and adding the student to the appropriate tutorial class.
-#### Operations
-
-The class implements the following main operation:
-
-- `NewStudentCommand#execute()`
-  - **Parses the input** to extract the student’s name, date of birth (DOB), gender, contact number, matriculation number, and tutorial class code. 
-  - **Validates the student details** to ensure they are correctly formatted and do not contain any errors. 
-  - Retrieves the specified tutorial class based on the provided class code. 
-  - Checks if the matriculation number already exists in the class. If it does, an error message is shown. 
-  - Creates a new Student object and adds it to the student list of the tutorial class. 
-  - Logs and displays a success message if the student is successfully added to the tutorial class. 
-  - Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
-
-#### 2. DeleteStudentCommand
-
-The `DeleteStudentCommand` is part of the `studentcommands` package and is responsible for removing a 
-student from a specific tutorial class.
-
-#### Implementation Details
-
-The `DeleteStudentCommand` class implements the Command<TutorialClassList> interface. It is responsible for
-parsing the input to extract the tutorial class code and matriculation number, validating them, and removing 
-the student from the appropriate tutorial class.
-
-#### Operations
-
-The class implements the following main operation:
-
-- `DeleteStudentCommand#execute()`
-  - **Parses the input** to extract the tutorial class code and matriculation number. 
-  - **Validates the input** to ensure it follows the expected format and does not contain any errors. 
-  - Retrieves the specified tutorial class based on the provided class code. 
-  - Checks if the tutorial class exists. If it does not, an error message is shown. 
-  - Retrieves the student list from the tutorial class. 
-  - Checks if the student with the given matriculation number exists in the class. 
-  - If the student exists, removes them from the student list and displays a success message. 
-  - If the student does not exist, an error message is shown indicating that no such student was found. 
-  - Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
-
-#### 3. ChangeRemarkCommand
-
-The `ChangeRemarkCommand` is part of the `studentcommands` package and is responsible for modifying the remark of a
-student in a specific tutorial class.
-
-#### Implementation Details
-
-The `ChangeRemarkCommand` class implements the `Command<TutorialClassList>` interface and modifies a student's remark based 
-on the provided tutorial class code and matriculation number.
-
-#### Operations
-
-The class implements the following main operation:
-
-- `ChangeRemarkCommand#execute()`
-  - **Parses the input** to extract the tutorial class code, matriculation number and new remark.
-  - Retrieves the specified tutorial class and student.
-  - Updates the student's remark and displays a confirmation message.
-  - If the tutorial class or student is not found, an error message is shown.
-
-This command is executed as part of the TASync system when a user provides a properly formatted input string.
-
-
-#### 4. CheckRemarkCommand
-
-The `CheckRemarkCommand` is part of the `studentcommands` package and is responsible for retrieving and displaying
-a student’s remark in a specific tutorial class.
-
-#### Implementation Details
-
-The `CheckRemarkCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for parsing the input
-to extract the tutorial class code and matriculation number, validating them, and retrieving the remark of the specified student.
-
-#### Operations
-
-The class implements the following main operation:
-
-- `CheckRemarkCommand#execute()`
-  - **Parses the input** to extract the tutorial class code and matriculation number. 
-  - **Validates the input** to ensure it follows the expected format and does not contain any errors. 
-  - **Retrieves the specified tutorial class** based on the provided class code. 
-  - **Checks if the tutorial class exists**
-    - If it does not, an error message is shown. 
-  - Retrieves the student list from the tutorial class. 
-  - Checks if the student with the given matriculation number exists in the class. 
-  - If the student exists, retrieves their remark. 
-  - If the student has a remark, displays it. Otherwise, indicates that no remarks were found. 
-  - If the student does not exist, an error message is shown indicating that no such student was found. 
-  - Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
-
-#### 5. FindStudentCommand
-
-The `FindStudentCommand` is part of the `studentcommands` package and is responsible for searching for students by partial 
-matching of their name or matriculation number across all tutorial classes.
-
-#### Implementation Details
-
-The `FindStudentCommand` class implements the `Command<TutorialClassList> interface`. It is responsible for parsing the input to 
-extract the search keyword, validating it, and searching for students who match the keyword in any tutorial class.
-
-#### Operations
-
-The class implements the following main operation:
-
-- `FindStudentCommand#execute()`
-  - **Parses the input** to extract the search keyword. 
-  - **Validates the keyword** to ensure it is not empty. If the input is invalid, an error message is displayed. 
-  - Iterates through each tutorial class in the tutorial class list. 
-  - Retrieves the list of students in each tutorial class. 
-  - Checks if any student's name or matriculation number partially matches the keyword (case-insensitive). 
-  - If a match is found, prints the tutorial class name and the matching students. 
-  - If no matching students are found in any tutorial class, prints a message indicating that no results were found. 
-  - Handles any exceptions by displaying relevant error messages if validation fails.
-
-### Tutorial Commands
-
-#### 1. NewTutorialCommand
-
-The `NewTutorialCommand` is part of the `tutorialcommands` package and is responsible for adding a new tutorial class 
-to the tutorial class list. This operation ensures that the tutorial class is valid, does not duplicate an 
-existing class, and has the correct details.
-
-#### Implementation Details
-
-The `NewTutorialCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for parsing 
-the input, validating the tutorial details, and adding the new tutorial to the list.
-
-#### Operations
-
-The class implements the following main operation:
-
-- `NewTutorialCommand#execute()`
-  - **Parses the input** to extract the tutorial details: name, day of the week, start time, and end time.
-  - **Validates the input** to ensure:
-    - The input is not empty or invalid.
-    - The day of the week is a valid integer between 1 and 7.
-    - The start and end times are in a valid format.
-    - The tutorial is not a duplicate of an existing tutorial in the list.
-  - **Checks if a duplicate tutorial exists** by comparing the tutorial name, day of the week, start time, and end time.
-  - If a duplicate is found, throws a `TASyncException.duplicateTutorial()` exception.
-  - If the tutorial details are valid and no duplicates are found, creates a new `TutorialClass` object.
-  - Adds the new tutorial to the tutorial class list.
-  - Prints a success message upon successful addition of the tutorial.
-  - If the input or any other data is invalid, catches and handles exceptions and displays appropriate error messages.
-
-#### 2. DeleteTutorialCommand
-
-The `DeleteTutorialCommand` is part of the `tutorialcommands` package and is responsible for removing a tutorial class 
-from the tutorial class list by its name. This operation ensures that a tutorial class is deleted if it exists, 
-and provides appropriate feedback if the class does not exist in the list.
-
-#### Implementation Details
-
-The `DeleteTutorialCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for parsing 
-the input, validating it, and deleting the corresponding tutorial class from the list.
-
-#### Operations
-
-The class implements the following main operation:
-
-- `DeleteTutorialCommand#execute()`
-  - **Validates the input** to ensure that the tutorial class code is not empty or invalid.
-  - **Searches for the tutorial class** by its name (code) in the tutorial class list.
-  - If the tutorial class is found, it is removed from the list.
-  - **Handles cases where no tutorial class is found** with the specified code and displays a message indicating that the tutorial class does not exist.
-  - **Error handling**: Catches any exceptions that occur during the execution and displays the error message.
-
-
-#### 3. ListTutorialStudentsCommand
-
-The `ListTutorialStudentsCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for
-parsing the input, validating the tutorial name, and listing the students enrolled in the specified tutorial class.
-
-#### Implementation Details
-
-The `ListTutorialStudentsCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for 
-parsing the input, validating the tutorial name, and listing the students enrolled in the specified tutorial class.
-
-#### Operations
-
-The class implements the following main operation:
-
-- `ListTutorialStudentsCommand#execute()`
-  - **Validates the input** to ensure the tutorial name is not empty or invalid.
-  - **Searches for the tutorial class** by its name within the list of tutorial classes.
-  - If the tutorial class is found, it retrieves the list of students enrolled in the tutorial class.
-  - If there are no students enrolled, a message is displayed indicating that the tutorial has no students.
-  - If students are found, their details are printed.
-  - **Error handling**: If the tutorial name does not match any existing tutorial class or the input is invalid, 
-  an exception is thrown, and an error message is displayed.
-
-#### 4. ListUpcomingTutorialsCommand
-
-The `ListUpcomingTutorialsCommand` is part of the `tutorialcommands` package and is responsible for listing all upcoming
-tutorial sessions from the current date until a given end date. The tutorials are displayed with their names, dates, and times. 
-If the input is invalid or any exceptions occur, appropriate error messages are displayed.
-
-#### Implementation Details
-
-The `ListUpcomingTutorialsCommand` class implements the `Command<TutorialClassList>` interface. It handles parsing the input, 
-validating the date, and listing the upcoming tutorials that fall within the specified date range.
-
-#### Operations
-
-The class implements the following main operation:
-
-- `ListUpcomingTutorialsCommand#execute()`
-  - **Validates the input**: Ensures the end date string is not null or empty.
-  - **Parses the input date**: Converts the input end date string into a `LocalDate` format using `DateTimeFormatterUtil.parseDate()`.
-  - **Calculates the first upcoming tutorial date**: Determines the next occurrence of the first tutorial class based on the current date and the day of the week.
-  - **Lists tutorials**: Iterates through the tutorial classes, printing their names, dates, start times, and end times for each tutorial class that happens before the end date.
-  - **Error handling**: If any exceptions occur during parsing or processing, the relevant error messages are displayed.
 
 ### Marks Commands
 
