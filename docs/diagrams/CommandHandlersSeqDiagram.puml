@@ -1,4 +1,5 @@
 @startuml
+autonumber
 actor User
 participant "CommandLoopHandler" as CLH
 participant CommandFactory as Factory order 10
