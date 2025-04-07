@@ -1,0 +1,95 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+class CommandHandler {
+    - parts : String
+    + runCommand()
+}
+class TASync {
+}
+class CommandFactory {
+    + _createCommand(commandString : String): Command
+}
+class UI {
+    + printWelcome()
+    + displayDailySchedule()
+    + printMessage()
+    + getUserCommand()
+    + printLogin()
+    + printCreatePasswordMenu()
+    + printDottedLine()
+    + printGoodbye()
+    + close()
+}
+class CommandParser {
+    - parts[]: String
+    + getParts: String[]
+}
+class TutorialClassList {
+    + getTutorialClasses()
+    + addTutorialClass()
+    + getTutorialByName()
+    + removeTutorialClass()
+}
+class CommandLoopHandler {
+    - ui : UI
+    - taskList : TaskList
+    - studentList : StudentList
+    - tutorialList : TutorialClassList
+    - attendanceFile : AttendanceFile
+    - dataManager : DataManager
+    + runCommandLoop()
+}
+class AttendanceFile {
+    + getAttendanceList()
+    + getAttendanceByNameAndWeek()
+    + addAttendanceList()
+}
+class DataLoader{
+    + loadTutorialClasses()
+    + loadAttendanceFile(tutorialList : TutorialClassList)
+}
+class DataManager{
+    - DIRECTORY_PATH : String
+    - TUTORIAL_FILE_PATH : String
+    - ATTENDANCE_FILE_PATH : String
+    - MARKS_FILE_PATH : String
+    + loadTutorials()
+    + loadAttendanceFiles(classList : TutorialClassList)
+    + loadMarks(tutorialClassList : TutorialClassList)
+    + saveTutorials(tutorialList: TutorialClassList)
+    + saveAttendanceFile(attendanceFile : AttendanceFile)
+    + saveMarksList(tutorialList: TutorialClassList)
+    + getTutorialFilePath() : String
+    + getAttendanceFilePath() : String
+    + ensureFileAndDirectoryExist(filePath :String, directoryPath: String )
+
+
+
+}
+interface FileLoader<T> {
+    + loadFromFile() : T
+}
+
+interface FileSaver<T> {
+    + saveToFile(data: T) : void
+}
+
+interface Command<T> {
+    + execute(parts : String , target : T) : void
+}
+
+CommandLoopHandler --> UI
+CommandLoopHandler --> AttendanceFile
+CommandLoopHandler --> TutorialClassList
+CommandLoopHandler --> CommandParser
+CommandLoopHandler --> CommandHandler
+CommandHandler --> CommandFactory
+CommandLoopHandler --> Command
+TASync --> CommandLoopHandler
+TASync --> DataLoader
+TASync --> DataManager
+DataLoader o-- DataManager
+DataManager --> FileSaver
+DataManager --> FileLoader
+@enduml
