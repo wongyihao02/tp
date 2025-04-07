@@ -1,0 +1,56 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+interface Command<T> {
+    + execute(parts: String, target: T): void
+}
+
+abstract class TaskCommand {
+    + execute(parts: String, target: TaskList): void
+}
+
+class TaskList {
+    + addTask(todo: Todo): void
+    + deleteTask(taskId: int): void
+    + markTaskAsDone(taskId: int): void
+    + markTaskAsUndone(taskId: int): void
+    + renameTask(taskId: int, newTaskName: String): void
+    + getTasks(): ArrayList<Task>
+}
+
+class Task {
+    + taskName: String
+    + isDone: boolean
+    + taskType: TaskType
+    + getTaskName(): String
+    + setTaskName(name: String): void
+    + getIsDone(): boolean
+    + setIsDone(done: boolean): void
+    + printTask(): void
+}
+
+class Todo {
+    + printDue(): void
+}
+class Deadline {
+    + printDue(): void
+}
+class Event {
+    + printDue(): void
+}
+class Consultation {
+    + printDue(): void
+}
+
+Command <|.. TaskCommand
+TaskCommand --> TaskList : operates on
+
+TaskList --> Task : contains
+Task <|-- Todo
+Task <|-- Deadline
+Task <|-- Event
+Task <|-- Consultation
+
+@enduml

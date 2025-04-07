@@ -13,12 +13,10 @@ public class TASync {
         DataLoader dataLoader = new DataLoader(dataManager);
         UI ui = new UI();
 
-
         TutorialClassList tutorialList = dataLoader.loadTutorialClasses();
         AttendanceFile attendanceFile = dataLoader.loadAttendanceFile(tutorialList);
         TaskList taskList = new TaskList();
         StudentList studentlist = new StudentList();
-
 
         assert tutorialList != null : "Error: tutorialList should not be null";
         assert attendanceFile != null : "Error: attendanceFile should not be null";
@@ -36,6 +34,7 @@ public class TASync {
         dataManager.saveTutorials(tutorialList);
         dataManager.saveAttendanceFile(attendanceFile);
         dataManager.saveMarksList(tutorialList);
+        dataManager.saveTasks(taskList);
 
         System.out.println("All data saved successfully!");
 

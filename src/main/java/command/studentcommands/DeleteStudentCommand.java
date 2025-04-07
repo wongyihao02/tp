@@ -10,14 +10,14 @@ import tutorial.TutorialClassList;
 import static command.studentcommands.StudentCommandHelper.parseInput;
 
 /**
- * Represents the "DELETESTUDENT" command that removes a student from a specific
+ * Represents the "DELETE_STUDENT" command that removes a student from a specific
  * tutorial class. The command searches for the student using the provided matric number
  * within the specified tutorial class and removes them if found.
  */
 public class DeleteStudentCommand implements Command<TutorialClassList> {
 
     /**
-     * Executes the "DELETESTUDENT" command by removing a student from the student list
+     * Executes the "DELETE_STUDENT" command by removing a student from the student list
      * of a specific tutorial class.
      *
      * <p>The input string should contain the tutorial class code and the matric number
@@ -36,6 +36,7 @@ public class DeleteStudentCommand implements Command<TutorialClassList> {
         try {
 
             String[] inputParts = parseInput(parts,2);
+            assert inputParts.length == 2 : "Expected 2 input parts: tutorial class code and matric number";
 
             String tutorialClassCode = inputParts[0].trim();
             String matricNumber = inputParts[1].trim();

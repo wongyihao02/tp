@@ -1,5 +1,6 @@
 package command.tutorialcommands;
 
+import exception.TASyncException;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 import command.taskcommands.Command;
@@ -22,28 +23,36 @@ public class ListExistingTutorialsCommand implements Command<TutorialClassList> 
      */
     @Override
     public void execute(String input, TutorialClassList tutorialClassList) {
-        ArrayList<TutorialClass> tutorialClasses = tutorialClassList.getTutorialClasses();
+        try {
+            if (input != null && !input.trim().isEmpty()) {
+                throw new TASyncException("This command does not take any arguments.");
+            }
 
-        if (tutorialClasses.isEmpty()) {
-            System.out.println("There are no tutorials created yet.");
-            return;
-        }
+            ArrayList<TutorialClass> tutorialClasses = tutorialClassList.getTutorialClasses();
 
-        // Sort the tutorial classes by day of the week first, then by start time
-        tutorialClasses.sort(Comparator
-                .comparing(TutorialClass::getDayOfWeek)  // Sort by day of week
-                .thenComparing(TutorialClass::getStartTime)  // Then by start time
-        );
+            if (tutorialClasses.isEmpty()) {
+                System.out.println("There are no tutorials created yet.");
+                return;
+            }
 
-        System.out.println("Existing Tutorials:");
-        for (TutorialClass tutorial : tutorialClasses) {
-            System.out.println(
-                    tutorial.getTutorialName() + " - " +
-                            tutorial.getDayOfWeek() + " " +
-                            tutorial.getStartTime() + " to " +
-                            tutorial.getEndTime()
+            // Sort the tutorial classes by day of the week first, then by start time
+            tutorialClasses.sort(Comparator
+                    .comparing(TutorialClass::getDayOfWeek)  // Sort by day of week
+                    .thenComparing(TutorialClass::getStartTime)  // Then by start time
             );
+
+            System.out.println("Existing Tutorials:");
+            for (TutorialClass tutorial : tutorialClasses) {
+                System.out.println(
+                        tutorial.getTutorialName() + " - " +
+                                tutorial.getDayOfWeek() + " " +
+                                tutorial.getStartTime() + " to " +
+                                tutorial.getEndTime()
+                );
+            }
+            System.out.println("End of list");
+        } catch (TASyncException e) {
+            System.out.println(e.getMessage());
         }
-        System.out.println("End of list");
     }
 }

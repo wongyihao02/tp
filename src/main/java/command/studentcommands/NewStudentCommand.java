@@ -11,14 +11,14 @@ import java.time.LocalDate;
 import static command.studentcommands.StudentCommandHelper.parseInput;
 
 /**
- * Represents the "NEWSTUDENT" command that adds a new student to a specified tutorial class.
+ * Represents the "NEW_STUDENT" command that adds a new student to a specified tutorial class.
  * The command validates the student's details and ensures no duplicate matric number exists
  * before adding the student to the class.
  */
 public class NewStudentCommand implements Command<TutorialClassList> {
 
     /**
-     * Executes the "NEWSTUDENT" command by creating a new student and adding them
+     * Executes the "NEW_STUDENT" command by creating a new student and adding them
      * to the student list of a specific tutorial class.
      *
      * <p>The input string must contain the student's name, date of birth, gender, contact number,
@@ -36,8 +36,9 @@ public class NewStudentCommand implements Command<TutorialClassList> {
     public void execute(String parts, TutorialClassList tutorialClassList) {
         try {
 
-
             String[] studentParts = parseInput(parts,6);
+            assert studentParts != null && studentParts.length == 6 :
+                    "Parsed student parts must have exactly 6 elements.";
 
             // Extract and validate student details
             String studentName = studentParts[0].trim();
@@ -89,6 +90,9 @@ public class NewStudentCommand implements Command<TutorialClassList> {
             // Create and add the student to the tutorial class
             Student student = new Student(studentName, dob, gender, contact, matricNumber);
             tutorialClass.getStudentList().addStudent(student);
+
+            assert tutorialClass.getStudentList().getStudentByMatricNumber(matricNumber) != null
+                    : "Student should be present in the student list after addition.";
 
             // Log and display success message
             System.out.println("New student added to tutorial class " + tutorialClassCode + ": " + studentName);

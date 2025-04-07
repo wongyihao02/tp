@@ -69,6 +69,8 @@ Please view my code contribution at:
 ### Contributions to the DG
 - Wrote implementation details for all the **task commands**.
 - Created sequence diagrams for all the **task commands**.
+- Created object diagrams for **task commands**.
+- Created overall class diagram for **task commands**.
 - Wrote **Product Scope**, including **Target User Profile** and **User Proposition**.
 
 ### Review/mentoring contributions

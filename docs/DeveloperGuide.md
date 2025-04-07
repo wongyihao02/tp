@@ -27,27 +27,46 @@ The `CommandParser` is responsible for breaking down user input into a **command
 
 #### Implementation Details
 
-- Extracts the first word as the command keyword (e.g., `addstudent`, `deletetask`) and treats the remainder as arguments.
+- Extracts the first word as the command keyword (e.g., `newstudent`, `delete`) and treats the remainder as arguments.
 - Trims and sanitizes input to ensure compatibility across all command handlers.
 - Throws relevant exceptions if input is malformed or empty.
 
 #### Operations
 
-- `CommandParser.parse(String input)`
-  - Parses the keyword and arguments from user input.
-  - Returns both as a `ParsedInput` object to the `CommandHandler`.
+- `CommandParser(String input)`
+  - Parses the keyword and arguments from user input and saves in attribute: String[] parts
   - Handles edge cases like extra whitespace and missing commands.
+- `getParts()`
+  - Returns parts, an array of String which is the parsed command.
+
+---
+#### 2. CommandHandler
+
+The `CommandHandler` orchestrates the end-to-end command processing — from parsing to execution.
+
+#### Implementation Details
+- Delegates command resolution to `CommandFactory`, and execution to the returned `Command` instance.
+- Accepts relevant data structures such as `TaskList`, `TutorialClassList`, and `AttendanceFile` as input to command execution.
+
+#### Operations
+
+- `CommandHandler(T list, String parts)`
+  - Saves `list` to attribute
+  - Delegates command creation to `CommandFactory` and saves the `Command` instance returned
+  - save relevant command details `parts`
+- `runCommand()`
+  - calls .execute() method of the `Command` instance on the `list` saved based on `parts`.
 
 ---
 
-#### 2. CommandFactory
+#### 3. CommandFactory
 
 The `CommandFactory` is responsible for returning the correct command object for execution.
 
 #### Implementation Details
 
 - Implements the **Factory Design Pattern** to instantiate command classes without exposing their construction logic to external classes.
-- Maps each supported command keyword (e.g., `addstudent`, `listtasks`, `newtutorial`) to its corresponding command class.
+- Maps each supported command keyword (e.g., `addstudent`, `listtasks`, `newtutorial`) and returns its corresponding command object to the caller class.
 - Throws descriptive exceptions if an unrecognized command is provided.
 
 #### Operations
@@ -59,26 +78,6 @@ The `CommandFactory` is responsible for returning the correct command object for
 
 ---
 
-#### 3. CommandHandler
-
-The `CommandHandler` orchestrates the end-to-end command processing — from parsing to execution.
-
-#### Implementation Details
-
-- Acts as the main entry point when a command is entered via CLI.
-- Delegates parsing to `CommandParser`, command resolution to `CommandFactory`, and execution to the returned `Command` instance.
-- Accepts relevant data structures such as `TaskList`, `TutorialClassList`, and `AttendanceFile` as input to command execution.
-- Handles exception logging and displays error messages to the user if any part of the command flow fails.
-
-#### Operations
-
-- `CommandHandler.handleCommand(String fullInput)`
-  - Calls `CommandParser` to break down the input.
-  - Delegates command creation to `CommandFactory`.
-  - Executes the command using the appropriate data object.
-  - Displays output or error messages based on the outcome.
-
----
 
 #### Benefits of the Design
 
@@ -86,6 +85,16 @@ The `CommandHandler` orchestrates the end-to-end command processing — from par
 - **Polymorphic Execution:** All commands implement a common interface `Command<T>`, simplifying invocation logic.
 - **Robust Error Handling:** Clearly separates exceptions thrown during parsing, command creation, and execution.
 - **Testable:** Each component (`Parser`, `Factory`, `Handler`) can be unit tested independently.
+
+### Operations of the three classes in CommandLoopHandler:
+![CommandHandlersSeqDiagram.png](diagrams/CommandHandlersSeqDiagram.png)
+  - User inputs command to `CommandLoopHandler`, which will loop while user does not input `bye`
+  - the `commandLoopHandler` first Parses the command into parts using `CommandParser`
+  - if the parts are not valid command, `CommandLoopHandler` repeated requests for input command till it is valid
+  - if parts are valid command, `CommandLoopHandler` creates `CommandHandler` with list based on command and parts
+  - `CommandHandler` uses `createCommand()` method from `CommandFactory` to generate `Command` Object
+  - The CommandLoopHandler then calls `runCommand()` method in `CommandHandler`
+  - CommandHandler then runs the Command
 
 ### Attendance List Commands
 #### Class diagram for attendanceListCommands
@@ -748,8 +757,36 @@ The `RenameTaskCommand` class implements the `Command<TaskList>` interface and i
 - Sequence diagram
 - ![RenameTaskCommandSequenceDiagram.png](diagrams/tasklistcommands/RenameTaskCommandSequenceDiagram.png)
 
+Overall class diagram for task commands
+- This class diagram provides a **high-level overview** of the command-based structure used in the task management system. It illustrates how different task-related commands interact with the `TaskList` and the task types it contains.
+  - Any class implementing `Command` must define how to execute a command using a String argument and a target of type `T`. Here, all concrete classes implement `Command<TaskList>`, meaning they operate on the `TaskList`.
+  - Task creation commands: `TodoCommand`, `DeadlineCommand`, `EventCommand`, `ConsultationCommand`. These create new tasks and add them to the `TaskList`.
+  - Task operation commands: `ListTaskCommand`, `DeleteTaskCommand`, `MarkTaskCommand`, `UnmarkTaskCommand`, `FindTaskCommand`, `RenameTaskCommand`. These interact with existing tasks in the `TaskList`.
+- ![TaskCommandsClassDiagram](diagrams/tasklistcommands/TaskCommandsClassDiagram.png)
   
+Object diagram for todo command
+- This object diagram illustrates how the `TodoCommand` operates when the `execute()` method is invoked. In the example, the command creates a new Todo object with a description and adds it to the `TaskList`. The interaction shown highlights the following:
 
+  - A `TodoCommand` object calls its `execute()` method with a task description (e.g., `"read book"`).
+
+  - The method instantiates a new `Todo` task with the given description and a default `isDone` status of `false`.
+
+  - This `Todo` object is then added to the `TaskList`, which holds a collection of `Task` objects.
+
+  - This structure serves as a representative example of how similar commands like `DeadlineCommand`, `EventCommand`, and `ConsultationCommand` work, since they also involve creating a specific task type and adding it to the task list.
+- ![TodoCommandObjectDiagram](diagrams/tasklistcommands/TodoCommandObjectDiagram.png)
+
+Object diagram for list task command
+- This object diagram shows how the `ListTaskCommand` functions when its `execute()` method is called. It represents the scenario where a command queries and displays all tasks in the task list:
+
+  - The `ListTaskCommand` object calls `execute()` with an empty string (as the command does not require any input).
+
+  - It accesses the `TaskList`, checks the task count using `getTaskCount()`, and prints the list of existing tasks via `printTaskList()`.
+
+  - The diagram also includes sample `Task` objects (`Todo`, `Deadline`) that are stored within the task list, each with attributes such as `taskName` and `isDone`.
+
+  - This example reflects how other commands such as `DeleteTaskCommand`, `MarkTaskCommand`, `UnmarkTaskCommand`, `FindTaskCommand`, and `RenameTaskCommand` work in a similar fashion. These commands typically interact with the existing tasks in the list, often by using task indices or names to perform updates or queries, rather than creating new tasks.
+- ![ListTaskCommandObjectDiagram](diagrams/tasklistcommands/ListTaskCommandObjectDiagram.png)
 ## Appendix A: Product scope
 ### Target user profile
 

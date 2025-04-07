@@ -1,0 +1,29 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+listCommand : ListTaskCommand
+myTaskList : TaskList
+
+task1 : Todo
+task2 : Deadline
+taskDetails1 : Task
+taskDetails2 : Task
+
+object taskDetails1 {
+  taskName = "Read book"
+  isDone = false
+}
+object taskDetails2 {
+  taskName = "Submit report"
+  isDone = true
+}
+
+listCommand --> myTaskList : execute("", myTaskList)
+myTaskList --> task1 : contains
+myTaskList --> task2 : contains
+task1 --> taskDetails1
+task2 --> taskDetails2
+
+@enduml
