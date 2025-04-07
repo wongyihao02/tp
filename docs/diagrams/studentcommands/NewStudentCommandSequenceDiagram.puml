@@ -11,7 +11,10 @@ participant "Student" as S
 -> NSC: execute(parts, tutorialClassList)
 activate NSC
 
-NSC -> NSC: check input parameters are valid
+NSC -> Helper: parseInput(input, 6)
+activate Helper
+Helper --> NSC: String[] inputParts
+deactivate Helper
 
 NSC -> TCL: getTutorialByName(tutorialClassCode)
 activate TCL

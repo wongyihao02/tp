@@ -9,63 +9,91 @@ remarks, and scheduling, with a focus on optimizing the user experience through 
 
 Given below are my contributions to the project.
 
-### Summary of Code Contributions
+## Summary of Code Contributions
 
-#### 1. Student Commands
+### 1. Student Commands
 
-- **New Features:**
+#### New Features
 
-  - **Add/Delete Student:**
-    - **What it does:** Allows the user to easily add or delete a new student to an existing tutorial class. This command enables the TA to maintain an up-to-date list of students for each tutorial class.
-    - **Justification:** This feature helps TAs efficiently manage student records, ensuring that the class roster is always current. It also simplifies administrative tasks by enabling easy removal or addition of students.
+- **Add/Delete Student**
+  - **What it does:** Allows the user to easily add or delete a student from an existing tutorial class.
+  - **Justification:** Helps TAs efficiently manage student records, ensuring an up-to-date and accurate class roster.
+  - **Depth of work:** Required implementing checks to ensure students are not duplicated or accidentally deleted.
+  - **Challenge:** Involved designing defensive parsing and robust error handling to avoid data corruption.
 
-  - **Find Student:**
-    - **What it does:** Enables the user to find an existing student from any tutorial class by performing a search that matches part of the student's matriculation number or name.
-    - **Justification:** Given that TAs may handle multiple tutorial groups with students who may share similar names, this feature allows them to quickly locate a specific student based on partial information, streamlining the management of large student populations.
+- **Find Student**
+  - **What it does:** Enables users to search for a student using partial names or matric numbers.
+  - **Justification:** Especially useful in large classes where students may share similar names.
+  - **Depth of work:** Implemented substring matching and case-insensitive search.
+  - **Challenge:** Optimizing for accuracy while keeping the search responsive and informative.
 
-  - **Change Student Remark:**
-    - **What it does:** Allows the user to modify or update a student's remark within their record. This could include updating feedback, performance reviews, or other notes relevant to the student’s progress.
-    - **Justification:** This feature allows TAs to maintain accurate, up-to-date records of student performance and behavior. It helps to track individual progress and provides a mechanism for timely feedback or notes that may be needed for assessments or communication with students.
+- **Change Student Remark**
+  - **What it does:** Allows the user to update or overwrite remarks in a student’s record.
+  - **Justification:** Helps TAs track academic progress and behavior over time.
+  - **Depth of work:** Required accessing nested student records from tutorial classes.
+  - **Challenge:** Careful design to avoid accidentally modifying the wrong student.
 
-  - **Check Student Remark:**
-    - **What it does:** Allows the user to view the current remarks associated with a student in any given tutorial class. This feature can help TAs quickly access the student's history of feedback and performance.
-    - **Justification:** This command aids in quickly retrieving specific details about a student’s past performance, providing a useful reference for the TA during interactions with the student or for planning future tutorial sessions. It ensures that the TA has all relevant information on hand
+- **Check Student Remark**
+  - **What it does:** Allows the user to view existing remarks for a student.
+  - **Justification:** Enables quick access to historical records during tutorials or consultations.
+  - **Depth of work:** Pulled data from student lists with proper input validation.
 
-#### 2. Tutorial Commands
+- **List Students in Tutorial**
+  - **What it does:** Lists all students in a given tutorial, with full personal information.
+  - **Justification:** Gives a comprehensive snapshot for attendance, contact, and planning.
+  - **Depth of work:** Required formatting multiple data fields for readability.
+  - **Challenge:** Ensuring the output format remained clean and readable for varying class sizes.
 
-- **New Features:**
+---
 
-  - **Add/Delete Tutorial:**
-    - **What it does:** Allows the user to easily add or delete a tutorial from the existing tutorial class list.
-    - **Justification:** This feature enables the TA to effectively manage their tutorial schedule by adding or removing classes as needed, ensuring that the list of tutorials is always up-to-date with the current teaching plan.
+### 2. Tutorial Commands
 
-  - **List students in tutorial:**
-    - **What it does:** Allows the user to list all students in a specified tutorial class, with personal information such as name, date of birth, gender, contact number, and matriculation number listed out as well.
-    - **Justification:** This command helps TAs efficiently access and review student details within a specific tutorial class. By listing all relevant personal information, it provides a comprehensive overview of the students, aiding in attendance tracking, communication, and any other tutorial-related management tasks.
+#### New Features
 
-  - **List upcoming tutorials:**
-    - **What it does:** Allows the user to check the upcoming tutorials in weekly tutorials up till a specified date in dd/MM/yyyy format.
-    - **Justification:** This feature provides TAs with an easy way to track and plan for upcoming tutorial sessions. By specifying a date range, it helps the TA stay organized and ensures they are prepared for all upcoming classes in advance.
+- **Add/Delete Tutorial**
+  - **What it does:** Lets users add or remove tutorials from the master list.
+  - **Justification:** Maintains an accurate reflection of the TA’s real teaching schedule.
+  - **Depth of work:** Implemented duplicate detection and structured input parsing.
+  - **Challenge:** Designed to avoid clashes in tutorial names and time slots.
 
-#### 3. Help Command
+- **List Existing Tutorials**
+  - **What it does:** Displays all created tutorials sorted by day and time.
+  - **Justification:** Helps the TA stay organized and track tutorial sessions.
+  - **Depth of work:** Involved sorting logic with chained comparators.
+  - **Challenge:** Needed a custom sort by both weekday and start time.
 
-- Helped to create new CommandListPrinter class in order to produce a much clearer help guide for users
+---
+
+### 3. Help Command
+
+- **Improvement:** Created a new `CommandListPrinter` class to modularize and improve the Help Guide.
+- **Justification:** Improves maintainability and clarity of the help feature for users.
+- **Depth of work:** Required reworking how command data is stored and presented.
+
+---
+
+### 4. Others
+
+- **Code Cleanup (v1.0 & v2.0):**
+  - **What it does:** Resolved all Checkstyle errors across the codebase.
+  - **Justification:** Ensured consistency, readability, and maintainability for the entire team.
+  - **Depth of work:** Required reading and applying multiple coding standards across unfamiliar code.
 
 - **Code contributed**
   - https://nus-cs2113-ay2425s2.github.io/tp-dashboard/?search=samstt&breakdown=true
 
 ### Summary of other Project Contributions
 
-- **Project management**
+- **Project management (Contributions to Team-based Tasks)**
   - Managed releases `v1.0`,`v2.0` and `v2.1` on GitHub
     - Set up a potential roadmap to further extensions through brainstorming ideas for `v3.0`
     - Set up issue tracker for `v1.0` and allocated issues to groupmates
   - Monitored issue tracker consistently and helped to close or create new issues based on team progress
   - Tasked as overall project manager and led the team in brainstorming user stories, new features and implementation details
   - In charge of setting deadlines and meetings between groupmates and task allocation in order to deliver final project deliverables punctually
-  - Monitored code quality consistently in order to ensure compliance of coding conventions
+  - Monitored code quality consistently in order to ensure compliance with coding conventions
 - **Enhancements to existing features:**
-  - Wrote additional tests for student commands and tutorial commands
+  - Wrote additional tests for student commands 
 - **Documentation**
   - User guide:
     - Developed the layout for User Guide for implementation by groupmates
@@ -73,8 +101,12 @@ Given below are my contributions to the project.
 - Developer Guide:
     - Developed the layout for Developer Guide for implementation by groupmates
     - Added implementation details for all student commands and tutorial commands
-    - Created sequence diagrams for commands
+    - Created all sequence diagrams and class diagrams for tutorial commands and student commands
+    - Created all class diagrams for the design section of the Developer guide
     - Completed section on user stories
-- **Community:**
+- **Review/Mentoring Contributions:**
+  - Regularly reviewed PRs for my team (with non-trivial review comments):
+    - Gave suggestions on possible improvements on various features of TASync
+- **Contributions beyond the project team**
   - Reported bugs and suggestions for other teams in CS2113
-  - Regularly reviewed PRs for my team (with non-trivial review comments)
+    - Provided a bug report of 11 bugs of varying severity levels during the PE-D

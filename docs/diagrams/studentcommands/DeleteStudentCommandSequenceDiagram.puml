@@ -1,12 +1,18 @@
 @startuml
 
 participant "DeleteStudentCommand" as DSC
+participant "StudentCommandHelper" as Helper
 participant "tutorialClassList: TutorialClassList" as TCL
 participant "TutorialClass" as TC
 participant "StudentList" as SL
 
 -> DSC: execute(input, tutorialClassList)
 activate DSC
+
+DSC -> Helper: parseInput(input, 2)
+activate Helper
+DSC --> CRC: String[] inputParts
+deactivate Helper
 
 DSC -> TCL: getTutorialByName(tutorialClassCode)
 activate TCL

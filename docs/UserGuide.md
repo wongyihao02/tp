@@ -10,41 +10,41 @@ Designed specifically for TAs and tutors who manage both student-related adminis
 
 - [Quick Start](#quick-start)
 - [Features](#features-)
-  - [Student Commands](#student-commands)
-    - [Adding a new student: `NEWSTUDENT -t`](#adding-a-new-student-newstudent--t)
-    - [Deleting a student: `DELETESTUDENT -t`](#deleting-a-student-deletestudent--t)
-    - [Find a student: `FIND -t`](#find-a-student-find--t)
-    - [Change remark of a student: `CHANGEREMARK -t`](#change-remark-of-a-student-changeremark--t)
-    - [Check remark of a student: `CHECKREMARK -t`](#check-the-remark-of-a-student-checkremark--t)
-  - [Marks Commands](#marks-commands)
-    - [Adding new marks `NEWMARKS -m`](#adding-new-marks-for-a-student-newmarks--m)
-    - [Deleting marks `DELETEMARKS -m`](#deleting-marks-for-a-student-deletemarks--m)
-    - [List all marks for a student `LIST -m`](#list-all-marks-for-a-student-list--m)
-  - [Tutorial Commands](#tutorial-commands)
-    - [Create new tutorial: `NEWTUTORIAL -t`](#create-new-tutorial-newtutorial--t)
-    - [Delete tutorial: `DELETE -t`](#delete-tutorial-delete--t)
-    - [List students in tutorial: `LISTSTUDENTS -t`](#list-students-in-tutorial-liststudents--t)
-    - [List upcoming tutorials: `LIST -t`](#list-upcoming-tutorials-list--t)
-  - [Task Commands](#task-commands)
-    - [Adding a todo: `TODO`](#adding-a-todo-todo)
-    - [Adding a deadline: `DEADLINE`](#adding-a-deadline-deadline)
-    - [Adding an event: `EVENT`](#adding-an-event-event)
-    - [Adding a consultation: `CONSULTATION`](#adding-a-consultation-consultation)
-    - [Listing the tasks: `LIST`](#listing-the-tasks-list)
-    - [Deleting a task: `DELETE`](#deleting-a-task-delete)
-    - [Marking a task: `MARK`](#marking-a-task-mark)
-    - [Unmarking a task: `UNMARK`](#unmarking-a-task-unmark)
-    - [Finding a task: `FIND`](#finding-a-task-find)
-    - [Renaming a task: `RENAME`](#renaming-a-task-rename)
-  - [AttendanceList Commands](#attendancelist-commands)
-    - [View the attendance list: `LIST`](#view-the-attendance-list-list)
-    - [Mark present a student: `MARK`](#mark-present-a-student-mark)
-    - [Mark absent a student: `UNMARK`](#mark-absent-a-student-unmark)
-    - [View comments for a student: `VIEWCOMMENT`](#view-comments-for-a-student-viewcomment)
-    - [Add comments for a student: `COMMENT`](#add-comments-for-a-student-comment)
-    - [delete comments for a student: `DELETECOMMENT`](#delete-comment-for-a-student-deletecomment)
-    - [Create a new attendancelist`CREATE`](#create-an-attendance-list-create)
-  - [Bye Command](#bye-command-bye)
+- [Tutorial Commands](#tutorial-commands)
+  - [Create new tutorial: `NEWTUTORIAL -t`](#create-new-tutorial-newtutorial--t)
+  - [Delete tutorial: `DELETE -t`](#delete-tutorial-delete--t)
+  - [List upcoming tutorials: `LIST -t`](#list-existing-tutorials-list--t)
+- [Student Commands](#student-commands)
+  - [Adding a new student: `NEWSTUDENT -t`](#adding-a-new-student-newstudent--t)
+  - [Deleting a student: `DELETESTUDENT -t`](#deleting-a-student-deletestudent--t)
+  - [Find a student: `FIND -t`](#find-a-student-find--t)
+  - [Change remark of a student: `CHANGEREMARK -t`](#change-remark-of-a-student-changeremark--t)
+  - [Check remark of a student: `CHECKREMARK -t`](#check-the-remark-of-a-student-checkremark--t)
+  - [List students in tutorial: `LISTSTUDENTS -t`](#list-students-in-tutorial-liststudents--t)
+- [Marks Commands](#marks-commands)
+  - [Adding new marks `NEWMARKS -m`](#adding-new-marks-for-a-student-newmarks--m)
+  - [Deleting marks `DELETEMARKS -m`](#deleting-marks-for-a-student-deletemarks--m)
+  - [List all marks for a student `LIST -m`](#list-all-marks-for-a-student-list--m)
+- [Task Commands](#task-commands)
+  - [Adding a todo: `TODO`](#adding-a-todo-todo)
+  - [Adding a deadline: `DEADLINE`](#adding-a-deadline-deadline)
+  - [Adding an event: `EVENT`](#adding-an-event-event)
+  - [Adding a consultation: `CONSULTATION`](#adding-a-consultation-consultation)
+  - [Listing the tasks: `LIST`](#listing-the-tasks-list)
+  - [Deleting a task: `DELETE`](#deleting-a-task-delete)
+  - [Marking a task: `MARK`](#marking-a-task-mark)
+  - [Unmarking a task: `UNMARK`](#unmarking-a-task-unmark)
+  - [Finding a task: `FIND`](#finding-a-task-find)
+  - [Renaming a task: `RENAME`](#renaming-a-task-rename)
+- [AttendanceList Commands](#attendancelist-commands)
+  - [View the attendance list: `LIST`](#view-the-attendance-list-list)
+  - [Mark present a student: `MARK`](#mark-present-a-student-mark)
+  - [Mark absent a student: `UNMARK`](#mark-absent-a-student-unmark)
+  - [View comments for a student: `VIEWCOMMENT`](#view-comments-for-a-student-viewcomment)
+  - [Add comments for a student: `COMMENT`](#add-comments-for-a-student-comment)
+  - [delete comments for a student: `DELETECOMMENT`](#delete-comment-for-a-student-deletecomment)
+  - [Create a new attendancelist`CREATE`](#create-an-attendance-list-create)
+- [Bye Command](#bye-command-bye)
 - [FAQ](#faq)
 - [Command Summary](#Command-Summary)
 
@@ -58,6 +58,39 @@ Designed specifically for TAs and tutors who manage both student-related adminis
 6. Refer to the [Features](#features-) below for details of each command.
 
 ## Features 
+
+### Tutorial Commands
+
+- Things to note:
+  - `<day_of_week>` represents a number from 1-7 that corresponds to each day of the week
+    - Example:
+      - 1 --> Monday, 2--> Tuesday, 3 --> Wednesday
+  - `<start_time>` and `<end_time>` must be in `hh:mm` format
+  - `<date>` must be formatted as `dd/MM/yyyy`
+
+#### Create new tutorial: `NEWTUTORIAL -t`
+
+Creates a new tutorial with the necessary parameters.
+
+Format: `NEWTUTORIAL -t <tutorial_name>,<day_of_week>,<start_time>,<end_time>`
+
+Examples:
+- `NEWTUTORIAL -t T123,2,11:00,13:00`
+
+#### Delete tutorial: `DELETE -t`
+
+Delete a specified tutorial class from the tutorial class list.
+
+Format: `DELETE -t <tutorial_name>`
+
+Examples:
+- `DELETE -t T123`
+
+#### List Existing Tutorials: `LIST -t`
+
+Prints existing tutorial classes in the tutorial class list.
+
+Format:`LIST -t`
 
 ### Student Commands
 
@@ -115,6 +148,15 @@ Format: `CHECKREMARK -t <tutorial_name>,<matric_number>`
 Examples:
 - `CHECKREMARK -t T123,A2345674W`
 
+#### List Students in Tutorial: `LISTSTUDENTS -t`
+
+Lists all students in the specified tutorial.
+
+Format: `LISTSTUDENTS -t <tutorial_name>`
+
+Examples:
+- `LISTSTUDENTS -t T123`
+
 ### Marks Commands
 
 #### Adding new marks for a student `NEWMARKS -m`
@@ -147,50 +189,6 @@ Format: `LIST -m <tutorial_name>,<matric_number>`
 Examples: 
 - `LIST -m T123,A1234567W`
 
-### Tutorial Commands
-
-- Things to note:
-  - `<day_of_week>` represents a number from 1-7 that corresponds to each day of the week
-    - Example:
-      - 1 --> Monday, 2--> Tuesday, 3 --> Wednesday
-  - `<start_time>` and `<end_time>` must be in `hh:mm` format
-  - `<date>` must be formatted as `dd/MM/yyyy`
-
-#### Create new tutorial: `NEWTUTORIAL -t`
-
-Creates a new tutorial with the necessary parameters. 
-
-Format: `NEWTUTORIAL -t <tutorial_name>,<day_of_week>,<start_time>,<end_time>`
-
-Examples:
-- `NEWTUTORIAL -t T123,2,11:00,13:00`
-
-#### Delete tutorial: `DELETE -t`
-
-Delete a specified tutorial class from the tutorial class list.
-
-Format: `DELETE -t <tutorial_name>`
-
-Examples:
-- `DELETE -t T123`
-
-#### List Students in Tutorial: `LISTSTUDENTS -t`
-
-Lists all students in the specified tutorial.
-
-Format: `LISTSTUDENTS -t <tutorial_name>`
-
-Examples:
-- `LISTSTUDENTS -t T123`
-
-#### List Upcoming Tutorials: `LIST -t`
-
-Prints tutorial classes from today to the given date in weekly blocks.
-
-Format:`LIST -t <date>`
-
-Examples:
-- `LIST -t 12/03/2025 `
 
 ### Task Commands
 
@@ -464,17 +462,17 @@ computer
 | Create Tutorial           | `NEWTUTORIAL -t <tutorial_name>,<day_of_week>,<start_time>,<end_time>` | `NEWTUTORIAL -t T123,2,11:00,13:00` |
 | Delete Tutorial           | `DELETE -t <tutorial_name>`                                            |          `DELETE -t T123`           |
 | List Students in Tutorial | `LISTSTUDENTS -t <tutorial_name>`                                      |       `LISTSTUDENTS -t T123`        |
-| List Existing Tutorials   | `LIST -t `                                                             |              `LIST -t`              |
 
 # Student Commands
 
-| CommandName           | Form                                                                             |                             Example                              |
-|-----------------------|:---------------------------------------------------------------------------------|:----------------------------------------------------------------:|
-| Add Student           | `NEWSTUDENT -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>` | `NEWSTUDENT -t Mark Lim,20/03/2005,Male,97654344,A2387653D,T123` |
-| Delete Student        | `DELETESTUDENT -t <tutorial_name>,<matric_number>`                               |                `DELETESTUDENT -t T123,A7656765W`                 |
-| Find Student          | `FIND -t <keyword>`                                                              |           `FIND -t Charlie Song`  `FIND -t A7645342D`            |
-| Change Student Remark | `CHANGEREMARK -t <tutorial_name>,<matric_number>,<new_remark>`                   |     `CHANGEREMARK -t T123,A2345674W,Excellent job in class!`     |
-| Check Student Remark  | `CHECKREMARKS -t <tutorial_name>,<matric_number>`                                |                 `CHECKREMARK -t T123,A2345674W`                  |
+| CommandName             | Form                                                                             |                             Example                              |
+|-------------------------|:---------------------------------------------------------------------------------|:----------------------------------------------------------------:|
+| Add Student             | `NEWSTUDENT -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>` | `NEWSTUDENT -t Mark Lim,20/03/2005,Male,97654344,A2387653D,T123` |
+| Delete Student          | `DELETESTUDENT -t <tutorial_name>,<matric_number>`                               |                `DELETESTUDENT -t T123,A7656765W`                 |
+| Find Student            | `FIND -t <keyword>`                                                              |           `FIND -t Charlie Song`  `FIND -t A7645342D`            |
+| Change Student Remark   | `CHANGEREMARK -t <tutorial_name>,<matric_number>,<new_remark>`                   |     `CHANGEREMARK -t T123,A2345674W,Excellent job in class!`     |
+| Check Student Remark    | `CHECKREMARKS -t <tutorial_name>,<matric_number>`                                |                 `CHECKREMARK -t T123,A2345674W`                  |
+| List Existing Tutorials | `LIST -t `                                                                       |                            `LIST -t`                             |
 
 ## Marks Commands
 

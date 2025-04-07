@@ -1,8 +1,7 @@
 # Developer Guide
 
 ## Acknowledgements
-
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+The implementation of certain features such as task were heavily inspired by our experience doing the [CS2113 individual project](https://nus-cs2113-ay2425s2.github.io/website/admin/ip-overview.html)
 
 ## **Design**
 
@@ -71,7 +70,7 @@ key components and how they contribute to the overall functionality of TASync.
   - Classes implementing this interface must define `saveToFile(data: T)`. 
   - Implementations could include: `TutorialClassFileSaver`, `AttendanceFileFileSaver`, etc.
 
-## **implementation**
+## **Implementation**
 
 This section describes some important details on how certain features in TASync are implemented.
 
@@ -163,6 +162,24 @@ The `CommandFactory` is responsible for returning the correct command object for
   - CommandHandler then runs the Command
 ### Tutorial Commands
 
+Disclaimer:
+All sequence diagrams that will be displayed in this section assume valid parameters have been inputted. Exception
+handling and other edge cases are not the focus of discussion.
+
+#### Generic Class Diagram 
+
+![GenericTutorialCommandClassDiagram.png](diagrams/tutorialcommands/GenericTutorialCommandClassDiagram.png)
+
+The above class diagram provides a high-level overview of the key dependencies and structural relationships relevant to classes 
+in the `tutorialcommands` package. Rather than capturing every attribute and method in detail, the diagram focuses on the essential 
+components and interactions that are typically involved when a tutorial-related command is executed.
+
+This abstraction is intentional—it aims to offer a simplified yet informative perspective for developers to understand how command classes 
+interact with core entities such as `TutorialClassList` and `TutorialClass`. By highlighting only the critical methods and associations 
+(e.g., retrieving a tutorial by name, accessing student records, or setting remarks), the diagram acts as a functional blueprint to 
+guide command implementation without overwhelming the viewer with unnecessary details.
+
+
 #### 1. NewTutorialCommand
 
 The `NewTutorialCommand` is part of the `tutorialcommands` package and is responsible for adding a new tutorial class
@@ -175,6 +192,8 @@ The `NewTutorialCommand` class implements the `Command<TutorialClassList>` inter
 the input, validating the tutorial details, and adding the new tutorial to the list.
 
 #### Operations
+
+![NewTutorialCommandSequenceDiagram.png](diagrams/tutorialcommands/NewTutorialCommandSequenceDiagram.png)
 
 The class implements the following main operation:
 
@@ -205,6 +224,8 @@ the input, validating it, and deleting the corresponding tutorial class from the
 
 #### Operations
 
+![DeleteTutorialCommandSequenceDiagram.png](diagrams/tutorialcommands/DeleteTutorialCommandSequenceDiagram.png)
+
 The class implements the following main operation:
 
 - `DeleteTutorialCommand#execute()`
@@ -215,57 +236,54 @@ The class implements the following main operation:
   - **Error handling**: Catches any exceptions that occur during the execution and displays the error message.
 
 
-#### 3. ListTutorialStudentsCommand
+#### 3. ListExistingTutorialsCommand
 
-The `ListTutorialStudentsCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for
-parsing the input, validating the tutorial name, and listing the students enrolled in the specified tutorial class.
-
-#### Implementation Details
-
-The `ListTutorialStudentsCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for
-parsing the input, validating the tutorial name, and listing the students enrolled in the specified tutorial class.
-
-#### Operations
-
-The class implements the following main operation:
-
-- `ListTutorialStudentsCommand#execute()`
-  - **Validates the input** to ensure the tutorial name is not empty or invalid.
-  - **Searches for the tutorial class** by its name within the list of tutorial classes.
-  - If the tutorial class is found, it retrieves the list of students enrolled in the tutorial class.
-  - If there are no students enrolled, a message is displayed indicating that the tutorial has no students.
-  - If students are found, their details are printed.
-  - **Error handling**: If the tutorial name does not match any existing tutorial class or the input is invalid,
-    an exception is thrown, and an error message is displayed.
-
-#### 4. ListUpcomingTutorialsCommand
-
-The `ListUpcomingTutorialsCommand` is part of the `tutorialcommands` package and is responsible for listing all upcoming
-tutorial sessions from the current date until a given end date. The tutorials are displayed with their names, dates, and times.
-If the input is invalid or any exceptions occur, appropriate error messages are displayed.
+The ListExistingTutorialsCommand is part of the tutorialcommands package and is responsible for displaying all existing 
+tutorial classes stored within the TutorialClassList. It ensures users can view a well-organized list of tutorials, 
+or a message indicating that no tutorials have been added yet.
 
 #### Implementation Details
 
-The `ListUpcomingTutorialsCommand` class implements the `Command<TutorialClassList>` interface. It handles parsing the input,
-validating the date, and listing the upcoming tutorials that fall within the specified date range.
+The ListExistingTutorialsCommand class implements the Command<TutorialClassList> interface. It does not require 
+any input arguments. If arguments are provided, it throws a TASyncException.
 
 #### Operations
 
+![ListExistingTutorialsCommandSequenceDiagram.png](diagrams/tutorialcommands/ListExistingTutorialsCommandSequenceDiagram.png)
+
 The class implements the following main operation:
 
-- `ListUpcomingTutorialsCommand#execute()`
-  - **Validates the input**: Ensures the end date string is not null or empty.
-  - **Parses the input date**: Converts the input end date string into a `LocalDate` format using `DateTimeFormatterUtil.parseDate()`.
-  - **Calculates the first upcoming tutorial date**: Determines the next occurrence of the first tutorial class based on the current date and the day of the week.
-  - **Lists tutorials**: Iterates through the tutorial classes, printing their names, dates, start times, and end times for each tutorial class that happens before the end date.
-  - **Error handling**: If any exceptions occur during parsing or processing, the relevant error messages are displayed.
-
+- `ListExistingTutorialsCommand#execute()`
+  - **Validates the input** to ensure that the input string is either `null` or blank. If any arguments are provided, a `TASyncException` is thrown.
+  - Retrieves all tutorials from the `TutorialClassList` via `getTutorialClasses()`.
+  - **Checks if the TutorialClassList is empty**:
+    - If empty, prints `"There are no tutorials created yet."`
+  - **Sorts the tutorials**:
+    - First by day of the week (e.g., Monday to Sunday).
+    - Then by start time (earlier tutorials appear first).
+  - **Displays each tutorial** with its name, day of the week and start and end times
+  - Prints a final `"End of list"` after all tutorials are shown and catches any thrown `TASyncException` and displays the exception message.
 
 ### **Student Commands**
+
+#### Disclaimer: 
+All sequence diagrams that will be displayed in this section assume valid parameters have been inputted. Exception
+handling and other edge cases are not the focus of discussion.
 
 The `studentcommands` package includes commands that handle student-related functionalities in TASync.
 These commands interact with the tutorial classes and the student list, allowing users to manage student records
 effectively.
+
+#### Generic Class Diagram:
+![GenericStudentCommandClassDiagram](diagrams/studentcommands/GenericStudentCommandClassDiagram.png)
+
+The above class diagram provides a high-level overview of the key dependencies and structural relationships relevant to classes  
+in the `studentcommands` package. While it shares similarities with the generic tutorial command diagram, this version extends the scope  
+by highlighting components specific to student-related operations—most notably, the `StudentList` and `Student` classes.
+
+These additions reflect the typical interactions involved when a student-related command is executed, such as retrieving student data  
+or updating student information. The diagram thus serves as a focused guide for understanding the command flow and class dependencies  
+in scenarios that involve direct manipulation of student entities.
 
 #### 1. NewStudentCommand
 
@@ -277,6 +295,8 @@ specific tutorial class.
 The NewStudentCommand class implements the Command<TutorialClassList> interface. It is responsible for parsing the input to
 extract the student’s details, validating them, and adding the student to the appropriate tutorial class.
 #### Operations
+
+![NewStudentCommandSequenceDiagram](diagrams/studentcommands/NewStudentCommandSequenceDiagram.png)
 
 The class implements the following main operation:
 
@@ -301,6 +321,8 @@ parsing the input to extract the tutorial class code and matriculation number, v
 the student from the appropriate tutorial class.
 
 #### Operations
+
+![DeleteStudentCommandSequenceDiagram](diagrams/studentcommands/DeleteStudentCommandSequenceDiagram.png)
 
 The class implements the following main operation:
 
@@ -327,6 +349,8 @@ on the provided tutorial class code and matriculation number.
 
 #### Operations
 
+![ChangeRemarkCommandSequenceDiagram](diagrams/studentcommands/ChangeRemarkCommandSequenceDiagram.png)
+
 The class implements the following main operation:
 
 - `ChangeRemarkCommand#execute()`
@@ -349,6 +373,8 @@ The `CheckRemarkCommand` class implements the `Command<TutorialClassList>` inter
 to extract the tutorial class code and matriculation number, validating them, and retrieving the remark of the specified student.
 
 #### Operations
+
+![CheckRemarkCommandSequenceDiagram](diagrams/studentcommands/CheckRemarkCommandSequenceDiagram.png)
 
 The class implements the following main operation:
 
@@ -377,6 +403,8 @@ extract the search keyword, validating it, and searching for students who match 
 
 #### Operations
 
+![FindStudentCommandSequenceDiagram](diagrams/studentcommands/FindStudentCommandSequenceDiagram.png)
+
 The class implements the following main operation:
 
 - `FindStudentCommand#execute()`
@@ -388,6 +416,31 @@ The class implements the following main operation:
   - If a match is found, prints the tutorial class name and the matching students.
   - If no matching students are found in any tutorial class, prints a message indicating that no results were found.
   - Handles any exceptions by displaying relevant error messages if validation fails.
+
+#### 3. ListTutorialStudentsCommand
+
+The `ListTutorialStudentsCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for
+parsing the input, validating the tutorial name, and listing the students enrolled in the specified tutorial class.
+
+#### Implementation Details
+
+The `ListTutorialStudentsCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for
+parsing the input, validating the tutorial name, and listing the students enrolled in the specified tutorial class.
+
+#### Operations
+
+![ListTutorialStudentsCommandSequenceDiagram.png](diagrams/studentcommands/ListTutorialStudentsCommandSequenceDiagram.png)
+
+The class implements the following main operation:
+
+- `ListTutorialStudentsCommand#execute()`
+  - **Validates the input** to ensure the tutorial name is not empty or invalid.
+  - **Searches for the tutorial class** by its name within the list of tutorial classes.
+  - If the tutorial class is found, it retrieves the list of students enrolled in the tutorial class.
+  - If there are no students enrolled, a message is displayed indicating that the tutorial has no students.
+  - If students are found, their details are printed.
+  - **Error handling**: If the tutorial name does not match any existing tutorial class or the input is invalid,
+    an exception is thrown, and an error message is displayed.
 
 
 ### Attendance List Commands
@@ -929,7 +982,7 @@ variations in test cases are required for extensive testing.*
 ### Tutorial commands
 
 #### Creating a new tutorial
-1. Test case: `NEWTUTORIAL -t T123,2,11:00,13:00`
+ 1. Test case: `NEWTUTORIAL -t T123,2,11:00,13:00`
 - Expected: Tutorial successfully created.
 2. Test case: `NEWTUTORIAL -t T02,9,11:00,13:00`
 - Expected: Error message indicating invalid day of week.

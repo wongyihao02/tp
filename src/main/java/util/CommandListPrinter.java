@@ -19,11 +19,11 @@ public class CommandListPrinter {
                 CommandList.DEADLINE, CommandList.EVENT, CommandList.CONSULTATION, CommandList.RENAME,
                 CommandList.LIST, CommandList.FIND, CommandList.DELETE);
         printCommandGroup("Student Management", CommandList.NEW_STUDENT, CommandList.DELETE_STUDENT,
-                CommandList.FIND_STUDENT);
+                CommandList.FIND_STUDENT, CommandList.LISTTUTORIALSTUDENTS);
         printCommandGroup("Marks Management", CommandList.ADD_MARKS, CommandList.DELETE_MARKS,
                 CommandList.LIST_MARKS);
         printCommandGroup("Tutorial Management", CommandList.NEW_TUTORIAL, CommandList.DELETE_TUTORIAL,
-                CommandList.LISTTUTORIALS, CommandList.LISTTUTORIALSTUDENTS);
+                CommandList.LISTTUTORIALS);
         printCommandGroup("Attendance Management", CommandList.CREATE,CommandList.MARKSTUDENT,
                 CommandList.UNMARKSTUDENT, CommandList.LISTATTENDANCESTUDENTS);
         printCommandGroup("Remarks & Comments", CommandList.CHANGE_REMARK, CommandList.CHECK_REMARK,
