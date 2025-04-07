@@ -1,0 +1,37 @@
+@startuml
+actor User
+participant "CommandLoopHandler" as CLH
+participant CommandFactory as Factory order 10
+participant DataManager as DM order 20
+loop inputCommand != bye
+    User -> CLH ++: inputCommand = "any String"
+    create "CommandParser" as Parser
+    CLH -> Parser ++ : new CommandParser(input)
+
+    Parser -> Parser : getParts()
+    Parser --> CLH -- : return parts
+    destroy Parser
+    alt parts < 2
+        CLH --> User : "Invalid Command"
+    else parts >= 2 && valid command
+        create CommandHandler as Handler
+        CLH ->Handler ++ :new CommandHandler(List, parts)
+
+        Handler -> Factory ++ : createCommand(parts)
+        Factory --> Handler -- : return Command
+
+        Handler --> CLH
+
+        CLH -> Handler  : runCommand()
+        Handler --> CLH --
+        destroy Handler
+    end
+    CLH -> DM ++ : saveTutorials(tutorialList)
+    DM --> CLH --
+    CLH -> DM ++ : saveAttendanceFile(attendanceFile)
+    DM --> CLH --
+    CLH -> DM ++ : saveMarksList(tutorialList)
+    DM --> CLH --
+    CLH --> User
+end
+@enduml
