@@ -28,6 +28,7 @@ public class ChangeRemarkCommand implements Command<TutorialClassList> {
     public void execute(String parts, TutorialClassList tutorialClassList) {
         try {
             String[] partsArray = parseInput(parts,3);
+            assert partsArray.length == 3 : "Expected 3 parts: class code, matric number, and remark";
 
             String tutorialClassCode = partsArray[0].trim();
             String matricNumber = partsArray[1].trim();
@@ -45,6 +46,7 @@ public class ChangeRemarkCommand implements Command<TutorialClassList> {
             }
 
             student.setRemark(newRemark);
+            assert student.getRemark().equals(newRemark) : "Remark was updated correctly";
             System.out.println("Remark updated for student with matric number " +
                     matricNumber + " in tutorial class " + tutorialClassCode + ".");
         } catch (TASyncException e) {

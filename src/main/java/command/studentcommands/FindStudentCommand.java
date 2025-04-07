@@ -42,6 +42,8 @@ public class FindStudentCommand implements Command<TutorialClassList> {
                 // Search for students by name or matric number using partial matching
                 boolean foundInThisClass = false;
                 for (Student student : studentList.getStudents()) {
+                    assert student.getName() != null : "Student name should not be null";
+                    assert student.getMatricNumber() != null : "Student matric number should not be null";
                     boolean nameMatches = student.getName().toLowerCase().contains(parts.toLowerCase());
                     boolean matricMatches = student.getMatricNumber().toLowerCase().contains(parts.toLowerCase());
 
