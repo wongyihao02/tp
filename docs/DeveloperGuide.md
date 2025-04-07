@@ -11,6 +11,61 @@ to create a functional TASync program and is not fully comprehensive. The focus 
 with further details, such as class methods, attributes, and specific interactions omitted. This serves as a foundation for understanding the
 key components and how they contribute to the overall functionality of TASync.
 
+### **Command handling component**
+**Overview**
+- The command handling component is responsible for interpreting user inputs, creating the corresponding command objects, and executing them with access to the necessary application data. This structure supports extensibility and separates concerns, making the command system more modular and maintainable.
+
+**Component Breakdown**
+- `CommandLoopHandler`
+  - This is the central controller of the command execution flow.
+  - It contains references to key components like:
+  - `UI` – for user interaction,
+  - `TaskList`, `StudentList`, `TutorialClassList` – data stores for application logic,
+  - `AttendanceFile` and `DataManager` – for persistent storage.
+  - The method `runCommandLoop()` drives the main interaction cycle, prompting and processing commands continuously.
+
+- `CommandParser`
+  - Responsible for parsing the raw user input.
+  - It splits the input into `parts[]`, typically separating the command word from the arguments.
+  - `getParts()` returns these segments to be used for command construction.
+
+- `CommandHandler`
+  - Takes the parsed parts and manages the process of executing the command.
+  - Internally calls `CommandFactory` to generate the correct command object based on the input.
+  - `runCommand()` initiates this process and delegates execution accordingly.
+- `CommandFactory`
+  - This class uses a factory pattern to determine which concrete command object to return.
+  - Given a command string, it returns the corresponding command object that implements the `Command` interface. 
+  - This decouples command creation logic from other parts of the system.
+- `XYZCommands`
+  - This is a placeholder representing all concrete command classes (e.g., `TodoCommand`, `ListTaskCommand`, `MarkTaskCommand`, etc.).
+  - Each of these implements a common `Command` interface and defines how that specific command modifies the data (like adding a task or marking it as done).
+
+### **Data management component**
+**Overview**
+ - The data management component handles the loading and saving of application data such as tutorials, attendance, and marks. It abstracts away file operations through the use of well-defined interfaces, supporting a modular and extensible structure. This design ensures data persistence across sessions and simplifies file I/O logic. 
+
+**Component Breakdown**
+- `DataManager`
+  - The central coordinator for all data-related operations.
+  - Responsible for: Defining file paths and calling appropriate methods to load and save data.
+  - Public methods include: 
+    - `loadTutorials()`, `loadAttendanceFiles()`, `loadMarks()` – for reading. 
+    - `saveTutorials()`, `saveAttendanceFile()`, `saveMarksList()` – for writing.
+    - `ensureFileAndDirectoryExist()` – utility to ensure required file structures exist before usage.
+  - Delegates the low-level reading/writing to classes that implement the `FileLoader<T>` and `FileSaver<T>` interfaces.
+- `DataLoader`
+  - Serves as a utility helper that wraps calls to DataManager to load specific types of data.
+  - Offers methods like: `loadTutorialClasses()` and `loadAttendanceFile(tutorialList)`.
+- `FileLoader<T> Interface`
+  - A generic interface for all **file loading** logic.
+  - Classes implementing this interface must define `loadFromFile()` which returns an object of type `T`.
+  - Implementations could include: `AttendanceFileFileLoader`, `StudentFileLoader`, etc.
+- `FileSaver<T> Interface`
+  - A generic interface for file saving logic.
+  - Classes implementing this interface must define `saveToFile(data: T)`. 
+  - Implementations could include: `TutorialClassFileSaver`, `AttendanceFileFileSaver`, etc.
+
 ## **implementation**
 
 This section describes some important details on how certain features in TASync are implemented.
