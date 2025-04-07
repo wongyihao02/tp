@@ -88,6 +88,9 @@ The `CommandHandler` orchestrates the end-to-end command processing — from par
 - **Testable:** Each component (`Parser`, `Factory`, `Handler`) can be unit tested independently.
 
 ### Attendance List Commands
+#### Class diagram for attendanceListCommands
+![AttendanceListCommandsClassDiagram.png](diagrams/attendancelistcommands/AttendanceListCommandsClassDiagram.png)
+As can be seen in the diagram,the commands implement the Command<T> interface and all the commands interacts with the AttendanceFile,the CreateNewAttendanceListCommand also interacts with the TutorialClassList aswell.
 #### 1.ShowAttendanceListCommand
 This is part of the Attendancelistcommands package,the function of this class is to show the user the attendance list of the tutorial and week the user asks for.
 
