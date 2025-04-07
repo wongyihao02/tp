@@ -511,7 +511,9 @@ computer
 | Delete Comment         | `DELETECOMMENT -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//num_pos_to_delete` |                `DELETECOMMENT -a T01,1,john,A001//1`                |
 | Create Attendance List | `CREATE -at <Tut_name>,<Week_num>`                                                     |                         `CREATE -at T01,1`                          |
 
+
 ## Exit Command
+
 | CommandName      | Form  | Example |
 |------------------|:------|:-------:|
 | Exit Application | `BYE` |  `BYE`  |
