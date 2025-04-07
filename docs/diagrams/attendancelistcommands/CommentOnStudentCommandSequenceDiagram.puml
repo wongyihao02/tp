@@ -4,10 +4,10 @@ actor user
 autonumber
 
 participant "CommentOnStudent: Command<Attendancefile>" as command
-participant "parts: String" as parts
-participant "partsArray2: String[]" as partsArray
-participant "comments : java.util.ArrayList" as comments
-participant "comment : java.lang.String" as comment
+participant "parts" as parts
+participant "partsArray2" as partsArray
+participant "comments " as comments
+participant "comment " as comment
 participant "listOfAttendanceList : AttendanceFile" as listOfAttendanceList
 participant "theOne : AttendanceList" as theOne
 participant "StudentList" as studentList

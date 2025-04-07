@@ -4,7 +4,7 @@
 autonumber
 actor User
 participant "ShowAttendanceListCommand : Command<AttendanceFile>" as command
-participant "partsArray: String[]" as parts
+participant "partsArray" as parts
 participant "listOfAttendanceList : AttendanceFile" as listOfAttendanceList
 participant "listOfTutorials : TutorialClassList" as listOfTutorials
 participant "attenList : AttendanceList" as attenList
