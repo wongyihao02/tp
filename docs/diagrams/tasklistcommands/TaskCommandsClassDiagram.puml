@@ -1,0 +1,113 @@
+@startuml
+' Class diagram for TaskCommand classes and related classes
+
+' === Interfaces ===
+interface Command<T> {
+    + execute(parts: String, target: T): void
+}
+
+' === Concrete Command Classes ===
+class TodoCommand {
+    + execute(parts: String, target: TaskList): void
+}
+class DeadlineCommand {
+    + execute(parts: String, target: TaskList): void
+}
+class EventCommand {
+    + execute(parts: String, target: TaskList): void
+}
+class ConsultationCommand {
+    + execute(parts: String, target: TaskList): void
+}
+class ListTaskCommand {
+    + execute(parts: String, target: TaskList): void
+}
+class FindTaskCommand {
+    + execute(parts: String, target: TaskList): void
+}
+class DeleteTaskCommand {
+    + execute(parts: String, target: TaskList): void
+}
+class RenameTaskCommand {
+    + execute(parts: String, target: TaskList): void
+}
+class MarkTaskCommand {
+    + execute(parts: String, target: TaskList): void
+}
+class UnmarkTaskCommand {
+    + execute(parts: String, target: TaskList): void
+}
+
+' === Task Classes ===
+class TaskList {
+    + addTask(todo: Todo): void
+    + deleteTask(taskId: int): void
+    + markTaskAsDone(taskId: int): void
+    + markTaskAsUndone(taskId: int): void
+    + renameTask(taskId: int, newTaskName: String): void
+    + getTasks(): ArrayList<Task>
+}
+
+class Task {
+    + taskName: String
+    + isDone: boolean
+    + taskType: TaskType
+    + getTaskName(): String
+    + setTaskName(name: String): void
+    + getIsDone(): boolean
+    + setIsDone(done: boolean): void
+    + printTask(): void
+}
+
+' === Task Types ===
+class Todo {
+    + taskName: String
+    + isDone: boolean
+    + printDue(): void
+}
+class Deadline {
+    + taskName: String
+    + isDone: boolean
+    + printDue(): void
+}
+class Event {
+    + taskName: String
+    + isDone: boolean
+    + printDue(): void
+}
+class Consultation {
+    + taskName: String
+    + isDone: boolean
+    + printDue(): void
+}
+
+' === Relationships ===
+Command <|.. TodoCommand
+Command <|.. DeadlineCommand
+Command <|.. EventCommand
+Command <|.. ConsultationCommand
+Command <|.. ListTaskCommand
+Command <|.. FindTaskCommand
+Command <|.. DeleteTaskCommand
+Command <|.. RenameTaskCommand
+Command <|.. MarkTaskCommand
+Command <|.. UnmarkTaskCommand
+
+TodoCommand --> TaskList : operates on
+DeadlineCommand --> TaskList : operates on
+EventCommand --> TaskList : operates on
+ConsultationCommand --> TaskList : operates on
+ListTaskCommand --> TaskList : operates on
+FindTaskCommand --> TaskList : operates on
+DeleteTaskCommand --> TaskList : operates on
+RenameTaskCommand --> TaskList : operates on
+MarkTaskCommand --> TaskList : operates on
+UnmarkTaskCommand --> TaskList : operates on
+
+TaskList --> Task : contains
+Task <|-- Todo
+Task <|-- Deadline
+Task <|-- Event
+Task <|-- Consultation
+
+@enduml

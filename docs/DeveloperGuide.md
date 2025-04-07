@@ -744,6 +744,8 @@ The `RenameTaskCommand` class implements the `Command<TaskList>` interface and i
 - Sequence diagram
 - ![RenameTaskCommandSequenceDiagram.png](diagrams/tasklistcommands/RenameTaskCommandSequenceDiagram.png)
 
+- Overall class diagram for task commands
+- ![TaskCommandsClassDiagram](diagrams/tasklistcommands/TaskCommandsClassDiagram.png)
   
 
 ## Appendix A: Product scope
