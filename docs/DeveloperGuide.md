@@ -157,6 +157,7 @@ that the user has given and print all comments for the given student in the atte
 
 #### Operations
 - `ViewStudentCommentsCommand.execute()`
+![ViewStudentCommentsCommand.png](diagrams/attendancelistcommands/ViewStudentCommentsCommand.png)
   - Extracts tutorial name, week number and student name and matric number from the given input.
   - Exception thrown if no inputs, not enough inputs or too many inputs are given.
   - The AttendancFile is searched to find the relevant AttendanceList
@@ -166,7 +167,8 @@ that the user has given and print all comments for the given student in the atte
   - The elements of the ArrayList<String> associated with the student in the hashmap for students to comments is printed
   - A special message will be printed if this ArrayList is empty.
   - An error message will be printed when an Exception is handled.
-
+![findStudentInTutorial.png](diagrams/attendancelistcommands/findStudentInTutorial.png)
+  - `Reference diagram`
 
 #### 5.CommentOnStudentCommand
 This is part of the Attendancelistcommands package,the function of this class is to add a comment(s) to a student in the particular tutorial and week.
@@ -204,9 +206,9 @@ and the number position of the comment to be removed that the user has given and
   - Extracts tutorial name, week number , student name and matric number and the number position of the comment to be removed from the given input.
   - Exception thrown if no inputs, not enough inputs or too many inputs are given.
   - The AttendancFile is searched to find the relevant AttendanceList
-  - Exception is thrown and handled if none found.
+  - Exception is thrown and error message printed if none found.
   - This AttendanceList is then checked is it has a student with the same name and matric number is found.
-  - Exception is thrown and handled if none found.
+  - Exception is thrown and error message printed if none found.
   - The ArrayList<String> associated with the student that stores comments for the has the (num given - 1)th element removed.A message will then be printed stating that the comment was successfully deleted.
   - Different messages will be printed if the student has no comments associated with them or if the num given is outside the boundaries of the comments ArrayList.
   - An error message will be printed when an Exception is handled.
@@ -223,11 +225,11 @@ AttendanceFile as the second element.
 #### Operations
 - `CreateNewAttendanceList.execute()`
   - Extracts tutorial name, week number for the new AttendanceList to be created from the given input.
-  - Exception thrown if no inputs, not enough inputs or too many inputs are given.
+  - Exception thrown if no inputs, not enough inputs , too many inputs are given or incorrect inputs.
   - The TutorialClassList is searched to find the relevant TutorialClass.
-  - Exception is thrown and handled if none found.
+  - Exception is thrown and error message printed if none found.
   - The AttendanceFile is searched to find if it contains an AttendanceList for the given tutorial name and week.
-  - A new AttendanceList would be created for the given tutorial name and week if non found.
+  - A new AttendanceList would be created for the given tutorial name and week if none found.
   - Different message will be printed if the AttendanceList was found.
   - An error message will be printed when an Exception is handled.
 ![CreateNewAttendanceListCommand.png](diagrams/attendancelistcommands/CreateNewAttendanceListCommand.png)
