@@ -11,9 +11,12 @@ to create a functional TASync program and is not fully comprehensive. The focus 
 with further details, such as class methods, attributes, and specific interactions omitted. This serves as a foundation for understanding the
 key components and how they contribute to the overall functionality of TASync.
 
+![SimplifiedOverallClassDiagram](diagrams/SimplifiedOverallClassDiagram.png)
 ### **Command handling component**
 **Overview**
 - The command handling component is responsible for interpreting user inputs, creating the corresponding command objects, and executing them with access to the necessary application data. This structure supports extensibility and separates concerns, making the command system more modular and maintainable.
+
+![CommandHandlingComponentClassDiagram](diagrams/CommandHandlingComponent.png)
 
 **Component Breakdown**
 - `CommandLoopHandler`
@@ -44,6 +47,8 @@ key components and how they contribute to the overall functionality of TASync.
 ### **Data management component**
 **Overview**
  - The data management component handles the loading and saving of application data such as tutorials, attendance, and marks. It abstracts away file operations through the use of well-defined interfaces, supporting a modular and extensible structure. This design ensures data persistence across sessions and simplifies file I/O logic. 
+
+![DataManagementComponentClassDiagram](diagrams/DataManagementComponentClassDiagram.png)
 
 **Component Breakdown**
 - `DataManager`
@@ -79,7 +84,6 @@ The `command` package contains the following sub-packages:
 - `student commands` - Implements commands specific to student-related operations
 - `taskcommands` - Contains commands for managing tasks
 - `tutorialcommands` - Handles tutorial-related commands
-
 
 ### Command Handler
 
