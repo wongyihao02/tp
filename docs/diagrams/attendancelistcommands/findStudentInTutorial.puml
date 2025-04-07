@@ -2,22 +2,27 @@
 'https://plantuml.com/sequence-diagram
 hide footbox
 
-
+actor User
 participant "command" as command
 participant "listOfAttendanceList : AttendanceFile" as listOfAttendanceList
 participant "theOne : AttendanceList" as theOne
 participant "TutorialClass" as tutorialClass
 participant "StudentList" as studentList
 
+activate command
 group sd get student in tutorial
     command -> listOfAttendanceList : getAttendanceList()
     activate listOfAttendanceList
     command <-- listOfAttendanceList : return theOne
     deactivate listOfAttendanceList
+    alt theOne is null
+    command -> command : throw TASyncException()
+    command --> User : print error message
+    else
 
     command -> theOne : getTutorialClass()
     activate theOne
-    command <-- theOne : return tutorialClass
+    command <-- theOne : return TutorialClass
     deactivate theOne
 
     command -> tutorialClass : getStudentList()
@@ -38,7 +43,12 @@ group sd get student in tutorial
     activate derStudent
     derStudent --> command : return derStudent
     deactivate derStudent
+    alt derStudent is null
+    command -> command : throw TASyncException()
+        command --> User : print error message
     end opt
     end loop
+    end alt
+    end
     end
 @enduml

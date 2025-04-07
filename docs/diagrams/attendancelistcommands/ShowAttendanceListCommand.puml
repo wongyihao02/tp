@@ -9,19 +9,25 @@ participant "listOfAttendanceList : AttendanceFile" as listOfAttendanceList
 participant "theOne : AttendanceList" as theOne
 participant "TutorialClass" as tutorialClass
 participant "StudentList" as studentList
-participant "e : TASyncException" as e
-participant "n : NumberFormatException" as n
+
 
 skinparam sequenceReferenceBackgroundColor #f7807c
 
 User -> command : execute(parts : String, target : T)
 activate command
-alt try
 
+
+alt parts null or is empty
+command -> command : throw TASyncException()
+command --> User : print error message
+else second param is non-number string
+command -> command : throw NumberFormatException()
+command --> User : print error message
+else input is valid
 create parts
 command -> parts : parts.split(",")
 activate listOfAttendanceList
-ref over command, listOfAttendanceList, theOne, tutorialClass, studentList
+ref over User, command, listOfAttendanceList, theOne, tutorialClass, studentList
 find student in tutorial
 end ref
 
@@ -37,24 +43,8 @@ deactivate theOne
 deactivate tutorialClass
 deactivate studentList
 command --> User : print out the attendanceMap\n according to format
-
-else catch TASyncException
-
-
-    command -> e : e.getMessage()
-    activate e
-    e --> command : return error message
-    deactivate e
-    command --> User  : print error message
-
-    else catch NumberFormatException
-     command -> n : n.getMessage()
-     activate n
-     n --> command : return error message
-     deactivate n
-     command --> User : error message
-
 end
+
 destroy parts
 
 

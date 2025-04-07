@@ -8,12 +8,17 @@ participant "partsArray" as parts
 participant "listOfAttendanceList : AttendanceFile" as listOfAttendanceList
 participant "listOfTutorials : TutorialClassList" as listOfTutorials
 participant "attenList : AttendanceList" as attenList
-participant "e : TASyncException" as e
-participant "n : NumberFormatException" as n
+
 
 User -> command : execute(parts : String, target : T)
 activate command
-alt try
+alt parts is null or empty
+command -> command : throw TASyncException()
+command --> User : print error message
+else second param is non-number string
+command -> command : throw NumberFormatException()
+command --> User : print error message
+else input is valid
 create parts
 command -> parts : parts.split(",")
 activate listOfAttendanceList
@@ -24,6 +29,10 @@ listOfTutorials --> listOfAttendanceList: returns boolean of if it exists
 deactivate listOfTutorials
 
 listOfAttendanceList --> command : returns attendanceList
+alt tutorial does not exist
+command -> command : throw TASyncException()
+command --> User : print error message
+else
 alt the attendanceList is null
 create attenList
 command -> attenList
@@ -38,23 +47,8 @@ command --> User : print("Attendance list for the week already exists")
 else the attendanceList is not null
 command --> User : print message stating attendanceList already exists
 end alt
-
-else catch TASyncException
-
-
-    command -> e : e.getMessage()
-        activate e
-        e --> command : return error message
-        deactivate e
-        command --> User  : print error message
-
-        else catch NumberFormatException
-         command -> n : n.getMessage()
-         activate n
-         n --> command : return error message
-         deactivate n
-         command --> User : error message
-end
+end alt
+end alt
 
 destroy parts
 @enduml
