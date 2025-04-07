@@ -73,6 +73,8 @@ public class CommentOnStudentCommand implements Command<AttendanceFile> {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
 
+            assert derStudent != null : "by now shouldn't be null";
+            assert theOne != null : "by now shouldn't be null";
             theOne.addComments(derStudent, comments);
 
             System.out.println("added comment to " + partsArray[2] + " (" + partsArray[3] + ") in tutorial "

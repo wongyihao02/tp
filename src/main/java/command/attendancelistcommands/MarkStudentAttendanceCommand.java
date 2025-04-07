@@ -21,6 +21,7 @@ public class MarkStudentAttendanceCommand implements Command<AttendanceFile> {
             }
 
             String[] partsArray = parts.split(",");
+
             for (int i = 0; i < partsArray.length; i++) {
                 partsArray[i] = partsArray[i].trim();
             }
@@ -28,6 +29,8 @@ public class MarkStudentAttendanceCommand implements Command<AttendanceFile> {
             if (partsArray.length != 4) {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
+
+            assert partsArray.length == 4 : "Only 4 inputs should be passed";
 
             ArrayList<AttendanceList> list = attendanceList.getAttendanceList();
 
@@ -57,6 +60,9 @@ public class MarkStudentAttendanceCommand implements Command<AttendanceFile> {
             if (derStudent == null) {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
+
+            assert derStudent != null : "by now shouldn't be null";
+            assert theOne != null : "by now shouldn't be null";
 
             Map<Student, String> attendanceMap = theOne.getAttendanceMap();
             attendanceMap.replace(derStudent, "Present");
