@@ -159,14 +159,13 @@ that the user has given and print all comments for the given student in the atte
 - `ViewStudentCommentsCommand.execute()`
 ![ViewStudentCommentsCommand.png](diagrams/attendancelistcommands/ViewStudentCommentsCommand.png)
   - Extracts tutorial name, week number and student name and matric number from the given input.
-  - Exception thrown if no inputs, not enough inputs or too many inputs are given.
+  - Exception thrown if inputs are invalid.
   - The AttendancFile is searched to find the relevant AttendanceList
-  - Exception is thrown and handled if none found.
+  - Exception is thrown and error message printed if none found.
   - This AttendanceList is then checked is it has a student with the same name and matric number is found.
-  - Exception is thrown and handled if none found.
+  - Exception is thrown and error message printed if none found.
   - The elements of the ArrayList<String> associated with the student in the hashmap for students to comments is printed
   - A special message will be printed if this ArrayList is empty.
-  - An error message will be printed when an Exception is handled.
 ![findStudentInTutorial.png](diagrams/attendancelistcommands/findStudentInTutorial.png)
   - `Reference diagram`
 
