@@ -1,5 +1,8 @@
 package task;
+import java.io.IOException;
+import java.util.logging.FileHandler;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Abstract class representing a task.
@@ -8,6 +11,19 @@ import java.util.logging.Logger;
 public abstract class Task {
     private static final Logger logger = Logger.getLogger(Task.class.getName());
 
+    static {
+        try {
+            FileHandler fileHandler = new FileHandler("data/task-log.txt", true);
+            fileHandler.setFormatter(new SimpleFormatter());
+            logger.addHandler(fileHandler);
+            logger.setUseParentHandlers(false);
+
+            logger.info("Task logger initialized.");
+        } catch (IOException e) {
+            System.err.println("Failed to set up logger for Task: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
     private TaskType taskType;
     private String taskName;
     private boolean isDone;
@@ -67,11 +83,9 @@ public abstract class Task {
      * Prints the task's completion status.
      */
     public void printIsDone() {
-        if (this.isDone) {
-            System.out.print("[X]"); //task done, print with X
-        } else {
-            System.out.print("[ ]"); //task not done print without X
-        }
+        String status = this.isDone ? "[X]" : "[ ]";
+        logger.info("Task status: " + status);
+        System.out.print(status);
     }
 
     /**
@@ -79,30 +93,44 @@ public abstract class Task {
      */
     public void printTaskType() {
         assert this.taskType != null : "TaskType is not initialized!";
+        String typeStr = "";
         switch (this.getTaskType()) {
         case EVENT:
-            System.out.print("[E]");
+            typeStr = "[E]";
             break;
         case DEADLINE:
-            System.out.print("[D]");
+            typeStr = "[D]";
             break;
         case TODO:
-            System.out.print("[T]");
+            typeStr = "[T]";
             break;
         case CONSULTATION:
-            System.out.print("[C]");
+            typeStr = "[C]";
             break;
         default:
             break;
         }
+        logger.info("Task type: " + typeStr);
+        System.out.print(typeStr);
     }
     /**
      * Prints the task details.
      */
     public void printTask() {
-        printTaskType();
-        printIsDone();
-        System.out.print(" " + taskName);
+        String taskStr = getTaskTypeSymbol() + getIsDoneSymbol() + " " + taskName;
+        logger.info("Task printed: " + taskStr);
+        System.out.print(taskStr);
+    }
+    private String getTaskTypeSymbol() {
+        return switch (this.getTaskType()) {
+        case EVENT -> "[E]";
+        case DEADLINE -> "[D]";
+        case TODO -> "[T]";
+        case CONSULTATION -> "[C]";
+        };
+    }
+    private String getIsDoneSymbol() {
+        return this.isDone ? "[X]" : "[ ]";
     }
     /**
      * Prints the due date or duration of the task (if applicable).
@@ -116,7 +144,6 @@ public abstract class Task {
      * @return A string representing the task for file storage.
      */
     public abstract String toFileFormat();
-
 
 }
 
