@@ -27,27 +27,46 @@ The `CommandParser` is responsible for breaking down user input into a **command
 
 #### Implementation Details
 
-- Extracts the first word as the command keyword (e.g., `addstudent`, `deletetask`) and treats the remainder as arguments.
+- Extracts the first word as the command keyword (e.g., `newstudent`, `delete`) and treats the remainder as arguments.
 - Trims and sanitizes input to ensure compatibility across all command handlers.
 - Throws relevant exceptions if input is malformed or empty.
 
 #### Operations
 
-- `CommandParser.parse(String input)`
-  - Parses the keyword and arguments from user input.
-  - Returns both as a `ParsedInput` object to the `CommandHandler`.
+- `CommandParser(String input)`
+  - Parses the keyword and arguments from user input and saves in attribute: String[] parts
   - Handles edge cases like extra whitespace and missing commands.
+- `getParts()`
+  - Returns parts, an array of String which is the parsed command.
+
+---
+#### 2. CommandHandler
+
+The `CommandHandler` orchestrates the end-to-end command processing — from parsing to execution.
+
+#### Implementation Details
+- Delegates command resolution to `CommandFactory`, and execution to the returned `Command` instance.
+- Accepts relevant data structures such as `TaskList`, `TutorialClassList`, and `AttendanceFile` as input to command execution.
+
+#### Operations
+
+- `CommandHandler(T list, String parts)`
+  - Saves `list` to attribute
+  - Delegates command creation to `CommandFactory` and saves the `Command` instance returned
+  - save relevant command details `parts`
+- `runCommand()`
+  - calls .execute() method of the `Command` instance on the `list` saved based on `parts`.
 
 ---
 
-#### 2. CommandFactory
+#### 3. CommandFactory
 
 The `CommandFactory` is responsible for returning the correct command object for execution.
 
 #### Implementation Details
 
 - Implements the **Factory Design Pattern** to instantiate command classes without exposing their construction logic to external classes.
-- Maps each supported command keyword (e.g., `addstudent`, `listtasks`, `newtutorial`) to its corresponding command class.
+- Maps each supported command keyword (e.g., `addstudent`, `listtasks`, `newtutorial`) and returns its corresponding command object to the caller class.
 - Throws descriptive exceptions if an unrecognized command is provided.
 
 #### Operations
@@ -59,26 +78,6 @@ The `CommandFactory` is responsible for returning the correct command object for
 
 ---
 
-#### 3. CommandHandler
-
-The `CommandHandler` orchestrates the end-to-end command processing — from parsing to execution.
-
-#### Implementation Details
-
-- Acts as the main entry point when a command is entered via CLI.
-- Delegates parsing to `CommandParser`, command resolution to `CommandFactory`, and execution to the returned `Command` instance.
-- Accepts relevant data structures such as `TaskList`, `TutorialClassList`, and `AttendanceFile` as input to command execution.
-- Handles exception logging and displays error messages to the user if any part of the command flow fails.
-
-#### Operations
-
-- `CommandHandler.handleCommand(String fullInput)`
-  - Calls `CommandParser` to break down the input.
-  - Delegates command creation to `CommandFactory`.
-  - Executes the command using the appropriate data object.
-  - Displays output or error messages based on the outcome.
-
----
 
 #### Benefits of the Design
 
@@ -86,6 +85,16 @@ The `CommandHandler` orchestrates the end-to-end command processing — from par
 - **Polymorphic Execution:** All commands implement a common interface `Command<T>`, simplifying invocation logic.
 - **Robust Error Handling:** Clearly separates exceptions thrown during parsing, command creation, and execution.
 - **Testable:** Each component (`Parser`, `Factory`, `Handler`) can be unit tested independently.
+
+### Operations of the three classes in CommandLoopHandler:
+![CommandHandlersSeqDiagram.png](diagrams/CommandHandlersSeqDiagram.png)
+  - User inputs command to `CommandLoopHandler`, which will loop while user does not input `bye`
+  - the `commandLoopHandler` first Parses the command into parts using `CommandParser`
+  - if the parts are not valid command, `CommandLoopHandler` repeated requests for input command till it is valid
+  - if parts are valid command, `CommandLoopHandler` creates `CommandHandler` with list based on command and parts
+  - `CommandHandler` uses `createCommand()` method from `CommandFactory` to generate `Command` Object
+  - The CommandLoopHandler then calls `runCommand()` method in `CommandHandler`
+  - CommandHandler then runs the Command
 
 ### Attendance List Commands
 #### Class diagram for attendanceListCommands
