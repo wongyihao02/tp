@@ -114,13 +114,13 @@ public class CommandListPrinter {
         case CHECK_REMARK ->
                 "Checks remarks for a student\n  Usage: CHECKREMARK -t <tutorial_name>,<matric_number>";
         case COMMENT ->
-                "Adds a comment to a student\n  " +
+                "Adds a comment to a student for a particular weeks tutorial session\n  " +
                         "Usage: COMMENT -a <Tutname>,<weeknum>,<studentname>,<studentmatricnumber>//comment1;comment2>";
         case VIEWCOMMENT ->
-                "Views comments on a student\n  " +
+                "Views comments on a student for a particular weeks tutorial session\n  " +
                         "Usage: VIEWCOMMENT -a <Tutname>,<weeknum>,<studentname>,<studentmatricnumber>";
         case DELETECOMMENT ->
-                "Deletes a student's comment\n  " +
+                "Deletes a student's comment for a particular weeks tutorial session\n  " +
                         "Usage: DELETECOMMENT -a <Tutname>,<weeknum>,<studentname>,<studentmatricnumber>//commentnum>";
         case LIST ->
                 "Displays all tasks\n  Usage: LIST -p";
