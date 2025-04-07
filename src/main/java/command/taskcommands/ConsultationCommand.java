@@ -35,14 +35,14 @@ public class ConsultationCommand implements Command<TaskList> {
                 // Split the input into expected parts
                 String[] consultationParts = parts.split(" /from ", 2);
                 if (consultationParts.length < 2) {
-                    throw new TASyncException("Missing start time. Please re-enter the full command.");
+                    throw new TASyncException("Missing component. Please re-enter the full command.");
                 }
 
                 String studentName = consultationParts[0].trim();
 
                 String[] timeParts = consultationParts[1].split(" /to ", 2);
                 if (timeParts.length < 2) {
-                    throw new TASyncException("Missing end time. Please re-enter the full command.");
+                    throw new TASyncException("Missing component. Please re-enter the full command.");
                 }
 
                 String from = timeParts[0].trim();
