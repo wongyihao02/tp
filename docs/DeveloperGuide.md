@@ -822,6 +822,30 @@ welcome message, and will be ready to accept commands.
 intended to provide a logical path through all user-testable features. The test cases are not exhaustive, and further
 variations in test cases are required for extensive testing.*
 
+### Tutorial commands
+
+#### Creating a new tutorial
+1. Test case: `NEWTUTORIAL -t T123,2,11:00,13:00`
+- Expected: Tutorial successfully created.
+2. Test case: `NEWTUTORIAL -t T02,9,11:00,13:00`
+- Expected: Error message indicating invalid day of week.
+3. Other incorrect inputs to test: Invalid time formats.
+
+#### Deleting a tutorial/Listing students for a tutorial
+1. Test cases: `DELETE -t T123`
+- Expected: Tutorial is successfully deleted.
+2. Test cases: `LISTSTUDENTS -t T123`
+- Expected: All students in the given tutorial, and their information, listed.
+3. Incorrect inputs to test: Missing arguments, invalid tutorial.
+
+#### Listing tutorials
+1. Test case: `LIST -t 12/04/2025`
+- Expected: Lists all tutorials from today to given date.
+2. Test case: 'LIST -t 12-4'
+- Expected: Error message for invalid date format.
+3. Other incorrect inputs to test: Invalid dates, such as date in the past.
+
+
 ### Student commands
 #### Adding a new student
 1. Test case: `newstudent -t Mark Lim,20/03/2005,Male,97654344,A2387653D,T123`
@@ -883,29 +907,6 @@ variations in test cases are required for extensive testing.*
 - Expected: All assignments and marks printed, followed by an average percentage for the student.
 2. Incorrect inputs to test:
 * Invalid tutorial or matric number, missing arguments.
-
-### Tutorial commands
-
-#### Creating a new tutorial
-1. Test case: `NEWTUTORIAL -t T123,2,11:00,13:00`
-- Expected: Tutorial successfully created.
-2. Test case: `NEWTUTORIAL -t T02,9,11:00,13:00`
-- Expected: Error message indicating invalid day of week.
-3. Other incorrect inputs to test: Invalid time formats.
-
-#### Deleting a tutorial/Listing students for a tutorial
-1. Test cases: `DELETE -t T123`
-- Expected: Tutorial is successfully deleted.
-2. Test cases: `LISTSTUDENTS -t T123`
-- Expected: All students in the given tutorial, and their information, listed.
-3. Incorrect inputs to test: Missing arguments, invalid tutorial.
-
-#### Listing tutorials
-1. Test case: `LIST -t 12/04/2025`
-- Expected: Lists all tutorials from today to given date.
-2. Test case: 'LIST -t 12-4'
-- Expected: Error message for invalid date format.
-3. Other incorrect inputs to test: Invalid dates, such as date in the past.
 
 ### Attendance commands
 
