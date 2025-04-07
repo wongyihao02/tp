@@ -51,8 +51,6 @@ class XYZTasks
 class XYZCommands
 
 
-
-
 interface "<<interface>> Command<T>" {
     + execute(parts : String , target : T) : void
 }

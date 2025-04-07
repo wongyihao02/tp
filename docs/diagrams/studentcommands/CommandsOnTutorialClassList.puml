@@ -1,17 +1,17 @@
 @startuml
-package command.studentcommands {
-    class ChangeRemarkCommand {
+
+hide circle
+skinparam classAttributeIconSize 0
+
+    class CommandsOnTutorialClassList {
         +execute(parts: String, tutorialClassList: TutorialClassList): void
     }
-}
 
-package command.taskcommands {
-    interface Command<T> {
+    interface "<<interface>> \n Command<T>" {
         +execute(input: String, context: T): void
     }
-}
 
-package tutorial {
+
     class TutorialClass {
         +getStartTime(): LocalTime
         +getStudentList(): StudentList
@@ -20,9 +20,7 @@ package tutorial {
     class TutorialClassList {
         +getTutorialByName(name: String): TutorialClass
     }
-}
 
-package students {
     class Student {
         +setRemark(remark: String): void
     }
@@ -30,19 +28,17 @@ package students {
     class StudentList {
         +getStudentByMatricNumber(matricNumber: String): Student
     }
-}
 
-package exception {
+
     class TASyncException extends Exception {
-        +invalidChangeRemarkCommand(): TASyncException
+        +invalidGenericCommand(): TASyncException
     }
-}
 
 ' Relationships
-ChangeRemarkCommand ..|> Command
-ChangeRemarkCommand --> TutorialClassList
-ChangeRemarkCommand --> TutorialClass
-ChangeRemarkCommand --> StudentList
-ChangeRemarkCommand --> Student
-ChangeRemarkCommand --> TASyncException
+"<<interface>> \n Command<T>" <|.. CommandsOnTutorialClassList : <<implements>>
+CommandsOnTutorialClassList --> TutorialClassList
+CommandsOnTutorialClassList --> TutorialClass
+CommandsOnTutorialClassList --> StudentList
+StudentList --> Student
+CommandsOnTutorialClassList --> TASyncException
 @enduml
