@@ -72,12 +72,12 @@ public class CommandListPrinter {
         case TODO ->
                 "Creates a new todo task\n  Usage: ADD -pt <task_description>";
         case DEADLINE ->
-                "Creates a new deadline task\n  Usage: ADD -pd <task_description> /by <due_time>";
+                "Creates a new deadline task\n  Usage: ADD -pd <task_description> /by <due_DateTime>";
         case EVENT ->
-                "Creates a new event\n  Usage: ADD -pe <task_description> /from <start_time> /to <end_time>";
+                "Creates a new event\n  Usage: ADD -pe <task_description> /from <start_DateTime> /to <end_DateTime>";
         case CONSULTATION ->
                 "Creates a new consultation with student\n " +
-                        "Usage: ADD -c <student_name> /from <start_time> /to <end_time>";
+                        "Usage: ADD -c <student_name> /from <start_DateTime> /to <end_DateTime>";
         case NEW_STUDENT ->
                 "Adds a new student\n  " +
                         "Usage: NEWSTUDENT -t <student_name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_name>";
