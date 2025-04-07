@@ -1,15 +1,14 @@
 @startuml
-actor User
 
 participant "NewStudentCommand" as NSC
 participant "StudentCommandHelper" as Helper
 participant "DateTimeFormatterUtil" as DateUtil
-participant "TutorialClassList" as TCL
+participant "tutorialClassList: TutorialClassList" as TCL
 participant "TutorialClass" as TC
 participant "StudentList" as SL
 participant "Student" as S
 
-User -> NSC: execute(parts, tutorialClassList)
+-> NSC: execute(parts, tutorialClassList)
 activate NSC
 
 NSC -> NSC: check input parameters are valid
@@ -22,7 +21,7 @@ deactivate TCL
 
 NSC -> SL: check if student already exists
 activate SL
-SL --> NSC: null or existing student
+SL --> NSC: student does not exist
 deactivate SL
 
 alt student does not exist
@@ -40,9 +39,7 @@ alt student does not exist
     SL --> NSC:
     deactivate SL
 
-    NSC -> User: print success message
-else student exists
-    NSC -> User: print duplicate error
+
 end
 
 deactivate NSC

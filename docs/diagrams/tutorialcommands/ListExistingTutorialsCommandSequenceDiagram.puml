@@ -1,40 +1,38 @@
 @startuml
 
-actor User
 
 participant "ListExistingTutorialsCommand" as LETC
-participant "TutorialClassList" as TCL
+participant "tutorialClassList: TutorialClassList" as TCL
 participant "tutorialClasses: ArrayList<TutorialClass>" as List
 participant "TutorialClass" as TC
 
-User -> LETC: execute(input, tutorialClassList)
+-> LETC: execute(input, tutorialClassList)
 activate LETC
 
 LETC -> TCL: getTutorialClasses()
 activate TCL
-TCL --> LETC: tutorialClasses
+TCL --> LETC: return tutorialClasses
 deactivate TCL
 
-alt tutorialClasses is empty
-    LETC -> User: print "There are no tutorials created yet."
-else
+
     LETC -> List: sort by day and then time
     activate List
     List --> LETC: return sorted tutorials
     deactivate List
 
-    LETC -> User: print "Existing Tutorials:"
-
     loop for each tutorial
         LETC -> TC: getTutorialName()
+        TC --> LETC: tutorial name
+        activate TC
         LETC -> TC: getDayOfWeek()
+        TC --> LETC: day of week
         LETC -> TC: getStartTime()
+        TC --> LETC: start time of tutorial
         LETC -> TC: getEndTime()
-        LETC -> User: print tutorial details
+        TC --> LETC: end time of tutorial
+        deactivate TC
     end
 
-    LETC -> User: print "End of list"
-end
 
 deactivate LETC
 

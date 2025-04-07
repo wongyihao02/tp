@@ -1,4 +1,4 @@
-package command.tutorialcommands;
+package command.studentcommands;
 
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
