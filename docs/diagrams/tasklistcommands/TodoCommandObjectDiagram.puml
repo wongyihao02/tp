@@ -1,0 +1,20 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+todoCommand : TodoCommand
+myTaskList : TaskList
+newTodo : Todo
+
+object newTodoDetails {
+  taskName = "Read book"
+  isDone = false
+}
+
+todoCommand --> myTaskList : execute("Read book", myTaskList)
+todoCommand --> newTodo : new Todo("Read book", false)
+newTodo --> newTodoDetails
+myTaskList --> newTodo : addTask(todo)
+
+@enduml

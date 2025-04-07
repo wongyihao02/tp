@@ -85,11 +85,80 @@ CommandLoopHandler --> TutorialClassList
 CommandLoopHandler --> CommandParser
 CommandLoopHandler --> CommandHandler
 CommandHandler --> CommandFactory
-CommandLoopHandler --> Command
+CommandFactory --> Command
+CommandHandler --> Command
+CommandHandler --> StudentList
+CommandHandler --> TutorialClassList
+CommandHandler --> AttendanceFile
+CommandHandler --> TaskList
+CommandHandler --> MarksList
+CommandLoopHandler --> DataManager
 TASync --> CommandLoopHandler
 TASync --> DataLoader
 TASync --> DataManager
 DataLoader o-- DataManager
 DataManager --> FileSaver
 DataManager --> FileLoader
+
+Command <|.. TaskCommands : <<implements>>
+Command <|.. MarksCommands : <<implements>>
+Command <|.. AttendanceListCommands : <<implements>>
+Command <|.. StudentCommands : <<implements>>
+Command <|.. TutorialCommands : <<implements>>
+
+Task <|-- Todo
+Task <|-- Deadline
+Task <|-- Event
+Task <|-- Consultation
+TaskList --> Task
+TutorialClassList --> TutorialClass
+StudentList --> Student
+MarksList --> Marks
+AttendanceFile --> AttendanceList
+
+package TaskCommands {
+  class ListTaskCommand
+  class DeleteTaskCommand
+  class MarkTaskCommand
+  class UnmarkTaskCommand
+  class FindTaskCommand
+  class RenameTaskCommand
+  class TodoCommand
+  class DeadlineCommand
+  class EventCommand
+  class ConsultationCommand
+}
+
+package MarksCommands {
+  class AddMarksCommand
+  class ListMarksCommand
+  class DeleteMarksCommand
+}
+
+package AttendanceListCommands {
+  class CommentOnStudentCommand
+  class CreateNewAttendanceListCommand
+  class DeleteStudentCommentCommand
+  class MarkStudentAttendanceCommand
+  class ShowAttendanceListCommand
+  class ViewStudentCommentsCommand
+  class UnmarkStudentAttendanceCommand
+}
+
+package StudentCommands {
+  class ChangeRemarkCommand
+  class DeleteStudentCommand
+  class CheckRemarkCommand
+  class FindStudentCommand
+  class NewStudentCommand
+  class StudentCommandHelper
+}
+
+package TutorialCommands {
+  class NewTutorialCommand
+  class DeleteTutorialCommand
+  class ListExistingTutorialsCommand
+  class ListTutorialStudentsCommand
+}
+
 @enduml
