@@ -27,6 +27,7 @@ public class ViewStudentCommentsCommand implements Command<AttendanceFile> {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
 
+            assert partsArray.length == 4 : "Only 4 inputs should be passed";
             ArrayList<AttendanceList> list = attendanceList.getAttendanceList();
 
             AttendanceList theOne = null;

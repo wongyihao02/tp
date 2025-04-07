@@ -53,6 +53,8 @@ public class DeleteStudentCommentCommand implements Command<AttendanceFile> {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
 
+
+
             ArrayList<Student> stdList = theOne.getTutorialClass().getStudentList().getStudents();
             Student derStudent = null;
             for (Student s : stdList) {
@@ -66,6 +68,9 @@ public class DeleteStudentCommentCommand implements Command<AttendanceFile> {
             if (derStudent == null) {
                 throw TASyncException.invalidmarkAttendanceListCommand();
             }
+
+            assert derStudent != null : "by now shouldn't be null";
+            assert theOne != null : "by now shouldn't be null";
 
             Map<Student, ArrayList<String>> commentlist = theOne.getCommentList();
 

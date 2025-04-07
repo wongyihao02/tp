@@ -42,6 +42,8 @@ public class CreateNewAttendanceListCommand implements Command<ArrayList<Object>
             AttendanceList attenlist = attendanceFile.getAttendanceByNameAndWeek(
                     Integer.parseInt(partsArray[1].trim()), tutClass.getTutorialName());
 
+            assert tutClass != null : "Exception should be thrown if cannot find tutorial";
+
             if (attenlist == null) {
                 attenlist = new AttendanceList(tutClass, Integer.parseInt(partsArray[1].trim()));
                 for (Student student : attenlist.getTutorialClass().getStudentList().getStudents()) {
