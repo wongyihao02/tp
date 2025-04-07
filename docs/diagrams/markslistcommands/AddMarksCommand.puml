@@ -1,0 +1,73 @@
+@startuml
+actor User
+participant "MarksCommand" as MarksCommand
+participant "TutorialClassList" as TClassList
+participant "TutorialClass" as TClass
+participant "StudentList" as SList
+participant "Student" as Student
+participant "MarksList" as MList
+participant "TASyncException" as TASyncEx
+
+User -> MarksCommand : execute(parts, TClassList)
+
+opt Invalid parts (empty or < 5)
+    MarksCommand -> MarksCommand : throw TASyncException
+    MarksCommand -> TASyncEx : getMessage()
+    TASyncEx --> MarksCommand : "Invalid new marks command."
+    MarksCommand -> User : print error message
+end
+
+MarksCommand -> TClassList : getTutorialByName(tutorialID)
+TClassList --> MarksCommand : TutorialClass
+
+MarksCommand -> TClass : getStartTime()
+TClass --> MarksCommand : startTime
+
+opt Tutorial not found
+    MarksCommand -> MarksCommand : throw TASyncException
+    MarksCommand -> TASyncEx : getMessage()
+    TASyncEx --> MarksCommand : "No tutorial class found..."
+    MarksCommand -> User : print error message
+end
+
+MarksCommand -> TClass : getStudentList()
+TClass --> MarksCommand : StudentList
+
+MarksCommand -> SList : getStudentByMatricNumber(matricNumber)
+SList --> MarksCommand : Student
+
+opt Student not found
+    MarksCommand -> MarksCommand : throw TASyncException
+    MarksCommand -> TASyncEx : getMessage()
+    TASyncEx --> MarksCommand : "No student found with matric number..."
+    MarksCommand -> User : print error message
+end
+
+MarksCommand -> Student : getMarksList()
+Student --> MarksCommand : MarksList
+
+MarksCommand -> MList : getByAssignmentName(assignmentName)
+MList --> MarksCommand : null / existingMarks
+
+opt Marks already exists
+    MarksCommand -> MarksCommand : throw TASyncException
+    MarksCommand -> TASyncEx : getMessage()
+    TASyncEx --> MarksCommand : "Marks with assignment name already exists."
+    MarksCommand -> User : print error message
+end
+
+create Marks
+MarksCommand -> Marks : Marks(assignmentName, marks, maxMark)
+Marks --> MarksCommand : newMarks
+
+MarksCommand -> MList : addMarks(newMarks)
+MList --> MarksCommand
+
+MarksCommand -> Student : getName()
+Student --> MarksCommand : studentName
+
+MarksCommand -> Marks : toString()
+Marks --> MarksCommand : stringRepresentation
+
+MarksCommand -> User : Print confirmation and mark info
+@enduml

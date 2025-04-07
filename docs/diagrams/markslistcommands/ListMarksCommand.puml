@@ -1,0 +1,70 @@
+@startuml
+actor User
+participant "ListMarksCommand" as ListMarksCommand
+participant "TutorialClassList" as TutorialClassList
+participant "TutorialClass" as TutorialClass
+participant "StudentList" as StudentList
+participant "Student" as Student
+participant "MarksList" as MarksList
+participant "Marks" as Marks
+participant "TASyncException" as TASyncException
+
+User -> ListMarksCommand : execute(parts, TutorialClassList)
+
+opt Invalid parts (empty or < 2)
+    ListMarksCommand -> ListMarksCommand : throw TASyncException
+    ListMarksCommand -> TASyncException : getMessage()
+    TASyncException --> ListMarksCommand : "Invalid list marks command."
+    ListMarksCommand -> User : print error message
+end
+
+ListMarksCommand -> TutorialClassList : getTutorialByName(tutorialID)
+TutorialClassList --> ListMarksCommand : TutorialClass
+
+ListMarksCommand -> TutorialClass : getStartTime()
+TutorialClass --> ListMarksCommand : startTime
+
+opt Tutorial not found
+    ListMarksCommand -> ListMarksCommand : throw TASyncException
+    ListMarksCommand -> TASyncException : getMessage()
+    TASyncException --> ListMarksCommand : "No tutorial class found..."
+    ListMarksCommand -> User : print error message
+end
+
+ListMarksCommand -> TutorialClass : getStudentList()
+TutorialClass --> ListMarksCommand : StudentList
+
+ListMarksCommand -> StudentList : getStudentByMatricNumber(matricNumber)
+StudentList --> ListMarksCommand : Student
+
+opt Student not found
+    ListMarksCommand -> ListMarksCommand : throw TASyncException
+    ListMarksCommand -> TASyncException : getMessage()
+    TASyncException --> ListMarksCommand : "No student found with matric number..."
+    ListMarksCommand -> User : print error message
+end
+
+ListMarksCommand -> Student : getMatricNumber()
+Student --> ListMarksCommand : matricNumber
+
+ListMarksCommand -> Student : getMarksList()
+Student --> ListMarksCommand : MarksList
+
+ListMarksCommand -> MarksList : printMarks()
+
+alt MarksList is empty
+      MarksList -> User: print "No marks added yet."
+else MarksList is not empty
+      loop all marks in list
+      MarksList -> Marks : toString()
+      Marks --> MarksList : string representation
+      MarksList --> User : print marks string
+      MarksList -> Marks : marks.getMarks()
+      MarksList -> Marks : marks.getMaxMark()
+      MarksList -> User : print "Average: avgPercent%"
+      end
+  end
+  MarksList --> ListMarksCommand : return
+
+ListMarksCommand -> User : return
+@enduml

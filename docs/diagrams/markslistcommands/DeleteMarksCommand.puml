@@ -1,0 +1,63 @@
+@startuml
+actor User
+participant "DeleteMarksCommand" as DeleteMarksCommand
+participant "TutorialClassList" as TutorialClassList
+participant "TutorialClass" as TutorialClass
+participant "StudentList" as StudentList
+participant "Student" as Student
+participant "MarksList" as MarksList
+participant "TASyncException" as TASyncException
+
+User -> DeleteMarksCommand : execute(parts, TutorialClassList)
+
+opt Invalid parts (empty or < 3)
+    DeleteMarksCommand -> DeleteMarksCommand : throw TASyncException
+    DeleteMarksCommand -> TASyncException : getMessage()
+    TASyncException --> DeleteMarksCommand : "Invalid delete marks command."
+    DeleteMarksCommand -> User : print error message
+end
+
+DeleteMarksCommand -> TutorialClassList : getTutorialByName(tutorialID)
+TutorialClassList --> DeleteMarksCommand : TutorialClass
+
+DeleteMarksCommand -> TutorialClass : getStartTime()
+TutorialClass --> DeleteMarksCommand : startTime
+
+opt Tutorial not found
+    DeleteMarksCommand -> DeleteMarksCommand : throw TASyncException
+    DeleteMarksCommand -> TASyncException : getMessage()
+    TASyncException --> DeleteMarksCommand : "No tutorial class found..."
+    DeleteMarksCommand -> User : print error message
+end
+
+DeleteMarksCommand -> TutorialClass : getStudentList()
+TutorialClass --> DeleteMarksCommand : StudentList
+
+DeleteMarksCommand -> StudentList : getStudentByMatricNumber(matricNumber)
+StudentList --> DeleteMarksCommand : Student
+
+opt Student not found
+    DeleteMarksCommand -> DeleteMarksCommand : throw TASyncException
+    DeleteMarksCommand -> TASyncException : getMessage()
+    TASyncException --> DeleteMarksCommand : "No student found with matric number..."
+    DeleteMarksCommand -> User : print error message
+end
+
+DeleteMarksCommand -> Student : getMarksList()
+Student --> DeleteMarksCommand : MarksList
+
+DeleteMarksCommand -> MarksList : getByAssignmentName(assignmentName)
+MarksList --> DeleteMarksCommand : marksToDelete
+
+opt Marks not found
+    DeleteMarksCommand -> DeleteMarksCommand : throw TASyncException
+    DeleteMarksCommand -> TASyncException : getMessage()
+    TASyncException --> DeleteMarksCommand : "No marks found with assignment name..."
+    DeleteMarksCommand -> User : print error message
+end
+
+DeleteMarksCommand -> MarksList : deleteMarks(marksToDelete)
+MarksList --> DeleteMarksCommand : success
+
+DeleteMarksCommand -> User : print success message ("Marks successfully deleted.")
+@enduml
