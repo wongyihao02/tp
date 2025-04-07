@@ -2,6 +2,7 @@
 
 
 participant "CheckRemarkCommand" as CRC
+participant "StudentCommandHelper" as Helper
 participant "tutorialClassList: TutorialClassList" as TCL
 participant "TutorialClass" as TC
 participant "StudentList" as SL
@@ -9,6 +10,11 @@ participant "Student" as S
 
  -> CRC: execute(input,tutorialClassList)
 activate CRC
+
+CRC -> Helper: parseInput(input, 2)
+activate Helper
+Helper --> CRC: String[] inputParts
+deactivate Helper
 
 CRC -> TCL: getTutorialByName(tutorialClassCode)
 activate TCL

@@ -2,6 +2,7 @@
 
 
 participant "DeleteTutorialCommand" as DTC
+
 participant "tutorialClassList: TutorialClassList" as TCL
 
 -> DTC: execute(input, tutorialClassList)

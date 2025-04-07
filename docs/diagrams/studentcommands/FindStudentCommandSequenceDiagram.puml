@@ -26,7 +26,7 @@ activate FSC
         deactivate SL
 
         loop for each Student
-            FSC -> S: getName(), getMatricNumber()
+            FSC -> S: check for keyword match
             activate S
             S --> FSC: name, matric number
             deactivate S
