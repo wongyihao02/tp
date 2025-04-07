@@ -1,13 +1,11 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-actor User
-
 participant "ListTaskCommand" as ListCmd
 participant "TaskList" as TaskList
 participant "System" as Console
 
-User -> ListCmd : execute(parts, taskList)
+-> ListCmd : execute(parts, taskList)
 activate ListCmd
 
 ListCmd -> TaskList : getTaskCount()

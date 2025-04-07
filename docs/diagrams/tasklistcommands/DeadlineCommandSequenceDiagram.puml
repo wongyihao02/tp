@@ -1,15 +1,13 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-actor User
-
 participant "DeadlineCommand" as DeadlineCmd
 participant "DateTimeFormatterUtil" as Formatter
 participant "Deadline" as Deadline
 participant "TaskList" as TaskList
 participant "System" as Console
 
-User -> DeadlineCmd : execute(parts, taskList)
+-> DeadlineCmd : execute(parts, taskList)
 activate DeadlineCmd
 
 loop until valid input
@@ -36,8 +34,10 @@ loop until valid input
         Formatter --> DeadlineCmd : true
         deactivate Formatter
 
+        create Deadline
         DeadlineCmd -> Deadline : new(taskName, false, deadlineInput)
         activate Deadline
+        Deadline --> DeadlineCmd
         deactivate Deadline
 
         DeadlineCmd -> TaskList : addTask(dl)

@@ -1,13 +1,11 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-actor User
-
 participant "FindTaskCommand" as FindCmd
 participant "TaskList" as TaskList
 participant "System" as Console
 
-User -> FindCmd : execute(parts, taskList)
+-> FindCmd : execute(parts, taskList)
 activate FindCmd
 
 alt valid keyword

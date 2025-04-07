@@ -1,15 +1,13 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-actor User
-
 participant "ConsultationCommand" as ConsultCmd
 participant "DateTimeFormatterUtil" as Formatter
 participant "Consultation" as Consultation
 participant "TaskList" as TaskList
 participant "System" as Console
 
-User -> ConsultCmd : execute(parts, taskList)
+ -> ConsultCmd : execute(parts, taskList)
 activate ConsultCmd
 
 loop until valid input
@@ -18,7 +16,7 @@ loop until valid input
         activate Console
         Console --> User : prompt for new input
         deactivate Console
-        User -> ConsultCmd : provide new parts
+        -> ConsultCmd : provide new parts
     else invalid datetime
         ConsultCmd -> Formatter : isValidDateTime(from)
         activate Formatter
@@ -38,8 +36,10 @@ loop until valid input
             User -> ConsultCmd : provide new parts
         end
     else valid input
+        create Consultation
         ConsultCmd -> Consultation : new(studentName, false, from, to)
         activate Consultation
+        Consultation --> ConsultCmd
         deactivate Consultation
 
         ConsultCmd -> TaskList : addTask(consultation)

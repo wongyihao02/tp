@@ -1,15 +1,13 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-actor User
-
 participant "EventCommand" as EventCmd
 participant "DateTimeFormatterUtil" as Formatter
 participant "Event" as Event
 participant "TaskList" as TaskList
 participant "System" as Console
 
-User -> EventCmd : execute(parts, taskList)
+-> EventCmd : execute(parts, taskList)
 activate EventCmd
 
 loop until valid input
@@ -38,8 +36,10 @@ loop until valid input
             User -> EventCmd : provide new parts
         end
     else valid input
+        create Event
         EventCmd -> Event : new(taskName, false, from, to)
         activate Event
+        Event --> EventCmd
         deactivate Event
 
         EventCmd -> TaskList : addTask(event)

@@ -1,27 +1,23 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-actor User
-
 
 participant "TodoCommand" as TodoCmd
 participant "TaskList" as TaskList
 participant "Todo" as Todo
 
-User -> TodoCmd : execute(parts, taskList)
+-> TodoCmd : execute(parts, taskList)
 activate TodoCmd
 
 alt parts is not empty
+    create Todo
     TodoCmd -> Todo : new Todo(parts, false)
     activate Todo
+    Todo --> TodoCmd
     deactivate Todo
 
     TodoCmd -> TaskList : addTask(todo)
     activate TaskList
     deactivate TaskList
-else parts is empty
-    TodoCmd -> Console : println(e.getMessage())
-    activate Console
-    deactivate Console
 end
 
 deactivate TodoCmd
