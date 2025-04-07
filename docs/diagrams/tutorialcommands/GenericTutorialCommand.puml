@@ -1,0 +1,48 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+    class GenericTutorialCommand {
+        +execute(parts: String, tutorialClassList: TutorialClassList): void
+    }
+
+    interface "<<interface>> \n Command<T>" {
+        +execute(input: String, context: T): void
+    }
+
+
+    class TutorialClass {
+        -tutorialName: String
+        -studentList: StudentList
+        -startTime: LocalTime
+        -endTime: LocalTime
+        -dayOfWeek: dayOfWeek
+        +TutorialClass(tutorialName:String, dayOfWeek: DayOfWeek,
+startTime: LocalTime, endTime: LocalTime)
+        +getStartTime(): LocalTime
+        +getTutorialName(): String
+        +getDayOfWeek(): DayOfWeek
+        +getStartTime: LocalTime
+        +getEndTime: LocalTime
+    }
+
+    class TutorialClassList {
+        - tutorialClasses : ArrayList<TutorialClass>
+        +getTutorialByName(name: String): TutorialClass
+        +removeTutorialClass(tutorialClass: TutorialClass)
+        +getTutorialClasses(): ArrayList<TutorialClass>
+        +addTutorialClass(tutorialClass: TutorialClass)
+    }
+
+
+    class TASyncException extends Exception {
+        +invalidGenericCommand(): TASyncException
+    }
+
+' Relationships
+"<<interface>> \n Command<T>" <|.. GenericTutorialCommand : <<implements>>
+GenericTutorialCommand --> TutorialClassList
+TutorialClassList "1 "*-- "*" TutorialClass: contains
+GenericTutorialCommand --> TASyncException
+@enduml

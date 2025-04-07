@@ -30,7 +30,7 @@ import command.taskcommands.TodoCommand;
 import command.taskcommands.UnmarkTaskCommand;
 import command.tutorialcommands.DeleteTutorialCommand;
 import command.tutorialcommands.ListExistingTutorialsCommand;
-import command.tutorialcommands.ListTutorialStudentsCommand;
+import command.studentcommands.ListTutorialStudentsCommand;
 import command.tutorialcommands.NewTutorialCommand;
 import task.TaskType;
 import util.CommandListPrinter;

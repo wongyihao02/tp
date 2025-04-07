@@ -1,13 +1,13 @@
 @startuml
-actor User
+
 
 participant "CheckRemarkCommand" as CRC
-participant "TutorialClassList" as TCL
+participant "tutorialClassList: TutorialClassList" as TCL
 participant "TutorialClass" as TC
 participant "StudentList" as SL
 participant "Student" as S
 
-User -> CRC: execute(input,tutorialClassList)
+ -> CRC: execute(input,tutorialClassList)
 activate CRC
 
 CRC -> TCL: getTutorialByName(tutorialClassCode)
@@ -16,10 +16,7 @@ TCL --> CRC: TutorialClass
 deactivate TCL
 
 
-alt tutorial not found
-    CRC -> User: print "Invalid tutorial or input"
-    deactivate CRC
-else valid tutorial
+
     CRC -> TC: getStudentList()
     activate TC
     TC --> CRC: StudentList
@@ -30,22 +27,13 @@ else valid tutorial
     SL --> CRC: Student
     deactivate SL
 
-    alt student is null
-        CRC -> User: print "Student not found"
-        deactivate CRC
-    else student found
+
         CRC -> S: getRemark()
         activate S
         S --> CRC: remark
         deactivate S
 
-        alt remark is null or empty
-            CRC -> User: print "No remarks found"
-        else
-            CRC -> User: print "Remarks: [remark]"
-        end
+
         deactivate CRC
-    end
-end
 
 @enduml

@@ -1,0 +1,40 @@
+@startuml
+
+
+participant "ListTutorialStudentsCommand" as LTSC
+participant "tutorialClassList: TutorialClassList" as TCL
+participant "tutorialClasses: ArrayList<TutorialClass>" as List
+participant "TutorialClass" as TC
+participant "StudentList" as SL
+
+-> LTSC: execute(tutorialName, tutorialClassList)
+activate LTSC
+
+LTSC -> TCL: getTutorialClasses()
+activate TCL
+TCL --> LTSC: tutorialClasses
+deactivate TCL
+
+
+    LTSC -> List: get the tutorial by name
+    activate List
+    List --> LTSC: tutorial
+    deactivate List
+
+
+        LTSC -> TC: getStudentList()
+        activate TC
+        TC -> SL: getStudents()
+        activate SL
+        SL --> LTSC: enrolledStudents
+        deactivate SL
+        deactivate TC
+
+
+
+
+
+
+deactivate LTSC
+
+@enduml

@@ -1,13 +1,12 @@
 @startuml
-actor User
 
 participant "ChangeRemarkCommand" as CRC
-participant "TutorialClassList" as TCL
+participant "tutorialClassList: TutorialClassList" as TCL
 participant "TutorialClass" as TC
 participant "StudentList" as SL
 participant "Student" as S
 
-User -> CRC: execute(input, tutorialClassList)
+-> CRC: execute(input, tutorialClassList)
 activate CRC
 
 
@@ -16,9 +15,7 @@ activate TCL
 TCL --> CRC: return TutorialClass
 deactivate TCL
 
-alt tutorial has no start time
-    CRC -> User: print "tutorial does not exist"
-else
+
     CRC -> TC: getStudentList()
     activate TC
     TC --> CRC: return StudentList
@@ -26,22 +23,14 @@ else
 
     CRC -> SL: getStudentByMatricNumber(matricNumber)
     activate SL
-    alt student not found
-        SL --> CRC: return null
-        deactivate SL
-        CRC -> User: print "No student found"
-    else
         SL --> CRC: return Student
         deactivate SL
 
         CRC -> S: setRemark(newRemark)
         activate S
-        S --> CRC: updated remarks
+        S --> CRC: void
         deactivate S
 
-        CRC -> User: print "Remark updated"
-    end
-    end
 
 deactivate CRC
 @enduml

@@ -1,16 +1,13 @@
 @startuml
 
-actor User
 
 participant "DeleteTutorialCommand" as DTC
-participant "TutorialClassList" as TCL
+participant "tutorialClassList: TutorialClassList" as TCL
 
-User -> DTC: execute(input, tutorialClassList)
+-> DTC: execute(input, tutorialClassList)
 activate DTC
 
-alt input is null or empty
-    DTC -> User: print error
-else
+
     DTC -> TCL: getTutorialByName(input)
     activate TCL
     TCL --> DTC: return TutorialClass
@@ -23,11 +20,8 @@ else
         activate TCL
         TCL --> DTC: void
         deactivate TCL
-        DTC -> User: print "Tutorial class deleted"
-    else
-        DTC -> User: print "No tutorial class found"
     end
-end
+
 
 deactivate DTC
 
