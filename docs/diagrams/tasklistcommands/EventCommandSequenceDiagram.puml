@@ -14,10 +14,9 @@ activate EventCmd
 
 loop until valid input
     alt missing "/from" or "/to"
-        EventCmd -> EventCmd : throw TASyncException
         EventCmd -> Console : println(error)
         activate Console
-        Console -> User : prompt for new input
+        Console --> User : prompt for new input
         deactivate Console
         User -> EventCmd : provide new parts
     else invalid datetime
@@ -32,10 +31,9 @@ loop until valid input
         deactivate Formatter
 
         alt invalid from or to
-            EventCmd -> EventCmd : throw TASyncException
             EventCmd -> Console : println(error)
             activate Console
-            Console -> User : prompt for new input
+            Console --> User : prompt for new input
             deactivate Console
             User -> EventCmd : provide new parts
         end

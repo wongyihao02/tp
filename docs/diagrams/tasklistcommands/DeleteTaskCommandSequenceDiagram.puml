@@ -14,7 +14,6 @@ alt valid integer
     activate TaskList
     deactivate TaskList
 else invalid input
-    DeleteCmd -> DeleteCmd : throw TASyncException
     DeleteCmd -> Console : println(e.getMessage())
     activate Console
     deactivate Console

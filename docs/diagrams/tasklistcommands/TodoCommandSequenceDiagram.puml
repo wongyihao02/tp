@@ -19,7 +19,6 @@ alt parts is not empty
     activate TaskList
     deactivate TaskList
 else parts is empty
-    TodoCmd -> TodoCmd : throw TASyncException
     TodoCmd -> Console : println(e.getMessage())
     activate Console
     deactivate Console

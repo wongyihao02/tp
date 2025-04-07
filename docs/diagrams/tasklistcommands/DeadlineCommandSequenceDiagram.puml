@@ -14,10 +14,9 @@ activate DeadlineCmd
 
 loop until valid input
     alt parts missing "/by" or deadline
-        DeadlineCmd -> DeadlineCmd : throw TASyncException
         DeadlineCmd -> Console : println(error)
         activate Console
-        Console -> User : prompt for new input
+        Console --> User : prompt for new input
         deactivate Console
         User -> DeadlineCmd : provide new parts
     else invalid date format
@@ -26,10 +25,9 @@ loop until valid input
         Formatter --> DeadlineCmd : false
         deactivate Formatter
 
-        DeadlineCmd -> DeadlineCmd : throw TASyncException
         DeadlineCmd -> Console : println(error)
         activate Console
-        Console -> User : prompt for new input
+        Console --> User : prompt for new input
         deactivate Console
         User -> DeadlineCmd : provide new parts
     else valid input

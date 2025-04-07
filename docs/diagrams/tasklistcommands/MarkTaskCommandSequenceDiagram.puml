@@ -13,7 +13,7 @@ activate MarkCmd
 
 MarkCmd -> Checker : isInteger(parts)
 activate Checker
-Checker --> MarkCmd
+Checker --> MarkCmd : true/false
 deactivate Checker
 
 alt valid integer
@@ -21,7 +21,6 @@ alt valid integer
     activate TaskList
     deactivate TaskList
 else invalid input
-    MarkCmd -> MarkCmd : throw TASyncException
     MarkCmd -> Console : println(e.getMessage())
     activate Console
     deactivate Console
