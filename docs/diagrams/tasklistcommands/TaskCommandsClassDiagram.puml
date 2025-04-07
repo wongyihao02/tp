@@ -1,12 +1,11 @@
 @startuml
-' Class diagram for TaskCommand classes and related classes
 
-' === Interfaces ===
+hide circle
+skinparam classAttributeIconSize 0
 interface Command<T> {
     + execute(parts: String, target: T): void
 }
 
-' === Concrete Command Classes ===
 class TodoCommand {
     + execute(parts: String, target: TaskList): void
 }
@@ -38,7 +37,6 @@ class UnmarkTaskCommand {
     + execute(parts: String, target: TaskList): void
 }
 
-' === Task Classes ===
 class TaskList {
     + addTask(todo: Todo): void
     + deleteTask(taskId: int): void
@@ -59,7 +57,6 @@ class Task {
     + printTask(): void
 }
 
-' === Task Types ===
 class Todo {
     + taskName: String
     + isDone: boolean
@@ -81,7 +78,6 @@ class Consultation {
     + printDue(): void
 }
 
-' === Relationships ===
 Command <|.. TodoCommand
 Command <|.. DeadlineCommand
 Command <|.. EventCommand

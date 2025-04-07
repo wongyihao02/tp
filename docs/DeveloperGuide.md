@@ -744,10 +744,36 @@ The `RenameTaskCommand` class implements the `Command<TaskList>` interface and i
 - Sequence diagram
 - ![RenameTaskCommandSequenceDiagram.png](diagrams/tasklistcommands/RenameTaskCommandSequenceDiagram.png)
 
-- Overall class diagram for task commands
+Overall class diagram for task commands
+- This class diagram provides a **high-level overview** of the command-based structure used in the task management system. It illustrates how different task-related commands interact with the `TaskList` and the task types it contains.
+  - Any class implementing `Command` must define how to execute a command using a String argument and a target of type `T`. Here, all concrete classes implement `Command<TaskList>`, meaning they operate on the `TaskList`.
+  - Task creation commands: `TodoCommand`, `DeadlineCommand`, `EventCommand`, `ConsultationCommand`. These create new tasks and add them to the `TaskList`.
+  - Task operation commands: `ListTaskCommand`, `DeleteTaskCommand`, `MarkTaskCommand`, `UnmarkTaskCommand`, `FindTaskCommand`, `RenameTaskCommand`. These interact with existing tasks in the `TaskList`.
 - ![TaskCommandsClassDiagram](diagrams/tasklistcommands/TaskCommandsClassDiagram.png)
   
+Object diagram for todo command
+- This object diagram illustrates how the `TodoCommand` operates when the `execute()` method is invoked. In the example, the command creates a new Todo object with a description and adds it to the `TaskList`. The interaction shown highlights the following:
 
+  - A `TodoCommand` object calls its `execute()` method with a task description (e.g., `"read book"`).
+
+  - The method instantiates a new `Todo` task with the given description and a default `isDone` status of `false`.
+
+  - This `Todo` object is then added to the `TaskList`, which holds a collection of `Task` objects.
+
+  - This structure serves as a representative example of how similar commands like `DeadlineCommand`, `EventCommand`, and `ConsultationCommand` work, since they also involve creating a specific task type and adding it to the task list.
+- ![TodoCommandObjectDiagram](diagrams/tasklistcommands/TodoCommandObjectDiagram.png)
+
+Object diagram for list task command
+- This object diagram shows how the `ListTaskCommand` functions when its `execute()` method is called. It represents the scenario where a command queries and displays all tasks in the task list:
+
+  - The `ListTaskCommand` object calls `execute()` with an empty string (as the command does not require any input).
+
+  - It accesses the `TaskList`, checks the task count using `getTaskCount()`, and prints the list of existing tasks via `printTaskList()`.
+
+  - The diagram also includes sample `Task` objects (`Todo`, `Deadline`) that are stored within the task list, each with attributes such as `taskName` and `isDone`.
+
+  - This example reflects how other commands such as `DeleteTaskCommand`, `MarkTaskCommand`, `UnmarkTaskCommand`, `FindTaskCommand`, and `RenameTaskCommand` work in a similar fashion. These commands typically interact with the existing tasks in the list, often by using task indices or names to perform updates or queries, rather than creating new tasks.
+- ![ListTaskCommandObjectDiagram](diagrams/tasklistcommands/ListTaskCommandObjectDiagram.png)
 ## Appendix A: Product scope
 ### Target user profile
 
