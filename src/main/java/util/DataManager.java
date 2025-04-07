@@ -2,7 +2,15 @@ package util;
 
 import attendance.AttendanceFile;
 import attendance.AttendanceList;
-import filehandlers.*;
+import filehandlers.AttendanceFileFileLoader;
+import filehandlers.AttendanceFileFileSaver;
+import filehandlers.FileLoader;
+import filehandlers.FileSaver;
+import filehandlers.MarksListLoader;
+import filehandlers.MarksListSaver;
+import filehandlers.TaskListFileSaver;
+import filehandlers.TutorialClassListFileLoader;
+import filehandlers.TutorialClassListFileSaver;
 import task.TaskList;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
@@ -30,7 +38,7 @@ public class DataManager {
         return attendanceFileLoader.loadFromFile(ATTENDANCE_FILE_PATH);
     }
 
-    public TutorialClassList loadMarks(TutorialClassList tutorialClassList){
+    public TutorialClassList loadMarks(TutorialClassList tutorialClassList) {
         ensureFileAndDirectoryExist(MARKS_FILE_PATH);
         MarksListLoader marksLoader = new MarksListLoader();
         return marksLoader.loadMarks(tutorialClassList);
@@ -65,11 +73,12 @@ public class DataManager {
         attendanceSaver.saveToFile(attendanceFile, DIRECTORY_PATH);
     }
 
-    public void saveMarksList(TutorialClassList tutorialList){
+    public void saveMarksList(TutorialClassList tutorialList) {
         ensureFileAndDirectoryExist(MARKS_FILE_PATH);
         FileSaver<TutorialClassList> marksSaver = new MarksListSaver();
         marksSaver.saveToFile(tutorialList, DIRECTORY_PATH);
     }
+
     public void saveTasks(TaskList taskList) {
         ensureFileAndDirectoryExist(TaskList_FILE_PATH);
         TaskListFileSaver taskListSaver = new TaskListFileSaver();
