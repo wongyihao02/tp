@@ -80,18 +80,20 @@ public class CommandListPrinter {
                         "Usage: ADD -c <student_name> /from <start_time> /to <end_time>";
         case NEW_STUDENT ->
                 "Adds a new student\n  " +
-                        "Usage: NEWSTUDENT -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_class>";
+                        "Usage: NEWSTUDENT -t <student_name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial_name>";
         case DELETE_STUDENT ->
                 "Removes a student from a tutorial\n  Usage: DELETESTUDENT -t <tutorial_name>,<matric_number>";
         case FIND_STUDENT ->
                 "Finds a student by name or matric number\n  Usage: FIND -t <keyword>";
         case ADD_MARKS ->
                 "Adds new marks for a student\n  " +
-                        "Usage: NEWMARKS -m <tut_id>,<matric_num>,<assignment_name>,<marks_achieved>,<max_marks>";
+                        "Usage: NEWMARKS -m <tutorial_name>,<matric_num>," +
+                        "<assignment_name>,<marks_achieved>,<max_marks>";
         case DELETE_MARKS ->
-                "Deletes marks for a student\n  Usage: DELETEMARKS -m <tutorial_id>,<matric_number>,<assignment_name>";
+                "Deletes marks for a student\n  Usage: DELETEMARKS -m <" +
+                        "tutorial_name>,<matric_number>,<assignment_name>";
         case LIST_MARKS ->
-                "Lists marks for a student\n  Usage: LIST -m <tutorial_id>,<matric_number>";
+                "Lists marks for a student\n  Usage: LIST -m <tutorial_name>,<matric_number>";
         case NEW_TUTORIAL ->
                 "Creates a new tutorial\n  Usage: NEWTUTORIAL -t <tutorial_name>,<day_of_week>," +
                         "<start_time>,<end_time>";
@@ -103,25 +105,27 @@ public class CommandListPrinter {
                 "Shows students in a tutorial\n  Usage: LISTSTUDENTS -t <tutorial_name>";
         case MARKSTUDENT ->
                 "Marks a student's attendance as present\n " +
-                        " Usage: MARK -a <Tutname>,<weeknum>,<studentname>,<studentmatricnumber>";
+                        " Usage: MARK -a <tutorial_name>,<weeknum>,<studentname>,<studentmatricnumber>";
         case UNMARKSTUDENT ->
                 "Marks a student's attendance as absent\n  " +
-                        "Usage: UNMARK -a <Tutname>,<weeknum>,<studentname>,<studentmatricnumber>";
+                        "Usage: UNMARK -a <tutorial_name>,<weeknum>,<student_name>,<studentmatricnumber>";
         case LISTATTENDANCESTUDENTS ->
-                "Shows attendance records\n  Usage: LIST -a <Tutname>,<weeknum>";
+                "Shows attendance records\n  Usage: LIST -a <tutorial_name>,<weeknum>";
         case CHANGE_REMARK ->
                 "Updates a student's remark\n  Usage: CHANGEREMARK -t <tutorial_name>,<matric_number>,<new_remark>";
         case CHECK_REMARK ->
                 "Checks remarks for a student\n  Usage: CHECKREMARK -t <tutorial_name>,<matric_number>";
         case COMMENT ->
                 "Adds a comment to a student for a particular weeks tutorial session\n  " +
-                        "Usage: COMMENT -a <Tutname>,<weeknum>,<studentname>,<studentmatricnumber>//comment1;comment2>";
+                        "Usage: COMMENT -a <tutorial_name>,<weeknum>," +
+                        "<student_name>,<studentmatricnumber>//comment1;comment2>";
         case VIEWCOMMENT ->
                 "Views comments on a student for a particular weeks tutorial session\n  " +
-                        "Usage: VIEWCOMMENT -a <Tutname>,<weeknum>,<studentname>,<studentmatricnumber>";
+                        "Usage: VIEWCOMMENT -a <tutorial_name>,<weeknum>,<student_name>,<studentmatricnumber>";
         case DELETECOMMENT ->
                 "Deletes a student's comment for a particular weeks tutorial session\n  " +
-                        "Usage: DELETECOMMENT -a <Tutname>,<weeknum>,<studentname>,<studentmatricnumber>//commentnum>";
+                        "Usage: DELETECOMMENT -a <tutorial_name>,<weeknum>," +
+                        "<student_name>,<studentmatricnumber>//commentnum>";
         case LIST ->
                 "Displays all tasks\n  Usage: LIST -p";
         case FIND ->
@@ -135,7 +139,7 @@ public class CommandListPrinter {
                         "Usage: RENAME -p <task_number> <new_name>";
         case CREATE ->
                 "Creates an attendance list for the given week if valid and not existing\n" +
-                        "Usage: CREATE -at <Tutname,weeknum>";
+                        "Usage: CREATE -at <tutorial_name,weeknum>";
         };
     }
 }
