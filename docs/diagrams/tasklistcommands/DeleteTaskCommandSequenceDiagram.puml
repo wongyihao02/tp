@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-actor User
+-> DeleteCmd : execute(input)
 activate DeleteCmd
 
 DeleteCmd -> Checker : isInteger(parts)
@@ -18,6 +18,5 @@ else invalid input
     activate Console
     deactivate Console
 end
-
 deactivate DeleteCmd
 @enduml

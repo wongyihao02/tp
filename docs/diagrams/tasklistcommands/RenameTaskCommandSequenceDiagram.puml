@@ -1,13 +1,11 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-actor User
-
 participant "RenameTaskCommand" as RenameCmd
 participant "TaskList" as TaskList
 participant "System" as Console
 
-User -> RenameCmd : execute(parts, taskList)
+-> RenameCmd : execute(parts, taskList)
 activate RenameCmd
 
 RenameCmd -> RenameCmd : split(parts)

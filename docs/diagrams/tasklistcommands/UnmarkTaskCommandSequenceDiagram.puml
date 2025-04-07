@@ -1,14 +1,12 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-actor User
-
 participant "UnmarkTaskCommand" as UnmarkCmd
 participant "IntegerChecker" as Checker
 participant "TaskList" as TaskList
 participant "System" as Console
 
-User -> UnmarkCmd : execute(parts, taskList)
+-> UnmarkCmd : execute(parts, taskList)
 activate UnmarkCmd
 
 UnmarkCmd -> Checker : isInteger(parts)
