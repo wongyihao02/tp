@@ -6,6 +6,7 @@ import exception.TASyncException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+//@@author kmnyn
 /**
  * Represents a task with a consultation.
  * This class extends the Task class and includes additional functionality

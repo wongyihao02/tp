@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+//@@author xubin0
 public class AttendanceListFileLoader implements FileLoader<AttendanceList> {
     @Override
     public AttendanceList loadFromFile(String filePath) {

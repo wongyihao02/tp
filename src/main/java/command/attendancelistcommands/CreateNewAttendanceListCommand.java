@@ -10,6 +10,7 @@ import command.taskcommands.Command;
 
 import java.util.ArrayList;
 
+//@@author wongyihao02
 public class CreateNewAttendanceListCommand implements Command<ArrayList<Object>> {
 
     //parts in tutname,week num

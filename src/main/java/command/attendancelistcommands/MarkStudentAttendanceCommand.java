@@ -9,6 +9,7 @@ import command.taskcommands.Command;
 import java.util.ArrayList;
 import java.util.Map;
 
+//@@author wongyihao02
 public class MarkStudentAttendanceCommand implements Command<AttendanceFile> {
 
     //parts in form of tutname,weeknum,name,matricnumber
