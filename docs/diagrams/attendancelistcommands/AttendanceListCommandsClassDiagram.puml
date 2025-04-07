@@ -1,0 +1,120 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+ interface Command<T> {
+    + execute(parts : String , target : T) : void
+}
+
+
+class ViewStudentCommentsCommand {
+    + execute(parts : String,  attendanceList : AttendanceFile) : void
+}
+class CommentOnStudentCommand {
+    + execute(parts : String,  attendanceList : AttendanceFile) : void
+}
+class ShowAttendanceListCommand {
+    + execute(parts : String,  attendanceList : AttendanceFile) : void
+}
+class MarkStudentAttendanceCommand {
+    + execute(parts : String,  attendanceList : AttendanceFile) : void
+}
+class UnmarkStudentAttendanceCommand {
+    + execute(parts : String,  attendanceList : AttendanceFile) : void
+}
+class DeleteStudentCommentCommand {
+    + execute(parts : String,  attendanceList : AttendanceFile) : void
+}
+class CreateNewAttendanceListCommand {
+    + execute(parts : String,  tutatten : ArrayList<Object>) : void
+}
+
+class AttendanceFile {
++ AttendanceFile(attendanceList : ArrayList<AttendanceList>)
++ getAttendanceList() : ArrayList<AttendanceList>
++ getAttendanceByNameAndWeek(week : int, tutorialName : String ) : AttendanceList
++ addAttendanceList(attendanceList : AttendanceList) : void
+}
+
+class AttendanceList {
+- attendanceMap : Map<Student, String>
+- weekNumber : int
+- commentList : Map<Student, ArrayList<String>>
+
++ AttendanceList(tutorialClass : TutorialClass,weekNumber : int)
++ markPresent(student : Student) : void
++ markAbsent(student : Student) : void
++ addComments(student : Student,  comments : ArrayList<String>) : void
++ getComment(student : Student) : ArrayList<String>
++ isPresent(student : Student) : boolean
++ getCommentList() : Map<Student, ArrayList<String>>
++ getAttendanceMap() :  Map<Student, String>
++ getWeekNumber() : int
++ setWeekNumber(weekNumber : int ) : void
++ getTutorialClass() : TutorialClass
++ setTutorialClass(tutorialClass : TutorialClass ) : void
++ toString() : String
+}
+
+class TutorialClass {
+    - tutorialName : String
+    - studentList : StudentList
+    - startTime : LocalTime
+    - endTime : LocalTime
+    - dayOfWeek : DayOfWeek
+
+    + TutorialClass(tutorialName : String)
+    + TutorialClass()
+    + TutorialClass(tutorialName : String, dayOfWeek : DayOfWeek, startTime : LocalTime, endTime : LocalTime)
+    + getTutorialName()
+    + setTutorialName(tutorialName : String) : void
+    + getStudentList() : StudentList
+    + setStudentList(StudentList studentList) : void
+    + getStartTime() : LocalTime
+    + setStartTime(startTime : LocalTime) : void
+    + getEndTime() : LocalTime
+    + setEndTime(endTime : LocalTime) : void
+    + getDayOfWeek() : DayOfWeek
+    + setDayOfWeek(dayOfWeek : DayOfWeek) : void
+    + isHappeningToday(today : LocalDate) : boolean
+    + toString() : String
+}
+
+class TutorialClassList {
+    + TutorialClassList()
+    + TutorialClassList(tutorialClasses : ArrayList<TutorialClass> )
+    +  getTutorialClasses() : ArrayList<TutorialClass>
+    + addTutorialClass(tutorialClass : TutorialClass) : void
+    + getTutorialByName(name : String ) : TutorialClass
+    + removeTutorialClass(tutorialClass : TutorialClass) : void
+}
+
+'arrows
+ViewStudentCommentsCommand -u-|> Command : Implements
+CommentOnStudentCommand -u-|> Command : Implements
+DeleteStudentCommentCommand -u-|> Command : Implements
+ShowAttendanceListCommand -u-|> Command : Implements
+MarkStudentAttendanceCommand -u-|> Command : Implements
+UnmarkStudentAttendanceCommand -u-|> Command : Implements
+CreateNewAttendanceListCommand -u-|> Command : Implements
+
+ViewStudentCommentsCommand --> AttendanceFile : Works on
+CommentOnStudentCommand --> AttendanceFile : Works on
+DeleteStudentCommentCommand --> AttendanceFile : Works on
+ShowAttendanceListCommand --> AttendanceFile : Works on
+MarkStudentAttendanceCommand --> AttendanceFile : Works on
+UnmarkStudentAttendanceCommand --> AttendanceFile : Works on
+CreateNewAttendanceListCommand --> AttendanceFile : Works on
+CreateNewAttendanceListCommand --> TutorialClassList : Works on
+
+AttendanceFile --> AttendanceList : 0...*
+TutorialClassList --> TutorialClass : 0...*
+AttendanceList -r-> TutorialClass : 1
+'direction
+ViewStudentCommentsCommand -right[hidden]- CommentOnStudentCommand
+CommentOnStudentCommand -right[hidden]- DeleteStudentCommentCommand
+DeleteStudentCommentCommand -right[hidden]- ShowAttendanceListCommand
+ShowAttendanceListCommand -right[hidden]- MarkStudentAttendanceCommand
+MarkStudentAttendanceCommand -right[hidden]- UnmarkStudentAttendanceCommand
+UnmarkStudentAttendanceCommand -right[hidden]- CreateNewAttendanceListCommand
+Command -down[hidden]- AttendanceFile
+@enduml

@@ -1,0 +1,77 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+actor user
+autonumber
+
+participant "CommentOnStudent: Command<Attendancefile>" as command
+participant "parts" as parts
+participant "partsArray2" as partsArray
+participant "comments " as comments
+participant "comment " as comment
+participant "listOfAttendanceList : AttendanceFile" as listOfAttendanceList
+participant "theOne : AttendanceList" as theOne
+participant "StudentList" as studentList
+participant "TutorialClass" as tutorialClass
+
+skinparam sequenceReferenceBackgroundColor #f7807c
+
+
+user -> command : execute(parts : String, target : T)
+activate command
+alt parts null or is empty
+command -> command : throw TASyncException()
+command --> user : print error message
+else second param is non-number string
+command -> command : throw NumberFormatException()
+command --> user : print error message
+else input is valid
+    command -> parts : split("//")
+    activate parts
+    parts --> command : partsArray2
+    deactivate parts
+    command -> partsArray : partsArray2[0].split(",")
+    activate partsArray
+    command <-- partsArray : partsArray
+    deactivate partsArray
+    command -> partsArray : partsArray2[1].split(";")
+    activate partsArray
+    command <-- partsArray : commentsArray
+    deactivate partsArray
+    alt commentsArray size is zero or partsArray size is not 4
+    command -> command : throw TASyncException()
+    command --> user : print error message
+    else
+    create comments
+    command -> comments
+    activate comments
+
+    loop for each commentsArray
+    activate comment
+    command -> comment : trim()
+    command -> comments : add(comment.trim())
+
+    end loop
+    deactivate comment
+
+ref over command, listOfAttendanceList, theOne, tutorialClass, studentList
+find student in tutorial
+end ref
+
+
+    command -> theOne : getComments(student : Student = derStudent)
+    activate theOne
+    theOne --> command : returns comments for student
+    deactivate comments
+    deactivate theOne
+    command --> user : print the comments or print no comments message
+
+
+
+end
+end
+
+destroy parts
+destroy partsArray
+destroy comments
+destroy comment
+@enduml
