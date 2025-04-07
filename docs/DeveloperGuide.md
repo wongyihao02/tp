@@ -11,6 +11,61 @@ to create a functional TASync program and is not fully comprehensive. The focus 
 with further details, such as class methods, attributes, and specific interactions omitted. This serves as a foundation for understanding the
 key components and how they contribute to the overall functionality of TASync.
 
+### **Command handling component**
+**Overview**
+- The command handling component is responsible for interpreting user inputs, creating the corresponding command objects, and executing them with access to the necessary application data. This structure supports extensibility and separates concerns, making the command system more modular and maintainable.
+
+**Component Breakdown**
+- `CommandLoopHandler`
+  - This is the central controller of the command execution flow.
+  - It contains references to key components like:
+  - `UI` – for user interaction,
+  - `TaskList`, `StudentList`, `TutorialClassList` – data stores for application logic,
+  - `AttendanceFile` and `DataManager` – for persistent storage.
+  - The method `runCommandLoop()` drives the main interaction cycle, prompting and processing commands continuously.
+
+- `CommandParser`
+  - Responsible for parsing the raw user input.
+  - It splits the input into `parts[]`, typically separating the command word from the arguments.
+  - `getParts()` returns these segments to be used for command construction.
+
+- `CommandHandler`
+  - Takes the parsed parts and manages the process of executing the command.
+  - Internally calls `CommandFactory` to generate the correct command object based on the input.
+  - `runCommand()` initiates this process and delegates execution accordingly.
+- `CommandFactory`
+  - This class uses a factory pattern to determine which concrete command object to return.
+  - Given a command string, it returns the corresponding command object that implements the `Command` interface. 
+  - This decouples command creation logic from other parts of the system.
+- `XYZCommands`
+  - This is a placeholder representing all concrete command classes (e.g., `TodoCommand`, `ListTaskCommand`, `MarkTaskCommand`, etc.).
+  - Each of these implements a common `Command` interface and defines how that specific command modifies the data (like adding a task or marking it as done).
+
+### **Data management component**
+**Overview**
+ - The data management component handles the loading and saving of application data such as tutorials, attendance, and marks. It abstracts away file operations through the use of well-defined interfaces, supporting a modular and extensible structure. This design ensures data persistence across sessions and simplifies file I/O logic. 
+
+**Component Breakdown**
+- `DataManager`
+  - The central coordinator for all data-related operations.
+  - Responsible for: Defining file paths and calling appropriate methods to load and save data.
+  - Public methods include: 
+    - `loadTutorials()`, `loadAttendanceFiles()`, `loadMarks()` – for reading. 
+    - `saveTutorials()`, `saveAttendanceFile()`, `saveMarksList()` – for writing.
+    - `ensureFileAndDirectoryExist()` – utility to ensure required file structures exist before usage.
+  - Delegates the low-level reading/writing to classes that implement the `FileLoader<T>` and `FileSaver<T>` interfaces.
+- `DataLoader`
+  - Serves as a utility helper that wraps calls to DataManager to load specific types of data.
+  - Offers methods like: `loadTutorialClasses()` and `loadAttendanceFile(tutorialList)`.
+- `FileLoader<T> Interface`
+  - A generic interface for all **file loading** logic.
+  - Classes implementing this interface must define `loadFromFile()` which returns an object of type `T`.
+  - Implementations could include: `AttendanceFileFileLoader`, `StudentFileLoader`, etc.
+- `FileSaver<T> Interface`
+  - A generic interface for file saving logic.
+  - Classes implementing this interface must define `saveToFile(data: T)`. 
+  - Implementations could include: `TutorialClassFileSaver`, `AttendanceFileFileSaver`, etc.
+
 ## **implementation**
 
 This section describes some important details on how certain features in TASync are implemented.
@@ -497,6 +552,7 @@ and instantiating and saving a Marks object with the details to the given studen
 
 `AddMarksCommand#execute()`
 - ![AddMarksCommand.png](diagrams/markslistcommands/AddMarksCommand.png)
+- - Reference diagrams provided at the end of this section.
 - Validates the input to ensure it follows the expected format and is not missing arguments.
 - Parses the input to extract the tutorial class code, matric number, assignment name, marks and maximum marks.
 - Validates parsed inputs marks and maximum marks to make sure they are valid, non-negative integers with maximum marks >= marks.
@@ -521,6 +577,7 @@ corresponding `Marks` object from the student's `marksList`.
 
 #### `DeleteMarksCommand#execute()`
 - ![DeleteMarksCommand.png](diagrams/markslistcommands/DeleteMarksCommand.png)
+- - Reference diagrams provided at the end of this section.
 - Validates the input to ensure it follows the expected format and is not missing arguments.
 - Parses the input to extract the tutorial class code, matric number, and assignment name.
 - Retrieves the `TutorialClass` with the given tutorial class code.
@@ -544,6 +601,7 @@ the student.
 
 #### `ListMarksCommand#execute()`
 - ![ListMarksCommand.png](diagrams/markslistcommands/ListMarksCommand.png)
+- - Reference diagrams provided at the end of this section.
 - Validates the input to ensure it follows the expected format and is not missing arguments.
 - Parses the input to extract the tutorial class code and matric number.
 - Retrieves the `TutorialClass` with the given tutorial class code.
@@ -552,6 +610,10 @@ the student.
 - Checks if the student exists, prints an error message otherwise.
 - Prints the student's name followed by all marks recorded in their `marksList`.
 
+#### Reference diagrams
+1. ![FindTutorialByName](diagrams/markslistcommands/FindTutorialByName.png)
+2. ![FindStudentByMatricNumber](diagrams/markslistcommands/FindStudentByMatricNumber.png)
+3. ![FindMarksByAssignmentName](diagrams/markslistcommands/FindMarksByAssignmentName.png)
 
 ### Task Commands
 
@@ -839,7 +901,192 @@ be able to accomplish most tasks using commands faster than using the mouse.
 * *GUI* - Graphical User Interface
 * *Mainstream OS* - Windows, Linux, Unix, macOS
 * *TA* - Teaching Assistants
+* *Matriculation/Matric number* - Unique student identification string for NUS students
 
 ## Appendix E: Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+### Initial launch:
+1. Download the latest .jar file and place it in an empty folder. This will be used as the working directory.
+2. Navigate to the working directory in a terminal window.
+3. Run the command `java -version` to ensure your system is running Java 17.
+4. To launch the app, run `java -jar "tp.jar"` in the working directory. If successful, TASync will print a
+welcome message, and will be ready to accept commands.
+5. The `/data` folder and required save files will be created in the working folder.
+
+### Setup: Adding sample data
+1. Use `NEWTUTORIAL -t` to create empty tutorial classes.
+2. Use `NEWSTUDENT -t` to add sample students to the created tutorial classes.
+3. Use `CREATE -at` to create attendance lists for the created tutorial classes.
+
+*The following sections provide sample test cases, indicating the expected outputs for valid and invalid commands,
+intended to provide a logical path through all user-testable features. The test cases are not exhaustive, and further
+variations in test cases are required for extensive testing.*
+
+### Tutorial commands
+
+#### Creating a new tutorial
+1. Test case: `NEWTUTORIAL -t T123,2,11:00,13:00`
+- Expected: Tutorial successfully created.
+2. Test case: `NEWTUTORIAL -t T02,9,11:00,13:00`
+- Expected: Error message indicating invalid day of week.
+3. Other incorrect inputs to test: Invalid time formats.
+
+#### Deleting a tutorial/Listing students for a tutorial
+1. Test cases: `DELETE -t T123`
+- Expected: Tutorial is successfully deleted.
+2. Test cases: `LISTSTUDENTS -t T123`
+- Expected: All students in the given tutorial, and their information, listed.
+3. Incorrect inputs to test: Missing arguments, invalid tutorial.
+
+#### Listing tutorials
+1. Test case: `LIST -t 12/04/2025`
+- Expected: Lists all tutorials from today to given date.
+2. Test case: 'LIST -t 12-4'
+- Expected: Error message for invalid date format.
+3. Other incorrect inputs to test: Invalid dates, such as date in the past.
+
+
+### Student commands
+#### Adding a new student
+1. Test case: `newstudent -t Mark Lim,20/03/2005,Male,97654344,A2387653D,T123`
+- Expected: New student with given details is successfully created and added to student list for tutorial T123.
+2. Test case: `newstudent -t Mark Lim` 
+- Expected: Error message indicating that command does not follow format. No student created or added to any tutorial.
+3. Other incorrect inputs to test: Incorrect date formats, invalid genders, non-existent tutorial class.
+- Expected: Similar as above.
+
+#### Deleting a student
+1. Test case: `deletestudent -t T123, A2387653D`
+- Expected: Student with given matric number is no longer in student list for tutorial T123.
+2. Test case: `deletestudent -t INVALID_TUT, A0123`
+- Expected: Error message indicating an invalid tutorial name.
+2. Incorrect inputs to test:
+* Attempting to delete non-existent student.
+* Attempting to delete from non-existent tutorial.
+- Expected: Error message, no change to any student lists for any tutorial.
+
+#### Checking the remark of a student
+1. Test case: `CHECKREMARK -t T123, A234567W`
+- Expected: Prints the remark for the student with given matric number in T123.
+2. Incorrect inputs to test: Similar to `DELETESTUDENT -t`
+- Expected: Error message indicating invalid command.
+
+#### Change the remark of a student
+1. Test case: `CHANGEREMARK -t T123,A2345674W,Excellent job in class!`
+- Expected: Remark of student is successfully "Excellent job in class!"
+2. Incorrect inputs to test: Missing arguments, non-existent tutorial/matric, etc.
+- Expected: Error message indicating invalid command.
+
+#### Finding a student
+1. Test case: `find -t A0123`
+- Expected: Prints details of any student with matric number containing A0123.
+2. Test case: `find -t song`
+- Expected: Prints details of any student with name containing John, e.g. Charlie Song.
+3. Incorrect inputs to test:
+* Keyword such that no matching student exists.
+- Expected: Error message for incorrect format or message indicating no match.
+
+### Marks Commands
+
+#### Adding and deleting marks
+1. Test case: `NEWMARKS -m T123,A1234567W,Midterm Exam,75,100`
+- Expected: Marks with given details successfully added to student's marks list and visible when listed.
+2. Test case: `NEWMARKS -m T123,A1234567W,Quiz,-1,-20`
+- Expected: Error message indicating invalid marks, no marks created.
+3. Test case: `DELETEMARKS -m T123,A1234567W,Midterm Exam`
+- Expected: Marks with assignment name deleted from given student's marks list and no longer visible when listed.
+4. Test case: `DELETEMARKs -m T123, A1234567W, INVALID_ASSIGNMENT`
+- Expected: Error message indicating no match for the assignment name.
+5Other incorrect inputs to test:
+* Invalid tutorial, matric numbers.
+* Non-numerical marks, or invalid marks e.g. negative marks.
+- Expected: Error message, no marks added.
+
+#### Listing marks
+1. Test case: `LIST -m T123, A1234567W`
+- Expected: All assignments and marks printed, followed by an average percentage for the student.
+2. Incorrect inputs to test:
+* Invalid tutorial or matric number, missing arguments.
+
+### Attendance commands
+
+#### Creating an attendance list
+1. Test case: `CREATE -at T01, 1`
+- Expected: Creates an attendance list with given details if it does not already exist.
+2. Test case: `CREATE -at T01, -1`
+- Expected: Error message indicating invalid week.
+3. Other invalid inputs to test: Invalid tutorial name.
+
+#### Listing attendance for a given tutorial session
+1. Test case: `LIST -a T01, 1`
+- Expected: Prints list of students, with their matric number and present/absent.
+2. Test case: `LIST -a T01, 0`
+- Expected: Error message indicating invalid week.
+3. Other invalid inputs to test: Attempt to list for invalid tutorial or week without attendance list created.
+
+#### Marking/Unmarking attendance, viewing comments
+1. Test cases: `MARK -a T01,1,John,A0123456A`, `UNMARK -a T01,1,John,A0123456A`, `VIEWCOMMENT -a T01,1,John,A0123456A`
+- Expected: Student is marked or unmarked as present/All comments for student are printed.
+2. Test case: `MARK -a T01,1,John,INVALID_MATRIC`
+- Expected: Error message indicating an invalid matric number.
+3. Other incorrect inputs to test:
+* Name and matric number not matching.
+* Attendance list not created in the given week.
+
+#### Adding comments
+1. Test case: `COMMENT -a T01,1,john,A0123456A//John is punctual`
+- Expected: Comment "John is punctual" added to list of comments.
+2. Test case: `COMMENT -a T01,1,john,A0123456A, John is punctual`
+- Expected: Error message indicating invalid format.
+3. Other incorrect inputs to test:
+* Multiple comments not separated by ;
+* Invalid tutorial, name and matric number combinations.
+* Attendance list not created in the given week.
+
+### Task commands
+
+#### Adding tasks
+1. Test cases: 
+* `ADD -pt todo task`
+* `ADD -pd submission /by 03/04/2025 23:59`
+* `ADD -pe lab /from 03/04/2025 15:00 /to 03/04/2025 16:00`
+* `ADD -c Kevin /from 05/04/2025 15:00 /to 05/04/2025 16:00`
+- Expected: Message indicating task with given details successfully added, updated task count. List using `LIST -p` shows new task.
+2. Test case: `ADD -pt`
+- Expected: Error message indicating invalid format.
+3. Other incorrect inputs to test:
+* Invalid date time formats.
+* Invalid date time combinations, e.g. deadline in the past.
+
+#### Deleting, marking/unmarking and renaming tasks
+* Prerequisite: View the list of tasks using `LIST -p` to see task index numbers.
+1. Test cases: `DELETE -p 3`, `MARK -p 1`, `UNMARK -p 5`, `RENAME -p 2 study python`
+- Expected: Task at given index number successfully deleted/marked/unmarked/renamed, visible in list.
+2. Test case: `MARK -p 100`
+- Expected: Message indicating no task at given index.
+3. Other incorrect inputs to test:
+* Non-numerical index number.
+* Invalid index, e.g. negative index.
+- Expected: Error message indicating invalid index.
+
+#### Finding a task
+1. Test case: `FIND -p python`
+- Expected: All tasks in list with description containing "python" are printed.
+2. Test case: `FIND -p INVALID_KEYWORD`
+- Expected: Message indicating no matches found.
+
+### Saving data
+#### Deleting save files
+Save files can be deleted from the /data folder.
+- Expected: A blank save file is created when TASync runs next, replacing the deleted file.
+
+#### Tampering with save files
+Save files are in human-editable format, and can thus be opened and modified with text editors.
+1. Saved text data is deleted/changed to invalid formats.
+- Expected: The saved data (tutorial/attendance/student/task/marks) in invalid format is not loaded. Corrupted data is deleted the next time 
+TASync saves data.
+2. Saved text data is modified, but data is still valid and correctly formatted.
+- Expected: The modified data is successfully loaded when TASync runs next.
+
+
+

@@ -1,0 +1,20 @@
+@startuml
+    participant Command
+    participant "TutorialClassList" as TClassList
+    participant "TutorialClass" as TClass
+
+    Command -> TClassList : getTutorialByName(tutorialID)
+
+    activate TClassList
+    group sd [Find tutorial by name]
+    loop all tutorialClass in list or until found
+        TClassList -> TClass : getName()
+        activate TClass
+        TClass --> TClassList : tutorialID
+        deactivate
+    end
+    end
+
+    TClassList --> Command : return TutorialClass (if match)
+    deactivate
+@enduml

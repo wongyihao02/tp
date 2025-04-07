@@ -6,8 +6,8 @@ autonumber
 participant "CommentOnStudent: Command<Attendancefile>" as command
 participant "parts" as parts
 participant "partsArray2" as partsArray
-participant "comments " as comments
 participant "comment " as comment
+participant "comments " as comments
 participant "listOfAttendanceList : AttendanceFile" as listOfAttendanceList
 participant "theOne : AttendanceList" as theOne
 participant "StudentList" as studentList
@@ -58,10 +58,11 @@ find student in tutorial
 end ref
 
 
+    deactivate comments
     command -> theOne : getComments(student : Student = derStudent)
     activate theOne
     theOne --> command : returns comments for student
-    deactivate comments
+
     deactivate theOne
     command --> user : print the comments or print no comments message
 

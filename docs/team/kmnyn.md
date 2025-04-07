@@ -61,6 +61,8 @@ Please view my code contribution at:
 ### Contributions to the Project Management
 - Crafted and released `v1.0`,`v1.0.1`,`v2.0` and `v2.1` on GitHub.
 - Helped with creating and monitoring issue trackers for `v2.0` on GitHub.
+- Crafted and refined project home page.
+- Refined AboutUs page.
 
 ### Contributions to the UG
 - Wrote **Introduction** and **Quick Start**.
@@ -71,7 +73,9 @@ Please view my code contribution at:
 - Created sequence diagrams for all the **task commands**.
 - Created object diagrams for **task commands**.
 - Created overall class diagram for **task commands**.
+- Helped in creating overall class diagram for the project.
 - Wrote **Product Scope**, including **Target User Profile** and **User Proposition**.
+- Wrote explanation for overall **command handling component** and **data management component**.
 
 ### Review/mentoring contributions
 - Reviewed pull requests consistently for my team.

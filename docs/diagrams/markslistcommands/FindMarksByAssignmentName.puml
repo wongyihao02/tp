@@ -1,0 +1,21 @@
+@startuml
+participant Command
+participant "MarksList" as MList
+participant "Marks" as Marks
+
+Command -> MList : getByAssignmentName(assignmentName)
+
+activate MList
+group sd [Find marks by assignment name]
+loop all marks in list or until found
+    MList -> Marks : getAssignmentName()
+    activate Marks
+    Marks --> MList : assignmentName
+    deactivate
+end
+end
+
+MList --> Command : return Marks / null
+deactivate
+
+@enduml

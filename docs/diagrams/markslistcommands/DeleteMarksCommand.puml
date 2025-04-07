@@ -1,0 +1,61 @@
+@startuml
+actor User
+participant "DeleteMarksCommand" as DeleteMarksCommand
+participant "TutorialClassList" as TutorialClassList
+participant "TutorialClass" as TutorialClass
+participant "StudentList" as StudentList
+participant "Student" as Student
+participant "MarksList" as MarksList
+
+skinparam sequenceReferenceBackgroundColor #f7807c
+
+User -> DeleteMarksCommand : execute(parts, TutorialClassList)
+activate DeleteMarksCommand
+
+DeleteMarksCommand -> TutorialClassList : getTutorialByName(tutorialID)
+activate TutorialClassList
+ref over TutorialClassList, TutorialClass : getTutorialByName
+TutorialClassList --> DeleteMarksCommand : TutorialClass
+deactivate TutorialClassList
+
+DeleteMarksCommand -> TutorialClass : getStartTime()
+activate TutorialClass
+TutorialClass --> DeleteMarksCommand : null / startTime
+deactivate TutorialClass
+
+DeleteMarksCommand -> TutorialClass : getStudentList()
+activate TutorialClass
+TutorialClass --> DeleteMarksCommand : StudentList
+deactivate TutorialClass
+
+DeleteMarksCommand -> StudentList : getStudentByMatricNumber(matricNumber)
+activate StudentList
+ref over StudentList, Student : getStudentByMatricNumber
+StudentList --> DeleteMarksCommand : null / Student
+deactivate StudentList
+
+DeleteMarksCommand -> Student : getMarksList()
+activate Student
+Student --> DeleteMarksCommand : MarksList
+deactivate Student
+
+DeleteMarksCommand -> MarksList : getByAssignmentName(assignmentName)
+activate MarksList
+ref over MarksList, Marks : getByAssignmentName
+MarksList --> DeleteMarksCommand : null / marksToDelete
+deactivate MarksList
+
+alt Marks not found
+    DeleteMarksCommand -> User : print "No marks found with assignment name..."
+else Marks found
+    DeleteMarksCommand -> MarksList : deleteMarks(marksToDelete)
+    activate MarksList
+    MarksList --> DeleteMarksCommand
+    deactivate MarksList
+
+    DeleteMarksCommand -> User : print "Marks successfully deleted."
+end
+
+DeleteMarksCommand --> User: return
+deactivate DeleteMarksCommand
+@enduml

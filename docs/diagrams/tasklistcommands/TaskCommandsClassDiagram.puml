@@ -3,7 +3,7 @@
 hide circle
 skinparam classAttributeIconSize 0
 
-interface Command<T> {
+interface "<<interface>> Command<T>" {
     + execute(parts: String, target: T): void
 }
 
@@ -44,7 +44,7 @@ class Consultation {
     + printDue(): void
 }
 
-Command <|.. TaskCommand
+"<<interface>> Command<T>" <|.. TaskCommand
 TaskCommand --> TaskList : operates on
 
 TaskList --> Task : contains

@@ -1,0 +1,21 @@
+@startuml
+participant Command
+participant "StudentList" as SList
+participant "Student" as Student
+
+Command -> SList : getStudentByMatricNumber(matricNumber)
+
+activate SList
+group sd [Find student by matric number]
+loop all student in list or until found
+    SList -> Student : getMatricNumber()
+    activate Student
+    Student --> SList : matricNumber
+    deactivate
+end
+end
+
+SList --> Command : return Student / null
+deactivate
+
+@enduml
