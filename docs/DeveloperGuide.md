@@ -752,7 +752,7 @@ Our target users are teaching assistants (TAs) and tutors who manage both studen
 
 Teaching assistants and tutors often struggle with time-consuming administrative tasks which can be tedious and inefficient with traditional tools. Our CLI-based solution streamlines these processes, offering a fast, automated, and distraction-free way to manage academic responsibilities. By eliminating the need for GUI-based software, it enhances productivity and reduces manual effort.
 
-## User Stories
+## Appendix B: User Stories
 
 | Version | As a ...                       | I want to ...                                                                          | So that I can ...                                                                            |
 |---------|--------------------------------|----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
@@ -771,7 +771,7 @@ Teaching assistants and tutors often struggle with time-consuming administrative
 | v2.0    | responsible TA                 | track a student’s individual assignment grades                                         | monitor grades for students to provide timely feedback                                       |
 
 
-## Non-Functional Requirements
+## Appendix C: Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ with Java 17 installed.
 2. All commands should be executable in English text, using only keyboard and no other input devices.
@@ -780,13 +780,14 @@ be able to accomplish most tasks using commands faster than using the mouse.
 4. Should be able to hold up to 1000 students without any noticeable sluggishness in performance for typical usage.
 5. Data must be stored locally in human-editable file formats.
 
-## Glossary
+
+## Appendix D: Glossary
 
 * *CLI* - Command Line Interface
 * *GUI* - Graphical User Interface
 * *Mainstream OS* - Windows, Linux, Unix, macOS
 * *TA* - Teaching Assistants
 
-## Instructions for manual testing
+## Appendix E: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}

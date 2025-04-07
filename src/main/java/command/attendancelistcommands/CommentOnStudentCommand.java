@@ -8,6 +8,7 @@ import command.taskcommands.Command;
 
 import java.util.ArrayList;
 
+//@@author wongyihao02
 public class CommentOnStudentCommand implements Command<AttendanceFile> {
 
     //parts in format of tutname,week,studentname,matricnum//comments1;comments2              (comments seperated by ;)

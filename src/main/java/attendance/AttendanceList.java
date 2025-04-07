@@ -5,7 +5,7 @@ import tutorial.TutorialClass;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+//@@author wongyihao02
 public class AttendanceList {
     private Map<Student, String> attendanceMap;
     private int weekNumber;

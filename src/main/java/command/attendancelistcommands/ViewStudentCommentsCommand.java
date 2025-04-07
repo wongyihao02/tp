@@ -8,6 +8,7 @@ import command.taskcommands.Command;
 
 import java.util.ArrayList;
 
+//@@author wongyihao02
 public class ViewStudentCommentsCommand implements Command<AttendanceFile> {
     //parts in format of tutname,week,studentname,matricnum
     public void execute(String parts, AttendanceFile attendanceList) {
