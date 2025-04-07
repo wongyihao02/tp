@@ -36,6 +36,7 @@ public class TASync {
         dataManager.saveTutorials(tutorialList);
         dataManager.saveAttendanceFile(attendanceFile);
         dataManager.saveMarksList(tutorialList);
+        dataManager.saveTasks(taskList);
 
         System.out.println("All data saved successfully!");
 

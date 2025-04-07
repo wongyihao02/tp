@@ -1,15 +1,9 @@
 package util;
 
-import filehandlers.AttendanceFileFileLoader;
-import filehandlers.AttendanceFileFileSaver;
-import filehandlers.FileLoader;
-import filehandlers.FileSaver;
-import filehandlers.TutorialClassListFileLoader;
-import filehandlers.TutorialClassListFileSaver;
-import filehandlers.MarksListLoader;
-import filehandlers.MarksListSaver;
 import attendance.AttendanceFile;
 import attendance.AttendanceList;
+import filehandlers.*;
+import task.TaskList;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 
@@ -22,21 +16,22 @@ public class DataManager {
     private static final String TUTORIAL_FILE_PATH = DIRECTORY_PATH + "/AllTutorials.csv";
     private static final String ATTENDANCE_FILE_PATH = DIRECTORY_PATH + "/AttendanceFile.csv";
     private static final String MARKS_FILE_PATH = DIRECTORY_PATH + "/marks.txt";
+    private static final String TaskList_FILE_PATH = DIRECTORY_PATH + "/tasklist.txt";
 
     public TutorialClassList loadTutorials() {
-        ensureFileAndDirectoryExist(TUTORIAL_FILE_PATH, DIRECTORY_PATH);
+        ensureFileAndDirectoryExist(TUTORIAL_FILE_PATH);
         FileLoader<TutorialClassList> tutorialLoader = new TutorialClassListFileLoader();
         return tutorialLoader.loadFromFile(TUTORIAL_FILE_PATH);
     }
 
     public AttendanceFile loadAttendanceFiles(TutorialClassList classList) {
-        ensureFileAndDirectoryExist(ATTENDANCE_FILE_PATH, DIRECTORY_PATH);
+        ensureFileAndDirectoryExist(ATTENDANCE_FILE_PATH);
         FileLoader<AttendanceFile> attendanceFileLoader = new AttendanceFileFileLoader(classList);
         return attendanceFileLoader.loadFromFile(ATTENDANCE_FILE_PATH);
     }
 
     public TutorialClassList loadMarks(TutorialClassList tutorialClassList){
-        ensureFileAndDirectoryExist(MARKS_FILE_PATH, DIRECTORY_PATH);
+        ensureFileAndDirectoryExist(MARKS_FILE_PATH);
         MarksListLoader marksLoader = new MarksListLoader();
         return marksLoader.loadMarks(tutorialClassList);
     }
@@ -59,18 +54,26 @@ public class DataManager {
     }
 
     public void saveTutorials(TutorialClassList tutorialList) {
+        ensureFileAndDirectoryExist(TUTORIAL_FILE_PATH);
         FileSaver<TutorialClassList> tutorialSaver = new TutorialClassListFileSaver();
         tutorialSaver.saveToFile(tutorialList, DIRECTORY_PATH);
     }
 
     public void saveAttendanceFile(AttendanceFile attendanceFile) {
+        ensureFileAndDirectoryExist(ATTENDANCE_FILE_PATH);
         FileSaver<AttendanceFile> attendanceSaver = new AttendanceFileFileSaver();
         attendanceSaver.saveToFile(attendanceFile, DIRECTORY_PATH);
     }
 
     public void saveMarksList(TutorialClassList tutorialList){
+        ensureFileAndDirectoryExist(MARKS_FILE_PATH);
         FileSaver<TutorialClassList> marksSaver = new MarksListSaver();
         marksSaver.saveToFile(tutorialList, DIRECTORY_PATH);
+    }
+    public void saveTasks(TaskList taskList) {
+        ensureFileAndDirectoryExist(TaskList_FILE_PATH);
+        TaskListFileSaver taskListSaver = new TaskListFileSaver();
+        taskListSaver.saveToFile(taskList.getTasks(), DIRECTORY_PATH);
     }
 
     public String getTutorialFilePath() {
@@ -85,14 +88,13 @@ public class DataManager {
      * Ensures the directory and file exist. If not, creates them.
      *
      * @param filePath The full path of the file to create.
-     * @param directoryPath The directory to create if it doesn't exist.
      */
-    private void ensureFileAndDirectoryExist(String filePath, String directoryPath) {
-        File dir = new File(directoryPath);
+    private void ensureFileAndDirectoryExist(String filePath) {
+        File dir = new File(DIRECTORY_PATH);
         if (!dir.exists()) {
             boolean dirCreated = dir.mkdirs();
             if (dirCreated) {
-                System.out.println("📁 Created directory: " + directoryPath);
+                System.out.println("📁 Created directory: " + DIRECTORY_PATH);
             }
         }
 
