@@ -31,6 +31,7 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
 
             //Validate that the necessary inputs are correctly inputted
             String[] inputParts = parseInput(input,4);
+            assert inputParts.length == 4 : "Input must contain exactly 4 parts: name, day, start time, end time";
 
             String tutorialName = inputParts[0].trim();
             String dayOfWeekStr = inputParts[1].trim();
@@ -52,6 +53,7 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
                 throw TASyncException.invalidDayOfWeek();
             }
 
+
             // Parse and validate start and end time
             LocalTime startTime;
             LocalTime endTime;
@@ -66,7 +68,6 @@ public class NewTutorialCommand implements Command<TutorialClassList> {
             if (!endTime.isAfter(startTime)) {
                 throw TASyncException.invalidTimeRange();
             }
-
 
             for (TutorialClass existingTutorial : tutorialClassList.getTutorialClasses()) {
                 // Check for duplicate tutorial name

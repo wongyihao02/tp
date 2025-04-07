@@ -20,7 +20,7 @@ public class CheckRemarkCommand implements Command<TutorialClassList> {
     /**
      * Executes the "CHECK_REMARK" command to display the remarks for a specific student
      * in a tutorial class. The input string should contain the tutorial class code and
-     * the matric number of the student (format: &lt;TutorialClassCode&gt;, &lt;MatricNumber&gt;).
+     * the matric number of the student (format: [TutorialClassCode], [MatricNumber]).
      * If the input is invalid, the tutorial class is not found, or the student is not found,
      * an appropriate error message is displayed.
      *
@@ -32,6 +32,7 @@ public class CheckRemarkCommand implements Command<TutorialClassList> {
         try {
 
             String[] inputParts = parseInput(parts, 2);
+            assert inputParts.length == 2 : "Expected 2 parts: tutorial class code and matric number";
 
             String tutorialClassCode = inputParts[0].trim();
             String matricNumber = inputParts[1].trim();

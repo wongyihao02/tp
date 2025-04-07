@@ -9,7 +9,7 @@ remarks, and scheduling, with a focus on optimizing the user experience through 
 
 Given below are my contributions to the project.
 
-### Summary of Contributions
+### Summary of Code Contributions
 
 #### 1. Student Commands
 
@@ -54,6 +54,8 @@ Given below are my contributions to the project.
 - **Code contributed**
   - https://nus-cs2113-ay2425s2.github.io/tp-dashboard/?search=samstt&breakdown=true
 
+### Summary of other Project Contributions
+
 - **Project management**
   - Managed releases `v1.0`,`v2.0` and `v2.1` on GitHub
     - Set up a potential roadmap to further extensions through brainstorming ideas for `v3.0`
@@ -68,7 +70,7 @@ Given below are my contributions to the project.
   - User guide:
     - Developed the layout for User Guide for implementation by groupmates
     - Added documentation for all student commands and tutorial commands
-  - Developer Guide:
+- Developer Guide:
     - Developed the layout for Developer Guide for implementation by groupmates
     - Added implementation details for all student commands and tutorial commands
     - Created sequence diagrams for commands
