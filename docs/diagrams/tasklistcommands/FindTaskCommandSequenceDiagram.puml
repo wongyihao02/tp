@@ -25,7 +25,6 @@ alt valid keyword
         deactivate Console
     end
 else invalid keyword
-    FindCmd -> FindCmd : throw TASyncException
     FindCmd -> Console : println(e.getMessage())
     activate Console
     deactivate Console

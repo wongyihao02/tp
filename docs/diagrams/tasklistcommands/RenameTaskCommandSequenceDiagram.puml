@@ -17,7 +17,6 @@ alt valid input (taskNumber and newTaskName)
     activate TaskList
     deactivate TaskList
 else missing part
-    RenameCmd -> RenameCmd : throw TASyncException
     RenameCmd -> Console : println(e.getMessage())
     activate Console
     deactivate Console

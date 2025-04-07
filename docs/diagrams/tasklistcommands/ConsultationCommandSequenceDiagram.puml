@@ -14,10 +14,9 @@ activate ConsultCmd
 
 loop until valid input
     alt missing "/from" or "/to"
-        ConsultCmd -> ConsultCmd : throw TASyncException
         ConsultCmd -> Console : println(error)
         activate Console
-        Console -> User : prompt for new input
+        Console --> User : prompt for new input
         deactivate Console
         User -> ConsultCmd : provide new parts
     else invalid datetime
@@ -32,10 +31,9 @@ loop until valid input
         deactivate Formatter
 
         alt either is invalid
-            ConsultCmd -> ConsultCmd : throw TASyncException
             ConsultCmd -> Console : println(error)
             activate Console
-            Console -> User : prompt for new input
+            Console --> User : prompt for new input
             deactivate Console
             User -> ConsultCmd : provide new parts
         end
