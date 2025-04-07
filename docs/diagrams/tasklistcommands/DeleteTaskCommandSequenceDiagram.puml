@@ -2,20 +2,22 @@
 'https://plantuml.com/sequence-diagram
 
 actor User
-
-participant "DeleteTaskCommand" as DeleteCmd
-participant "IntegerChecker" as Checker
-participant "TaskList" as TaskList
-participant "System" as Console
-
-User -> DeleteCmd : execute(parts, taskList)
+activate DeleteCmd
 
 DeleteCmd -> Checker : isInteger(parts)
+activate Checker
+Checker --> DeleteCmd
+deactivate Checker
+
 alt valid integer
     DeleteCmd -> TaskList : deleteTask(Integer.parseInt(parts))
+    activate TaskList
+    deactivate TaskList
 else invalid input
-    DeleteCmd -> DeleteCmd : throw TASyncException
     DeleteCmd -> Console : println(e.getMessage())
+    activate Console
+    deactivate Console
 end
 
+deactivate DeleteCmd
 @enduml

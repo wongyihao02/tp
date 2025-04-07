@@ -8,17 +8,27 @@ participant "TaskList" as TaskList
 participant "System" as Console
 
 User -> FindCmd : execute(parts, taskList)
+activate FindCmd
 
 alt valid keyword
     FindCmd -> TaskList : getTaskListWithKeyWord(parts)
+    activate TaskList
+    deactivate TaskList
+
     alt matching tasks
         FindCmd -> TaskList : printTaskList()
+        activate TaskList
+        deactivate TaskList
     else no matches
         FindCmd -> Console : println("No tasks found.")
+        activate Console
+        deactivate Console
     end
 else invalid keyword
-    FindCmd -> FindCmd : throw TASyncException
     FindCmd -> Console : println(e.getMessage())
+    activate Console
+    deactivate Console
 end
 
+deactivate FindCmd
 @enduml

@@ -8,13 +8,21 @@ participant "TaskList" as TaskList
 participant "Todo" as Todo
 
 User -> TodoCmd : execute(parts, taskList)
+activate TodoCmd
 
 alt parts is not empty
     TodoCmd -> Todo : new Todo(parts, false)
+    activate Todo
+    deactivate Todo
+
     TodoCmd -> TaskList : addTask(todo)
+    activate TaskList
+    deactivate TaskList
 else parts is empty
-    TodoCmd -> TodoCmd : throw TASyncException
-    TodoCmd -> System : println(e.getMessage())
+    TodoCmd -> Console : println(e.getMessage())
+    activate Console
+    deactivate Console
 end
 
+deactivate TodoCmd
 @enduml

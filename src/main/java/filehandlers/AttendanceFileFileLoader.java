@@ -15,7 +15,7 @@ import students.StudentList;
 import tutorial.TutorialClass;
 import tutorial.TutorialClassList;
 
-
+//@@author wongyihao02
 public class AttendanceFileFileLoader implements FileLoader<AttendanceFile> {
     private final TutorialClassList classList;
 

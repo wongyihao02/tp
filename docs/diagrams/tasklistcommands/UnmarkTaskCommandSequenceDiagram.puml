@@ -9,13 +9,22 @@ participant "TaskList" as TaskList
 participant "System" as Console
 
 User -> UnmarkCmd : execute(parts, taskList)
+activate UnmarkCmd
 
 UnmarkCmd -> Checker : isInteger(parts)
+activate Checker
+Checker --> UnmarkCmd : true/false
+deactivate Checker
+
 alt valid integer
     UnmarkCmd -> TaskList : markTaskAsUndone(Integer.parseInt(parts))
+    activate TaskList
+    deactivate TaskList
 else invalid input
-    UnmarkCmd -> UnmarkCmd : throw TASyncException
     UnmarkCmd -> Console : println(e.getMessage())
+    activate Console
+    deactivate Console
 end
 
+deactivate UnmarkCmd
 @enduml

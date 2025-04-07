@@ -8,12 +8,21 @@ participant "TaskList" as TaskList
 participant "System" as Console
 
 User -> ListCmd : execute(parts, taskList)
+activate ListCmd
 
 ListCmd -> TaskList : getTaskCount()
+activate TaskList
+deactivate TaskList
+
 alt taskCount > 0
     ListCmd -> TaskList : printTaskList()
+    activate TaskList
+    deactivate TaskList
 else no tasks
     ListCmd -> Console : println("nothing to do yet")
+    activate Console
+    deactivate Console
 end
 
+deactivate ListCmd
 @enduml
