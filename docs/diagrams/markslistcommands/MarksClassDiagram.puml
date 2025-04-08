@@ -58,6 +58,6 @@ GenericMarksCommand --> TASyncException
 TutorialClassList "1" *-- "*" TutorialClass : contains
 TutorialClass "1" *-- "1" StudentList : contains
 StudentList "1" *-- "*" Student : contains
-Student "1" *-- "*" MarksList : contains
+Student "1" *-- "1" MarksList : contains
 MarksList "1" *-- "*" Marks: contains
 @enduml
