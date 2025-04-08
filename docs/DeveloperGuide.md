@@ -1018,17 +1018,17 @@ variations in test cases are required for extensive testing.*
 
 ### Student commands
 #### Adding a new student
-1. Test case: `newstudent -t Mark Lim,20/03/2005,Male,97654344,A2387653D,T123`
+1. Test case: `NEWSTUDENT -t Mark Lim,20/03/2005,Male,97654344,A2387653D,T123`
 - Expected: New student with given details is successfully created and added to student list for tutorial T123.
-2. Test case: `newstudent -t Mark Lim` 
+2. Test case: `NEWSTUDENT -t Mark Lim` 
 - Expected: Error message indicating that command does not follow format. No student created or added to any tutorial.
 3. Other incorrect inputs to test: Incorrect date formats, invalid genders, non-existent tutorial class.
 - Expected: Similar as above.
 
 #### Deleting a student
-1. Test case: `deletestudent -t T123, A2387653D`
+1. Test case: `DELETESTUDENT -t T123, A2387653D`
 - Expected: Student with given matric number is no longer in student list for tutorial T123.
-2. Test case: `deletestudent -t INVALID_TUT, A0123`
+2. Test case: `DELETESTUDENT -t INVALID_TUT, A0123`
 - Expected: Error message indicating an invalid tutorial name.
 2. Incorrect inputs to test:
 * Attempting to delete non-existent student.
@@ -1048,9 +1048,9 @@ variations in test cases are required for extensive testing.*
 - Expected: Error message indicating invalid command.
 
 #### Finding a student
-1. Test case: `find -t A0123`
+1. Test case: `FIND -t A0123`
 - Expected: Prints details of any student with matric number containing A0123.
-2. Test case: `find -t song`
+2. Test case: `FIND -t song`
 - Expected: Prints details of any student with name containing John, e.g. Charlie Song.
 3. Incorrect inputs to test:
 * Keyword such that no matching student exists.
