@@ -5,9 +5,10 @@ autonumber
 actor User
 participant "ShowAttendanceListCommand : Command<AttendanceFile>" as command
 participant "partsArray" as parts
+participant "attenList : AttendanceList" as attenList
 participant "listOfAttendanceList : AttendanceFile" as listOfAttendanceList
 participant "listOfTutorials : TutorialClassList" as listOfTutorials
-participant "attenList : AttendanceList" as attenList
+
 
 
 User -> command : execute(parts : String, target : T)

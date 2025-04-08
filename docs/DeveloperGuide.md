@@ -455,11 +455,11 @@ This class implements the Command<AttendanceList> interface.Its function is to t
 and print the names and attendance status of the students in that tutorial,if it exists.
 
 #### Operations
-- `ShowAttendanceListCommand.execute()`
+  - `ShowAttendanceListCommand.execute()`
 ![ShowAttendanceListCommand.png](diagrams/attendancelistcommands/ShowAttendanceListCommand.png)
   - Extracts tutorial name and week number from the given input(parts) and stores it in partsArray.
   - Exception thrown if no input or not enough input given.
-  - The AttendanceFile is searched to find the relevant AttendanceList
+  - The AttendanceFile is searched to find the relevant AttendanceList.
   - Exception is thrown and handled if none found.
   - The hashMap containing the attendance status of the students will be printed.
   - A different message will be printed if this hashMap is empty(signalling that the attendanceList has no students in it).
@@ -467,45 +467,45 @@ and print the names and attendance status of the students in that tutorial,if it
 ![findStudentInTutorial.png](diagrams/attendancelistcommands/findStudentInTutorial.png)
 `Reference Block`
 #### 2.MarkStudentAttendanceCommand
-This is part of the Attendancelistcommands package,the function of this class is to mark a student present for a specific tutorial
+This is part of the Attendancelistcommands package,the function of this class is to mark a student present for a specific tutorial.
 
 #### Implementation details
 This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial,week and the student name and matric number  that the user has given
 and set the attendance status of the given student as Present in the attendanceList for the given tutorial name and week.
 
 #### Operations
-- `MarkStudentAttendanceCommand.execute()`
+  - `MarkStudentAttendanceCommand.execute()`
   - Extracts tutorial name, week number and student name and matric number from the given input.
   - Exception thrown if no inputs, not enough inputs or too many inputs are given.
-  - The AttendanceFile is searched to find the relevant AttendanceList
+  - The AttendanceFile is searched to find the relevant AttendanceList.
   - Exception is thrown and handled if none found.
   - This AttendanceList is then checked is it has a student with the same name and matric number is found.
   - Exception is thrown and handled if none found.
   - The value for the student in the hashMap containing the attendance status of the students will be changed to Present.
   - A message stating that the student is marked present is printed.
   - An error message will be printed when an Exception is handled.
-  - Sequence diagram is similar to 1 but instead at the end the student is marked present in the attendanceList and a success message is printed unless there are exceptions
+  - Sequence diagram is similar to 1 but instead at the end the student is marked present in the attendanceList and a success message is printed unless there are exceptions.
 
 
 #### 3.UnmarkStudentAttendanceCommand
-This is part of the Attendancelistcommands package,the function of this class is to mark a student Absent for a specific tutorial
+This is part of the Attendancelistcommands package,the function of this class is to mark a student Absent for a specific tutorial.
 
 #### Implementation details
 This class implements the Command<AttendanceList> interface.Its function is to take in the input from the user and extract the tutorial,week and the student that the user has given
 and set the attendance status of the given student as Absent in the attendanceList for the given tutorial name and week.
 
 #### Operations
-- `UnmarkStudentAttendanceCommand.execute()`
+  - `UnmarkStudentAttendanceCommand.execute()`
   - Extracts tutorial name, week number and student name and matric number from the given input.
   - Exception thrown if no inputs, not enough inputs or too many inputs are given.
-  - The AttendancFile is searched to find the relevant AttendanceList
+  - The AttendancFile is searched to find the relevant AttendanceList.
   - Exception is thrown and handled if none found.
   - This AttendanceList is then checked is it has a student with the same name and matric number is found.
   - Exception is thrown and handled if none found.
   - The value for the student in the hashMap containing the attendance status of the students will be changed to Absent.
   - A message stating that the student is marked Absent is printed.
   - An error message will be printed when an Exception is handled.
-  - Sequence diagram is similar to 2 but instead at the end the student is marked Absent in the attendanceList and a success message is printed unless there are exceptions
+  - Sequence diagram is similar to 2 but instead at the end the student is marked Absent in the attendanceList and a success message is printed unless there are exceptions.
 
 #### 4.ViewStudentCommentsCommand
 This is part of the Attendancelistcommands package,the function of this class is print out all the comments given for a student in the particular tutorial and week.
@@ -515,11 +515,11 @@ This class implements the Command<AttendanceList> interface.Its function is to t
 that the user has given and print all comments for the given student in the attendanceList for the given tutorial name and week.
 
 #### Operations
-- `ViewStudentCommentsCommand.execute()`
+  - `ViewStudentCommentsCommand.execute()`
 ![ViewStudentCommentsCommand.png](diagrams/attendancelistcommands/ViewStudentCommentsCommand.png)
   - Extracts tutorial name, week number and student name and matric number from the given input.
   - Exception thrown if inputs are invalid.
-  - The AttendancFile is searched to find the relevant AttendanceList
+  - The AttendancFile is searched to find the relevant AttendanceList.
   - Exception is thrown and error message printed if none found.
   - This AttendanceList is then checked is it has a student with the same name and matric number is found.
   - Exception is thrown and error message printed if none found.
@@ -538,11 +538,10 @@ and their comments that the user has given and add all comments to the ArrayList
 
 #### Operations
 
-- `CommentOnStudentCommand.execute()`
+ - `CommentOnStudentCommand.execute()`
 ![CommentOnStudentCommandSequenceDiagram.png](diagrams/attendancelistcommands/CommentOnStudentCommandSequenceDiagram.png)
-
   - As seen in the diagram,the input from parts is split between data used to find the student and the comments to be added to the student and placed into a string array.
-  - The relevant data is then extracted from each index and put into arrays.For the comments they are put into an ArrayList<String>
+  - The relevant data is then extracted from each index and put into arrays.For the comments they are put into an ArrayList<String>.
   - The attendanceFile is searched for an AttendanceList with the given Tutorial name and week number.
   - This AttendanceList is then searched for the student with the name and matric number.
   - The above 2 are located in the reference block highlighted in red.
@@ -560,10 +559,10 @@ This class implements the Command<AttendanceList> interface.Its function is to t
 and the number position of the comment to be removed that the user has given and remove the comment in the ArrayList containing all comments for a given student in the attendanceList for the given tutorial name and week.
 
 #### Operations
-- `DeleteStudentCommentCommand.execute()`
+  - `DeleteStudentCommentCommand.execute()`
   - Extracts tutorial name, week number , student name and matric number and the number position of the comment to be removed from the given input.
   - Exception thrown if no inputs, not enough inputs or too many inputs are given.
-  - The AttendancFile is searched to find the relevant AttendanceList
+  - The AttendancFile is searched to find the relevant AttendanceList.
   - Exception is thrown and error message printed if none found.
   - This AttendanceList is then checked is it has a student with the same name and matric number is found.
   - Exception is thrown and error message printed if none found.
@@ -581,7 +580,7 @@ user has given create a new AttendanceList from it to add to the attendanceFile.
 AttendanceFile as the second element.
 
 #### Operations
-- `CreateNewAttendanceList.execute()`
+  - `CreateNewAttendanceList.execute()`
   - Extracts tutorial name, week number for the new AttendanceList to be created from the given input.
   - Exception thrown if no inputs, not enough inputs , too many inputs are given or incorrect inputs.
   - The TutorialClassList is searched to find the relevant TutorialClass.

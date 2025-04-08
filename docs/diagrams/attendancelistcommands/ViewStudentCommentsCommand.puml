@@ -48,10 +48,11 @@ else input is valid
     loop for each commentsArray
     activate comment
     command -> comment : trim()
+    deactivate comment
     command -> comments : add(comment.trim())
 
     end loop
-    deactivate comment
+
 
 ref over command, listOfAttendanceList, theOne, tutorialClass, studentList
 find student in tutorial
