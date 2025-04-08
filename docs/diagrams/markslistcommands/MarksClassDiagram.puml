@@ -1,0 +1,63 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+    class GenericMarksCommand {
+        +execute(parts: String, tutorialClassList: TutorialClassList): void
+    }
+
+    interface "<<interface>> \n Command<T>" {
+        +execute(input: String, context: T): void
+    }
+
+
+    class TutorialClass {
+        +getStartTime(): LocalTime
+        +getStudentList(): StudentList
+        +getTutorialName(): String
+
+    }
+
+    class TutorialClassList {
+        +getTutorialByName(name: String): TutorialClass
+    }
+
+    class Student {
+        +getName(): String
+        +getMatricNumber(): String
+    }
+
+    class Marks {
+        - assignmentName : String
+        - marks: int
+        - maxMarks : int
+        + toString(): String
+        + toFileFormat() : String
+    }
+
+    class MarksList {
+        + addMarks(marks: Marks): void
+        + deleteMarks(marks: Marks): void
+        + printMarks(): void
+    }
+
+    class StudentList {
+        +getStudentByMatricNumber(matricNumber: String): Student
+    }
+
+
+    class TASyncException extends Exception {
+        +invalidGenericMarksCommand(): TASyncException
+    }
+
+' Relationships
+"<<interface>> \n Command<T>" <|.. GenericMarksCommand : <<implements>>
+GenericMarksCommand --> TutorialClassList
+GenericMarksCommand --> TASyncException
+TutorialClassList "1" *-- "*" TutorialClass : contains
+TutorialClass "1" *-- "1" StudentList : contains
+StudentList "1" *-- "*" Student : contains
+Student "1" *-- "*" MarksList : contains
+MarksList "1" *-- "*" Marks: contains
+@enduml

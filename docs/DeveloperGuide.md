@@ -594,6 +594,10 @@ AttendanceFile as the second element.
 
 ### Marks Commands
 
+![MarksClassDiagram.png](diagrams/markslistcommands/MarksClassDiagram.png)  
+This class diagram builds on the class diagram for Student commands above, showing the key classes, operations
+and dependencies involved in the execution of all marks commands.
+
 #### 1. AddMarksCommand
 
 The `AddMarksCommand` handles the addition of new marks to a given student's marksList.
