@@ -74,8 +74,11 @@ Creates a new tutorial with the necessary parameters.
 
 Format: `NEWTUTORIAL -t <tutorial_name>,<day_of_week>,<start_time>,<end_time>`
 
-Examples:
-- `NEWTUTORIAL -t T123,2,11:00,13:00`
+Example:
+```
+> NEWTUTORIAL -t T123,2,11:00,13:00
+Tutorial "T123" successfully scheduled on TUESDAY from 11:00 to 13:00.
+```
 
 #### Delete tutorial: `DELETE -t`
 
@@ -85,6 +88,7 @@ Format: `DELETE -t <tutorial_name>`
 
 Examples:
 - `DELETE -t T123`
+- `DELETE -t T05`
 
 #### List Existing Tutorials: `LIST -t`
 
@@ -108,8 +112,11 @@ Format: `NEWSTUDENT -t <name>,<dob>,<gender>,<contact>,<matric_number>,<tutorial
 
 Important Note: NEWSTUDENT will return an error message if the user attempts to create a student in an invalid tutorial class.
 
-Examples:
-- `NEWSTUDENT -t Mark Lim,20/03/2005,Male,97654344,A2387653D,T123`
+Example:
+```
+> NEWSTUDENT -t Mark Lim,20/03/2005,Male,97654344,A2387653D,T123
+New student added to tutorial class T123: Mark Lim
+```
 
 #### Deleting a student: `DELETESTUDENT -t`
 
