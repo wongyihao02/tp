@@ -608,16 +608,16 @@ and instantiating and saving a Marks object with the details to the given studen
 
 `AddMarksCommand#execute()`
 - ![AddMarksCommand.png](diagrams/markslistcommands/AddMarksCommand.png)
-- - Reference diagrams provided at the end of this section.
-- Validates the input to ensure it follows the expected format and is not missing arguments.
-- Parses the input to extract the tutorial class code, matric number, assignment name, marks and maximum marks.
-- Validates parsed inputs marks and maximum marks to make sure they are valid, non-negative integers with maximum marks >= marks.
-- Retrieves the `tutorialClass` with the given tutorial class code.
-- Checks if the `tutorialClass` retrieved exists, prints an error message otherwise.
-- Retrieves the student with the given matric number from the retrieved `tutorialClass` student list.
-- Checks if the student exists, prints an error message otherwise.
-- Checks if the student's `marksList` already contains a marks object with the same assignment name, prints an error message if so.
-- Instantiates the `marks` object with given assignment name, marks and max marks, and adds it to `marksList`.
+  - Reference diagrams provided at the end of this section.
+  - Validates the input to ensure it follows the expected format and is not missing arguments.
+  - Parses the input to extract the tutorial class name, matric number, assignment name, marks and maximum marks.
+  - Validates parsed inputs marks and maximum marks to make sure they are valid, non-negative integers with maximum marks >= marks.
+  - Retrieves the `TutorialClass` with the given tutorial class name.
+  - Checks if the `TutorialClass` retrieved exists, prints an error message otherwise.
+  - Retrieves the `Student` with the given matric number from the retrieved `TutorialClass` student list.
+  - Checks if the `Student` exists, prints an error message otherwise.
+  - Checks if the student's `marksList` already contains a `Marks` object with the same assignment name, prints an error message if so.
+  - Instantiates the `Marks` object with given assignment name, marks and max marks, and adds it to `marksList`.
 
 ### 2. DeleteMarksCommand
 
@@ -633,15 +633,15 @@ corresponding `Marks` object from the student's `marksList`.
 
 #### `DeleteMarksCommand#execute()`
 - ![DeleteMarksCommand.png](diagrams/markslistcommands/DeleteMarksCommand.png)
-- - Reference diagrams provided at the end of this section.
-- Validates the input to ensure it follows the expected format and is not missing arguments.
-- Parses the input to extract the tutorial class code, matric number, and assignment name.
-- Retrieves the `TutorialClass` with the given tutorial class code.
-- Checks if the `TutorialClass` exists, prints an error message otherwise.
-- Retrieves the student with the given matric number from the retrieved `TutorialClass` student list.
-- Checks if the student exists, prints an error message otherwise.
-- Checks if the student's `marksList` contains a `Marks` object with the given assignment name, prints an error message if not.
-- Removes the corresponding `Marks` object from the student's `marksList` and prints a success message.
+  - Reference diagrams provided at the end of this section.
+  - Validates the input to ensure it follows the expected format and is not missing arguments.
+  - Parses the input to extract the tutorial class name, matric number, and assignment name.
+  - Retrieves the `TutorialClass` with the given tutorial class name.
+  - Checks if the `TutorialClass` exists, prints an error message otherwise.
+  - Retrieves the `Student` with the given matric number from the retrieved `TutorialClass` student list.
+  - Checks if the `Student` exists, prints an error message otherwise.
+  - Checks if the student's `marksList` contains a `Marks` object with the given assignment name, prints an error message if not.
+  - Removes the corresponding `Marks` object from the student's `marksList` and prints a success message.
 
 ### 3. ListMarksCommand
 
@@ -657,19 +657,22 @@ the student.
 
 #### `ListMarksCommand#execute()`
 - ![ListMarksCommand.png](diagrams/markslistcommands/ListMarksCommand.png)
-- - Reference diagrams provided at the end of this section.
-- Validates the input to ensure it follows the expected format and is not missing arguments.
-- Parses the input to extract the tutorial class code and matric number.
-- Retrieves the `TutorialClass` with the given tutorial class code.
-- Checks if the `TutorialClass` exists, prints an error message otherwise.
-- Retrieves the student with the given matric number from the retrieved `TutorialClass` student list.
-- Checks if the student exists, prints an error message otherwise.
-- Prints the student's name followed by all marks recorded in their `marksList`.
+  - Reference diagrams provided at the end of this section.
+  - Validates the input to ensure it follows the expected format and is not missing arguments.
+  - Parses the input to extract the tutorial class name and matric number.
+  - Retrieves the `TutorialClass` with the given tutorial class name.
+  - Checks if the `TutorialClass` exists, prints an error message otherwise.
+  - Retrieves the `Student` with the given matric number from the retrieved `TutorialClass` student list.
+  - Checks if the `Student` exists, prints an error message otherwise.
+  - Prints the student's name followed by all `Marks` recorded in their `marksList`.
 
 #### Reference diagrams
-1. ![FindTutorialByName](diagrams/markslistcommands/FindTutorialByName.png)
-2. ![FindStudentByMatricNumber](diagrams/markslistcommands/FindStudentByMatricNumber.png)
-3. ![FindMarksByAssignmentName](diagrams/markslistcommands/FindMarksByAssignmentName.png)
+1. Find tutorial by name 
+* ![FindTutorialByName](diagrams/markslistcommands/FindTutorialByName.png)
+2. Find student by matric number
+* ![FindStudentByMatricNumber](diagrams/markslistcommands/FindStudentByMatricNumber.png)
+3. Find marks by assignment name
+* ![FindMarksByAssignmentName](diagrams/markslistcommands/FindMarksByAssignmentName.png)
 
 ### Task Commands
 
