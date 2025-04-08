@@ -1,0 +1,62 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+allowmixing
+
+    class ChangeRemarkCommand {
+        +execute(parts: String, tutorialClassList: TutorialClassList): void
+    }
+
+    class CheckRemarkCommand {
+            +execute(parts: String, tutorialClassList: TutorialClassList): void
+        }
+
+    class DeleteStudentCommand {
+            +execute(parts: String, tutorialClassList: TutorialClassList): void
+        }
+
+    class FindStudentCommand {
+            +execute(parts: String, tutorialClassList: TutorialClassList): void
+        }
+
+    class ListTutorialStudentsCommand {
+                +execute(parts: String, tutorialClassList: TutorialClassList): void
+            }
+
+    class NewStudentCommand {
+                +execute(parts: String, tutorialClassList: TutorialClassList): void
+            }
+
+    interface "<<interface>> \n Command<T>" {
+        +execute(input: String, context: T): void
+    }
+
+    rectangle "TutorialClassListComponents"
+    note right: Breakdown of components provided
+
+
+
+
+' Relationships
+"<<interface>> \n Command<T>" <|.. ChangeRemarkCommand : <<implements>>
+"<<interface>> \n Command<T>" <|.. CheckRemarkCommand : <<implements>>
+"<<interface>> \n Command<T>" <|.. DeleteStudentCommand : <<implements>>
+"<<interface>> \n Command<T>" <|.. FindStudentCommand : <<implements>>
+"<<interface>> \n Command<T>" <|.. ListTutorialStudentsCommand : <<implements>>
+"<<interface>> \n Command<T>" <|.. NewStudentCommand : <<implements>>
+
+ChangeRemarkCommand --> TutorialClassListComponents
+
+CheckRemarkCommand --> TutorialClassListComponents
+
+DeleteStudentCommand --> TutorialClassListComponents
+
+FindStudentCommand --> TutorialClassListComponents
+
+ListTutorialStudentsCommand --> TutorialClassListComponents
+
+
+NewStudentCommand --> TutorialClassListComponents
+
+@enduml

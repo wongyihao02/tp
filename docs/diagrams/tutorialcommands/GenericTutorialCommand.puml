@@ -3,9 +3,17 @@
 hide circle
 skinparam classAttributeIconSize 0
 
-    class GenericTutorialCommand {
+    class DeleteTutorialCommand {
         +execute(parts: String, tutorialClassList: TutorialClassList): void
     }
+
+    class ListExistingTutorialsCommand {
+            +execute(parts: String, tutorialClassList: TutorialClassList): void
+        }
+
+    class NewTutorialCommand {
+            +execute(parts: String, tutorialClassList: TutorialClassList): void
+        }
 
     interface "<<interface>> \n Command<T>" {
         +execute(input: String, context: T): void
@@ -36,13 +44,17 @@ startTime: LocalTime, endTime: LocalTime)
     }
 
 
-    class TASyncException extends Exception {
-        +invalidGenericCommand(): TASyncException
-    }
+
 
 ' Relationships
-"<<interface>> \n Command<T>" <|.. GenericTutorialCommand : <<implements>>
-GenericTutorialCommand --> TutorialClassList
+"<<interface>> \n Command<T>" <|.. DeleteTutorialCommand : <<implements>>
+DeleteTutorialCommand --> TutorialClassList
 TutorialClassList "1 "*-- "*" TutorialClass: contains
-GenericTutorialCommand --> TASyncException
+
+"<<interface>> \n Command<T>" <|.. ListExistingTutorialsCommand : <<implements>>
+ListExistingTutorialsCommand --> TutorialClassList
+
+"<<interface>> \n Command<T>" <|.. NewTutorialCommand : <<implements>>
+NewTutorialCommand --> TutorialClassList
+
 @enduml

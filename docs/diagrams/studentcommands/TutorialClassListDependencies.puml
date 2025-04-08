@@ -3,15 +3,6 @@
 hide circle
 skinparam classAttributeIconSize 0
 
-    class GenericStudentCommand {
-        +execute(parts: String, tutorialClassList: TutorialClassList): void
-    }
-
-    interface "<<interface>> \n Command<T>" {
-        +execute(input: String, context: T): void
-    }
-
-
     class TutorialClass {
         +getStartTime(): LocalTime
         +getStudentList(): StudentList
@@ -39,21 +30,13 @@ skinparam classAttributeIconSize 0
         +getStudents(): ArrayList<Student>
     }
 
-    class StudentCommandHelper {
-        +parseInput(parts: String, length:int): String[]
-    }
 
-    class TASyncException extends Exception {
-        +invalidGenericStudentCommand(): TASyncException
-    }
 
-' Relationships
-"<<interface>> \n Command<T>" <|.. GenericStudentCommand : <<implements>>
-GenericStudentCommand --> TutorialClassList
-GenericStudentCommand --> StudentCommandHelper
-StudentCommandHelper --> TASyncException
+
 TutorialClassList "1" *-- "*" TutorialClass : contains
 TutorialClass "1" *-- "1" StudentList : contains
 StudentList "1" *-- "*" Student : contains
-GenericStudentCommand --> TASyncException
+
+
+
 @enduml
