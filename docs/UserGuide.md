@@ -26,24 +26,24 @@ Designed specifically for TAs and tutors who manage both student-related adminis
   - [Deleting marks `DELETEMARKS -m`](#deleting-marks-for-a-student-deletemarks--m)
   - [List all marks for a student `LIST -m`](#list-all-marks-for-a-student-list--m)
 - [Task Commands](#task-commands)
-  - [Adding a todo: `TODO`](#adding-a-todo-todo)
-  - [Adding a deadline: `DEADLINE`](#adding-a-deadline-deadline)
-  - [Adding an event: `EVENT`](#adding-an-event-event)
-  - [Adding a consultation: `CONSULTATION`](#adding-a-consultation-consultation)
-  - [Listing the tasks: `LIST`](#listing-the-tasks-list)
-  - [Deleting a task: `DELETE`](#deleting-a-task-delete)
-  - [Marking a task: `MARK`](#marking-a-task-mark)
-  - [Unmarking a task: `UNMARK`](#unmarking-a-task-unmark)
-  - [Finding a task: `FIND`](#finding-a-task-find)
-  - [Renaming a task: `RENAME`](#renaming-a-task-rename)
+  - [Adding a todo: `ADD -pt`](#adding-a-todo-todo)
+  - [Adding a deadline: `ADD -pd`](#adding-a-deadline-deadline)
+  - [Adding an event: `ADD -pe`](#adding-an-event-event)
+  - [Adding a consultation: `ADD -c`](#adding-a-consultation-consultation)
+  - [Listing the tasks: `LIST -p`](#listing-the-tasks-list)
+  - [Deleting a task: `DELETE -p`](#deleting-a-task-delete)
+  - [Marking a task: `MARK -p`](#marking-a-task-mark)
+  - [Unmarking a task: `UNMARK -p`](#unmarking-a-task-unmark)
+  - [Finding a task: `FIND -p`](#finding-a-task-find)
+  - [Renaming a task: `RENAME -p`](#renaming-a-task-rename)
 - [AttendanceList Commands](#attendancelist-commands)
-  - [View the attendance list: `LIST`](#view-the-attendance-list-list)
-  - [Mark present a student: `MARK`](#mark-present-a-student-mark)
-  - [Mark absent a student: `UNMARK`](#mark-absent-a-student-unmark)
-  - [View comments for a student: `VIEWCOMMENT`](#view-comments-for-a-student-viewcomment)
-  - [Add comments for a student: `COMMENT`](#add-comments-for-a-student-comment)
-  - [delete comments for a student: `DELETECOMMENT`](#delete-comment-for-a-student-deletecomment)
-  - [Create a new attendancelist`CREATE`](#create-an-attendance-list-create)
+  - [View the attendance list: `LIST -a`](#view-the-attendance-list-list)
+  - [Mark present a student: `MARK -a`](#mark-present-a-student-mark)
+  - [Mark absent a student: `UNMARK -a`](#mark-absent-a-student-unmark)
+  - [View comments for a student: `VIEWCOMMENT -a`](#view-comments-for-a-student-viewcomment)
+  - [Add comments for a student: `COMMENT -a`](#add-comments-for-a-student-comment)
+  - [delete comments for a student: `DELETECOMMENT -a`](#delete-comment-for-a-student-deletecomment)
+  - [Create a new attendancelist`CREATE -at`](#create-an-attendance-list-create)
 - [Bye Command](#bye-command-bye)
 - [FAQ](#faq)
 - [Command Summary](#Command-Summary)
@@ -192,7 +192,7 @@ Examples:
 
 ### Task Commands
 
-#### Adding a todo: `TODO`
+#### Adding a todo: `ADD -pt`
 
 Adds a personal todo to the task list.
 
@@ -206,7 +206,7 @@ task added:
 Now you have 1 tasks in the list.
 ```
 
-#### Adding a deadline: `DEADLINE`
+#### Adding a deadline: `ADD -pd`
 
 Adds a personal deadline to the task list.
 
@@ -220,7 +220,7 @@ task added:
 Now you have 2 tasks in the list.
 ```
 
-#### Adding an event: `EVENT`
+#### Adding an event: `ADD -pe`
 
 Adds a personal event to the task list.
 
@@ -234,7 +234,7 @@ task added:
 Now you have 3 tasks in the list.
 ```
 
-#### Adding a consultation: `CONSULTATION`
+#### Adding a consultation: `ADD -c`
 
 Adds a consultation with a student to the task list.
 
@@ -248,7 +248,7 @@ Task added:
 Now you have 4 tasks in the list.
 ```
 
-#### Listing the tasks: `LIST`
+#### Listing the tasks: `LIST -p`
 
 Displays all the tasks in the task list.
 
@@ -261,7 +261,7 @@ Example:
 2.[T][ ] Study Python
 ```
 
-#### Deleting a task: `DELETE`
+#### Deleting a task: `DELETE -p`
 
 Delete a task from the task list.
 
@@ -274,7 +274,7 @@ deleted task:
 [T][ ] Study Java
 ```
 
-#### Marking a task: `MARK`
+#### Marking a task: `MARK -p`
 
 Marks a task as done.
 
@@ -286,7 +286,7 @@ Example:
 Study Python is marked
 ```
 
-#### Unmarking a task: `UNMARK`
+#### Unmarking a task: `UNMARK -p`
 
 Marks a task as undone.
 
@@ -298,7 +298,7 @@ Example:
 Study Python is unmarked
 ```
 
-#### Finding a task: `FIND`
+#### Finding a task: `FIND -p`
 
 Finds a task based on the keyword given.
 
@@ -310,7 +310,7 @@ Example:
 1.[T][ ] Study Java
 ```
 
-#### Renaming a task: `RENAME`
+#### Renaming a task: `RENAME -p`
 
 Renames a task based on the task number given.
 
@@ -325,7 +325,7 @@ Study Java renamed to Study Python
 
 Note that Student names have to be in full for AttendanceListCommands.
 
-#### View the attendance list: `LIST`
+#### View the attendance list: `LIST -a`
 
 Lists out the attendance for a given tutorial name and week.
 
@@ -339,7 +339,7 @@ personname(matricnum1): Absent
 End of list
 ```
 
-#### Mark present a student: `MARK`
+#### Mark present a student: `MARK -a`
 
 Marks a student present in a attendance list for a given tutorial name and week.
 
@@ -351,7 +351,7 @@ Example:
 Student marked Present
 ```
 
-#### Mark absent a student: `UNMARK`
+#### Mark absent a student: `UNMARK -a`
 
 Marks a student absent in a attendance list for a given tutorial name and week.
 
@@ -363,7 +363,7 @@ Example:
 Student marked Absent
 ```
 
-#### View comments for a student: `VIEWCOMMENT`
+#### View comments for a student: `VIEWCOMMENT -a`
 
 Lists out the comments for a student for a given tutorial name and week.
 
@@ -378,7 +378,7 @@ list of comments:
 End of list
 ```
 
-#### add comments for a student: `COMMENT`
+#### add comments for a student: `COMMENT -a`
 
 Adds comments to a student for a given tutorial name and week.More than one comment can be added at a time,ensure that they are seperated by ;
 
@@ -399,7 +399,7 @@ list of comments:
 End of list
 ```
 
-#### Delete comment for a student: `DELETECOMMENT`
+#### Delete comment for a student: `DELETECOMMENT -a`
 
 Deletes a comment for a student for a given tutorial name and week.
 
@@ -421,7 +421,7 @@ list of comments:
 1.john does everything
 End of list
 ```
-#### Create an attendance list: `CREATE`
+#### Create an attendance list: `CREATE -at`
 
 Creates an attendance List for a given tutorial name and week if it does not already exist.
 Note that the tage is -at instead of -t this time.
