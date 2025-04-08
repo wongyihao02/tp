@@ -1,16 +1,13 @@
 # Li XiaoNa - Project Portfolio Page
 
 ## Project: TASync
-
 TASync is a tool designed to streamline the management of administrative tasks for tutors, including attendance tracking,
 remarks, and scheduling, with a focus on optimizing the user experience through a command-line interface (CLI).
 
 ## Overview
-
 Given below are my contributions to the project.
 
 ## Summary of Code Contributions
-
 ### 1. Student Commands
 
 #### New Features
@@ -30,21 +27,15 @@ Given below are my contributions to the project.
 - **Change Student Remark**
   - **What it does:** Allows the user to update or overwrite remarks in a student’s record.
   - **Justification:** Helps TAs track academic progress and behavior over time.
-  - **Depth of work:** Required accessing nested student records from tutorial classes.
-  - **Challenge:** Careful design to avoid accidentally modifying the wrong student.
 
 - **Check Student Remark**
   - **What it does:** Allows the user to view existing remarks for a student.
   - **Justification:** Enables quick access to historical records during tutorials or consultations.
-  - **Depth of work:** Pulled data from student lists with proper input validation.
 
 - **List Students in Tutorial**
   - **What it does:** Lists all students in a given tutorial, with full personal information.
   - **Justification:** Gives a comprehensive snapshot for attendance, contact, and planning.
-  - **Depth of work:** Required formatting multiple data fields for readability.
-  - **Challenge:** Ensuring the output format remained clean and readable for varying class sizes.
 
----
 
 ### 2. Tutorial Commands
 
@@ -53,31 +44,23 @@ Given below are my contributions to the project.
 - **Add/Delete Tutorial**
   - **What it does:** Lets users add or remove tutorials from the master list.
   - **Justification:** Maintains an accurate reflection of the TA’s real teaching schedule.
-  - **Depth of work:** Implemented duplicate detection and structured input parsing.
-  - **Challenge:** Designed to avoid clashes in tutorial names and time slots.
-
+  
 - **List Existing Tutorials**
   - **What it does:** Displays all created tutorials sorted by day and time.
   - **Justification:** Helps the TA stay organized and track tutorial sessions.
-  - **Depth of work:** Involved sorting logic with chained comparators.
-  - **Challenge:** Needed a custom sort by both weekday and start time.
 
----
 
 ### 3. Help Command
 
 - **Improvement:** Created a new `CommandListPrinter` class to modularize and improve the Help Guide.
 - **Justification:** Improves maintainability and clarity of the help feature for users.
-- **Depth of work:** Required reworking how command data is stored and presented.
 
----
 
 ### 4. Others
 
 - **Code Cleanup (v1.0 & v2.0):**
   - **What it does:** Resolved all Checkstyle errors across the codebase.
   - **Justification:** Ensured consistency, readability, and maintainability for the entire team.
-  - **Depth of work:** Required reading and applying multiple coding standards across unfamiliar code.
 
 - **Code contributed**
   - https://nus-cs2113-ay2425s2.github.io/tp-dashboard/?search=samstt&breakdown=true
