@@ -209,7 +209,7 @@ public class AttendanceListTests {
         TutorialClass tutorial = attendancelist.getTutorialClass();
         StudentList listOfStudents = tutorial.getStudentList();
         Student phoebeOng = listOfStudents.getStudentByName("Phoebe Ong");
-        Student Kenny = listOfStudents.getStudentByName("Kenny Yeo");
+        Student kennyYeo = listOfStudents.getStudentByName("Kenny Yeo");
         assertEquals("Phoebe Ong", phoebeOng.getName());
         ArrayList<String> comments = attendancelist.getComment(phoebeOng);
 

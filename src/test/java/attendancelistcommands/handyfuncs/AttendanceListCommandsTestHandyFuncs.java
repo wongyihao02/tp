@@ -53,6 +53,7 @@ public class AttendanceListCommandsTestHandyFuncs {
         // Add tutorial classes to list
         tutorialClassList.addTutorialClass(tutorial1);
         tutorialClassList.addTutorialClass(tutorial2);
+        tutorialClassList.addTutorialClass(tutorial3);
 
         return tutorialClassList;
     }
@@ -60,8 +61,8 @@ public class AttendanceListCommandsTestHandyFuncs {
     public static AttendanceFile initializeAttendanceFile() {
         TutorialClassList tutorialClassList = initializeTutorialClasses();
         TutorialClass class1 = tutorialClassList.getTutorialByName("T01");
-        Student Roselle = class1.getStudentList().getStudentByName("Roselle Gustave Bonaparte");
-        Student Kim = class1.getStudentList().getStudentByName("Kim Dokja");
+        Student roselleGustaveBonaparte = class1.getStudentList().getStudentByName("Roselle Gustave Bonaparte");
+        Student kimDokja = class1.getStudentList().getStudentByName("Kim Dokja");
         AttendanceList first = new AttendanceList(tutorialClassList.getTutorialByName("T01"), 1);
         AttendanceList second = new AttendanceList(tutorialClassList.getTutorialByName("T01"), 2);
         AttendanceList third = new AttendanceList(tutorialClassList.getTutorialByName("T01"), 3);
@@ -72,12 +73,12 @@ public class AttendanceListCommandsTestHandyFuncs {
         AttendanceList eighth = new AttendanceList(tutorialClassList.getTutorialByName("T02"), 6);
         AttendanceList ninth = new AttendanceList(tutorialClassList.getTutorialByName("T02"), 7);
         AttendanceList tenth = new AttendanceList(tutorialClassList.getTutorialByName("T03"), 1);
-        ArrayList<String> RoselleComments = new ArrayList<>();
-        ArrayList<String> KimComments = new ArrayList<>();
-        RoselleComments.add("Savant transmigrator");
-        KimComments.add("ugly squid");
-        first.addComments(Roselle, RoselleComments);
-        first.addComments(Kim, KimComments);
+        ArrayList<String> roselleComments = new ArrayList<>();
+        ArrayList<String> kimComments = new ArrayList<>();
+        roselleComments.add("Savant transmigrator");
+        kimComments.add("ugly squid");
+        first.addComments(roselleGustaveBonaparte, roselleComments);
+        first.addComments(kimDokja, kimComments);
         ArrayList<AttendanceList> list = new ArrayList<>();
         list.add(first);
         list.add(seventh);
