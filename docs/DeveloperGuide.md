@@ -208,7 +208,7 @@ The class implements the following main operation:
     - The start and end times are in a valid format and are not overlapping.
     - The tutorial is not a duplicate of an existing tutorial in the list.
   - **Checks if a duplicate tutorial exists** by comparing the tutorial name, day of the week, start time, and end time.
-  - If a duplicate is found, throws a `TASyncException.duplicateTutorial()` exception.
+  - If a duplicate is found, throws a `TASyncException`.
   - If the tutorial details are valid and no duplicates are found, creates a new `TutorialClass` object.
   - Adds the new tutorial to the tutorial class list.
   - Prints a success message upon successful addition of the tutorial.
@@ -241,13 +241,13 @@ The class implements the following main operation:
 
 #### 3. ListExistingTutorialsCommand
 
-The ListExistingTutorialsCommand is part of the tutorialcommands package and is responsible for displaying all existing 
+The ListExistingTutorialsCommand is part of the `tutorialcommands` package and is responsible for displaying all existing 
 tutorial classes stored within the TutorialClassList. It ensures users can view a well-organized list of tutorials, 
 or a message indicating that no tutorials have been added yet.
 
 #### Implementation Details
 
-The ListExistingTutorialsCommand class implements the Command<TutorialClassList> interface. It does not require 
+The ListExistingTutorialsCommand class implements the `Command<TutorialClassList>` interface. It does not require 
 any input arguments. If arguments are provided, it throws a TASyncException.
 
 #### Operations
@@ -295,12 +295,12 @@ been omitted to provide a more focused view on the class diagram structure.
 
 #### 1. NewStudentCommand
 
-The NewStudentCommand is part of the `studentcommands` package and is responsible for adding a new student to a
+The `NewStudentCommand` is part of the `studentcommands` package and is responsible for adding a new student to a
 specific tutorial class.
 
 #### Implementation Details
 
-The NewStudentCommand class implements the Command<TutorialClassList> interface. It is responsible for parsing the input to
+The `NewStudentCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for parsing the input to
 extract the student’s details, validating them, and adding the student to the appropriate tutorial class.
 #### Operations
 
@@ -314,7 +314,7 @@ The class implements the following main operation:
   - Retrieves the specified tutorial class based on the provided class code.
   - Checks if the matriculation number already exists in the class. If it does, an error message is shown.
   - Creates a new Student object and adds it to the student list of the tutorial class.
-  - Logs and displays a success message if the student is successfully added to the tutorial class.
+  - Displays a success message if the student is successfully added to the tutorial class.
   - Handles any exceptions by displaying relevant error messages if validation fails or the tutorial class is not found.
 
 #### 2. DeleteStudentCommand
@@ -324,7 +324,7 @@ student from a specific tutorial class.
 
 #### Implementation Details
 
-The `DeleteStudentCommand` class implements the Command<TutorialClassList> interface. It is responsible for
+The `DeleteStudentCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for
 parsing the input to extract the tutorial class code and matriculation number, validating them, and removing
 the student from the appropriate tutorial class.
 
@@ -368,7 +368,6 @@ The class implements the following main operation:
   - If the tutorial class or student is not found, an error message is shown.
 
 This command is executed as part of the TASync system when a user provides a properly formatted input string.
-
 
 #### 4. CheckRemarkCommand
 
@@ -425,7 +424,7 @@ The class implements the following main operation:
   - If no matching students are found in any tutorial class, prints a message indicating that no results were found.
   - Handles any exceptions by displaying relevant error messages if validation fails.
 
-#### 3. ListTutorialStudentsCommand
+#### 6. ListTutorialStudentsCommand
 
 The `ListTutorialStudentsCommand` class implements the `Command<TutorialClassList>` interface. It is responsible for
 parsing the input, validating the tutorial name, and listing the students enrolled in the specified tutorial class.

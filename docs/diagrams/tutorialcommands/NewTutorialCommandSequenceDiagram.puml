@@ -14,10 +14,13 @@ Helper --> Command: String[] inputParts
 create Tutorial
 Command -> Tutorial: new TutorialClass(name, dayOfWeek, startTime, endTime)
 activate Tutorial
-Tutorial -> Command: new tutorial
+Tutorial --> Command: new tutorial
 deactivate Tutorial
 
 Command -> List: addTutorialClass(newTutorial)
+activate List
+List --> Command
+deactivate List
 
 
 deactivate Command
