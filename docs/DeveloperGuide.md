@@ -160,15 +160,17 @@ The `CommandFactory` is responsible for returning the correct command object for
   - `CommandHandler` uses `createCommand()` method from `CommandFactory` to generate `Command` Object
   - The CommandLoopHandler then calls `runCommand()` method in `CommandHandler`
   - CommandHandler then runs the Command
+
 ### Tutorial Commands
 
 Disclaimer:
 All sequence diagrams that will be displayed in this section assume valid parameters have been inputted. Exception
-handling and other edge cases are not the focus of discussion.
+handling and other edge cases are not the focus of discussion. However, details on how certain errors are handled are 
+discussed in the operations section for each command. 
 
 #### Generic Class Diagram 
 
-![GenericTutorialCommandClassDiagram.png](diagrams/tutorialcommands/GenericTutorialCommandClassDiagram.png)
+![GenericTutorialCommandClassDiagram](diagrams/tutorialcommands/GenericTutorialCommandClassDiagram.png)
 
 The above class diagram provides a high-level overview of the key dependencies and structural relationships relevant to classes 
 in the `tutorialcommands` package. Rather than capturing every attribute and method in detail, the diagram focuses on the essential 
@@ -177,7 +179,8 @@ components and interactions that are typically involved when a tutorial-related 
 This abstraction is intentional—it aims to offer a simplified yet informative perspective for developers to understand how command classes 
 interact with core entities such as `TutorialClassList` and `TutorialClass`. By highlighting only the critical methods and associations 
 (e.g., retrieving a tutorial by name, accessing student records, or setting remarks), the diagram acts as a functional blueprint to 
-guide command implementation without overwhelming the viewer with unnecessary details.
+guide command implementation without overwhelming the viewer with unnecessary details. Exception classes and other unimportant helper classes have
+been omitted to provide a more focused view on the class diagram structure. 
 
 
 #### 1. NewTutorialCommand
@@ -202,7 +205,7 @@ The class implements the following main operation:
   - **Validates the input** to ensure:
     - The input is not empty or invalid.
     - The day of the week is a valid integer between 1 and 7.
-    - The start and end times are in a valid format.
+    - The start and end times are in a valid format and are not overlapping.
     - The tutorial is not a duplicate of an existing tutorial in the list.
   - **Checks if a duplicate tutorial exists** by comparing the tutorial name, day of the week, start time, and end time.
   - If a duplicate is found, throws a `TASyncException.duplicateTutorial()` exception.
@@ -275,15 +278,20 @@ These commands interact with the tutorial classes and the student list, allowing
 effectively.
 
 #### Generic Class Diagram:
-![GenericStudentCommandClassDiagram](diagrams/studentcommands/GenericStudentCommandClassDiagram.png)
+
+![GenericStudentSubDiagramClassDiagram.png](diagrams/studentcommands/GenericStudentSubDiagramClassDiagram.png)
 
 The above class diagram provides a high-level overview of the key dependencies and structural relationships relevant to classes  
-in the `studentcommands` package. While it shares similarities with the generic tutorial command diagram, this version extends the scope  
-by highlighting components specific to student-related operations—most notably, the `StudentList` and `Student` classes.
+in the `studentcommands` package. While it shares similarities with the generic tutorial command diagram, this version extends the scope of 
+the TutorialClassList components with the `StudentList` and `Student` classes. To ensure easier comprehension of the overall structure, the TutorialClassList component structure is shown as a 
+subcomponent above and details of its class diagram structure are provided below.
+
+![TutorialClassListDependenciesClassDiagram.png](diagrams/studentcommands/TutorialClassListDependenciesClassDiagram.png)
 
 These additions reflect the typical interactions involved when a student-related command is executed, such as retrieving student data  
-or updating student information. The diagram thus serves as a focused guide for understanding the command flow and class dependencies  
-in scenarios that involve direct manipulation of student entities.
+or updating student information. The diagram thus serves as a helpful guide for understanding the command flow and class dependencies  
+in scenarios that involve direct manipulation of student entities. Exception classes and other unimportant helper classes have
+been omitted to provide a more focused view on the class diagram structure.
 
 #### 1. NewStudentCommand
 
