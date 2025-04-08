@@ -323,11 +323,13 @@ Study Java renamed to Study Python
 ```
 ### AttendanceList Commands
 
+Note that Student names have to be in full for AttendanceListCommands.
+
 #### View the attendance list: `LIST`
 
-Lists out the attendance for a given tutorial name and week
+Lists out the attendance for a given tutorial name and week.
 
-Format: `LIST -a <Tut_name>,<Week_num>`
+Format: `LIST -a <tutorial_name>,<Week_num>`
 
 Example:
 ```
@@ -339,9 +341,9 @@ End of list
 
 #### Mark present a student: `MARK`
 
-marks a student present in a attendance list for a given tutorial name and week
+Marks a student present in a attendance list for a given tutorial name and week.
 
-Format: `MARK -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`
+Format: `MARK -a <tutorial_name>,<Week_num>,<student_name>,<matricnum>`
 
 Example:
 ```
@@ -351,9 +353,9 @@ Student marked Present
 
 #### Mark absent a student: `UNMARK`
 
-marks a student absent in a attendance list for a given tutorial name and week
+Marks a student absent in a attendance list for a given tutorial name and week.
 
-Format: `UNMARK -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`
+Format: `UNMARK -a <tutorial_name>,<Week_num>,<student_name>,<matricnum>`
 
 Example:
 ```
@@ -363,9 +365,9 @@ Student marked Absent
 
 #### View comments for a student: `VIEWCOMMENT`
 
-Lists out the comments for a student for a given tutorial name and week
+Lists out the comments for a student for a given tutorial name and week.
 
-Format: `VIEWCOMMENT -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`
+Format: `VIEWCOMMENT -a <tutorial_name>,<Week_num>,<student_name>,<matricnum>`
 
 Example:
 ```
@@ -380,7 +382,7 @@ End of list
 
 Adds comments to a student for a given tutorial name and week.More than one comment can be added at a time,ensure that they are seperated by ;
 
-Format: `COMMENT -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//comment1;comment2`
+Format: `COMMENT -a <tutorial_name>,<Week_num>,<student_name>,<matricnum>//comment1;comment2`
 
 Example:
 ```
@@ -399,9 +401,9 @@ End of list
 
 #### Delete comment for a student: `DELETECOMMENT`
 
-deletes a comment for a student for a given tutorial name and week
+Deletes a comment for a student for a given tutorial name and week.
 
-Format: `DELETECOMMENT -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//num_pos_to_delete`
+Format: `DELETECOMMENT -a <tutorial_name>,<Week_num>,<student_name>,<matricnum>//num_pos_to_delete`
 
 Example:
 ```
@@ -424,7 +426,7 @@ End of list
 Creates an attendance List for a given tutorial name and week if it does not already exist.
 Note that the tage is -at instead of -t this time.
 
-Format: `CREATE -at <Tut_name>,<Week_num>`
+Format: `CREATE -at <tutorial_name>,<Week_num>`
 
 Example:
 ```
@@ -499,15 +501,15 @@ computer
 
 ## Attendance Commands
 
-| CommandName            | Form                                                                                   |                               Example                               |
-|------------------------|:---------------------------------------------------------------------------------------|:-------------------------------------------------------------------:|
-| View Attendance List   | `LIST -a <Tut_name>,<Week_num>`                                                        |                           `LIST -a T01,1`                           |
-| Mark Student Present   | `MARK -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`                             |                      `MARK -a T01,1,john,A001`                      |
-| Mark Student Absent    | `UNMARK -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`                           |                     `UNMARK -a T01,1,john,A001`                     |
-| View Comments          | `VIEWCOMMENT -a <Tut_name>,<Week_num>,<student_name>,<matricnum>`                      |                  `VIEWCOMMENT -a T01,1,john,A001`                   |
-| Add Comment            | `COMMENT -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//comment1;comment2`       | `COMMENT -a T01,1,john,A001//john is studious;john does everything` |
-| Delete Comment         | `DELETECOMMENT -a <Tut_name>,<Week_num>,<student_name>,<matricnum>//num_pos_to_delete` |                `DELETECOMMENT -a T01,1,john,A001//1`                |
-| Create Attendance List | `CREATE -at <Tut_name>,<Week_num>`                                                     |                         `CREATE -at T01,1`                          |
+| CommandName            | Form                                                                                        |                               Example                               |
+|------------------------|:--------------------------------------------------------------------------------------------|:-------------------------------------------------------------------:|
+| View Attendance List   | `LIST -a <tutorial_name>,<Week_num>`                                                        |                           `LIST -a T01,1`                           |
+| Mark Student Present   | `MARK -a <tutorial_name>,<Week_num>,<student_name>,<matricnum>`                             |                      `MARK -a T01,1,john,A001`                      |
+| Mark Student Absent    | `UNMARK -a <tutorial_name>,<Week_num>,<student_name>,<matricnum>`                           |                     `UNMARK -a T01,1,john,A001`                     |
+| View Comments          | `VIEWCOMMENT -a <tutorial_name>,<Week_num>,<student_name>,<matricnum>`                      |                  `VIEWCOMMENT -a T01,1,john,A001`                   |
+| Add Comment            | `COMMENT -a <tutorial_name>,<Week_num>,<student_name>,<matricnum>//comment1;comment2`       | `COMMENT -a T01,1,john,A001//john is studious;john does everything` |
+| Delete Comment         | `DELETECOMMENT -a <tutorial_name>,<Week_num>,<student_name>,<matricnum>//num_pos_to_delete` |                `DELETECOMMENT -a T01,1,john,A001//1`                |
+| Create Attendance List | `CREATE -at <tutorial_name>,<Week_num>`                                                     |                         `CREATE -at T01,1`                          |
 
 
 ## Exit Command
